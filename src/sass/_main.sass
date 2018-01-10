@@ -1,0 +1,2535 @@
+*, *:after, *:before
+	box-sizing: border-box
+a 
+	text-decoration: none
+img
+	display: block
+button
+	background-color: transparent
+	outline: none
+html
+	height: 100%
+	font-size: 16px
+	min-width: 980px
+	+r(1366)
+		font-size: 14px
+	+r(1277)
+		font-size: 12px
+	+rm(1921)
+		font-size: 20px
+body
+	// overflow: hidden
+	height: 100%
+	font-family: $Book
+	text-rendering: optimizeLegibility
+	-webkit-font-smoothing: antialiased
+	&.is-scrolling
+		pointer-events: none
+	&.loading
+		overflow: hidden
+	+scrollbar
+		width: 8px
+		background-color: #F5F5F5
+	+scrollbar-track
+		background-color: $white
+	+scrollbar-thumb
+		background-color: rgba(0,0,0,.3);
+	+scrollbar-track-piece
+.dragscroll
+	cursor: grab
+[cursor-type]
+	& *
+		cursor: none
+.custom__btn
+	background-color: $white
+	border: 1px solid $nameUpp
+	border-radius: 2px
+	transition: border-color 0.25s, background-color 0.25s
+	display: inline-block
+	span
+		font-family: $Graphik
+		color: $bottonSection
+		+rem(font-size, 17px)
+		transition: color 0.25s
+		padding: 10px 15px
+		letter-spacing: -0.3px
+		display: block
+	&:hover
+		background-color: var(--color-link)
+		border-color: var(--color-link)
+		span
+			color: $black
+
+.root
+	height: 100%
+.root-frame
+	opacity: 0
+	visibility: hidden
+	background-color: $white
+.root-wrapper
+	height: 100%
+.header
+	position: fixed
+	z-index: 15
+	width: 100%
+	top: 0
+	left: 0
+.scroll-content
+	height: 100%
+[data-scrollbar]
+	.scrollbar-track
+		background-color: transparent
+		transition: width 0.3s
+		&:hover
+			width: 11px
+	.scrollbar-thumb
+		background-color: $flex
+		border-radius: 0
+		width: 100%
+.logo
+	position: absolute;
+	// +rem(left, 80px)
+	left: 5%
+	+rem(top, 31px)
+	z-index: 15
+	i
+		// display: block
+		// +rem(width, 52px)
+		+rem(height, 80px)
+		path
+			fill: $black
+			transition: fill 1.25s
+	&.light
+		i
+			path
+				fill: $white
+	.portfolio_project &
+		i
+			path
+				fill: $white
+.menu-trigger
+	position: fixed
+	+rem(width, 65px)
+	+rem(height, 80px)
+	+rem(right, 0)
+	top: 0
+	cursor: pointer
+	display: flex
+	align-items: center
+	justify-content: center
+	z-index: 5
+	@supports(mix-blend-mode: difference)
+		mix-blend-mode: difference
+	&:hover
+		.burger
+			transform: scale(1.1)
+	.burger
+		+rem(width, 40px)
+		+rem(height, 20px)
+		display: flex
+		transition: transform .25s
+		div
+			width: 100%
+			+rem(height, 20px)
+			display: flex
+			flex-wrap: wrap
+			flex-direction: column
+			justify-content: space-between
+			span
+				width: 100%
+				+rem(height, 4px)
+				position: relative
+				&::before
+					content: ""
+					position: absolute
+					top: 0
+					left: 0
+					width: 100%
+					+rem(height, 4px)
+					background: $black
+					@supports(mix-blend-mode: difference)
+						background: $white
+
+
+	
+.header-contacts
+	position: absolute
+	+rem(top, 63px)
+	right: 0
+	width: 35%
+	.header-phone
+		display: inline-block
+		span
+			font-family: $Medium
+			+rem(font-size, 18px)
+	.header-request
+		display: inline-block
+		position: relative
+		a
+			span 
+				+rem(letter-spacing, 0.9px)
+				color: $black
+.header-inner
+	position: relative
+	.header-contacts
+		width: 45%
+	.logo
+		position: fixed
+.home-page
+	.wrapper-frame
+		height: 100vh
+.wrapper-frame
+	width: 100%
+	background-color: $white
+	.loading &
+		background-color: transparent
+
+.full-screen-container
+	display: flex
+	height: 100%
+	overflow: hidden
+	// padding-right: 8px
+	.work-wrapper__container
+		flex: 1
+		position: relative
+		perspective: 1000px
+	.screen
+		position: absolute
+		width: 100%
+		height: 100%
+		opacity: 0
+		visibility: hidden
+		z-index: 1
+		overflow: hidden
+		&.section__active
+			z-index: 2
+			opacity: 1
+			visibility: visible
+		&.section__next,
+		&.section__prev
+			z-index: 3
+			opacity: 1
+			visibility: visible
+		.section__overlay
+			display: flex
+			height: 100%
+		.section__content
+			flex: 1
+			height: 100%
+			display: flex
+			min-width: 0
+	.section__content
+		flex: 1
+		height: 100%
+		display: flex
+		min-width: 0
+		.content__side
+			display: flex
+			align-items: stretch
+			justify-content: space-between
+			position: relative
+			&:nth-child(1)
+				width: 60%
+				justify-content: flex-end
+			&:nth-child(2)
+				width: 40%
+				+rem(padding-top, 95px)
+				background-color: $white
+		.content__side-name
+			padding-left: 12.3%
+			padding-right: 13%
+			padding-top: 16.9%
+			display: flex
+			flex-direction: column
+			width: 100%
+		.side-upp__container
+			+rem(margin-bottom, 17px)
+			span
+				font-family: $GraphikMedium
+				+rem(font-size, 20px)
+				color: $nameUpp
+				letter-spacing: -0.5px
+		.side-name__container
+			+rem(margin-bottom, 38px)
+			position: relative
+			.container-title
+				font-family: $GraphikMedium
+				+rem(font-size, 40px)
+				line-height: 1.25
+				letter-spacing: -0.9px
+		.side-body__container
+			position: relative
+			padding-right: 10.5%
+			transform-origin: 0 100%
+		.category__list
+			+rem(margin, 0 -26px)
+			+clr
+			display: flex
+			flex-wrap: wrap
+			.category__list-item
+				width: 50%
+				+rem(padding, 0 26px)
+				+rem(margin-bottom, 6px)
+				a 
+					display: block
+					+rem(padding, 8px 0)
+					position: relative
+					span
+						+rem(font-size, 20px)
+						font-family: $Graphik
+						// border-top: 1px solid #c2c2c2
+						color: $black
+						display: block
+						+rem(padding, 14px 0 22px 2px)
+						transition: color 0.25s
+						position: relative
+					.hover-line
+						position: absolute
+						top: 0
+						right: 0
+						width: 100%
+						&::before
+							content: ""
+							position: absolute
+							left: 0
+							width: 100%
+							background-color: #c2c2c2
+							height: 1px
+						&::after
+							content: ""
+							position: absolute
+							left: 0
+							width: 100%
+							height: 1px
+							transition: 0.25s
+							transform: scaleX(0)
+							transform-origin: 0 0
+							will-change: transform
+					&:hover
+						span
+							color: inherit
+						.hover-line
+							&::after
+								transform: scaleX(1)
+								background-color: inherit
+	.work-wrapper__overlay
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		width: 60%
+		transition: background-color .8s cubic-bezier(.7,0,.3,1)
+	.work-wrapper__navigation
+		position: fixed
+		z-index: 2
+		+rem(bottom, 57px)
+		// +rem(left, 78px)
+		left: 5%
+		.navigation__container
+			.navigation__item
+				line-height: 0
+				+rem(margin-top, 9px)
+				a
+					display: inline-block
+					position: relative
+					span
+						font-family: $CondMedium
+						+rem(font-size, 60px)
+						color: rgba(0, 0, 0, .3)
+						text-transform: uppercase
+						+rem(line-height, 45px)
+						transition: color 1.25s
+						position: relative
+						pointer-events: none
+					.mask-nav
+						position: absolute
+						top: 0
+						right: 0
+						overflow: hidden
+						width: 0
+						height: 100%
+						transition: width 1.25s
+						span
+							position: absolute
+							right: 0
+							left: initial
+							top: 0
+							bottom: 0
+							color: $white
+				&.nav__active
+					a
+						span
+							color: $black
+						.mask-nav
+							width: 100%
+							left: 0
+							right: auto
+							span
+								left: 0
+.full-screen-container
+	&.light
+		.work-wrapper__navigation
+			.navigation__container
+				.navigation__item
+					a
+						span
+							color: rgba(255,255,255,.5)
+					&.nav__active
+						a
+							span
+								color: $white
+.reval-container
+	transform: translateY(-50px)
+	opacity: 0
+    transition: 0.5s
+	.reval
+		overflow: hidden
+		display: block
+		.reval__span
+			transform: translateY(100%)
+			transition: transform 0.5s
+			display: block
+.section__active
+	.reval-container
+		transform: translateY(0)
+		opacity: 1
+		.reval
+			.reval__span
+				transform: translateY(0%)
+			$item: 4
+			@for $i from 1 through $item
+				&.order__#{$i}
+					.reval__span
+						transition: transform 0.5s (($i - 1) / $item) + s
+.section__active,
+.section__prev,
+.section__next,
+	.swiper-slide
+		img
+			// transform: scale(1.1)
+			// .ie-11 &
+			// 	transform: none
+				
+.content__side
+	.container-carousel
+		width: 83.2%
+		position: relative
+		.swiper-container
+			height: 100%
+			perspective: 1000px
+			.swiper-wrapper
+				transform-style: flat
+			.swiper-slide
+				display: flex
+				overflow: hidden
+				transform-style: flat
+		.image-container
+			height: 100%
+			width: 100%
+			backface-visibility: hidden
+			position: relative
+			.image-inner
+				position: absolute
+				width: 100%
+				height: 100%
+				background-size: cover
+				img
+					width: 100%
+					height: 100%
+					object-fit: cover
+					// transition: 2s
+					// .ie-11 &
+					// 	transition: none
+		[class^=swiper-button-]
+			position: absolute
+			right: 0
+			+rem(width, 200px)
+			height: 50%
+			z-index: 5
+			cursor: pointer
+			transition: opacity .25s
+			+vertical
+			.swiper-button_text
+				display: inline-block
+				position: relative
+				transform: translateZ(0)
+				span
+					+rem(font-size, 36px)
+					text-transform: uppercase
+					color: $white
+					font-family: $CondBook
+					position: relative
+					display: inline-block
+				.icon
+					position: absolute
+					top: 50%
+					margin-top: -11px
+					opacity: 0
+					svg
+						path
+							fill: $white
+			&.swiper-button-disabled
+				opacity: 0.5
+		.swiper-button-next
+			bottom: 0
+			.swiper-button_text
+				vertical-align: bottom
+				+rem(margin-bottom, 50px)
+				span
+					left: 0
+					transition: transform $animation 0s
+				.icon
+					left: 100%
+					transition: opacity $animation 0s
+			&:hover
+				.swiper-button_text
+					span
+						// left: -20px
+						transform: translate(-20px, 0)
+					.icon
+						opacity: 1
+		.swiper-button-prev
+			top: 0
+			.swiper-button_text
+				vertical-align: top
+				+rem(margin-top, 50px)
+				span
+					right: 0
+					transition: transform $animation 0s
+				.icon
+					right: 100%
+					transition: opacity $animation 0s
+			&:hover
+				.swiper-button_text
+					span
+						// right: -20px
+						transform: translate(20px, 0)
+					.icon
+						opacity: 1
+	.content__side-news
+		position: absolute
+		left: 7.3%
+		+rem(bottom, 51px)
+		right: 13%
+		padding-left: 5%
+		.news-head
+			+rem(font-size, 20px)
+			color: #a3a3a3
+		.news-body
+			.news-app
+				+rem(margin-bottom, 5px)
+				span 
+					color: $nameUpp
+					font-family: $Graphik
+					+rem(font-size, 17px)
+			.news-item
+				position: relative
+				&::before
+					content: ""
+					position: absolute
+					left: -6.5%	
+					+rem(top, 11px)
+					+rem(width, 6px)
+					+rem(height, 6px)
+					background-color: #fa2c2c
+					border-radius: 100%
+				a 
+					+rem(font-size, 17px)
+					color: $bottonSection
+					font-family: $GraphikMedium
+					line-height: 1.8
+					letter-spacing: -.3px
+	.icon-scroll
+		+rem(width, 24px)
+		+rem(height, 37px)
+		position: absolute
+		background-image: url(../img/icons/icon-mouse.png)
+		background-size: cover
+		background-repeat: no-repeat
+		background-position: 50%
+		+rem(bottom, 60px)
+		+rem(right, 80px)
+.swiper-container.animating .swiper-wrapper
+    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s!important
+
+.swiper-container.animating .swiper-wrapper .swiper-slide
+    z-index: 1
+    transform: translateX(0)
+    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s
+    overflow: hidden
+
+.swiper-container.animating .swiper-wrapper .swiper-slide img
+    -webkit-transform: translateX(50%)
+    transform: translateX(50%)
+    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s!important
+
+.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-prev
+    z-index: 2
+
+.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active img
+    transform: translateX(0)
+
+.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active~.swiper-slide img
+    transform: translateX(-50%)
+.overlay
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: rgba(0, 0, 0, .2)
+	z-index: 910
+	opacity: 0
+	visibility: hidden
+	transition: opacity $animation, visibility $animation
+.menu
+	position: fixed
+	top: 0
+	right: 0
+	height: 100%
+	width: 77.5%
+	background-color: $white
+	z-index: 915
+	transition: transform .25s
+	transform: translate(100%, 0)
+	.menu-content
+		position: absolute
+		left: 9.5%
+		bottom: 0
+		right: 6.4%
+		top: 0
+		+r(1365)
+			right: 7%
+			left: 7%
+	.menu-close
+		position: absolute
+		+rem(width, 36px)
+		+rem(height, 36px)
+		+rem(right, 21px)
+		+rem(top, 22px)
+		cursor: pointer
+		&:hover
+			span
+				transform: scale(.7)
+				svg
+					fill: #9b9b9b
+		span
+			display: block
+			width: 100%
+			height: 100%
+			transition: transform .25s
+			svg
+				width: 100%
+				height: 100%
+				fill: $black
+				transition: fill 0.3s
+	.menu-hover__container
+		display: flex
+		width: 100%
+		height: 100%
+		position: absolute
+		left: 0
+		top: 0
+		z-index: 0
+		.menu-hover__item
+			display: flex
+			&:nth-child(1)
+				flex: 1
+			&:nth-child(2)
+				width: 32.5%
+				min-width: 302px
+				+r(1365)
+					width: 33.33%
+					min-width: auto
+			&:nth-child(3)
+				width: 29%
+				min-width: 302px
+				+r(1365)
+					width: 33.33%
+					min-width: auto
+			.cover__color
+				width: 100%
+				background-color: var(--color-menu)
+				transform: scaleX(0)
+				transform-origin: 0 0
+				transition: transform 0.25s
+				will-change: transform
+			&.is-hover
+				.cover__color
+					transform: scaleX(1)
+	.menu-container
+		display: flex
+		flex-direction: column
+		height: 100%
+		position: relative
+		z-index: 1
+		padding-top: 14.5%
+		.menu-topper
+			display: flex
+			.topper-container
+				display: flex
+				align-items: center
+				justify-content: space-between
+				width: 100%
+				.navigation-main
+					flex: 1
+					padding-left: 80px
+					+r(1365)
+						padding-left: 5.8%
+						width: 66.66%
+				.navigation-request
+					width: 29%
+					padding-left: 5.8%
+					+rm(1366)
+						min-width: 302px
+					+r(1365)
+						width: 33.33%
+						min-width: auto
+		.menu-lower
+			position: absolute
+			bottom: 57px
+			display: flex
+			left: 0
+			right: 0
+			.lower-container
+				display: flex
+				width: 100%
+				justify-content: space-between
+				.lang-container
+					flex: 1
+					padding-left: 80px
+					+r(1365)
+						padding-left: 5.8% 
+					.lang
+						display: flex
+					.lang__item
+						margin-right: 21px
+					a
+						font-family: $Graphik
+						font-size: 16px
+						color: $bottonSection
+				.social-container
+					width: 61.5%
+					padding-left: 7.8%
+					+rm(1366)
+						min-width: 604px
+					+r(1365)
+						width: 66.66%
+						padding-left: 5.8%
+.social-container
+	.social
+		display: flex
+	.social__item
+		margin-right: 31px
+	a
+		font-family: $Graphik
+		font-size: 16px
+		color: $bottonSection
+		position: relative
+		transition: color 0.25s
+		&:after
+			content: ""
+			position: absolute
+			bottom: -7px
+			left: 0
+			width: 100%
+			height: 1px
+			transform: scaleX(0)
+			transform-origin: 0 0
+			transition: transform 0.25s, background-color 0.25s
+			background-color: $bottonSection
+		&.facebook
+			&:hover
+				color: #4267b2
+				&:after
+					background-color: #4267b2
+					transform: scaleX(1)
+		&.behance
+			&:hover
+				color: #0057ff
+				&:after
+					background-color: #0057ff
+					transform: scaleX(1)
+		&.dribbble
+			&:hover
+				color: #ea4c89
+				&:after
+					background-color: #ea4c89
+					transform: scaleX(1)
+		&.linkedin
+			&:hover
+				color: #0084bf
+				&:after
+					background-color: #0084bf
+					transform: scaleX(1)
+.order-container
+	$item: 10
+	@for $i from 1 through $item
+		.order_#{$i}
+			opacity: 0
+			transform: translateY(25px)
+			transition: transform 0.25s, opacity 0.25s
+.menu-open
+	.menu
+		.order-container
+			$item: 10
+			@for $i from 1 through $item
+				.order_#{$i}
+					opacity: 1
+					transform: translateY(0)
+					transition: transform 0.6s, opacity 0.6s
+					transition-delay: 0.2s + $i / 10
+.navigation-site
+	display: flex
+	flex: 1
+	.site__links
+		span
+			font-family: $GraphikMedium
+			+rem(font-size, 20px)
+			color: $black
+			transition: color 0.25s
+			position: relative
+			&:after
+				content: ""
+				+rem(bottom, -4px)
+				height: 2px
+				background-color: $black
+				width: 100%
+				position: absolute
+				left: 0
+				transform: scaleX(0)
+				transition: transform .25s, background-color .25s
+				transform-origin: 0 0
+		&:not(:last-child)
+			+rem(margin-right, 48px)
+			+r(1365)
+				+rem(margin-right, 30px)
+		&.active, &:hover
+			span
+				color: var(--color-link)
+				&:after
+					background-color: var(--color-link)
+		&:hover
+			span
+				&:after
+					transform: scaleX(1)
+.navigation-category
+	display: flex
+	margin-top: 7%
+	.navigation-category__item
+		display: flex
+		flex-direction: column
+		&:nth-child(1)
+			flex: 1
+			padding-left: 80px
+			+r(1365)
+				padding-left: 5.8%
+		&:nth-child(2)
+			width: 32.5%
+			padding-left: 7.2%
+			+rm(1366)
+				min-width: 302px
+			+r(1365)
+				width: 33.33%
+				min-width: auto
+				padding-left: 5.8%
+		&:nth-child(3)
+			width: 29%
+			padding-left: 5.8%
+			+rm(1366)
+				min-width: 302px
+			+r(1365)
+				width: 33.33%
+				min-width: auto
+		&:hover
+			.category-head
+				a
+					span
+						color: $black
+					&:hover
+						span
+							color: var(--color-link)
+		&.not-hover
+			.category-body
+				a
+					color: $nameUpp
+	.category-head
+		+rem(margin-bottom, 26px)
+		a
+			font-family: $GraphikMedium
+			font-size: 40px
+			letter-spacing: -.8px
+			span
+				color: $nameUpp
+				transition: color 0.25s
+			+r(1366)
+				+rem(font-size, 30px)
+			&:hover
+				span
+					color: var(--color-link)
+					.edge15 &
+						color: $nameUpp
+	.category-body
+		li
+			position: relative
+			margin-bottom: 18px
+			&.marker
+				&:before
+					content: ''
+					position: absolute
+					left: -28px
+					top: 8px
+					width: 6px
+					height: 6px
+					background-color: $nameUpp
+					transition: background-color 0.25s
+					border-radius: 50%
+
+					+r(1366)
+						top: 6px
+						left: -20px
+			a
+				font-family: $Graphik
+				font-size: 20px
+				color: $black
+				position: relative
+				transition: color 0.25s
+				+r(1366)
+					font-size: 18px
+				&:after
+					content: ""
+					position: absolute
+					bottom: -7px
+					left: 0
+					width: 100%
+					height: 1px
+					transform: scaleX(0)
+					transform-origin: 0 0
+					background-color: var(--color-link)
+					transition: transform 0.25s
+					.edge15 &
+						background-color: $nameUpp
+			&:hover
+				&.marker
+					&:before
+						background-color: var(--color-link)
+						.edge15 &
+							background-color: $nameUpp
+				a
+					color: var(--color-link)
+					.edge15 &
+						color: $nameUpp
+					&:after
+						transform: scaleX(1)
+
+.menu-open
+	.overlay
+		opacity: 1
+		visibility: visible
+	.menu
+		transform: translate(0, 0)
+
+.menu-primary
+	+rem(margin-bottom, 22px)
+	&_item
+		+rem(margin-top, -15px)
+		overflow: hidden
+		&.is-active
+			a
+				span
+					color: $flex
+					&::after
+						width: 100%
+		a
+			display: block
+			span
+				font-family: $CondMedium
+				+rem(font-size, 60px)
+				text-transform: uppercase
+				color: $black
+				position: relative
+				display: inline-block
+				transition: color $animation
+.menu-secondary
+	.menu-secondary_item
+		+rem(margin-bottom, 13px)
+		a
+			span
+				font-family: $Medium
+				+rem(font-size, 18px)
+				color: $black
+.menu-offices
+	position: absolute
+	bottom: 9%
+	left: 0
+	width: 92%
+	.menu-offices_item
+		width: 50%
+		display: inline-block
+		vertical-align: top
+		+rem(margin-right, -4px)
+	.menu-offices_item-phone
+		font-family: $Medium
+		+rem(font-size, 18px)
+		color: $black
+		line-height: 1.3
+		+rem(margin-bottom, 20px)
+	.menu-offices_item-address
+		font-family: $Book
+		+rem(font-size, 18px)
+		color: $black
+		line-height: 1.3
+.side-body__projects
+	position: absolute
+	+rem(bottom, 11px)
+	left: 12.4%
+	right: 13%
+	.name-projects_head
+		font-family: $Book
+		+rem(font-size, 18px)
+		color: $grey-1
+	.name-projects_container
+		+rem(min-height, 46px)
+		+rem(padding-bottom, 45px)
+	.slider-container
+		position: relative
+	.name-projects_item
+		position: absolute
+		top: 0
+		transition: top 1.25s
+		+rem(min-height, 72px)
+		display: flex
+		flex-direction: column
+		justify-content: flex-end
+		&.current
+			position: relative
+			z-index: 5
+			.name-inner
+				position: relative
+				transform: none
+				opacity: 1
+		.name-inner
+			transition: transform 1.25s, opacity 1.25s
+			transform: translate(0, 100%)
+			opacity: 0
+		.name-tags
+			+rem(margin-bottom, 9px)
+			ul
+				display: flex
+				.tag-item
+					position: relative
+					+rem(padding-right, 23px)
+					&:not(:last-child)
+						&:after
+							content: "/"
+							position: absolute
+							+rem(right, 8px)
+							+rem(top, 1px)
+							color: $nameUpp
+							font-family: $Graphik
+					a						
+						font-family: $Graphik
+						span
+							color: $nameUpp
+							transition: color .25s
+						&:hover
+							span
+								color: $bottonSection
+		a
+			font-family: $GraphikMedium
+			+rem(font-size, 17px)
+			+rem(letter-spacing, -.3px)
+			color: $nameUpp
+			span
+				color: $bottonSection
+				transition: color .25s
+			&:hover
+				span
+					color: inherit
+.work-wrapper__scrollbar
+	position: absolute
+	right: 0
+	width: 11px
+	bottom: 0
+	z-index: 10
+	top: 0
+	user-select: none
+	overflow: hidden
+	&:hover
+		.scrollbar__container
+			transform: translateX(0)
+	.scrollbar__container
+		display: flex
+		justify-content: flex-start
+		align-items: stretch
+		flex-wrap: wrap
+		flex-direction: column
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		transform: translate(3px)
+		transition: transform 0.3s
+		li
+			display: flex
+			position: relative
+			justify-content: center
+			align-items: center
+			flex: 1 0 auto
+			height: 0
+			overflow: hidden
+			background-color: rgba(0,0,0,.1)
+			span
+				position: absolute
+				height: 101%
+				transform-style: preserve-3d
+				backface-visibility: hidden
+				top: 0
+				left: 0
+				z-index: 0
+				width: 100%
+				background-color: $flex
+				transform: scaleY(0)
+				transform-origin: 50% 0
+				transition: all .8s cubic-bezier(.7,0,.3,1)
+				display: inline-block
+			&.is-current
+				span
+					transform: translate3d(0,0,0) scaleY(1)
+			&.is-up
+				span
+					transform: translate3d(0,0,0) scaleY(0)
+			&.is-down
+				span
+					transform: translate3d(0,100%,0) scaleY(0)
+			a 
+				flex: 1 0 auto
+				display: block
+				position: relative
+				opacity: 1
+				height: 100%
+.portfolio__overlay
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	width: 50%
+	background-color: $flex
+	transition: background-color .8s cubic-bezier(.7,0,.3,1)
+	.portfolio_project &
+		+rem(width, 400px)
+.frame__container
+	display: flex
+	width: 100%
+	position: relative
+	z-index: 2
+	justify-content: flex-end
+	overflow: hidden
+	&.scrolling
+		transform: translateZ(0)
+		.scroll-content
+			pointer-events: none
+	.scroll-content
+		display: flex
+		justify-content: flex-end
+	// overflow: auto
+	.frame__side
+		position: relative
+		&:first-child
+			+rem(padding-top, 115px)
+			+rem(padding-bottom, 140px)
+			+rem(width, 480px)
+			padding-left: 5%
+			padding-right: 5%
+			float: left
+			height: 100vh
+			position: fixed
+			left: 0
+			top: 0
+			overflow: hidden
+			.portfolio_project &
+				+rem(width, 400px)
+				.frame__names
+					width: calc(25rem + 4rem);
+			.contacts &
+				+rem(width, 400px)
+				.frame__names
+					width: calc(25rem + 4rem);
+		&:last-child
+			width: calc(100% - 30rem)
+			padding-right: 4.5%
+			float: right
+			+rem(padding-top, 125px);
+			min-height: 100%
+			.portfolio_project &
+				width: calc(100% - 25rem)
+				padding-top: 0
+				padding-right: 0
+			.contacts &
+				width: calc(100% - 25rem)
+				padding-top: 0
+				padding-right: 0
+.page-title
+	position: absolute
+	+rem(bottom, 42px)
+	left: 16.1%
+	right: 5%
+	z-index: 2
+	.portfolio_project &
+		left: 19.5%
+	.breadcrumbs
+		+rem(margin, 0 0 -4px 3px)
+		.breadcumbs__item
+			+rem(padding-right, 15px)
+			+rem(margin-right, 9px)
+			&:not(:last-child)
+				&:after
+					content: "/"
+					position: absolute
+					right: 0
+					top: 0
+					font-family: $Graphik
+					+rem(font-size, 15px)
+					color: $black
+					+rem(line-height, 21px)
+			.portfolio_project &
+				span
+					color: $white
+				&:after
+					color: $white
+	.page__name
+		span
+			font-family: $CondMedium
+			+rem(font-size, 60px)
+			text-transform: uppercase
+			color: $black
+		.portfolio_project &
+			span
+				color: $white
+.breadcrumbs
+	ul
+		display: flex
+	.breadcumbs__item
+		position: relative
+		span
+			font-family: $Graphik
+			+rem(font-size, 15px)
+			+rem(line-height, 21px)
+			color: $black 
+		
+.filter-container
+	top: 46.5%
+	transform: translateY(-50%)
+	font-size: 0
+	position: relative
+	z-index: 5
+	+rh(768)
+		padding-top: 0%
+	.filter-item
+		&:not(:last-child)
+			+rem(margin-bottom, 18px)
+		a
+			span
+				font-family: $Graphik
+				+rem(font-size, 20px)
+				color: $black
+		&.is-active
+			a
+				span
+					font-family: $GraphikMedium
+.frame__names
+	position: fixed
+	+rem(bottom, -50px)
+	+rem(left, -64px)
+	width: calc(50% + 4rem)
+	overflow: hidden
+	pointer-events: none
+	z-index: 0
+	.frame___names-list
+		position: relative
+		+rem(height, 400px)
+		.frame__name
+			position: absolute
+			left: 0
+			top: 0
+			opacity: 0
+			.slide__element
+				span
+					font-family: $GraphikMedium
+					+rem(font-size, 400px)
+					letter-spacing: -6.9px
+					white-space: nowrap
+	&.frame__inner
+		.frame__name
+			opacity: 1
+.portfolio__projects
+	.projects-head
+		display: flex
+		justify-content: space-between
+		align-items: flex-end
+		+rem(margin-bottom, 40px)
+		.head__title
+			flex: 1
+			.title-small
+				span
+					font-family: $GraphikMedium
+					+rem(font-size, 20px)
+					letter-spacing: -.3px
+			.title
+				h1
+					font-family: $GraphikMedium
+					+rem(font-size, 80px)
+					letter-spacing: -1.6px
+		.head__order
+			+rem(margin-bottom, 19px)
+
+	.portfolio__body
+
+.grid__container
+	display: flex
+	flex-wrap: wrap
+	overflow: hidden
+	.grid__item		
+		&.w__100
+			width: 100%
+			.portfolio__item
+				&:after
+					padding-bottom: 50%
+			.portfolio__item-header
+				.h2
+					+rem(font-size, 40px)
+					+r(1366)
+						+rem(font-size, 34px)
+		&.w__50
+			width: 50%
+			.portfolio__item
+				&:after
+					padding-bottom: 100%
+			.portfolio__item-header
+				.h2
+					+rem(font-size, 28px)
+					+r(1366)
+						+rem(font-size, 22px)
+			& + .w__50
+				transition-delay: 0.25s
+		// &.unload__item
+		// 	background-color: #FFF
+		// 	position: relative
+		// 	&:before
+		// 		content: ""
+		// 		position: absolute
+		// 		right: -1px
+		// 		bottom: -1px
+		// 		left: -1px
+		// 		top: -1px
+		// 		border: 1px solid #dfe4f0
+		// 	.portfolio__item
+		// 		background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 500 160' width='500' height='160'><rect x='35.7' y='36' fill='#DFE4EF' width='244.7' height='14'/><rect x='35.7' y='74.8' fill='#DFE4EF' width='450' height='36'/></svg>") 0% 0% no-repeat
+		// 		& > *
+		// 			opacity: 0
+		&.transition
+			// &:not(:nth-child(-n+3))
+			// 	.portfolio__item
+			// 		opacity: 0
+			// 		transform: translateY(20%)
+		.portfolio__item-cover
+			display: flex
+			flex-direction: column
+			width: 100%
+			height: 100%
+		.portfolio__item
+			position: relative
+			overflow: hidden
+			// transition: opacity 0.25s, transform 0.25s
+			&:after
+				content: ""
+				display: block
+			&:hover
+				.portfolio__item-img,
+				.portfolio__item-video
+					.img__bg
+						opacity: 0.8
+				.portfolio__item-header
+					.link-color
+						span
+							color: inherit
+				.portfolio-item__link
+					transform: translateX(0)
+			& > *
+				transition: opacity .4s
+				will-change: opacity
+		.portfolio__item-img
+			position: absolute
+			width: 100%
+			height: 100%
+			overflow: hidden
+			img
+				display: block
+				width: 100%
+				height: 100%
+				object-fit: cover
+		.img__bg
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			opacity: 0
+			transition: opacity 0.25s
+		.portfolio__item-video
+			position: absolute
+			width: 100%
+			overflow: hidden
+			video
+				width: 100%
+				height: 100%
+		.portfolio__item-header
+			position: absolute
+			+rem(top, 43px)
+			+rem(left, 39px)
+			+rem(right, 39px)
+			pointer-events: none
+			+r(1366)
+				top: 25px
+				left: 25px
+			.breadcrumbs
+				opacity: 0.7
+				+rem(margin-bottom, 20px)
+				+r(1366)
+					+rem(margin-bottom, 10px)
+				.breadcumbs__item
+					&:not(:first-child)
+						+rem(margin-left, 9px)
+						+rem(padding-left, 13px)
+						&:before
+							content: "/"
+							position: absolute
+							left: 0
+							top: 0
+							font-family: $Graphik
+							+rem(font-size, 15px)
+							color: $projectBread
+							+rem(line-height, 21px)
+					a
+						pointer-events: auto
+					span
+						color: $projectBread
+						letter-spacing: .9px
+			.link-color
+				font-family: $GraphikMedium
+				letter-spacing: -.8px
+				span
+					color: $white
+					transition: color 0.25s
+		.portfolio__item-footer
+			position: absolute
+			bottom: 0
+			right: 0
+		.portfolio-item__link
+			display: block
+			+rem(padding, 20px)
+			transform: translateX(100%)
+			transition: 0.25s transform
+			svg
+				+rem(width, 25px)
+				+rem(height, 25px)
+				stroke: $white
+
+.promo
+	display: flex
+	+rem(height, 420px)
+	width: 100%
+	+rem(margin-bottom, $mb)
+	.promo__layout
+		background-color: #ccc
+		width: 100%
+		height: 100%
+		position: relative
+		display: flex
+		.l
+			width: 100%
+			height: 100%
+			display: flex
+			align-items: flex-end
+			padding-left: 80px
+		.promo__image
+			position: absolute
+			left: 0
+			top: 0
+			right: 0
+			height: 100%
+			img
+				width: 100%
+				height: 100%
+				object-fit: cover
+		.promo__title
+			position: relative
+			z-index: 2
+			+rem(margin-bottom, 43px)
+			span 
+				font-family: $GraphikMedium
+				font-size: 80px
+				color: $white
+				letter-spacing: -1.65px
+.screen__content, .resent__container
+	.l
+		+rem(padding, 0 $padding)
+	.l_p
+		+rem(padding-left, $padding)
+	.p
+		+rem(padding, 0 $padding)
+	p
+		font-family: $Graphik
+		+rem(font-size, 20px)
+		line-height: 1.8
+.info__container
+	display: flex
+	+rem(margin-bottom, $mb)
+	+r(1277)
+		flex-direction: column
+	.info__description
+		flex: 1
+		+rm(1278)
+			padding-right: 12%
+		+r(1277)
+			+rem(margin-bottom, $padding / 4)
+		p 
+			font-family: $GraphikMedium
+			+rem(font-size, 20px)
+			line-height: 1.8
+			& + .site__link
+				+rem(margin-top, 22px)
+	.info
+		+rm(1278)
+			+rem(flex-basis, 240px)
+		+r(1277)
+			display: flex
+		.info__customer
+			+rem(margin-bottom, 35px)
+			+r(1277)
+				width: 50%
+			.customer__title
+				font-family: $GraphikMedium
+				+rem(font-size, 20px)
+				line-height: 1.8
+				+rem(margin-bottom, 12px)
+				letter-spacing: -.5px
+			.customer__name
+				font-family: $Graphik
+				color: $text
+				+rem(font-size, 17px)
+				letter-spacing: -.5px
+		.info__services
+			+r(1277)
+				width: 50%
+			.services__title
+				font-family: $GraphikMedium
+				+rem(font-size, 20px)
+				line-height: 1.8
+				+rem(margin-bottom, 11px)
+				letter-spacing: -.5px
+			.services
+				li
+					font-family: $Graphik
+					color: $text
+					+rem(font-size, 17px)
+					letter-spacing: -.3px
+					&:not(:last-child)
+						+rem(margin-bottom, 10px)
+
+.site__link
+	font-family: $Graphik
+	+rem(font-size, 19px)
+	display: inline-block
+
+.project-carousel
+	+rem(margin-bottom, $mb - 16)
+	.swiper-container
+		.swiper-pagination
+			bottom: 14px
+			z-index: 11
+			.swiper-pagination-bullet
+				width: 7px
+				height: 7px
+				opacity: 1
+				margin: 0 9px
+				&:not(.swiper-pagination-bullet-active)
+					background-color: $white!important
+	.swiper-wrapper
+		position: relative
+		.swiper-slide
+			height: 100%
+			position: relative
+			display: block
+			overflow: hidden
+			&::after
+				content: ""
+				padding-bottom: 55.8%
+				display: block
+		.image-container
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			.image-inner
+				height: 100%
+				width: 100%
+			img
+				max-width: 100%
+				min-height: 100%
+				width: 100%
+				height: 100%
+				object-fit: cover
+				position: relative
+				z-index: 2
+	.swiper-button-next,
+	.swiper-button-prev
+		position: absolute
+		width: 50%
+		height: 100%
+		top: 0
+		z-index: 10
+		cursor: none
+	.swiper-button-prev
+		left: 0
+	.swiper-button-next
+		right: 0
+.screen__section
+	+rem(margin-bottom, $mb)
+	display: flex
+	flex: 1 1 0px
+	min-width: 0
+	flex-flow: row wrap
+	.screen__section-head
+		max-width: 50%
+		flex: 0 0 50%
+		&:only-child
+			max-width: 100%
+			flex: 0 0 100%
+		+r(1277)
+			max-width: 100%
+			flex: 0 0 100%
+	.screen__section-content
+		max-width: 50%
+		flex: 0 0 50%
+		+rem(padding-top, 15px)
+		+r(1277)
+			max-width: 100%
+			flex: 0 0 100%
+			padding-top: 0
+	.screen-section__text
+		max-width: 100%
+		flex: 0 0 100%
+	.screen__section-intro
+		max-width: 100%
+		flex: 0 0 100%
+	.screen__section-locations
+		max-width: 100%
+		flex: 0 0 100%
+	.screen-section__headline
+		max-width: 100%
+		flex: 0 0 100%
+		+rem(margin-bottom, $mb - 21)
+h1, .h1
+	font-family: $GraphikMedium
+	+rem(font-size, 80px)
+	letter-spacing: -1.6px
+	line-height: 1.18
+h2, .h2
+	font-family: $GraphikMedium
+	+rem(font-size, 40px)
+	letter-spacing: -.9px
+	line-height: 1.3
+h3, .h3
+	font-family: $GraphikMedium
+	+rem(font-size, 28px)
+	// letter-spacing: -1.2px
+	line-height: 1.3
+hr 
+	background-color: $hr
+	+rem(margin-bottom, $mb)
+	height: 1px
+	border: none
+	max-width: 100%
+	+rem(margin-left, $padding)
+.upper
+	font-family: $GraphikMedium
+	+rem(font-size, 20px)
+	letter-spacing: -0.4px
+	line-height: 1.3
+	color: #b1b1b1
+
+
+.work__service-list
+	display: flex
+	flex-flow: row wrap
+	flex: 1
+	+rem(margin, 0 (-$padding / 2) $padding / 2 - 7)
+	.work__service-item
+		width: 50%
+		+rem(padding, 0 $padding/2)
+		+rem(margin-bottom, $padding/2)
+	.work__service-image
+		+rem(height, 117px)
+		+rem(margin-bottom, $padding/4)
+		img
+			max-width: 100%
+			max-height: 100%
+	.work__service-title
+		font-family: $GraphikMedium
+		+rem(font-size, 20px)
+		letter-spacing: -.4px
+		line-height: 1.45
+		+rem(margin-bottom, 5px)
+	.work__service-subtitle
+		font-family: $GraphikMedium
+		+rem(font-size, 17px)
+		color: $black
+		letter-spacing: -.4px
+		line-height: 1.8
+	.work__service-description
+		font-family: $Graphik
+		+rem(font-size, 17px)
+		color: $text
+		letter-spacing: -.4px
+		line-height: 1.8
+	.work__service-pdf
+		display: flex
+		+rem(padding-top, $padding / 4)
+		.work__service-icon
+			+rem(width, 80px)
+			.icon
+				display: block
+				+rem(width, 48px)
+				+rem(height, 52px)
+				svg
+					width: 100%
+					height: 100%
+		.work__service-text
+			flex: 1
+.screen-section__picture
+	+rem(margin-bottom, $padding / 2)
+	.p &
+		.picture__image
+			+rem(margin, 0 (-$padding))
+	.picture__title
+		font-family: $GraphikMedium
+		+rem(font-size, 28px)
+		+rem(margin-bottom, 55px)
+	.picture__image
+		img
+			max-width: 100%
+			box-shadow: 0 4px 16px rgba(0, 0, 0, .26)
+			+rem(margin-bottom, $padding / 2)
+	.picture__caption
+		font-family: $Graphik
+		+rem(font-size, 17px)
+		color: $caption
+		line-height: 1.8
+		letter-spacing: -.35px
+
+.review__container
+	+rem(padding, 0 $padding/4 0 $padding)
+	position: relative
+	.review__line
+		position: absolute
+		top: 6px
+		bottom: 3px
+		left: 0
+		width: 3px
+	.review__text
+		font-family: $GraphikMedium
+		+rem(font-size, 28px)
+		color: $black
+		line-height: 1.3
+		+rem(margin-bottom, 35px)
+	.review__author
+		.author__name
+			font-family: $GraphikMedium
+			+rem(font-size, 17px)
+			letter-spacing: -.3px
+			color: $text
+			+rem(margin-bottom, 10px)
+		.author__position
+			font-family: $Graphik
+			+rem(font-size, 17px)
+			letter-spacing: -.3px
+			color: $caption
+.case__container
+	display: flex
+	flex-direction: column
+	width: 100%
+	+rem(padding-top, 14px)
+	.case__item
+		display: flex
+		width: 100%
+		+r(1179)
+			flex-direction: column
+		&:not(:last-child)
+			+rem(margin-bottom, 60px)
+		+rm(1180)
+			&.inversion
+				.case__item-text
+					order: 1
+				.case__item-picture
+					order: 2
+		.case__item-text
+			max-width: 46.2%
+			flex: 0 0 46.2%
+			+rem(padding, 0 $padding)
+			+rem(margin-top, 33px)
+			+rem(padding-bottom, 48px)
+			.case__title 
+				+rem(margin-bottom, 25px)
+			+r(1179)
+				max-width: 100%
+				flex: 0 0 100%
+		.case__item-picture
+			max-width: 53.8%
+			flex: 0 0 53.8%
+			position: relative
+			&:after
+				content: ""
+				display: block
+			+r(1179)
+				max-width: 100%
+				flex: 0 0 100%
+			img
+				width: 100%
+				height: 100%
+				max-width: 100%
+				object-fit: cover
+				position: absolute
+				+r(1179)
+					position: relative
+
+.about__container
+	+rem(padding-left, 160px)
+	position: relative
+	&:after
+		content: ""
+		position: absolute
+		left: 0
+		+rem(top, 24px)
+		+rem(width, 100px)
+		height: 3px
+		background-color: $black
+	.about__title 
+		+rem(margin-bottom, 22px)
+	.about__subtitle
+		font-family: $GraphikMedium
+		+rem(font-size, 20px)
+		line-height: 1.8
+		+rem(margin-bottom, 20px)
+.numeric
+	+rem(margin, 28px 0)
+	+rem(padding-left, $padding / 2)
+	li
+		counter-increment: num
+		font-family: $Graphik
+		+rem(font-size, 20px)
+		line-height: 1.8
+		+rem(padding-left, $padding / 2)
+		position: relative
+		&:not(:last-child)
+			+rem(margin-bottom, 10px)
+		&:before
+			content: counter(num)"."
+			position: absolute
+			top: 0
+			left: 0
+.screen__section-head
+	& > *
+		+rem(margin-bottom, 26px)
+.screen__section-text
+	+rem(margin-bottom, $padding / 2)
+.ml_
+	+rem(margin-left, -$padding)
+.mr_
+	+rem(margin-right, -$padding)
+.counter__rate
+	display: flex
+	flex: 1
+	.counter__rate-container
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		width: 100%
+		+r(1179)
+			+rem(margin-bottom, -25px)
+		.rate__item
+			width: 25%
+			+r(1179)
+				width: 50%
+				+rem(margin-bottom, 25px)
+			.rate__head
+				font-family: $Graphik
+				+rem(font-size, 20px)
+				line-height: 1.8
+				color: $caption
+			.rate__counter
+				font-family: $Graphik
+				+rem(font-size, 100px)
+				color: $black
+				letter-spacing: -1.9px
+
+.view__pages
+	display: flex
+	flex-direction: column
+	.view__pages-contaner
+		display: flex
+		.view__pages-text
+			order: 2
+			width: 46.2%
+			+rem(padding, 51px $padding 0)
+			.text-head
+				+rem(margin-bottom, 25px)
+		.view__pages-scroller
+			order: 1
+			width: 53.8%
+			.scroller__container
+				width: 100%
+				+rem(height, 695px)
+				.scroll
+					width: 100%
+					height: 100%
+					overflow: auto
+					box-shadow: 0 4px 16px rgba(0, 0, 0, .26)
+					// -webkit-overflow-scrolling: touch
+					+scrollbar
+						width: 8px
+						background-color: #F5F5F5
+					+scrollbar-track
+						background-color: $white
+					+scrollbar-thumb
+						background-color: rgba(0,0,0,.3);
+					+scrollbar-track-piece
+					img
+						max-width: 100%
+.resent__container
+	position: relative
+	+rem(padding-top, 121px)
+	.recent__bg
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		z-index: 0
+		img
+			width: 100%
+			height: 100%
+			object-fit: cover
+	.l
+		position: relative
+		z-index: 1
+	.screen__section
+		+rem(margin-bottom, $padding / 2 + 7)
+		justify-content: space-between
+		align-items: flex-end
+		.screen__section-head
+			width: auto
+			flex: 1 0 0
+			& > *
+				color: $white
+				margin-bottom: 0
+	.resent__navigation
+		display: flex
+		.arrow__container
+			display: flex
+			+rem(width, 74px)
+			justify-content: space-between
+		.arrows
+			+rem(height, 26px)
+			+rem(width, 16px)
+			transition: opacity 0.3s
+			cursor: pointer
+			.icon
+				width: 100%
+				height: 100%
+				display: block
+				svg
+					fill: $white
+					width: 100%
+					height: 100%
+			&.swiper-button-disabled
+				opacity: .3
+				pointer-events: none
+	.grid__container
+		width: 100%
+		flex-wrap: initial
+		overflow: visible
+	.grid__carousel
+		width: 100%
+		height: 100%
+		overflow: hidden
+		.grid__item
+			width: auto
+			flex-shrink: 0
+			opacity: 1
+			transform: none
+			transition-property: transform
+			&.transition
+				opacity: 1
+				transform: none
+			.portfolio__item
+				&:after
+					+r(1179)
+						padding-bottom: 50%
+.section__request
+	background-color: #f6f6f6
+	+rem(padding, 63px 0)
+	.screen__section
+		+rem(margin-bottom, 54px)
+	.screen__section-head
+		max-width: 100%
+		flex: 0 0 100%
+		h2, .h2
+			font-family: $GraphikMedium
+			+rem(font-size, 80px)
+			letter-spacing: -1.5px
+			margin-bottom: 20px
+	.screen__section-content
+		max-width: 100%
+		flex: 0 0 100%
+		padding-top: 0
+		p 
+			font-family: $GraphikMedium
+			+rem(font-size, 28px)
+			line-height: 1.2
+.form__request
+	position: relative
+	.form__request-front
+		// opacity: 0
+		// visibility: hidden
+	.form__request-back
+		position: absolute
+		top: 0
+		left: 0
+		opacity: 0
+		visibility: hidden
+.form__container
+	+rm(1180)
+		+rem(padding-left, $padding * 3)
+		+rem(padding-right, $padding * 2)
+	+r(1179)
+		+rem(padding-left, $padding)
+		+rem(padding-right, $padding)
+	.form__field
+		display: flex
+		&.field__short
+			.form__content
+				flex: 0 0 50%
+				width: 50%
+		&:not(:first-child)
+			align-items: center
+			+rem(margin-bottom, 16px)
+		&.field__checkbox
+			+rem(margin-bottom, $padding / 2)
+			.form__head
+				+rem(padding-top, 13px)
+		&.field__textarea
+			+rem(margin-top, 40px)
+			align-items: flex-start
+			.form__head
+				+rem(padding-top, 13px)
+		.form__head
+			+rem(width, 160px)
+			span
+				font-family: $GraphikMedium
+				+rem(font-size, 17px)
+		.form__content
+			flex: 1
+		.field__send
+			+rem(padding-left, 160px)
+	.hidden
+		width: 0
+		height: 0
+		opacity: 0
+		visibility: hidden
+		position: absolute
+		top: 0
+		left: 0
+	.checkboxes
+		display: flex
+		flex-wrap: wrap
+		margin-left: 1px
+		margin-top: 1px
+		.checkbox__item
+			display: flex
+			position: relative
+			margin-left: -1px
+			margin-top: -1px
+			&:last-child
+				label
+					&:after
+						right: 3px
+			input
+				position: absolute
+				top: 0
+				left: 0
+				opacity: 0
+				pointer-events: none
+				&:checked
+					& + label
+						&:before
+							border-color: transparent
+						&:after
+							outline-color: #000
+						.check__custom
+							&:after
+								opacity: 1
+								visibility: visible
+			label
+				+rem(padding, 14px 15px)
+				background-color: $white
+				display: flex
+				align-items: center
+				cursor: pointer
+				&:before
+					position: absolute
+					content: ""
+					top: 0
+					bottom: 0
+					width: 100%
+					border: 1px solid #b1b1b1
+					left: 0
+					transition: border-color 0.3s
+				&:after
+					position: absolute
+					content: ""
+					top: 2px
+					bottom: 2px
+					right: 3px
+					left: 2px
+					outline: 2px solid transparent
+					transition: outline-color 0.3s
+				.check__custom
+					+rem(width, 21px)
+					+rem(height, 21px)
+					border: 1px solid #b1b1b1
+					+rem(margin-right, 17px)
+					position: relative
+					&:after
+						content: ''
+						position: absolute
+						+rem(top, -2px)
+						+rem(left, 2px)
+						+rem(width, 23px)
+						+rem(height, 17.5px)
+						background-image: url("../img/svg/icon-check.svg")
+						background-size: cover
+						z-index: 5
+						opacity: 0
+						visibility: hidden
+						transition: opacity 0.3s, visibility 0.3s
+						will-change: opacity
+				span
+					font-family: $Graphik
+					+rem(font-size, 17px)
+	.input
+		position: relative
+		&:after
+			content: ""
+			bottom: -2px
+			height: 2px
+			background-color: $black
+			left: 0
+			right: 0
+			position: absolute
+		input
+			+rem(height, 51px)
+			width: 100%
+			border: 1px solid #b1b1b1
+			font-family: $Graphik
+			+rem(font-size, 17px)
+			color: $black
+			+rem(padding, 0 17px)
+			transition: border-color 0.3s, color 0.3s
+			&:focus
+				border-color: $black
+				color: $black
+	.textarea
+		position: relative
+		&:after
+			content: ""
+			bottom: -2px
+			height: 2px
+			background-color: $black
+			left: 0
+			right: 0
+			position: absolute
+		textarea
+			width: 100%
+			border: 1px solid #b1b1b1
+			font-family: $Graphik
+			+rem(font-size, 17px)
+			color:  #b1b1b1
+			+rem(padding, 17px)
+			+rem(height, 117px)
+			resize: none
+			display: block
+			transition: border-color 0.3s, color 0.3s
+			&:focus
+				border-color: $black
+				color: $black
+	.field__send
+		+rem(margin, 20px 0)
+		button
+			+rem(height, 60px)
+			background-color: $black
+			+rem(padding, 0 34px)
+			span
+				font-family: $Graphik
+				+rem(font-size, 17px)
+				color: $white
+// .container
+// 	.animate
+// 		transition: opacity 0.25s, transform 0.25s
+// 		transition-delay: 0.3s
+// 	.transition
+// 		opacity: 0
+// 		transform: translateY(20%)
+
+.barba-container.contacts
+	.screen__section-head
+		.upper
+			margin-bottom: 0
+	.container
+		+rem(padding-top, $padding + 40)
+.screen__section-intro
+	+rem(margin-bottom, $padding / 4)
+.screen__section-locations
+	display: flex
+	.location__item
+		width: 33.33%
+		position: relative
+		+rem(padding-top, $padding)
+		padding-right: 6%
+		.abbreviation
+			position: absolute
+			font-family: $GraphikMedium
+			+rem(font-size, 180px)
+			+rem(line-height, 165px)
+			color: #f6f6f6
+			top: 0
+			+rem(left, -55px)
+			z-index: 0
+		.contact-text,
+		.title
+			position: relative
+			z-index: 2
+		.title
+			+rem(margin-bottom, 30px)
+		.contacts
+			+rem(margin-bottom, 15px)
+			li
+				font-family: $GraphikMedium
+				+rem(font-size, 20px)
+				letter-spacing: -.6px
+				+rem(margin-bottom, 8px)
+				&.phone	
+					color: $black
+		.address
+			p
+				font-family: $Graphik
+				color: #4c4c4c
+				+rem(font-size, 17px)
+				letter-spacing: -.35px
+				line-height: 1.8
+			a
+				font-family: $Graphik
+				color: #4c4c4c
+				+rem(font-size, 17px)
+				letter-spacing: -.35px
+				line-height: 1.8
+.tab__container
+	display: flex
+	width: 100%
+	+rem(margin, 14px 0 $padding / 2)
+	flex-wrap: wrap
+	.tab__navigations
+		display: flex
+		justify-content: space-between
+		width: 100%
+		border-bottom: 1px solid #c6c6c6
+		+rem(margin-bottom, 75px)
+	.tab__nav
+		display: flex
+		.tab__trigger
+			+rem(padding, 14px 0)
+			+rem(margin-right, 48px)
+			position: relative
+			cursor: pointer
+			user-select: none
+			span
+				font-family: $Graphik
+				+rem(font-size, 20px)
+				letter-spacing: -.4px
+			&:after
+				position: absolute
+				content: ''
+				bottom: -4px
+				height: 3px
+				background-color: $black
+				left: 0
+				width: 100%
+				opacity: 0
+				transition: opacity .3s
+			&.is-active
+				span
+					font-family: $GraphikMedium
+				&:after
+					opacity: 1
+	.tab__containers
+		// display: flex
+		// justify-content: space-between
+		width: 100%
+	.tab-container__item
+		display: none
+		.tab__container-inner
+			// opacity: 0
+			// transition: opacity .3s
+		&.is-active
+			display: block
+			.tab__container-inner
+				// opacity: 1
+				// transition-delay: .25s
+
+	.screen__section
+		+rem(margin-bottom, 35px)
+	.form__container
+		+rm(1180)
+			+rem(padding-left, 160px)
+.container
+	overflow: hidden
+.load__presentation
+	display: flex
+	align-items: center
+	a
+		+rem(padding, 14px 0)
+		display: block
+		display: flex
+		align-items: center
+		.icon 
+			+rem(width, 23px)
+			+rem(height, 23px)
+			display: block
+			+rem(margin-right, 20px)
+			svg
+				width: 100%
+				height: 100%
+		span
+			font-family: $Graphik
+			+rem(font-size, 20px)
+			letter-spacing: -.4px
+			color: $black
+
+.cursor
+	position: fixed
+	top: -70px
+	left: -70px
+	width: 139px
+	height: 139px
+	z-index: 1600
+	pointer-events: none
+
+.cursor__line
+    position: absolute
+
+.cursor__line,.cursor__line>div
+	transform-origin: 0 0
+	transition: transform .25s cubic-bezier(.19,1,.22,1)
+    
+.cursor__line>div>div
+	width: 139px
+	height: 1px
+	background: #fff
+	transform-origin: 0 0
+	transition: transform .2s cubic-bezier(.19,1,.22,1),background-color .2s cubic-bezier(.19,1,.22,1)
+
+.cursor .cursor__line > div > div
+	transform: scaleX(0)
+
+.cursor .cursor__line--1 
+	transform: translate(70px,70px)
+
+.cursor .cursor__line--2 
+	transform: translate(71px,70px)
+
+.cursor .cursor__line--3
+	transform: translate(70px,70px)
+
+.cursor .cursor__line--4 
+	transform: translate(70px,69px)
+
+.cursor .cursor__line--1  >div 
+	transform: rotate(-90deg)
+
+.cursor .cursor__line--2 > div
+	transform: rotate(90deg)
+
+.cursor .cursor__line--3 > div 
+	transform: rotate(-180deg)
+
+.cursor .cursor__line--4 > div
+	transform: rotate(0deg)
+
+.cursor--plus .cursor__line > div > div 
+	transform: scaleX(.5)
+
+
+.cursor--prev .cursor__line--1,.cursor--prev .cursor__line--2
+	transform: translateY(69px)
+
+.cursor--prev .cursor__line > div > div
+	transform: scaleX(.5)
+
+.cursor--prev .cursor__line--1 > div
+	transform: rotate(-45deg)
+
+.cursor--prev .cursor__line--2 > div
+	transform: rotate(45deg)
+
+.cursor--prev .cursor__line--3 > div
+	transform: rotate(-180deg)
+
+.cursor--prev .cursor__line--4 > div
+	transform: rotate(0deg)
+
+.cursor--next .cursor__line--1,.cursor--next .cursor__line--2
+	transform: translate(139px,70px)
+
+.cursor--next .cursor__line > div > div
+	transform: scaleX(.5)
+
+.cursor--next .cursor__line--1 > div
+	transform: rotate(-135deg)
+
+.cursor--next .cursor__line--2 > div
+	transform: rotate(135deg)
+
+.cursor--next .cursor__line--3 > div
+	transform: rotate(-180deg)
+
+.cursor--next .cursor__line--4 > div
+	transform: rotate(0deg)
+
+
+
+
+.page-transition
+	position: absolute
+	z-index: 999999
+	top: 0
+	.page__frame
+		width: 100%
+		height: 100%
+		display: flex
+		position: relative
+		justify-content: center
+		align-items: center
+		.image-inner
+			flex: 1
+			display: flex
+			overflow: hidden
+			height: 100%
+			img
+				width: 100%
+				height: 100%
+				object-fit: cover
+		.name
+			position: absolute
+			font-family: $Graphik
+			+rem(font-size, 120px)
+			color: $white
+	.cover-container
+		width: 100%
+		height: 100vh
+		display: flex
+		position: relative
+		justify-content: center
+		align-items: center
+		.cover__frame
+			height: 100%
+			width: 100%
+			flex: 1
+		.cover
+			position: absolute
+			width: 0
+			height: 100%
+			left: 0
+			top: 0
+			transform-origin: 0 0
+		.cover-name
+			position: absolute
+			font-family: $GraphikMedium
+			+rem(font-size, 120px)
+			text-transform: uppercase
+			color: $white
+.barba-container
+	&.hide
+		display: none
+
+
+.navigation__project
+	position: fixed
+	+rem(width, 68px)
+	bottom: 0
+	right: 0
+	z-index: 50
+	height: calc(100% - 5rem)
+	display: flex
+	transform: translateX(100%)
+	transition: transform 0.3s
+	&.is-show
+		transform: translateX(-8px)
+	.navigation__link
+		height: 100%
+		flex: 1
+		display: flex
+		a
+			display: flex
+			width: 100%
+			height: 100%
+			align-items: flex-end
+			justify-content: center
+			+rem(padding-bottom, 60px)
+			span
+				transform: rotate(-90deg)
+				font-family: $CondMedium
+				+rem(font-size, 36px)
+				text-transform: uppercase
+.page-transition
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 0
+	width: 100%
+	height: 100%
+	.page
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0
+		left: 0
+		display: flex
+
+
+@keyframes fadeInUp
+	0%
+		opacity: 0
+		transform: translate(0,150px)
+
+	100% 
+		opacity: 1
+		transform: none
+
+.fadeInUp
+    animation-name: fadeInUp
+// .wow
+// 	opacity: 0
+// 	&.animate
+// 		opacity: 1

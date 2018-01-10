@@ -1,0 +1,11 @@
+ProjectTitle: Staylime
+
+PageList:
+- file: page.html
+  ready: 10
+- file: portfolio.html
+  ready: 25
+- file: portfolio-project.html
+  ready: 40
+- file: contacts.html
+  ready: 40

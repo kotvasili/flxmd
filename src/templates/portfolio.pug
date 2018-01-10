@@ -1,0 +1,58 @@
+---
+title: Portfolio_Page
+---
+
+extends layouts/_layout
+block content
+	- var currPage = 'Portfolio'
+	- var external = '<svg width="23.5" height="23.5" viewBox="0 0 23.5 23.5" xmlns="http://www.w3.org/2000/svg"><g><path d="m21.78148,11.36297l0,8.3c0,1.5 -1.2,2.8 -2.8,2.8l-15.2,0c-1.5,0 -2.8,-1.2 -2.8,-2.8l0,-15.3c0,-1.5 1.2,-2.8 2.8,-2.8l8.3,0" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><polyline points="16.481476068496704,0.9629654884338379 22.481476068496704,0.9629654884338379 22.481476068496704,6.962967872619629 " stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><line y2="0.96297" x2="22.48148" y1="12.76297" x1="10.68148" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/></g></svg>'
+	.root-wrapper
+		.overlay
+		.root-frame
+			include partials/_burger
+			#barba-wrapper
+				.barba-container(data-namespace="portfolio" data-bgcolor="#cdfc91" data-textcolor="#c1ed89" data-titlecolor="#c1ed89" data-loader="#cdfc91")
+					header.header.header-inner
+						include partials/_header
+					.wrapper-frame
+						.portfolio__overlay.overlay__color
+						.frame__names
+							.frame___names-list#project__names
+						.frame__container#scroll-container
+							.frame__side.layout_fixed
+								.page-title
+									.breadcrumbs
+										ul
+											- var crumbs = ["Home"]
+											each crumbsItem in crumbs
+												li.breadcumbs__item
+													a(href="page.html")
+														span #{crumbsItem}
+									.page__name
+										span#name-project #{currPage}
+								.filter-container
+									- var filters = ["All", "Website", "E-commerce", "Graphic design", "Branding", "Print", "Mobile"]
+									- var activeClass = 1
+										each filterItem, index in filters
+											- var indexIncr = index + 1
+											.filter-item(class={"is-active": indexIncr === activeClass})
+												a.no-barba(href="#")
+													span #{filterItem}
+								
+							.frame__side
+								.portfolio__projects
+									.projects-head
+										.head__title
+											.title-small
+												span Favourite projects
+											.title
+												h1 Our results
+										.head__order
+											a(href="#" class="custom__btn")
+												span Make an order
+									.portfolio__body
+										.grid__container#grid__container
+											
+					include partials/_menu
+					include partials/_cross
+					
