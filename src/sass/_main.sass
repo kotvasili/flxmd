@@ -200,6 +200,7 @@ body
 		opacity: 0
 		visibility: hidden
 		z-index: 1
+		// will-change: transform
 		overflow: hidden
 		&.section__active
 			z-index: 2
@@ -449,6 +450,9 @@ body
 			cursor: pointer
 			transition: opacity .25s
 			+vertical
+			+nosel
+			&.animating
+				pointer-events: none
 			.swiper-button_text
 				display: inline-block
 				position: relative
@@ -1089,7 +1093,7 @@ body
 				left: 0
 				z-index: 0
 				width: 100%
-				background-color: $flex
+				background-color: color(link)
 				transform: scaleY(0)
 				transform-origin: 50% 0
 				transition: all .8s cubic-bezier(.7,0,.3,1)

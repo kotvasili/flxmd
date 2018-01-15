@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Swiper from 'swiper';
 import extend from './Extends';
+import debounce from './debounce';
 import SwiperSettings from './SliderSettings.js';
 import { TimelineLite } from 'gsap';
 
@@ -10,14 +11,14 @@ export default function ScrollSlide(container, options) {
   this.default = {
     screen: '.screen',
     navigationItem: '.navigation__item',
-    overlay: '.overlay__color',
+    overlay: $('.overlay__color'),
     currPage: 0,
     swiperContainer: '.swiper-container',
     canScroll: true,
     sectionNext: 'section__next',
     sectionPrev: 'section__prev',
     mainMenu: '.menu-primary',
-    linkColor: '.link-color'
+    linkColor: $('.link-color')
   };
 
   this.options = extend( {}, this.default );
@@ -34,12 +35,12 @@ ScrollSlide.prototype = {
     this.navItem = $(this.options.navigationItem);
     this.swiper = $(this.options.swiperContainer);
     this.menuPrimary = $(this.options.mainMenu);
-
+    this.logo = $('.logo');
     this.swiperInstances = {};
     this.colorChange = null;
     this.canScroll = false;
     this.scrollController = null;
-
+    this.bgTargets;
     this.initSwiper();
 
     this.setCurrentPage(this.options.currPage);
@@ -109,7 +110,7 @@ ScrollSlide.prototype = {
   scrollEvent: function() {
     var self = this;
 
-    $(this.element).on('mousewheel DOMMouseScroll', function(e) {
+    $(this.element).on('mousewheel DOMMouseScroll', debounce(function(e) {
       e.preventDefault();
 
       if($('body').hasClass('menu-open')) {
@@ -135,7 +136,7 @@ ScrollSlide.prototype = {
         self.canScroll = true;
         self.prevSection();
       }
-    });
+    }));
   },
   nextSection: function() {
     var self = this;
@@ -194,120 +195,141 @@ ScrollSlide.prototype = {
   },
   goToSlide: function(curr, next) {
     var self = this;
-
-    if($(next).find('.container-carousel').length) {
-      this.setColor($(next).find('.swiper-slide-active').data('bgcolor-item'), $(next).find('.swiper-slide-active').data('textcolor'));
+    let nxt = $(next);
+    let crr = $(curr);
+    let nxtInd = nxt.index();
+    let crrInd = crr.index();
+    let crrContent = crr.find('.content__side').eq(0);
+    let nxtContent = nxt.find('.content__side').eq(0);
+    if(nxt.find('.container-carousel').length) {
+      this.setColor(nxt.find('.swiper-slide-active').data('bgcolor-item'), nxt.find('.swiper-slide-active').data('textcolor'));
      
     } else {
-      this.setColor($(next).data('bgcolor'), $(next).data('textcolor'));
+      this.setColor(nxt.data('bgcolor'), nxt.data('textcolor'));
     }
 
-    if ($(next).data('dark')) {
-      $(self.element).add($('.logo')).removeClass('light');
+    if (nxt.data('dark')) {
+      $(self.element).add(self.logo).removeClass('light');
     } else {
-      $(self.element).add($('.logo')).addClass('light');
+      $(self.element).add(self.logo).addClass('light');
     }
 
-    if($(next).index() > $(curr).index()) {
-      this.twn
-        .fromTo($(curr), 1.25, {
-          y: '0%'
-        }, {
-          y: '-=100%',
-          ease: Expo.easeInOut,
-        })
-        .fromTo($(curr).find('.content__side').eq(0), 1.25,{
-          y: '0%'
-        },{
-          y: '+=40%',
-          ease: Expo.easeInOut,
-        }, '-=1.25')
-        .fromTo($(next), 1.25, {
-          className: '+=section__next',
-          y: '100%'
-        }, {
-          y: '-=100%',
-          ease: Expo.easeInOut,
-        }, '-=1.25')
-        .fromTo($(next).find('.content__side').eq(0), 1.25,{
-          y: '-40%'
-        },{
-          y: '+=40%',
-          ease: Expo.easeInOut,
-          onComplete: function() {
-            self.sapEnd($(curr).index(), $(next).index());
-          }
-        }, '-=1.25');
+    if(nxtInd > crrInd) {
+      requestAnimationFrame(() => {
+        this.twn
+          .fromTo(crr, 1.25, {
+            y: '0%'
+          }, {
+            y: '-=100%',
+            ease: Expo.easeInOut,
+            force3D:true,
+          })
+          .fromTo(crrContent, 1.25,{
+            y: '0%'
+          },{
+            y: '+=40%',
+            ease: Expo.easeInOut,
+
+          }, '-=1.25')
+          .fromTo(nxt, 1.25, {
+            className: '+=section__next',
+            y: '100%'
+          }, {
+            y: '-=100%',
+            ease: Expo.easeInOut,
+            force3D:true,
+          }, '-=1.25')
+          .fromTo(nxtContent, 1.25,{
+            y: '-40%'
+          },{
+            y: '+=40%',
+            ease: Expo.easeInOut,
+            onComplete: function() {
+              self.sapEnd(crrInd, nxtInd);
+            }
+          }, '-=1.25'); 
+      });
+
 
     } else {
-      this.twn
-        .fromTo($(curr), 1.25, {
-          y: '0%'
-        }, {
-          y: '+=100%',
-          ease: Expo.easeInOut,
-        })
-        .fromTo($(curr).find('.content__side').eq(0), 1.25,{
-          y: '0%'
-        },{
-          y: '-=40%',
-          ease: Expo.easeInOut,
-        }, '-=1.25')
+      requestAnimationFrame(() => {
+        this.twn
+          .fromTo(crr, 1.25, {
+            y: '0%'
+          }, {
+            y: '+=100%',
+            ease: Expo.easeInOut,
+            force3D:true,
+          })
+          .fromTo(crrContent, 1.25,{
+            y: '0%'
+          },{
+            y: '-=40%',
+            ease: Expo.easeInOut,
+          }, '-=1.25')
         
-        .fromTo($(next), 1.25, {
-          className: '+=section__prev',
-          y: '-100%'
-        }, {
-          y: '+=100%',
-          ease: Expo.easeInOut,
-        }, '-=1.25')
-        .fromTo($(next).find('.content__side').eq(0), 1.25,{
-          y: '40%'
-        },{
-          y: '-=40%',
-          ease: Expo.easeInOut,
-          onComplete: function() {
-            self.sapEnd($(curr).index(), $(next).index());
-          }
-        }, '-=1.25');
+          .fromTo(nxt, 1.25, {
+            className: '+=section__prev',
+            y: '-100%'
+          }, {
+            y: '+=100%',
+            ease: Expo.easeInOut,
+            force3D:true,
+          }, '-=1.25')
+          .fromTo(nxtContent, 1.25,{
+            y: '40%'
+          },{
+            y: '-=40%',
+            ease: Expo.easeInOut,
+            onComplete: function() {
+              self.sapEnd(crrInd, nxtInd);
+            }
+          }, '-=1.25');
+      });
     }
   },
   initSwiper: function() {
     var self = this;
-    
     this.swiper.each(function(index, element) {
-      var $this = $(this);
+      const $this = $(this);
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
+      const screenParent = $this.parents(self.options.screen);
       $this.addClass('instance-' + index);
-      var $project = $this.parents(self.options.screen).find('.swiper-projects');
-
+      var $project = screenParent.find('.swiper-projects');
       let DefaultSettings = {
-        nextButton: $btnNext,
-        prevButton: $btnPrev,
-        onInit: function(swiper) {
-          var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
-          var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
-          var defaultCurrIndex = $this.find('.swiper-slide-active').data('swiper-slide-index');
-
-
-          $project.find('.name-projects_item').eq(defaultCurrIndex).addClass('current');
-          $this.parents(self.options.screen).attr('data-bgcolor', defaultColor);
-          $this.parents(self.options.screen).attr('data-textcolor', defaultTextColor);
-
+        navigation:{
+          nextEl: $btnPrev,
+          prevEl: $btnNext, 
         },
-        onTransitionStart: function(el) {
-          $this.addClass('animating');
-          var bgColor = $this.find('[data-swiper-slide-index=' + el.realIndex + ']').data('bgcolor-item');
-          var textcolor = $this.find('[data-swiper-slide-index=' + el.realIndex + ']').data('textcolor');
-          $this.parents(self.options.screen).attr('data-bgcolor', bgColor);
-          $this.parents(self.options.screen).attr('data-textcolor', textcolor);
-          $project.find('.name-projects_item').eq(el.realIndex).addClass('current').siblings().removeClass('current');
-          self.setColor(bgColor, textcolor);
+        on:{
+          init: function(swiper) {
+            var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
+            var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
+            var defaultCurrIndex = $this.find('.swiper-slide-active').data('swiper-slide-index');
+            // console.log(defaultColor,defaultTextColor,defaultCurrIndex);
+            $project.find('.name-projects_item').eq(defaultCurrIndex).addClass('current');
+            $this.parents(self.options.screen).attr('data-bgcolor', defaultColor);
+            $this.parents(self.options.screen).attr('data-textcolor', defaultTextColor);
+          },
+          transitionStart: function() {
+            requestAnimationFrame(() => {
+              $this.addClass('animating');
+              var bgColor = $this.find('[data-swiper-slide-index=' + $this.activeIndex + ']').data('bgcolor-item');
+              var textcolor = $this.find('[data-swiper-slide-index=' + $this.activeIndex + ']').data('textcolor');
+              screenParent.attr('data-bgcolor', bgColor).attr('data-textcolor', textcolor);
+              $project.find('.name-projects_item').eq($this.activeIndex).addClass('current').siblings().removeClass('current');
+            });
+            // console.log(bgColor, textcolor);
+            // self.setColor(bgColor, textcolor);
+          },
+          transitionEnd: function(el) {
+            requestAnimationFrame(() => {
+              $this.removeClass('animating');
+            });
+          }
         },
-        onTransitionEnd: function(el) {
-          $this.removeClass('animating');
-        }
+
       };
 
       let assignSettings = Object.assign(DefaultSettings, SwiperSettings);
@@ -324,25 +346,25 @@ ScrollSlide.prototype = {
       this.navItem.eq(currPage).addClass('nav__active');
       this.sections.eq(currPage).addClass('section__active');
     }
-
+    this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
+    console.log( this.bgTargets);
     this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
   },
   setNavigationCurrItem: function(currItem) {
     this.navItem.eq(currItem).addClass('nav__active').siblings().removeClass('nav__active');
   },
   setColor: function(bgColor, textcolor) {
-    $(this.options.overlay).css({
+    var self = this;
+    this.options.overlay.css({
       'background-color': bgColor
     });
 
-    $(this.options.linkColor).css({
+    this.options.linkColor.css({
       'color': textcolor
     });
-    
-    $('.scrollbar__container').find('span').add($('.hover-line')).css({
+    this.bgTargets.css({
       'background-color': bgColor
     });
-
     document.body.style.setProperty('--color-link', textcolor);
 
   },
@@ -374,11 +396,13 @@ ScrollSlide.prototype = {
     container.appendChild(scrollbar);
 
     this.element.append(container);
+    
   },
-  setScrollBar: function(current) {
-
+  setScrollBar(current) {
+    var self = this;
     var indexItem = $('.bar__item').filter('[data-scrollbar-index=' + current + ']').data('scrollbar-index');
-
+   
+    
     $('.bar__item').each(function() {
       var _ = $(this);
 
