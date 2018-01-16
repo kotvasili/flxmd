@@ -24,9 +24,9 @@ export default (env) => {
       publicPath: 'js/',
     },
     devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
-    // resolve: {
-    //   extensions: ['.js'],
-    //   alias: {
+    resolve: {
+      extensions: ['.js'],
+      alias: {
     //     TweenLite: path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
     //     TweenMax: path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
     //     TimelineLite: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
@@ -34,8 +34,8 @@ export default (env) => {
     //     ScrollMagic: path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
     //     'animation.gsap': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
     //     'debug.addIndicators': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
-    //   },
-    // },
+      },
+    },
     module: {
       rules: [
         {
@@ -90,19 +90,19 @@ export default (env) => {
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),
-      new webpack.optimize.DedupePlugin(),
+      // new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-          warnings: false,
+          // warnings: false,
           // pure_getters: true,
-          unsafe: true,
-          unsafe_comps: true,
-          screw_ie8: true
+          // unsafe: true,
+          // unsafe_comps: true,
+          // screw_ie8: true
         },
         output: {
-          comments: false,
+          // comments: false,
         },
-        minimize: true
+        // minimize: true
       })
     );
   }

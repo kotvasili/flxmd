@@ -33,7 +33,12 @@ gulp.task('webpack', function(cb) {
     handler(err, stats, cb);
   });
 });
-
+gulp.task('webpack:build', function(cb) {
+  config.env = 'production';
+  webpack(webpackConfig(config.env)).run((err, stats) => {
+    handler(err, stats, cb);
+  });
+});
 gulp.task('webpack:watch', function() {
   webpack(webpackConfig(config.env)).watch({
     aggregateTimeout: 100,

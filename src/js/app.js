@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from 'jquery/dist/jquery.min';
 import Barba from 'barba.js/dist/barba.min';
 import PageLoader from './lib/SiteLoader';
 import ScrollSlide from './lib/FullPageSilder';
@@ -8,17 +8,18 @@ import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import RecentSlider from './lib/RecentSilder.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
-import { TweenMax, TimelineMax } from 'gsap';
+import { TweenMax, TimelineMax ,SlowMo} from 'gsap';
 import Cursor from './lib/Cursor.js';
-import dragscroll from 'dragscroll';
+// import dragscroll from 'dragscroll';
 import WOW from '../../node_modules/wow.js/dist/wow.min.js';
 
-$.fn.hasAttr = function(name) {  
+$.fn.hasAttr = function(name) {
   return this.attr(name) !== undefined;
 };
 
 var BarbaWitget = {
   init: function() {
+    var scope = this;
     var scope = this;
 
     var wow = new WOW({
@@ -33,9 +34,9 @@ var BarbaWitget = {
     Barba.Pjax.getTransition = function() {
       return scope.MovePage;
     };
-    Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+    // Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
       
-    });        
+    // });        
   },
   MovePage: Barba.BaseTransition.extend({
     start: function() {
@@ -47,7 +48,7 @@ var BarbaWitget = {
       var deferred = Barba.Utils.deferred();
       document.body.classList.add('loading');
 
-      var top = window.pageYOffset;
+      // var top = window.pageYOffset;
 
       document.body.style.overflow = 'hidden';
 
@@ -58,11 +59,7 @@ var BarbaWitget = {
       });
 
       let transitionTemplate = `
-        <div class="page-transition">
-          <div id="outer" class="page page__out"><div id="out"></div></div>
-          <div id="inner" class="page page__in"><div id="in"></div></div>
-        </div>
-      `;
+        <div class="page-transition"><div id="outer" class="page page__out"><div id="out"></div></div><div id="inner" class="page page__in"><div id="in"></div></div></div>`;
 
       let uppendContainer = document.querySelector('.root-frame');
 
@@ -110,7 +107,7 @@ var BarbaWitget = {
       let overlayW = overlayInner.innerWidth();
       let overlayColor = $(this.newContainer).data('bgcolor');
       let screenWidth = $(window).width();
-      let screenHeight = $(window).height();
+      // let screenHeight = $(window).height();
       let _in = document.getElementById('in');
       let out = document.getElementById('out');
 
@@ -134,8 +131,6 @@ var BarbaWitget = {
               });
             }
           });
-              
-        // 
         }
       });
 

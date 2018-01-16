@@ -1,5 +1,5 @@
-import $ from 'jquery';
-import Swiper from 'swiper';
+import $ from 'jquery/dist/jquery.min';
+import Swiper from 'swiper/dist/js/swiper.min';
 import extend from './Extends';
 import debounce from './debounce';
 import SwiperSettings from './SliderSettings.js';
@@ -31,7 +31,7 @@ ScrollSlide.prototype = {
   init: function() {
 
     this.sections = $(this.options.screen);
-    this.sections__length = this.sections.length;
+    this.sectionsLength = this.sections.length;
     this.navItem = $(this.options.navigationItem);
     this.swiper = $(this.options.swiperContainer);
     this.menuPrimary = $(this.options.mainMenu);
@@ -108,9 +108,9 @@ ScrollSlide.prototype = {
     });
   },
   scrollEvent: function() {
-    var self = this;
+    // var self = this;
 
-    $(this.element).on('mousewheel DOMMouseScroll', debounce(function(e) {
+    $(this.element).on('mousewheel DOMMouseScroll', debounce((e) => {
       e.preventDefault();
 
       if($('body').hasClass('menu-open')) {
@@ -119,27 +119,26 @@ ScrollSlide.prototype = {
 
       var delta = e.originalEvent.wheelDelta ? -e.originalEvent.wheelDelta : e.originalEvent.detail * 20;
 
-      if(delta > 50 && !self.canScroll) {
+      if(delta > 50 && !this.canScroll) {
 
         if(self.canScroll) {
           return false;
         }
 
-        self.canScroll = true;
-        self.nextSection();
+        this.canScroll = true;
+        this.nextSection();
 
-      } else if(delta < -50 && !self.canScroll) {
-        if(self.canScroll) {
+      } else if(delta < -50 && !this.canScroll) {
+        if(this.canScroll) {
           return false;
         }
 
-        self.canScroll = true;
-        self.prevSection();
+        this.canScroll = true;
+        this.prevSection();
       }
     }));
   },
   nextSection: function() {
-    var self = this;
 
     this.curr_slide = this.options.currPage;
     this.next_slide = this.curr_slide + 1;
@@ -147,7 +146,7 @@ ScrollSlide.prototype = {
     this._curr_slide = this.sections[this.curr_slide];
     this._next_slide = this.sections[this.next_slide];
 
-    if(typeof this._next_slide == 'undefined') {
+    if(typeof this._next_slide === 'undefined') {
       this.canScroll = false;
       return false;
     }
@@ -159,7 +158,6 @@ ScrollSlide.prototype = {
     this.setScrollBar(this.next_slide);
   },
   prevSection: function() {
-    var self = this;
 
     this.curr_slide = this.options.currPage;
     this.next_slide = this.curr_slide - 1;
@@ -167,7 +165,7 @@ ScrollSlide.prototype = {
     this._curr_slide = this.sections[this.curr_slide];
     this._next_slide = this.sections[this.next_slide];
 
-    if(typeof this._next_slide == 'undefined') {
+    if(typeof this._next_slide === 'undefined') {
       this.canScroll = false;
       return false;
     }
@@ -179,7 +177,7 @@ ScrollSlide.prototype = {
     this.setScrollBar(this.next_slide);
   },
   sapEnd: function(currentItem, nextItem) {
-    var self = this;
+    // var self = this;
     var remove = null;
     if(currentItem < nextItem) {
       remove = this.options.sectionNext;
@@ -189,8 +187,8 @@ ScrollSlide.prototype = {
 
     $(this.sections[nextItem]).addClass('section__active').removeClass(remove).siblings().removeClass('section__active');
 
-    setTimeout(function() {
-      self.canScroll = false;	
+    setTimeout(() => {
+      this.canScroll = false;	
     }, 1100);
   },
   goToSlide: function(curr, next) {
@@ -290,7 +288,7 @@ ScrollSlide.prototype = {
   },
   initSwiper: function() {
     var self = this;
-    this.swiper.each(function(index, element) {
+    this.swiper.each(function(index) {
       const $this = $(this);
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
@@ -347,7 +345,7 @@ ScrollSlide.prototype = {
       this.sections.eq(currPage).addClass('section__active');
     }
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
-    console.log( this.bgTargets);
+    // console.log( this.bgTargets);
     this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
   },
   setNavigationCurrItem: function(currItem) {
@@ -376,7 +374,7 @@ ScrollSlide.prototype = {
 
     var fragment = document.createDocumentFragment();
 
-    for(var i = 0; i < this.sections__length; i++) {
+    for(var i = 0; i < this.sectionslength; i++) {
       var li = document.createElement('li');
       var a = document.createElement('a');
       var span = document.createElement('span');
