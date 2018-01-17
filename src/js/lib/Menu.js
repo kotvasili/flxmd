@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import './domConf.js';
 
 export default function Menu() {
   var _this = this;
@@ -16,7 +17,6 @@ export default function Menu() {
     _this.overlay.add(_this.close).on('click', function() {
       _this.closeMenu();
     });
-
     _this.hoverItems.children().on('mouseenter', function() {
       _this.setActiveColumn(this.getAttribute('data-idx'), this);
     });
@@ -57,7 +57,7 @@ export default function Menu() {
     _this.close = $('.menu-close');
     _this.overlay = $('.overlay');
     _this.menu = $('.menu');
-    _this.body = $('body');
+    _this.body = window.DOM.body;
     _this.hoverColumn = $('.menu-hover__container');
     _this.hoverItems = $('.navigation-category');
 

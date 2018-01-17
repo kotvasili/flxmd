@@ -10,6 +10,7 @@ import RecentSlider from './lib/RecentSilder.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,SlowMo} from 'gsap';
 import Cursor from './lib/Cursor.js';
+import './lib/domConf.js';
 // import dragscroll from 'dragscroll';
 import WOW from '../../node_modules/wow.js/dist/wow.min.js';
 
@@ -20,7 +21,6 @@ $.fn.hasAttr = function(name) {
 var BarbaWitget = {
   init: function() {
     var scope = this;
-    var scope = this;
 
     var wow = new WOW({
       callback:     function(box) {
@@ -28,15 +28,24 @@ var BarbaWitget = {
       },
     });
     wow.init();
-
+    this.menu = new Menu();
+    this.menu.init();
     Barba.Pjax.start();
-
+    Colorize();
     Barba.Pjax.getTransition = function() {
       return scope.MovePage;
     };
-    // Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+    Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
       
-    // });        
+    });
+    Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
+      this.menu.destroy();
+      delete this.menu;
+      this.menu = new Menu();
+      this.menu.init();
+      
+    });   
+    console.log(Barba.Dispatcher.events);
   },
   MovePage: Barba.BaseTransition.extend({
     start: function() {
@@ -46,12 +55,9 @@ var BarbaWitget = {
     },
     pageOut: function() {
       var deferred = Barba.Utils.deferred();
-      document.body.classList.add('loading');
+      window.DOM.body.addClass('loading').css('overflow','hidden');
 
       // var top = window.pageYOffset;
-
-      document.body.style.overflow = 'hidden';
-
       let tl = new TimelineMax({
         onComplete: () => {
           deferred.resolve();
@@ -72,8 +78,8 @@ var BarbaWitget = {
 
       let out = document.getElementById('out');
 
-      if($('body').hasClass('menu-open')) {
-        tl.set($('body'), {
+      if(window.DOM.body.hasClass('menu-open')) {
+        tl.set(window.DOM.body, {
           className: '-=menu-open'
         });
         this.delay = 0.6;
@@ -86,7 +92,7 @@ var BarbaWitget = {
           width: overlayW,
           backgroundColor: overlayColor
         })
-        .set($('body'), {
+        .set(window.DOM.body, {
           className: '-=menu-open'
         })
         .to(frame, 0.3, {
@@ -125,8 +131,8 @@ var BarbaWitget = {
                 backgroundColor: overlayColor,
                 onComplete: () => {
                   page.remove();
-                  document.body.classList.remove('loading');
-                  document.body.style.overflow = 'visible';
+                  window.DOM.body.removeClass('loading').css('overflow','visible');
+                  // document.body.style.overflow = 'visible';
                 }
               });
             }
@@ -174,18 +180,18 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    this.menu = new Menu();
-    this.menu.init();
+    window.DOM.body.addClass('index-page');
   },
   onEnterCompleted: function() {
     this.fullpage = new ScrollSlide('#work-wrapper');
-    Colorize();
+    // Colorize();
+
   },
   onLeave: function() {
-    this.menu.destroy();
-
+    // this.menu.destroy();
+    window.DOM.body.removeClass('index-page');
     delete this.fullpage;
-    delete this.menu;
+    // delete this.menu;
   },
   onLeaveComplete: function() {
 
@@ -195,8 +201,8 @@ var IndexPage = Barba.BaseView.extend({
 var PortfolioPage = Barba.BaseView.extend({
   namespace: 'portfolio',
   onEnter: function() {
-    this.menu = new Menu();
-    this.menu.init();
+    // this.menu = new Menu();
+    // this.menu.init();
   },
   onEnterCompleted: function() {
     let scrollsMain = document.getElementById('scroll-container');
@@ -207,15 +213,15 @@ var PortfolioPage = Barba.BaseView.extend({
       _ajax: true
     }, true);
 
-    Colorize();
+    // Colorize();
   },
   onLeave: function() {
 
     console.log('PortfolioPage');
     this.portfolio.delete();
-    this.menu.destroy();
+    // this.menu.destroy();
     delete this.portfolio;
-    delete this.menu;
+    // delete this.menu;
   },
   onLeaveComplete: function() {
 
@@ -225,8 +231,8 @@ var PortfolioPage = Barba.BaseView.extend({
 var PortfolioInnerPage = Barba.BaseView.extend({
   namespace: 'portfolio-project',
   onEnter: function() {
-    this.menu = new Menu();
-    this.menu.init();
+    // this.menu = new Menu();
+    // this.menu.init();
   },
   onEnterCompleted: function() {
     let scrollsMain = document.getElementById('scroll-container');
@@ -242,7 +248,7 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     this.carousel.init();
 
     this.resent = new RecentSlider();
-    Colorize();
+    // Colorize();
     
     if (typeof dragscroll !== 'undefined') {
       dragscroll.reset();  
@@ -251,11 +257,11 @@ var PortfolioInnerPage = Barba.BaseView.extend({
   },
   onLeave: function() {
     this.portfolio.delete();
-    this.menu.destroy();
+    // this.menu.destroy();
 
     delete this.portfolio;
     delete this.carousel;
-    delete this.menu;
+    // delete this.menu;
     delete this.resent;
   },
   onLeaveComplete: function() {
@@ -266,8 +272,8 @@ var PortfolioInnerPage = Barba.BaseView.extend({
 var ContactsPage = Barba.BaseView.extend({
   namespace: 'contacts',
   onEnter: function() {
-    this.menu = new Menu();
-    this.menu.init();
+    // this.menu = new Menu();
+    // this.menu.init();
   },
   onEnterCompleted: function() {
     var scrollsMain = document.getElementById('scroll-container');
@@ -278,16 +284,16 @@ var ContactsPage = Barba.BaseView.extend({
       tabs: true
     }, true);
 
-    Colorize();
+    
   },
   onLeave: function() {
     
     console.log('ContactsPage');
     this.portfolio.delete();
-    this.menu.destroy();
+    // this.menu.destroy();
     
     delete this.portfolio;
-    delete this.menu;
+    // delete this.menu;
   },
   onLeaveComplete: function() {
 
@@ -296,7 +302,7 @@ var ContactsPage = Barba.BaseView.extend({
 
  
 function initSite() {
-  Colorize();
+  // Colorize();
   browserDetection({
     addClasses: true
   });
@@ -309,9 +315,12 @@ function initSite() {
   BarbaWitget.init();
 }
 
-window.onload = function() {
+window.onload = () => {
   initSite();
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+
+});
 
 

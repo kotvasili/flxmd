@@ -2,8 +2,10 @@ import $ from 'jquery/dist/jquery.min';
 import Swiper from 'swiper/dist/js/swiper.min';
 import extend from './Extends';
 import debounce from './debounce';
+import './domConf.js';
 import SwiperSettings from './SliderSettings.js';
-import { TimelineLite } from 'gsap';
+import { TimelineMax } from 'gsap';
+
 
 export default function ScrollSlide(container, options) {
   this.element = $(container);
@@ -18,7 +20,8 @@ export default function ScrollSlide(container, options) {
     sectionNext: 'section__next',
     sectionPrev: 'section__prev',
     mainMenu: '.menu-primary',
-    linkColor: $('.link-color')
+    linkColor: $('.link-color'),
+
   };
 
   this.options = extend( {}, this.default );
@@ -28,7 +31,7 @@ export default function ScrollSlide(container, options) {
 }
 
 ScrollSlide.prototype = {
-  init: function() {
+  init() {
 
     this.sections = $(this.options.screen);
     this.sectionsLength = this.sections.length;
@@ -41,6 +44,7 @@ ScrollSlide.prototype = {
     this.canScroll = false;
     this.scrollController = null;
     this.bgTargets;
+    this.body = window.DOM.body;
     this.initSwiper();
 
     this.setCurrentPage(this.options.currPage);
@@ -49,7 +53,7 @@ ScrollSlide.prototype = {
     this.setScrollBar(this.options.currPage);
     this.initEventHandler();
     this.scrollEvent();
-    this.twn = new TimelineLite();
+    this.twn = new TimelineMax();
 
 
 
@@ -109,30 +113,21 @@ ScrollSlide.prototype = {
   },
   scrollEvent: function() {
     // var self = this;
-
-    $(this.element).on('mousewheel DOMMouseScroll', debounce((e) => {
+    $(this.element).on('mousewheel DOMMouseScroll',(e) => {
       e.preventDefault();
-
-      if($('body').hasClass('menu-open')) {
+    });
+    $(this.element).on('mousewheel DOMMouseScroll', debounce((e) => {
+     
+      if(this.body.hasClass('menu-open')) {
         return false;
       }
 
       var delta = e.originalEvent.wheelDelta ? -e.originalEvent.wheelDelta : e.originalEvent.detail * 20;
-
       if(delta > 50 && !this.canScroll) {
-
-        if(self.canScroll) {
-          return false;
-        }
-
         this.canScroll = true;
         this.nextSection();
 
       } else if(delta < -50 && !this.canScroll) {
-        if(this.canScroll) {
-          return false;
-        }
-
         this.canScroll = true;
         this.prevSection();
       }
@@ -185,11 +180,11 @@ ScrollSlide.prototype = {
       remove = this.options.sectionPrev;
     }
 
-    $(this.sections[nextItem]).addClass('section__active').removeClass(remove).siblings().removeClass('section__active');
+    $(this.sections[nextItem]).removeClass(remove).siblings().removeClass('section__active');
 
     setTimeout(() => {
       this.canScroll = false;	
-    }, 1100);
+    }, 900);
   },
   goToSlide: function(curr, next) {
     var self = this;
@@ -199,9 +194,9 @@ ScrollSlide.prototype = {
     let crrInd = crr.index();
     let crrContent = crr.find('.content__side').eq(0);
     let nxtContent = nxt.find('.content__side').eq(0);
+    let swiperActive = nxt.find('.swiper-slide-active');
     if(nxt.find('.container-carousel').length) {
-      this.setColor(nxt.find('.swiper-slide-active').data('bgcolor-item'), nxt.find('.swiper-slide-active').data('textcolor'));
-     
+      this.setColor(swiperActive.data('bgcolor-item'), swiperActive.data('textcolor'));
     } else {
       this.setColor(nxt.data('bgcolor'), nxt.data('textcolor'));
     }
@@ -227,28 +222,27 @@ ScrollSlide.prototype = {
           },{
             y: '+=40%',
             ease: Expo.easeInOut,
-
           }, '-=1.25')
           .fromTo(nxt, 1.25, {
             className: '+=section__next',
-            y: '100%'
+            y: '100%',
           }, {
+            className: '+=section__active',
             y: '-=100%',
             ease: Expo.easeInOut,
             force3D:true,
+            onComplete: () => {
+              self.sapEnd(crrInd, nxtInd);
+            }
           }, '-=1.25')
           .fromTo(nxtContent, 1.25,{
             y: '-40%'
           },{
             y: '+=40%',
             ease: Expo.easeInOut,
-            onComplete: function() {
-              self.sapEnd(crrInd, nxtInd);
-            }
+
           }, '-=1.25'); 
       });
-
-
     } else {
       requestAnimationFrame(() => {
         this.twn
@@ -268,20 +262,21 @@ ScrollSlide.prototype = {
         
           .fromTo(nxt, 1.25, {
             className: '+=section__prev',
-            y: '-100%'
+            y: '-100%',
           }, {
+            className: '+=section__active',
             y: '+=100%',
             ease: Expo.easeInOut,
-            force3D:true,
+            force3D: true,
+            onComplete: () => {
+              self.sapEnd(crrInd, nxtInd);
+            }
           }, '-=1.25')
           .fromTo(nxtContent, 1.25,{
             y: '40%'
           },{
             y: '-=40%',
             ease: Expo.easeInOut,
-            onComplete: function() {
-              self.sapEnd(crrInd, nxtInd);
-            }
           }, '-=1.25');
       });
     }
@@ -292,7 +287,7 @@ ScrollSlide.prototype = {
       const $this = $(this);
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
-      const screenParent = $this.parents(self.options.screen);
+      const screenParent = $this.closest(self.options.screen);
       $this.addClass('instance-' + index);
       var $project = screenParent.find('.swiper-projects');
       let DefaultSettings = {
@@ -305,21 +300,22 @@ ScrollSlide.prototype = {
             var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
             var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
             var defaultCurrIndex = $this.find('.swiper-slide-active').data('swiper-slide-index');
-            // console.log(defaultColor,defaultTextColor,defaultCurrIndex);
             $project.find('.name-projects_item').eq(defaultCurrIndex).addClass('current');
-            $this.parents(self.options.screen).attr('data-bgcolor', defaultColor);
-            $this.parents(self.options.screen).attr('data-textcolor', defaultTextColor);
+            screenParent.attr('data-bgcolor', defaultColor);
+            screenParent.attr('data-textcolor', defaultTextColor);
           },
           transitionStart: function() {
-            requestAnimationFrame(() => {
-              $this.addClass('animating');
-              var bgColor = $this.find('[data-swiper-slide-index=' + $this.activeIndex + ']').data('bgcolor-item');
-              var textcolor = $this.find('[data-swiper-slide-index=' + $this.activeIndex + ']').data('textcolor');
-              screenParent.attr('data-bgcolor', bgColor).attr('data-textcolor', textcolor);
-              $project.find('.name-projects_item').eq($this.activeIndex).addClass('current').siblings().removeClass('current');
-            });
-            // console.log(bgColor, textcolor);
-            // self.setColor(bgColor, textcolor);
+            if(screenParent.hasClass('section__active')) {
+              requestAnimationFrame(() => {
+                $this.addClass('animating');
+                let realInd = $this[0].swiper.realIndex;
+                var bgColor = $this.find('[data-swiper-slide-index="' + realInd + '"]').data('bgcolor-item');
+                var textcolor = $this.find('[data-swiper-slide-index="' + realInd + '"]').data('textcolor');
+                screenParent.attr('data-bgcolor', bgColor).attr('data-textcolor', textcolor);
+                $project.find('.name-projects_item').eq(realInd).addClass('current').siblings().removeClass('current');
+                self.setColor(bgColor, textcolor);
+              });   
+            }
           },
           transitionEnd: function(el) {
             requestAnimationFrame(() => {
@@ -345,7 +341,6 @@ ScrollSlide.prototype = {
       this.sections.eq(currPage).addClass('section__active');
     }
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
-    // console.log( this.bgTargets);
     this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
   },
   setNavigationCurrItem: function(currItem) {
@@ -366,7 +361,7 @@ ScrollSlide.prototype = {
     document.body.style.setProperty('--color-link', textcolor);
 
   },
-  generateScrollBarPagination: function() {
+  generateScrollBarPagination() {
     var container = document.createElement('div');
     container.setAttribute('class', 'work-wrapper__scrollbar');
     var scrollbar = document.createElement('ul');
@@ -374,7 +369,8 @@ ScrollSlide.prototype = {
 
     var fragment = document.createDocumentFragment();
 
-    for(var i = 0; i < this.sectionslength; i++) {
+    for(var i = 0; i < this.sectionsLength; i++) {
+      
       var li = document.createElement('li');
       var a = document.createElement('a');
       var span = document.createElement('span');

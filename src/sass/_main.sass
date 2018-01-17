@@ -28,7 +28,7 @@ body
 	&.loading
 		overflow: hidden
 	+scrollbar
-		width: 8px
+		width: 4px
 		background-color: #F5F5F5
 	+scrollbar-track
 		background-color: $white
@@ -41,7 +41,7 @@ body
 	& *
 		cursor: none
 .custom__btn
-	background-color: $white
+	background-color: transparent
 	border: 1px solid $nameUpp
 	border-radius: 2px
 	transition: border-color 0.25s, background-color 0.25s
@@ -55,7 +55,7 @@ body
 		letter-spacing: -0.3px
 		display: block
 	&:hover
-		background-color: var(--color-link)
+		// background-color: var(--color-link)
 		border-color: var(--color-link)
 		span
 			color: $black
@@ -109,7 +109,8 @@ body
 				fill: $white
 .menu-trigger
 	position: fixed
-	+rem(width, 65px)
+	// +rem(width, 65px)
+	width: 4.5%	
 	+rem(height, 80px)
 	+rem(right, 0)
 	top: 0
@@ -178,6 +179,9 @@ body
 .home-page
 	.wrapper-frame
 		height: 100vh
+.index-page
+	.menu-trigger
+		margin-right: 4px
 .wrapper-frame
 	width: 100%
 	background-color: $white
@@ -243,6 +247,10 @@ body
 			display: flex
 			flex-direction: column
 			width: 100%
+			+r(1500)
+				padding-top: 2%
+				padding-left: 10.3%
+				padding-right: 10%
 		.side-upp__container
 			+rem(margin-bottom, 17px)
 			span
@@ -382,7 +390,7 @@ body
 .reval-container
 	transform: translateY(-50px)
 	opacity: 0
-    transition: 0.5s
+    transition: transform .5s, opacity .5s
 	.reval
 		overflow: hidden
 		display: block
@@ -392,16 +400,28 @@ body
 			display: block
 .section__active
 	.reval-container
-		transform: translateY(0)
+		transform: none
 		opacity: 1
 		.reval
 			.reval__span
-				transform: translateY(0%)
-			$item: 4
-			@for $i from 1 through $item
-				&.order__#{$i}
+				transform: none
+			// $item: 4
+			// @for $i from 1 through $item
+			// 	&.order__#{$i}
 					.reval__span
-						transition: transform 0.5s (($i - 1) / $item) + s
+						transition: transform 0.5s
+			&.order__1
+				.reval__span
+					transition-delay: .5s
+			&.order__2
+				.reval__span
+					transition-delay: .65s
+			&.order__3
+				.reval__span
+					transition-delay: .85s
+			&.order__4
+				.reval__span
+					transition-delay: 1.05s
 .section__active,
 .section__prev,
 .section__next,
@@ -419,11 +439,11 @@ body
 			height: 100%
 			perspective: 1000px
 			.swiper-wrapper
-				transform-style: flat
+				// transform-style: flat
 			.swiper-slide
 				display: flex
 				overflow: hidden
-				transform-style: flat
+				// transform-style: preverse-3d
 		.image-container
 			height: 100%
 			width: 100%
@@ -548,7 +568,7 @@ body
 		+rem(height, 37px)
 		position: absolute
 		background-image: url(../img/icons/icon-mouse.png)
-		background-size: cover
+		background-size: contain
 		background-repeat: no-repeat
 		background-position: 50%
 		+rem(bottom, 60px)
@@ -558,23 +578,23 @@ body
 
 .swiper-container.animating .swiper-wrapper .swiper-slide
     z-index: 1
-    transform: translateX(0)
+    transform: none
     transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s
     overflow: hidden
 
 .swiper-container.animating .swiper-wrapper .swiper-slide img
-    -webkit-transform: translateX(50%)
-    transform: translateX(50%)
+    // -webkit-transform: translateX(50%)
+    transform: translate3d(50%,0,0)
     transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s!important
 
 .swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-prev
     z-index: 2
 
 .swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active img
-    transform: translateX(0)
+    transform: none
 
 .swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active~.swiper-slide img
-    transform: translateX(-50%)
+    transform: translate3d(-50%,0,0)
 .overlay
 	position: fixed
 	top: 0
@@ -994,17 +1014,18 @@ body
 		color: $grey-1
 	.name-projects_container
 		+rem(min-height, 46px)
-		+rem(padding-bottom, 45px)
+		+rem(padding-bottom, 40px)
 	.slider-container
 		position: relative
 	.name-projects_item
 		position: absolute
-		top: 0
+		top: 0px
 		transition: top 1.25s
 		+rem(min-height, 72px)
 		display: flex
 		flex-direction: column
 		justify-content: flex-end
+		// margin-top: 5px	
 		&.current
 			position: relative
 			z-index: 5
@@ -1036,6 +1057,7 @@ body
 						span
 							color: $nameUpp
 							transition: color .25s
+
 						&:hover
 							span
 								color: $bottonSection
@@ -1044,6 +1066,9 @@ body
 			+rem(font-size, 17px)
 			+rem(letter-spacing, -.3px)
 			color: $nameUpp
+			
+			&.link-color
+				line-height: 1.8;
 			span
 				color: $bottonSection
 				transition: color .25s
@@ -1053,11 +1078,11 @@ body
 .work-wrapper__scrollbar
 	position: absolute
 	right: 0
-	width: 11px
+	width: 10px
 	bottom: 0
 	z-index: 10
 	top: 0
-	user-select: none
+	+nosel
 	overflow: hidden
 	&:hover
 		.scrollbar__container
@@ -1118,7 +1143,8 @@ body
 	top: 0
 	left: 0
 	bottom: 0
-	width: 50%
+	// width: 50%
+	width: 25rem	
 	background-color: $flex
 	transition: background-color .8s cubic-bezier(.7,0,.3,1)
 	.portfolio_project &
@@ -1246,7 +1272,7 @@ body
 	position: fixed
 	+rem(bottom, -50px)
 	+rem(left, -64px)
-	width: calc(50% + 4rem)
+	+rem(width, 460px)
 	overflow: hidden
 	pointer-events: none
 	z-index: 0
@@ -1481,6 +1507,8 @@ body
 		+rem(padding, 0 $padding)
 	.l_p
 		+rem(padding-left, $padding)
+		+r(1500)
+			+rem(padding-left, 0)
 	.p
 		+rem(padding, 0 $padding)
 	p
@@ -1903,7 +1931,7 @@ hr
 					box-shadow: 0 4px 16px rgba(0, 0, 0, .26)
 					// -webkit-overflow-scrolling: touch
 					+scrollbar
-						width: 8px
+						width: 4px
 						background-color: #F5F5F5
 					+scrollbar-track
 						background-color: $white
