@@ -53,13 +53,13 @@ export default function Menu() {
   };
 
   _this.init = function() {
-    _this.trigger = $('.menu-trigger');
-    _this.close = $('.menu-close');
-    _this.overlay = $('.overlay');
-    _this.menu = $('.menu');
+    _this.trigger = window.DOM.body.find('.menu-trigger');
+    _this.close = window.DOM.body.find('.menu-close');
+    _this.overlay = window.DOM.body.find('.overlay');
+    _this.menu = window.DOM.body.find('.menu');
     _this.body = window.DOM.body;
-    _this.hoverColumn = $('.menu-hover__container');
-    _this.hoverItems = $('.navigation-category');
+    _this.hoverColumn = window.DOM.body.find('.menu-hover__container');
+    _this.hoverItems = window.DOM.body.find('.navigation-category');
 
     _this.menuHandler();
   };

@@ -36,16 +36,17 @@ var BarbaWitget = {
       return scope.MovePage;
     };
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
-      
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
+      setTimeout(() => {
+        Colorize();
+      },0);
+      
       this.menu.destroy();
       delete this.menu;
       this.menu = new Menu();
       this.menu.init();
-      
-    });   
-    console.log(Barba.Dispatcher.events);
+    });    
   },
   MovePage: Barba.BaseTransition.extend({
     start: function() {
@@ -131,6 +132,7 @@ var BarbaWitget = {
                 backgroundColor: overlayColor,
                 onComplete: () => {
                   page.remove();
+                  
                   window.DOM.body.removeClass('loading').css('overflow','visible');
                   // document.body.style.overflow = 'visible';
                 }

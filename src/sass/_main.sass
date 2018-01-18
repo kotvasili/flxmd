@@ -92,21 +92,21 @@ body
 	left: 5%
 	+rem(top, 31px)
 	z-index: 15
+	color: $black
+	transition: color 1.25s
 	i
 		// display: block
 		// +rem(width, 52px)
 		+rem(height, 80px)
 		path
-			fill: $black
-			transition: fill 1.25s
+			fill: currentcolor
+			
 	&.light
-		i
-			path
-				fill: $white
+		color: $white
+
 	.portfolio_project &
-		i
-			path
-				fill: $white
+		color: $white
+
 .menu-trigger
 	position: fixed
 	// +rem(width, 65px)
@@ -418,10 +418,10 @@ body
 					transition-delay: .65s
 			&.order__3
 				.reval__span
-					transition-delay: .85s
+					transition-delay: .75s
 			&.order__4
 				.reval__span
-					transition-delay: 1.05s
+					transition-delay: 0.95s
 .section__active,
 .section__prev,
 .section__next,
@@ -447,7 +447,7 @@ body
 		.image-container
 			height: 100%
 			width: 100%
-			backface-visibility: hidden
+			// backface-visibility: hidden
 			position: relative
 			.image-inner
 				position: absolute
@@ -573,28 +573,27 @@ body
 		background-position: 50%
 		+rem(bottom, 60px)
 		+rem(right, 80px)
-.swiper-container.animating .swiper-wrapper
-    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s!important
-
-.swiper-container.animating .swiper-wrapper .swiper-slide
-    z-index: 1
-    transform: none
-    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s
-    overflow: hidden
-
-.swiper-container.animating .swiper-wrapper .swiper-slide img
-    // -webkit-transform: translateX(50%)
-    transform: translate3d(50%,0,0)
-    transition: transform 1.25s cubic-bezier(.7,0,.3,1) 0s!important
-
-.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-prev
-    z-index: 2
-
-.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active img
-    transform: none
-
-.swiper-container.animating .swiper-wrapper .swiper-slide.swiper-slide-active~.swiper-slide img
-    transform: translate3d(-50%,0,0)
+// .swiper-container.animating .swiper-wrapper
+//     transition: 0s!important
+.swiper-container
+	.swiper-wrapper *
+		-moz-transform-style: preserve-3d;
+	.swiper-slide
+		.image-inner
+			+tr(transform .1s 1.2s)
+			transform: scale(1.25)
+			// will-change: transform
+		&.swiper-slide-active,&.swiper-slide-duplicate-active
+			.image-inner
+				transform: none
+				+tr(transform 1.25s)
+		
+			// .image-inner
+			// 	transform: none
+				// transition-delay: .3s	
+		
+			// .image-inner
+			// 	transform: none !important
 .overlay
 	position: fixed
 	top: 0

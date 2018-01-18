@@ -4,6 +4,7 @@ let SwiperSettings = {
   loop: true,
   watchSlidesProgress: true,
   speed: 1250,
+  // parallax: true,
   simulateTouch: false
 };
 

@@ -117,7 +117,7 @@ ScrollSlide.prototype = {
       e.preventDefault();
     });
     $(this.element).on('mousewheel DOMMouseScroll', debounce((e) => {
-     
+      
       if(this.body.hasClass('menu-open')) {
         return false;
       }
@@ -126,7 +126,6 @@ ScrollSlide.prototype = {
       if(delta > 50 && !this.canScroll) {
         this.canScroll = true;
         this.nextSection();
-
       } else if(delta < -50 && !this.canScroll) {
         this.canScroll = true;
         this.prevSection();
@@ -184,7 +183,7 @@ ScrollSlide.prototype = {
 
     setTimeout(() => {
       this.canScroll = false;	
-    }, 900);
+    }, 300);
   },
   goToSlide: function(curr, next) {
     var self = this;
@@ -210,20 +209,20 @@ ScrollSlide.prototype = {
     if(nxtInd > crrInd) {
       requestAnimationFrame(() => {
         this.twn
-          .fromTo(crr, 1.25, {
+          .fromTo(crr, 1.2, {
             y: '0%'
           }, {
             y: '-=100%',
             ease: Expo.easeInOut,
             force3D:true,
           })
-          .fromTo(crrContent, 1.25,{
+          .fromTo(crrContent, 1.2,{
             y: '0%'
           },{
             y: '+=40%',
             ease: Expo.easeInOut,
-          }, '-=1.25')
-          .fromTo(nxt, 1.25, {
+          }, '-=1.2')
+          .fromTo(nxt, 1.2, {
             className: '+=section__next',
             y: '100%',
           }, {
@@ -231,17 +230,18 @@ ScrollSlide.prototype = {
             y: '-=100%',
             ease: Expo.easeInOut,
             force3D:true,
+            clearProps: 'transform',
             onComplete: () => {
               self.sapEnd(crrInd, nxtInd);
             }
-          }, '-=1.25')
+          }, '-=1.2')
           .fromTo(nxtContent, 1.25,{
             y: '-40%'
           },{
             y: '+=40%',
             ease: Expo.easeInOut,
-
-          }, '-=1.25'); 
+            clearProps: 'transform',
+          }, '-=1.2'); 
       });
     } else {
       requestAnimationFrame(() => {
@@ -268,6 +268,7 @@ ScrollSlide.prototype = {
             y: '+=100%',
             ease: Expo.easeInOut,
             force3D: true,
+            clearProps: 'transform',
             onComplete: () => {
               self.sapEnd(crrInd, nxtInd);
             }
@@ -277,25 +278,54 @@ ScrollSlide.prototype = {
           },{
             y: '-=40%',
             ease: Expo.easeInOut,
+            clearProps: 'transform',
           }, '-=1.25');
       });
     }
   },
   initSwiper: function() {
     var self = this;
+    
     this.swiper.each(function(index) {
       const $this = $(this);
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
       const screenParent = $this.closest(self.options.screen);
+      const interleaveOffset = 0.8;
       $this.addClass('instance-' + index);
-      var $project = screenParent.find('.swiper-projects');
+      const $project = screenParent.find('.swiper-projects');
+      const slideTwn = new TimelineMax();
       let DefaultSettings = {
         navigation:{
-          nextEl: $btnPrev,
-          prevEl: $btnNext, 
+          nextEl: $btnNext,
+          prevEl: $btnPrev, 
         },
+        fadeEffect: {
+          crossFade: false
+        },
+        // reverseDirection: true,
         on:{
+          progress: function() {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              const img = swiper.slides[i].querySelector('.image-container');
+              var slideProgress = swiper.slides[i].progress;
+              var innerOffset = swiper.width * interleaveOffset;
+              var innerTranslate = slideProgress * innerOffset;
+              slideTwn
+                .set($(img),{
+                  x: innerTranslate,
+                });
+            }
+          },
+          setTransition: function(speed) {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = speed + 'ms';
+              swiper.slides[i].querySelector('.image-container').style.transition =
+                speed + 'ms';
+            }
+          },
           init: function(swiper) {
             var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
             var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
@@ -317,6 +347,7 @@ ScrollSlide.prototype = {
               });   
             }
           },
+
           transitionEnd: function(el) {
             requestAnimationFrame(() => {
               $this.removeClass('animating');

@@ -4,8 +4,6 @@ export default function colorize() {
   let colorBg = $('.barba-container').data('bgcolor');
   let colorText = $('.barba-container').data('textcolor');
   let colorTitle = $('.barba-container').data('titlecolor');
-
-
     
   $('.overlay__color').css({
 	  'background-color': colorBg
