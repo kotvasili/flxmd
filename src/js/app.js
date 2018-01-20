@@ -8,7 +8,7 @@ import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import RecentSlider from './lib/RecentSilder.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
-import { TweenMax, TimelineMax ,SlowMo} from 'gsap';
+import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
 import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 // import dragscroll from 'dragscroll';
@@ -31,17 +31,19 @@ var BarbaWitget = {
     this.menu = new Menu();
     this.menu.init();
     Barba.Pjax.start();
+    Barba.Prefetch.init();
     Colorize();
     Barba.Pjax.getTransition = function() {
       return scope.MovePage;
     };
+    // var myEase:Function = CustomEase.create("SlowMo", [{s:0,cp:0.394,e:0.644},{s:0.644,cp:0.894,e:1}]);
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
+
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
       setTimeout(() => {
         Colorize();
       },0);
-      
       this.menu.destroy();
       delete this.menu;
       this.menu = new Menu();
@@ -57,27 +59,17 @@ var BarbaWitget = {
     pageOut: function() {
       var deferred = Barba.Utils.deferred();
       window.DOM.body.addClass('loading').css('overflow','hidden');
-
-      // var top = window.pageYOffset;
       let tl = new TimelineMax({
         onComplete: () => {
           deferred.resolve();
         }
       });
+      this.oldCont = $(this.oldContainer);
 
-      let transitionTemplate = `
-        <div class="page-transition"><div id="outer" class="page page__out"><div id="out"></div></div><div id="inner" class="page page__in"><div id="in"></div></div></div>`;
-
-      let uppendContainer = document.querySelector('.root-frame');
-
-      $(uppendContainer).prepend(transitionTemplate);
-
-      let frame = $(this.oldContainer).find('.wrapper-frame');
-      let overlayOuter = $(this.oldContainer).find('.overlay__color');
-      let overlayW = overlayOuter.innerWidth();
+      let frame = this.oldCont.find('.wrapper-frame');
+      let overlayOuter = this.oldCont.find('.overlay__color');
+      let overlayW = overlayOuter.outerWidth();
       let overlayColor = overlayOuter.css('backgroundColor');      
-
-      let out = document.getElementById('out');
 
       if(window.DOM.body.hasClass('menu-open')) {
         tl.set(window.DOM.body, {
@@ -87,9 +79,9 @@ var BarbaWitget = {
       } else {
         this.delay = 0.3;
       }
-
+      this.screenWidth = $(window).width();
       tl
-        .set(out, {
+        .set(window.DOM.trnsContOUT, {
           width: overlayW,
           backgroundColor: overlayColor
         })
@@ -100,50 +92,26 @@ var BarbaWitget = {
           delay: this.delay*2,
           y: -40,
           autoAlpha: 0,
-          ease: new SlowMo(0.99,0.02,1,1)
+          ease: Sine.easeOut,
+        })
+        .to(window.DOM.trnsContOUT, 1.5, {
+          width: parseInt(this.screenWidth),
+          ease: Circ.easeIn.Power2,
         });
 
       return deferred.promise;
-
     },
     pageIn: function() {
       var self = this;
-      let page = $('.page-transition');
-      let frame = $(this.newContainer).find('.wrapper-frame');
-      let overlayInner = $(this.newContainer).find('.overlay__color');
+      this.newCont = $(this.newContainer);
+      let frame = this.newCont.find('.wrapper-frame');
+      let overlayInner = this.newCont.find('.overlay__color');
       let overlayW = overlayInner.innerWidth();
-      let overlayColor = $(this.newContainer).data('bgcolor');
-      let screenWidth = $(window).width();
-      // let screenHeight = $(window).height();
-      let _in = document.getElementById('in');
-      let out = document.getElementById('out');
+      let overlayColor = this.newCont.data('bgcolor');
+      let tlr = new TimelineMax();
 
-      let tl = new TimelineMax({
-        onComplete: () => {
-          // page.remove();
-          self.done();
-          TweenMax.to(frame, 0.6, {
-            delay: 0.2,
-            y: 0,
-            autoAlpha: 1,
-            clearProps: 'all',
-            onComplete: () => {
-              TweenMax.to(overlayInner, 0.3, {
-                backgroundColor: overlayColor,
-                onComplete: () => {
-                  page.remove();
-                  
-                  window.DOM.body.removeClass('loading').css('overflow','visible');
-                  // document.body.style.overflow = 'visible';
-                }
-              });
-            }
-          });
-        }
-      });
-
-      tl
-        .set(_in, {
+      tlr
+        .set(window.DOM.trnsContIN, {
           width: overlayW,
           x: -overlayW,
           backgroundColor: overlayColor
@@ -155,28 +123,55 @@ var BarbaWitget = {
         .set(overlayInner, {
           backgroundColor: 'none'
         })
-        .to(out, 0.7, {
-          width: screenWidth - screenWidth / 100 * 10,
-          ease: new SlowMo(0.99,0.02,1,1)
+        .to(window.DOM.trnsContOUT, 0.7, {
+          // width: screenWidth - screenWidth / 100 * 10,
+          scaleX: 0,
+          transformOrigin:'right center',
+          ease: Circ.easeIn.Power2,
         })
-        .to(out, 0.7, {
-          x: screenWidth,
-          ease: new SlowMo(0.25,0.1,0.25,0.1)
-        })
-        .to(_in, 0.7, {
+        // .to(window.DOM.trnsContOUT, 0.7, {
+        //   x: this.screenWidth,
+        //   ease: Circ.easeIn.Power2,
+        // })
+        .to(window.DOM.trnsContIN, 0.7, {
           x: 0,
-          ease: new SlowMo(0.25,0.1,0.25,0.1)
+          ease: Circ.easeIn.Power2,
         }, '-=0.7')
-        .to(this.oldContainer, 0.3, {
+        .set(this.oldCont, {
           autoAlpha: 0,
           display: 'none'
-        },0.3)
-        .to(this.newContainer, 0.3, {
-          autoAlpha: 1
-        },0);
+        })
+        .set(this.newCont, {
+          autoAlpha: 1,
+          onComplete: () => {
+            // page.remove();
+            self.done();
+            TweenMax.to(frame, 0.5, {
+              // delay: 0.2,
+              y: 0,
+              autoAlpha: 1,
+              clearProps: 'all',
+              onComplete: () => { 
+
+                 
+                TweenMax.to(overlayInner, 0.3, {
+                  backgroundColor: overlayColor,
+                  onComplete: () => {
+                    // page.remove();
+                    TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
+                    TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
+                    window.DOM.body.removeClass('loading').css('overflow','visible');
+                    tlr.kill();
+                    // document.body.style.overflow = 'visible';
+                  }
+                });
+              }
+            });
+            
+          }
+        });
     }
   })
-
 };
 
 var IndexPage = Barba.BaseView.extend({
@@ -258,6 +253,7 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
+    console.log(this.portfolio);
     this.portfolio.delete();
     // this.menu.destroy();
 

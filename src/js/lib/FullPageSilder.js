@@ -63,7 +63,7 @@ ScrollSlide.prototype = {
 
     this.navItem.find('a').on('click', function(event) {
 
-      if(self.canScroll) {
+      if(self.canScroll || $(this).parent().hasClass('nav__active')) {
         return false;
       }
 
@@ -88,7 +88,7 @@ ScrollSlide.prototype = {
 
     $('.bar__item a').on('click', function(event) {
 
-      if(self.canScroll) {
+      if(self.canScroll || $(this).parent().hasClass('is-current')) {
         return false;
       }
 

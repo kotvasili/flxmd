@@ -176,6 +176,7 @@ body
 		width: 45%
 	.logo
 		position: fixed
+		mix-blend-mode: difference;
 .home-page
 	.wrapper-frame
 		height: 100vh
@@ -2451,59 +2452,12 @@ hr
 
 
 
-.page-transition
-	position: absolute
-	z-index: 999999
-	top: 0
-	.page__frame
-		width: 100%
-		height: 100%
-		display: flex
-		position: relative
-		justify-content: center
-		align-items: center
-		.image-inner
-			flex: 1
-			display: flex
-			overflow: hidden
-			height: 100%
-			img
-				width: 100%
-				height: 100%
-				object-fit: cover
-		.name
-			position: absolute
-			font-family: $Graphik
-			+rem(font-size, 120px)
-			color: $white
-	.cover-container
-		width: 100%
-		height: 100vh
-		display: flex
-		position: relative
-		justify-content: center
-		align-items: center
-		.cover__frame
-			height: 100%
-			width: 100%
-			flex: 1
-		.cover
-			position: absolute
-			width: 0
-			height: 100%
-			left: 0
-			top: 0
-			transform-origin: 0 0
-		.cover-name
-			position: absolute
-			font-family: $GraphikMedium
-			+rem(font-size, 120px)
-			text-transform: uppercase
-			color: $white
+
 .barba-container
 	&.hide
 		display: none
-
+a.active 
+	pointer-events: none
 
 .navigation__project
 	position: fixed
@@ -2540,6 +2494,7 @@ hr
 	z-index: 0
 	width: 100%
 	height: 100%
+
 	.page
 		position: absolute
 		width: 100%
@@ -2547,6 +2502,13 @@ hr
 		top: 0
 		left: 0
 		display: flex
+	#out,#in 
+		// width: 1px
+		height: 100%
+		backface-visibility: hidden
+	#out
+		will-change: width
+
 
 
 @keyframes fadeInUp

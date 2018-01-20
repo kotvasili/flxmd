@@ -5,6 +5,8 @@ window.DOM = {
   html: $('html'),
   docLang: $('html').attr('lang'),
   ajxCont : $('#barba-wrapper'),
+  trnsContIN: $('#in'),
+  trnsContOUT: $('#out'),
   __prevScrollTop: 0,
   hideScroll: function() {
     // let top = $(window).scrollTop();
