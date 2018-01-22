@@ -1,0 +1,59 @@
+nav.menu
+	.menu-close
+		span 
+			<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><g><polyline points="1.8182455301430025,35.96997432086293 0.10953094065189362,34.26124934257034 34.284007813983834,0.0867714062333107 35.99272121230612,1.7954971912035234 1.8182455301430025,35.96997432086293"/><polyline points="34.284007813983834,35.96997432086293 0.10953094065189362,1.7954971912035234 1.8182455301430025,0.0867714062333107 35.99272121230612,34.26124934257034 34.284007813983834,35.96997432086293"/></g></svg>
+	.menu-content.order-container
+		.menu-hover__container
+			- var count = 3
+			- for (var x = 0; x < count; x++) 
+				.menu-hover__item(data-hover=x + 1)
+					.cover__color
+		.menu-container
+			.menu-topper
+				.topper-container
+					.navigation-main.order_1
+						.navigation-site
+							- var links = [["Home", "page.html"], ["Agency", "contacts.html"], ["News", "contacts.html"], ["Contact us", "contacts.html"]]
+							each link in links
+								a(href=link[1] class="site__links", class={active: link[0] === currPage})
+									span #{link[0]}
+					.navigation-request.order_2
+						a(href="#" class="custom__btn")
+							span Make an order
+			.menu-middle
+				.middle-container
+					.navigation-category
+						mixin category(order, idx, name, ...linkArr)
+							.navigation-category__item(class="order_" + order, data-idx=idx)
+								.category-head
+									a(href=name[0])
+										span #{name[1]}
+								.category-body
+									ul
+										each item in linkArr
+											if (!item[2])
+												li
+													a(href=item[0] class="catagory__link")
+														span #{item[1]}
+											else
+												li(class=item[2])
+													a(href=item[0] class="catagory__link")
+														span #{item[1]}
+						+category(3, 1, ['portfolio.html', 'Portfolio'], ['#', 'Website', 'marker'], [ '#', 'E-commerce', 'marker'], ['#', 'Graphic design'], ['#', 'Branding'], ['#', 'Print'], ['#', 'Mobile'])
+						+category(4, 2, ['industries.html', 'Industries'], ['#', 'Retail & Wholesale', 'marker'], [ '#', 'Finance'], ['#', 'Healthcare'], ['#', 'Media & Entertainment', 'marker'], ['#', 'Telecommunications'], ['#', 'Education'])
+						+category(5, 3, ['services.html', 'Services'], ['magento.html', 'Magento', 'marker'], ['#', 'Development'], [ '#', 'Design'])
+			.menu-lower
+				.lower-container
+					.lang-container.order_6
+						-var langs = ["English", "Русский"]
+						.lang
+							each lang in langs
+								a.lang__item(href="#" class="no-barba")
+									span #{lang}
+					.social-container.order_7
+						-var socials = ["facebook", "behance", "dribbble", "linkedin"]
+						.social
+							each social in socials
+								a.social__item.no-barba(href="#" class=social target="_blank")
+									span #{social}
+						

@@ -1,0 +1,209 @@
+---
+title: Contacts
+---
+
+extends layouts/_layout
+block content
+	- var currPage = 'Contacts'
+	- var external = '<svg width="23.5" height="23.5" viewBox="0 0 23.5 23.5" xmlns="http://www.w3.org/2000/svg"><g><path d="m21.78148,11.36297l0,8.3c0,1.5 -1.2,2.8 -2.8,2.8l-15.2,0c-1.5,0 -2.8,-1.2 -2.8,-2.8l0,-15.3c0,-1.5 1.2,-2.8 2.8,-2.8l8.3,0" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><polyline points="16.481476068496704,0.9629654884338379 22.481476068496704,0.9629654884338379 22.481476068496704,6.962967872619629 " stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><line y2="0.96297" x2="22.48148" y1="12.76297" x1="10.68148" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/></g></svg>'
+	.root-wrapper
+		.overlay
+		.root-frame
+			include partials/_burger
+			#barba-wrapper
+				.barba-container.contacts(data-namespace="contacts" data-bgcolor="#cdfc91" data-textcolor="#acdd6e" data-titlecolor="#c1ed89" data-loader="#cdfc91")
+					header.header.header-inner
+						include partials/_header
+					.wrapper-frame
+						.frame__container#scroll-container
+							.frame__side.layout_fixed.overlay__color
+								.page-title
+									.breadcrumbs
+										ul
+											- var crumbs = ["Home"]
+											each crumbsItem in crumbs
+												li.breadcumbs__item
+													a(href="page.html")
+														span #{crumbsItem}
+									.page__name
+										span#name-project Contact us
+								.frame__names.frame__inner.js-text
+									.frame___names-list
+										.frame__name
+											.slide__element.title-color
+												span Let’s
+							.frame__side
+								.container.js-scroll-height
+									section.screen__content
+										.l
+											.screen__section
+												.screen__section-intro
+													.upper What are you waiting for?
+													h1.h1 Let’s rock!
+												.screen__section-locations.l_p
+													.location__item
+														.abbreviation BY
+														.title 
+															h2.h2 Minsk
+														.contact-text
+															ul.contacts
+																li.phone +7 (495) 926-26-95
+																li.phone +7 (916) 108-82-16
+																li.mail
+																	a.no-barba.link-color(href="mailto:minsk@flex.media")
+																		span minsk@flex.media
+															.address 
+																p 222 South Ninth St, Suite 1600 Minneapolis, MN, USA, 55402, Suite 1600 Minneapolis, MN
+																a.link-color(href="#")
+																	span Get directions
+													.location__item
+														.abbreviation RU
+														.title 
+															h2.h2 Moscow
+														.contact-text
+															ul.contacts
+																li.phone +7 (495) 926-26-95
+																li.phone +7 (916) 108-82-16
+																li.mail
+																	a.no-barba.link-color(href="mailto:minsk@flex.media")
+																		span minsk@flex.media
+															.address 
+																p 222 South Ninth St, Suite 1600 Minneapolis, MN, USA, 55402 USA, 55402
+																a.link-color(href="#")
+																	span Get directions
+													.location__item
+														.abbreviation US
+														.title 
+															h2.h2 Minneapolis
+														.contact-text
+															ul.contacts
+																li.phone +7 (495) 926-26-95
+																li.mail
+																	a.no-barba.link-color(href="mailto:minsk@flex.media")
+																		span minsk@flex.media
+															.address 
+																p 222 South Ninth St, Suite 1600 Minneapolis, MN, USA, 55402
+																a.link-color(href="#")
+																	span Get directions
+											.screen__section.l_p.wow.fadeInUp(data-wow-duration=".8s")
+												.tab__container
+													.tab__navigations
+														.tab__nav
+															- var navs = ['Send a message', 'Fill the brief', 'Careers']
+															each nav, idx in navs
+																- var count = idx + 1
+																.tab__trigger(data-nav=count class={"is-active": count === 1})
+																	span #{nav}
+														.load__presentation
+															a(href="#" class="no-barba")
+																i.icon
+																	<svg width="23.1" height="23" viewBox="0 0 23.1 23" xmlns="http://www.w3.org/2000/svg"><g><polyline points="14,19.2 11.7,21.5 9.4,19.2" stroke-miterlimit="10" stroke-linecap="round" stroke="#000000" fill="none"/><line y2="21.3" x2="11.7" y1="12.3" x1="11.7" stroke-miterlimit="10" stroke-linecap="round" stroke="#000000" fill="none"/><rect height="23" width="23" fill="none" y="0.3" x="0.2"/><path d="m14.9,16.4c0,0 3.8,0 4.2,0c2,0 3.6,-1.6 3.6,-3.6s-1.6,-3.6 -3.6,-3.6l0,0c0,-0.2 0,-0.5 0,-0.7c0,-3.1 -2.5,-5.6 -5.6,-5.6c-2.4,0 -4.4,1.5 -5.2,3.7c-0.5,-0.5 -1.2,-0.8 -2,-0.8c-1.5,0 -2.8,1.2 -2.8,2.8l0,0.1c-1.7,0.5 -2.9,2 -2.9,3.8c0,2.2 1.8,4 4,4c0.4,0 3.8,0 3.8,0" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" fill="none"/></g></svg>
+																span Presentation
+													.tab__containers
+														.tab-container__item(data-tab="1")
+															.tab__container-inner
+																.tab__frame
+																	.form__request.transition.animate
+																		.form__request-front
+																			.screen__section
+																				.screen__section-head
+																					h3.h3 We’ll answer you from 10–18:00 o’clock
+																			.form__container
+																				form(action="")
+																					input(class="hidden" type="text")
+																					.form__field.field__checkbox
+																						.form__head
+																							span Type of project
+																						.form__content
+																							.checkboxes
+																								- var checkboxes = [{"id":"web", "checked":true,"name":"Website"},{"id":"commerce", "checked":false,"name":"E-commerce"},{"id":"branding", "checked":false,"name":"Branding"}, {"id":"magento", "checked":false,"name":"Magento support"}, {"id":"mobile", "checked":false,"name":"Mobbile app"}]
+																								each checkbox in checkboxes
+																									.checkbox__item
+																										input(
+																										type="checkbox"
+																										id=checkbox.id
+																										checked=checkbox.checked
+																										)
+																										label(for=checkbox.id)
+																											.check__custom
+																											span #{checkbox.name}
+																					.form__field
+																						.form__head
+																							span Your name
+																						.form__content
+																							.input
+																								input(type="text" placeholder="Eugene Selenkov")
+																					.form__field
+																						.form__head
+																							span Company
+																						.form__content
+																							.input
+																								input(type="text" placeholder="Tesla LLC")
+																					.form__field.field__short
+																						.form__head
+																							span E-mail
+																						.form__content
+																							.input
+																								input(type="text" placeholder="es@tesla.com")
+																					.form__field.field__short
+																						.form__head
+																							span Phone number
+																						.form__content
+																							.input
+																								input(type="text" placeholder="+375 29 6727447")
+																					.form__field.field__textarea
+																						.form__head
+																							span Comment
+																						.form__content
+																							.textarea
+																								textarea.grab-container(type="text" placeholder="Our budget is about $12 000, and we want you to ...")
+																					.form__field
+																						.field__send
+																							button(type="submit")
+																								span Send a business request
+																		.form__request-back
+																			.screen__section.l_p
+																				.screen__section-head
+																					h2.h2 Message sent
+																				.screen__section-content
+																					p Thx, we’ll answer you from 10–18:00 o’clock.
+																					p Now you can go to 
+																						a.link-color(href="#") 
+																							span homepage
+																						|.
+														.tab-container__item(data-tab="2")
+															.tab__container-inner
+																.screen__section.l_p
+																	.screen__section-head
+																		h2.h2 Result
+																	.screen__section-content
+																		p The website is successfully running the latest version of Magento 1 with all its bells, whistles and security patches. The client is satisfied with the speed and functionality improvements of the store.
+																.screen__section.l_p
+																	.review__container
+																		.review__line.color-bg
+																		.review__text The team from Mageworx is our reliable partner for develop&shy;ment and maintenance of Magento installations and individual extensions. They are very competent, always responsive to our needs, friendly and have reasonable service fees. Mageworx is definitely a clear recommendation for everyone who seeks a trustworthy Magento development partner.
+																		.review__author
+																			.author__name Jens Liesegang
+																			.author__position Managing Partner at Liesegang&Partner
+														.tab-container__item(data-tab="3")
+															.tab__container-inner
+																.screen__section.l_p
+																	.screen__section-head
+																		h2.h2 Result
+																	.screen__section-content
+																		p The website is successfully running the latest version of Magento 1 with all its bells, whistles and security patches. The client is satisfied with the speed and functionality improvements of the store.
+																.screen__section.l_p
+																	.review__container
+																		.review__line.color-bg
+																		.review__text The team from Mageworx is our reliable partner for develop&shy;ment and maintenance of Magento installations and individual extensions. They are very competent, always responsive to our needs, friendly and have reasonable service fees. Mageworx is definitely a clear recommendation for everyone who seeks a trustworthy Magento development partner.
+																		.review__author
+																			.author__name Jens Liesegang
+																			.author__position Managing Partner at Liesegang&Partner
+												.social-container.wow.fadeInUp(data-wow-duration=".8s")
+													-var socials = ["facebook", "behance", "dribbble", "linkedin"]
+													.social
+														each social in socials
+															a.social__item.no-barba(href="#" class=social target="_blank")
+																span #{social}
+						include partials/_menu
+						include partials/_cross
