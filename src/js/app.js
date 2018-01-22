@@ -7,9 +7,10 @@ import Scroller from './lib/ScrollBar';
 import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import RecentSlider from './lib/RecentSilder.js';
+import Crsor from './lib/Crsor.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
-import Cursor from './lib/Cursor.js';
+// import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 // import dragscroll from 'dragscroll';
 import WOW from '../../node_modules/wow.js/dist/wow.min.js';
@@ -308,7 +309,7 @@ function initSite() {
   browserDetection({
     addClasses: true
   });
-  
+  var cursor = new Crsor();
   new PageLoader();
   ContactsPage.init();
   PortfolioPage.init();

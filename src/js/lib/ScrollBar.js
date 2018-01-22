@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Scrollbar from 'smooth-scrollbar';
+import './domConf.js';
 import TemplateBuilder from './TemplateBuilder';
 // import Draggable from 'gsap/Draggable';
 import Tabs from './Tabs.js';
@@ -14,7 +15,6 @@ export default function Scroller(el, options, bool) {
     constant: null,
     animElements: null,
     window: 'window',
-    logo: '.logo-container',
     _ajax: false,
     animateClass: '.transition',
     scrollText: false,
@@ -41,7 +41,7 @@ Scroller.prototype = {
     this.windowHeight = this.windowValue();
     this.nextLink = document.querySelector('.navigation__project');
     this.isScrolling;
-    this.body = document.body;
+    this.body = window.DOM.body[0];
 
     if(this.param._ajax) {
       const portfolio = await this.ajaxLoadPortfolio();
