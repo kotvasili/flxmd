@@ -26,7 +26,15 @@ body
 	&.is-scrolling
 		pointer-events: none
 	&.loading
-		overflow: hidden
+		overflow: hidden !important
+	& *
+		+scrollbar
+			width: 4px
+			background-color: #F5F5F5
+		+scrollbar-track
+			background-color: $white
+		+scrollbar-thumb
+			background-color: rgba(0,0,0,.3);
 	+scrollbar
 		width: 4px
 		background-color: #F5F5F5
@@ -34,7 +42,6 @@ body
 		background-color: $white
 	+scrollbar-thumb
 		background-color: rgba(0,0,0,.3);
-	+scrollbar-track-piece
 .dragscroll
 	cursor: grab
 [cursor-type]
@@ -1076,7 +1083,7 @@ body
 				span
 					color: inherit
 .work-wrapper__scrollbar
-	position: absolute
+	position: fixed
 	right: 0
 	width: 10px
 	bottom: 0

@@ -45,7 +45,7 @@ ScrollSlide.prototype = {
     this.scrollController = null;
     this.bgTargets;
     this.body = window.DOM.body;
-    this.initSwiper();
+    // this.initSwiper();
 
     this.setCurrentPage(this.options.currPage);
     this.setNavigationCurrItem(this.options.currPage);
@@ -336,6 +336,7 @@ ScrollSlide.prototype = {
           },
           transitionStart: function() {
             if(screenParent.hasClass('section__active')) {
+
               requestAnimationFrame(() => {
                 $this.addClass('animating');
                 let realInd = $this[0].swiper.realIndex;
@@ -358,8 +359,8 @@ ScrollSlide.prototype = {
       };
 
       let assignSettings = Object.assign(DefaultSettings, SwiperSettings);
-
       this.swiperInstances = new Swiper('.instance-' + index, assignSettings);
+      
     });
   },
 

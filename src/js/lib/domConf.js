@@ -7,19 +7,46 @@ window.DOM = {
   ajxCont : $('#barba-wrapper'),
   trnsContIN: $('#in'),
   trnsContOUT: $('#out'),
-  __prevScrollTop: 0,
+  bodyScrollTop: null,
+  scrollWidth: null,
+  getScrollWidth: function() {
+    // Узнаем ширину скролл панели
+    const div = document.createElement('div');
+    div.style.overflowY = 'scroll';
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.visibility = 'hidden';
+    this.body[0].appendChild(div);
+    this.scrollWidth = div.offsetWidth - div.clientWidth;
+    this.body[0].removeChild(div);
+    
+  },
+  hideScrollSimple: function() {
+    if (this.body[0].offsetHeight < this.body[0].scrollHeight) {
+      console.log(11);
+      this.body.css('padding-right',this.scrollWidth + 'px');
+    }
+    this.body.addClass('loading');
+  },
+  showScrollSimple: function() {
+    this.body.removeClass('loading');
+    this.body[0].style.paddingRight = '';
+  },
   hideScroll: function() {
-    // let top = $(window).scrollTop();
-    this.__prevScrollTop = $(window).scrollTop();
-    this.body.css('top',-this.__prevScrollTop + 'px');
-    window.scroll(0, this.__prevScrollTop);
+    if (this.body[0].offsetHeight < this.body[0].scrollHeight) {
+      this.body[0].paddingRight = this.scrollWidth + 'px';
+    }
+    this.bodyScrollTop = $(window).scrollTop();
+    this.body.css('top',-this.bodyScrollTop + 'px');
+    window.scroll(0, this.bodyScrollTop);
     this.body.addClass('modal_open');
     $('.js-stick').trigger('sticky_kit:recalc');
   },
   showScroll: function() {
   	this.body.removeClass('modal_open');
-    this.__prevScrollTop && (window.scroll(0, this.__prevScrollTop));
-    this.__prevScrollTop = null;
+    this.bodyScrollTop && (window.scroll(0, this.bodyScrollTop));
+    this.bodyScrollTop = null;
+    this.body[0].style.paddingRight = '';
     $('.js-stick').trigger('sticky_kit:recalc');
   },
   addListenerMulti(el, s, fn) {

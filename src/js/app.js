@@ -41,13 +41,15 @@ var BarbaWitget = {
 
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      setTimeout(() => {
-        Colorize();
-      },0);
+      
+      // setTimeout(() => {
+      Colorize();
+      // },0);
       this.menu.destroy();
       delete this.menu;
       this.menu = new Menu();
       this.menu.init();
+
     });    
   },
   MovePage: Barba.BaseTransition.extend({
@@ -58,14 +60,13 @@ var BarbaWitget = {
     },
     pageOut: function() {
       var deferred = Barba.Utils.deferred();
-      window.DOM.body.addClass('loading').css('overflow','hidden');
       let tl = new TimelineMax({
         onComplete: () => {
           deferred.resolve();
         }
       });
       this.oldCont = $(this.oldContainer);
-
+      window.DOM.hideScrollSimple();
       let frame = this.oldCont.find('.wrapper-frame');
       let overlayOuter = this.oldCont.find('.overlay__color');
       let overlayW = overlayOuter.outerWidth();
@@ -85,6 +86,7 @@ var BarbaWitget = {
           width: overlayW,
           backgroundColor: overlayColor
         })
+
         .set(window.DOM.body, {
           className: '-=menu-open'
         })
@@ -111,11 +113,13 @@ var BarbaWitget = {
       let tlr = new TimelineMax();
 
       tlr
+
         .set(window.DOM.trnsContIN, {
           width: overlayW,
           x: -overlayW,
           backgroundColor: overlayColor
         })
+
         .set(frame, {
           y: 80,
           autoAlpha: 0,
@@ -129,44 +133,38 @@ var BarbaWitget = {
           transformOrigin:'right center',
           ease: Circ.easeIn.Power2,
         })
-        // .to(window.DOM.trnsContOUT, 0.7, {
-        //   x: this.screenWidth,
-        //   ease: Circ.easeIn.Power2,
-        // })
         .to(window.DOM.trnsContIN, 0.7, {
           x: 0,
           ease: Circ.easeIn.Power2,
         }, '-=0.7')
+
         .set(this.oldCont, {
           autoAlpha: 0,
-          display: 'none'
+          // display: 'none'
+        })
+        .set(overlayInner, {
+          backgroundColor: overlayColor,
         })
         .set(this.newCont, {
           autoAlpha: 1,
           onComplete: () => {
-            // page.remove();
+           
             self.done();
             TweenMax.to(frame, 0.5, {
-              // delay: 0.2,
               y: 0,
               autoAlpha: 1,
               clearProps: 'all',
-              onComplete: () => { 
-
-                 
-                TweenMax.to(overlayInner, 0.3, {
-                  backgroundColor: overlayColor,
-                  onComplete: () => {
-                    // page.remove();
-                    TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
-                    TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
-                    window.DOM.body.removeClass('loading').css('overflow','visible');
-                    tlr.kill();
-                    // document.body.style.overflow = 'visible';
-                  }
-                });
+              onComplete: () => {
+                window.DOM.showScrollSimple();
+                TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
+                TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
+                
+                tlr.kill();
+               
+                // document.body.style.overflow = 'visible';
               }
             });
+
             
           }
         });
@@ -177,11 +175,19 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    window.DOM.body.addClass('index-page');
+      
+    
   },
   onEnterCompleted: function() {
-    this.fullpage = new ScrollSlide('#work-wrapper');
+    this.fullpage = new ScrollSlide('#work-wrapper'); 
+    window.DOM.body.addClass('index-page');
+    
+    
     // Colorize();
+    setTimeout(() => {
+      this.fullpage.initSwiper(); 
+    },500);
+
 
   },
   onLeave: function() {
@@ -198,8 +204,7 @@ var IndexPage = Barba.BaseView.extend({
 var PortfolioPage = Barba.BaseView.extend({
   namespace: 'portfolio',
   onEnter: function() {
-    // this.menu = new Menu();
-    // this.menu.init();
+
   },
   onEnterCompleted: function() {
     let scrollsMain = document.getElementById('scroll-container');
@@ -209,19 +214,18 @@ var PortfolioPage = Barba.BaseView.extend({
       animElements: '.js-scroll',
       _ajax: true
     }, true);
-
     // Colorize();
   },
   onLeave: function() {
-
-    console.log('PortfolioPage');
     this.portfolio.delete();
-    // this.menu.destroy();
-    delete this.portfolio;
+
     // delete this.menu;
   },
   onLeaveComplete: function() {
-
+    console.log('PortfolioPage');
+    
+    // this.menu.destroy();
+    delete this.portfolio;
   }
 });
 
@@ -300,7 +304,7 @@ var ContactsPage = Barba.BaseView.extend({
 
  
 function initSite() {
-  // Colorize();
+  window.DOM.getScrollWidth();
   browserDetection({
     addClasses: true
   });
@@ -311,6 +315,7 @@ function initSite() {
   IndexPage.init();
   PortfolioInnerPage.init();
   BarbaWitget.init();
+
 }
 
 window.onload = () => {
