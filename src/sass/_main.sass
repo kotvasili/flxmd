@@ -7,6 +7,7 @@ img
 button
 	background-color: transparent
 	outline: none
+
 html
 	height: 100%
 	font-size: 16px
@@ -23,6 +24,8 @@ body
 	font-family: $Book
 	text-rendering: optimizeLegibility
 	-webkit-font-smoothing: antialiased
+	&.no-cursor
+    cursor: none!important;
 	&.is-scrolling
 		pointer-events: none
 	&.loading
