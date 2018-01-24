@@ -22,7 +22,7 @@ export default class RecentSlider {
   }
 
   templateBuilder(slider) {
-    $(this.container).append(slider.map(template => Template(template))).promise().done(() => {
+    $(this.container).append(slider.map((template) => Template(template))).promise().done(() => {
       this.lazy.init();
       this.sliderWork();
     });
@@ -38,18 +38,26 @@ export default class RecentSlider {
   		prevButton: this.btnPrev,
   		slidesPerView: 2,
   		slideClass: this.slide,
+      navigation:{
+        nextEl: this.btnNext,
+        prevEl: this.btnPrev, 
+        
+      },
   		breakpoints: {
   			1180: {
   				slidesPerView: 1
   			}
   		},
-      onInit: function() {
-        $('.link-color').css({
-          'color': $(self.carouselContainer).parents('.barba-container').data('textcolor')
-        });
-        self.cursor.init();
-        console.log(true);
+      on:{
+        init: () => {
+          $('.link-color').css({
+            'color': $(self.carouselContainer).parents('.barba-container').data('textcolor')
+          });
+          self.cursor.init();
+          console.log(true);
+        }    
       }
+
     };
 
     this.swiperCarousel = new Swiper(this.carouselContainer, this.carouselSetting);

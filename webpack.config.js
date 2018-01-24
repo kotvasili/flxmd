@@ -91,19 +91,22 @@ export default (env) => {
         minimize: true,
       }),
       // new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          // warnings: false,
-          // pure_getters: true,
-          // unsafe: true,
-          // unsafe_comps: true,
-          // screw_ie8: true
-        },
-        output: {
+      // new webpack.optimize.UglifyJsPlugin({
+        // compress: {
+        	// parallel: 4,
+         //  warnings: false,
+         //  pure_getters: true,
+         //  unsafe: true,
+         //  unsafe_comps: true,
+         //  ecma: 8,
+         //  ie8: false
+        // },
+        // output: {
           // comments: false,
-        },
+          // beautify: false,
+        // },
         // minimize: true
-      })
+      // })
     );
   }
   return webpackConfig;

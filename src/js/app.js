@@ -6,8 +6,9 @@ import Menu from './lib/Menu';
 import Scroller from './lib/ScrollBar';
 import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
+import Promise from './lib/Promise';
 import RecentSlider from './lib/RecentSilder.js';
-import Crsor from './lib/Crsor.js';
+// import Crsor from './lib/Crsor.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
 // import Cursor from './lib/Cursor.js';
@@ -309,7 +310,7 @@ function initSite() {
   browserDetection({
     addClasses: true
   });
-  var cursor = new Crsor();
+  // var cursor = new Crsor();
   new PageLoader();
   ContactsPage.init();
   PortfolioPage.init();
@@ -322,7 +323,9 @@ function initSite() {
 window.onload = () => {
   initSite();
 };
-
+if (!window.Promise) {
+  window.Promise = Promise;
+}
 document.addEventListener('DOMContentLoaded', () => {
 
 });

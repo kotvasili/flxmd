@@ -14,22 +14,35 @@ export default class Carousel {
   carousel() {
     [].forEach.call(this.swiper, (item, index) => {
       item.classList.add('image-rotator_' + index);
-
+      const $btnPrev = $(item).parent().find('.swiper-button-prev');
+      const $btnNext = $(item).parent().find('.swiper-button-next');
+      const $pagi = $(item).parent().find('.swiper-pagination');
+      console.log($pagi);
       this.carouselSetting = {
       	loop: false,
-      	pagination: '.swiper-pagination',
-      	paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-      	paginationBulletRender: function() {
-          return '<span class="swiper-pagination-bullet overlay__color"></span>';
+        navigation:{
+          nextEl: $btnNext,
+          prevEl: $btnPrev, 
+          
         },
-        onTransitionStart: function() {
-          item.classList.add('animating');
+        pagination:{
+          clickable: true,
+          el: $pagi,
+          bulletActiveClass: 'swiper-pagination-bullet-active',
+          renderBullet: function(index) {
+            return '<span class="swiper-pagination-bullet overlay__color"></span>';
+          }
         },
-        onTransitionEnd: function() {
-          item.classList.remove('animating');
+        on:{
+
+          transitionStart: function() {
+            item.classList.add('animating');
+          },
+          transitionEnd: function() {
+            item.classList.remove('animating');
+          }  
         }
+
       };
 
       this.assign = Object.assign(this.carouselSetting, SwiperSettings);
