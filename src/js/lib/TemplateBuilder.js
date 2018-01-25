@@ -18,7 +18,7 @@ export default class TemplateBuilder {
     this.projectNamesSelector = projectNamesSelector;
     this.lazy = new LazyElement();
     this.slip = new SlipMouse();
-    this.cursor = new Cursor();
+    // this.cursor = new Cursor();
   }
 
   init() {
@@ -28,7 +28,7 @@ export default class TemplateBuilder {
     const templates = this.templates.slice().splice(0, ITEMS_PER_ADD);
 
   	this.updateHTMLWithTemplates(templates);
-    this.cursor.init();
+    // this.cursor.init();
 
     this.isInit = true;
     // this.wow.init();
@@ -60,9 +60,9 @@ export default class TemplateBuilder {
   	colorize();
     this.listCounter++;
     console.log(this.listCounter);
-    if(this.isInit) {
-      this.cursor.init();
-    }
+    // if(this.isInit) {
+    //   this.cursor.init();
+    // }
         
   }
 }

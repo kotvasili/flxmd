@@ -8,7 +8,7 @@ import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import Promise from './lib/Promise';
 import RecentSlider from './lib/RecentSilder.js';
-// import Crsor from './lib/Crsor.js';
+import Crsor from './lib/Crsor.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
 // import Cursor from './lib/Cursor.js';
@@ -43,7 +43,7 @@ var BarbaWitget = {
 
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      
+      window.DOM.cursor.defaultType();
       // setTimeout(() => {
       Colorize();
       // },0);
@@ -220,7 +220,7 @@ var PortfolioPage = Barba.BaseView.extend({
   },
   onLeave: function() {
     this.portfolio.delete();
-
+    
     // delete this.menu;
   },
   onLeaveComplete: function() {
@@ -259,7 +259,6 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
-    console.log(this.portfolio);
     this.portfolio.delete();
     // this.menu.destroy();
 
@@ -307,10 +306,11 @@ var ContactsPage = Barba.BaseView.extend({
  
 function initSite() {
   window.DOM.getScrollWidth();
+  window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
   });
-  // var cursor = new Crsor();
+  
   new PageLoader();
   ContactsPage.init();
   PortfolioPage.init();

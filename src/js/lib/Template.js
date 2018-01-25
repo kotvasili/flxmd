@@ -7,7 +7,7 @@ const breadCrumbsTemplate = breadcrumbs => breadcrumbs.map(breadcrumb =>
     ;
 export const Template = (template) => {
   if(template.image) {
-    return `<div id=${template.id} class="grid__item unload__item w__${template.width} wow fadeInUp" slip-mouse="${template.id}" cursor-type="plus" data-wow-duration=".8s">
+    return `<div id=${template.id} class="grid__item unload__item w__${template.width} wow fadeInUp crsor-trgr" slip-mouse="${template.id}" data-cursor-type="plus" data-wow-duration=".8s">
 			<div class="portfolio__item-bg" style="background-color: ${template.bgimage}"></div>
 			<div class="portfolio__item ">
 				<div class="portfolio__item-inner" data-tilt data-tilt-glare data-tilt-max-glare="0.8" data-tilt-scale="0.9">
@@ -35,7 +35,7 @@ export const Template = (template) => {
 		</div>`;
   }
   if(template.video) {
-    return `<div id=${template.id} class="grid__item unload__item w__${template.width} wow fadeInUp" slip-mouse="${template.id}" cursor-type="plus" data-wow-duration=".8s">
+    return `<div id=${template.id} class="grid__item unload__item w__${template.width} wow fadeInUp crsor-trgr" slip-mouse="${template.id}" data-cursor-type="plus" data-wow-duration=".8s">
 			<div class="portfolio__item-bg" style="background-color: ${template.bgimage}"></div>
 			<div class="portfolio__item">
 				<div class="portfolio__item-inner" data-tilt data-tilt-glare data-tilt-max-glare="0.8" data-tilt-scale="0.9">

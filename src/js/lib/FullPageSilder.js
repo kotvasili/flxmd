@@ -291,7 +291,7 @@ ScrollSlide.prototype = {
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
       const screenParent = $this.closest(self.options.screen);
-      const interleaveOffset = 0.2;
+      const interleaveOffset = 0.8;
       $this.addClass('instance-' + index);
       const $project = screenParent.find('.swiper-projects');
       const slideTwn = new TimelineMax();
