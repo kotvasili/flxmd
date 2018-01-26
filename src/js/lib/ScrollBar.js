@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import Scrollbar from 'smooth-scrollbar';
-import './domConf.js';
+import './domConf';
 import TemplateBuilder from './TemplateBuilder';
+import debounce from './debounce';
 // import Draggable from 'gsap/Draggable';
 import Tabs from './Tabs.js';
 
@@ -10,7 +11,7 @@ export default function Scroller(el, options, bool) {
   this.el = el;
   this.bool = bool;
   this.timer;
-
+  this.prevScrolltop = 0;
   this.default = {
     constant: null,
     animElements: null,
@@ -60,17 +61,17 @@ Scroller.prototype = {
     }
     
     this._onScroll = this.scrollEvent.bind(this);
-
-    $(window).on('scroll', this._onScroll);
+    window.addEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
   },
 
   scrollEvent: function() {
     let scrolltop = $(window).scrollTop();
-    
     if(this.param._ajax) {
-      this.templateBuilder.updateTemplatesIfNeed(scrolltop);
+      if(scrolltop > this.prevScrolltop) {
+        this.templateBuilder.updateTemplatesIfNeed(scrolltop);
+        this.prevScrolltop = scrolltop;
+      }
     }
-
     if(this.param.scrollText) {
       this.setPositionText(scrolltop);
       this.fixedPositionSidebar(scrolltop);
@@ -132,7 +133,7 @@ Scroller.prototype = {
   },
 
   delete: function() {
-    $(window).off('scroll', this._onScroll);
+    window.removeEventListener('scroll',this._onScroll,true);
   }
 
 };

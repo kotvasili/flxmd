@@ -17,7 +17,6 @@ export default class Carousel {
       const $btnPrev = $(item).parent().find('.swiper-button-prev');
       const $btnNext = $(item).parent().find('.swiper-button-next');
       const $pagi = $(item).parent().find('.swiper-pagination');
-      console.log($pagi);
       this.carouselSetting = {
       	loop: false,
         navigation:{

@@ -7,6 +7,7 @@ window.DOM = {
   ajxCont : $('#barba-wrapper'),
   trnsContIN: $('#in'),
   trnsContOUT: $('#out'),
+  passiveSupported: false,
   bodyScrollTop: null,
   scrollWidth: null,
   getScrollWidth: function() {
@@ -23,7 +24,6 @@ window.DOM = {
   },
   hideScrollSimple: function() {
     if (this.body[0].offsetHeight < this.body[0].scrollHeight) {
-      console.log(11);
       this.body.css('padding-right',this.scrollWidth + 'px');
     }
     this.body.addClass('loading');

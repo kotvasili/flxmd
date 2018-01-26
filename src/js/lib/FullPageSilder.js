@@ -112,26 +112,30 @@ ScrollSlide.prototype = {
     });
   },
   scrollEvent: function() {
-    // var self = this;
-    $(this.element).on('mousewheel DOMMouseScroll',(e) => {
+    var self = this;
+    $(this.element).on('mousewheel.fp DOMMouseScroll.fp',(e) => {
       e.preventDefault();
     });
-    $(this.element).on('mousewheel DOMMouseScroll', debounce((e) => {
-      
-      if(this.body.hasClass('menu-open')) {
-        return false;
-      }
-
-      var delta = e.originalEvent.wheelDelta ? -e.originalEvent.wheelDelta : e.originalEvent.detail * 20;
-      if(delta > 50 && !this.canScroll) {
-        this.canScroll = true;
-        this.nextSection();
-      } else if(delta < -50 && !this.canScroll) {
-        this.canScroll = true;
-        this.prevSection();
-      }
-    }));
+    $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
   },
+  removeEvents: function() {
+    $(this.element).off('mousewheel.fp DOMMouseScroll.fp');
+  },
+  checkDirection: function(e) {
+    if(this.body.hasClass('menu-open')) {
+      return false;
+    }
+
+    var delta = e.originalEvent.wheelDelta ? -e.originalEvent.wheelDelta : e.originalEvent.detail * 20;
+    if(delta > 50 && !this.canScroll) {
+      this.canScroll = true;
+      this.nextSection();
+    } else if(delta < -50 && !this.canScroll) {
+      this.canScroll = true;
+      this.prevSection();
+    }
+  },
+
   nextSection: function() {
 
     this.curr_slide = this.options.currPage;
@@ -291,7 +295,7 @@ ScrollSlide.prototype = {
       var $btnPrev = $this.parent().find('.swiper-button-prev');
       var $btnNext = $this.parent().find('.swiper-button-next');
       const screenParent = $this.closest(self.options.screen);
-      const interleaveOffset = 0.2;
+      const interleaveOffset = 0.8;
       $this.addClass('instance-' + index);
       const $project = screenParent.find('.swiper-projects');
       const slideTwn = new TimelineMax();

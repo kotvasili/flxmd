@@ -1,4 +1,5 @@
 import { TweenMax } from 'gsap';
+import debounce from './debounce';
 
 export default class SlipMouse {
   constructor() {
@@ -19,9 +20,9 @@ export default class SlipMouse {
   }
 
   handlerEvents(_element) {
-  	_element.addEventListener('mouseenter', this.entryElement);
-  	_element.addEventListener('mouseleave', this.exitElement);
-  	_element.addEventListener('mousemove', this.moveElement);
+  	_element.addEventListener('mouseenter', debounce(this.entryElement));
+  	_element.addEventListener('mouseleave', debounce(this.exitElement));
+  	_element.addEventListener('mousemove', debounce(this.moveElement));
   }
 
   moveElement(_move) {

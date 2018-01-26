@@ -8,10 +8,10 @@ import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import Promise from './lib/Promise';
 import RecentSlider from './lib/RecentSilder.js';
-// import Crsor from './lib/Crsor.js';
+import Crsor from './lib/Crsor.js';
 import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
-// import Cursor from './lib/Cursor.js';
+import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 // import dragscroll from 'dragscroll';
 import WOW from '../../node_modules/wow.js/dist/wow.min.js';
@@ -25,8 +25,9 @@ var BarbaWitget = {
     var scope = this;
 
     var wow = new WOW({
-      callback:     function(box) {
+      callback: function(box) {
         box.classList.add('animate');
+        box.removeAttribute('style');
       },
     });
     wow.init();
@@ -43,7 +44,7 @@ var BarbaWitget = {
 
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      
+      window.DOM.cursor.defaultType();
       // setTimeout(() => {
       Colorize();
       // },0);
@@ -194,6 +195,7 @@ var IndexPage = Barba.BaseView.extend({
   },
   onLeave: function() {
     // this.menu.destroy();
+    this.fullpage.removeEvents();
     window.DOM.body.removeClass('index-page');
     delete this.fullpage;
     // delete this.menu;
@@ -219,8 +221,9 @@ var PortfolioPage = Barba.BaseView.extend({
     // Colorize();
   },
   onLeave: function() {
+    
     this.portfolio.delete();
-
+    
     // delete this.menu;
   },
   onLeaveComplete: function() {
@@ -259,7 +262,6 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
-    console.log(this.portfolio);
     this.portfolio.delete();
     // this.menu.destroy();
 
@@ -307,10 +309,20 @@ var ContactsPage = Barba.BaseView.extend({
  
 function initSite() {
   window.DOM.getScrollWidth();
+  try {
+    var options = Object.defineProperty({}, 'passive', {
+      get: function() {
+        window.DOM.passiveSupported = true;
+      }
+    });
+    window.addEventListener('test', null, options);
+  } catch(err) {}
+
+  window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
   });
-  // var cursor = new Crsor();
+  
   new PageLoader();
   ContactsPage.init();
   PortfolioPage.init();
