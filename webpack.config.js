@@ -37,6 +37,16 @@ export default (env) => {
       },
     },
     module: {
+        loaders: [
+          {
+            test: /.js$/,
+            loaders: 'buble',
+            include: path.resolve(__dirname, 'node_modules'),
+            query: {
+              objectAssign: 'Object.assign'
+            }
+          }
+        ],
       rules: [
         {
           enforce: 'pre',
@@ -56,7 +66,8 @@ export default (env) => {
           exclude: [
             path.resolve(__dirname, 'node_modules'),
           ],
-        }],
+        },
+      ]
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({
@@ -91,22 +102,22 @@ export default (env) => {
         minimize: true,
       }),
       // new webpack.optimize.DedupePlugin(),
-      // new webpack.optimize.UglifyJsPlugin({
-        // compress: {
-        	// parallel: 4,
-         //  warnings: false,
-         //  pure_getters: true,
-         //  unsafe: true,
-         //  unsafe_comps: true,
-         //  ecma: 8,
-         //  ie8: false
-        // },
-        // output: {
-          // comments: false,
-          // beautify: false,
-        // },
-        // minimize: true
-      // })
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+        	parallel: 4,
+          warnings: false,
+          pure_getters: true,
+          unsafe: true,
+          unsafe_comps: true,
+          ecma: 8,
+          ie8: false
+        },
+        output: {
+          comments: false,
+          beautify: false,
+        },
+        minimize: true
+      })
     );
   }
   return webpackConfig;

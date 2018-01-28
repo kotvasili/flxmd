@@ -21,7 +21,6 @@ export default class LazyElement {
       img.setAttribute('src', img.getAttribute('data-src'));
       img.onload = () => {
         img.removeAttribute('data-src');
-        $(img).parents('.unload__item').removeClass('unload__item');
       };
     });
   }
@@ -32,7 +31,6 @@ export default class LazyElement {
       video.appendChild(this.videoSource);
       video.onloadeddata = () => {
         video.removeAttribute('data-src');
-        $(video).parents('.unload__item').removeClass('unload__item');
       };
     });
   }

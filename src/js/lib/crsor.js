@@ -15,7 +15,7 @@ export default class Crsor {
   initEvents() {
     const self = this;
     window.DOM.body.addClass('no-cursor');
-    window.addEventListener('mousemove',(ev) => debounce(this.handleMouseMove(ev)));
+    window.addEventListener('mousemove', (ev) => this.handleMouseMove(ev), window.DOM.passiveSupported ? { passive: true } : false);
     window.addEventListener('touchmove',(ev) => this.handleMouseMove(ev));
     $(document).on({
       mouseenter: function() {
@@ -48,16 +48,13 @@ export default class Crsor {
   //   });
   // }
   handleMouseMove(e) {
-    requestAnimationFrame(() => {
+    // requestAnimationFrame(() => {
 	  const mousepos = getMousePos(e);
 	  this.updatePos(mousepos);
-    }); 
+    // }); 
   }
   updatePos(mousepos) {
-	  this.tl.set(this.el, {
-      x: mousepos.x,
-      y: mousepos.y,
-	  }); 
+	  this.el.style.transform = 'translateX(' + mousepos.x + 'px) translateY(' + mousepos.y + 'px)';
   }
 }
 
@@ -65,10 +62,8 @@ const getMousePos = (e) => {
   let posx = 0;
   let posy = 0;
   if (!e) {let e = window.event;};
-  if (e.clientX || e.clientY) {
-  	posx = e.clientX;
-  	posy = e.clientY;
-  }
+  posx = e.clientX;
+  posy = e.clientY;
   return {
     x : posx,
     y : posy

@@ -9,13 +9,14 @@ import Carousel from './lib/Carousel.js';
 import Promise from './lib/Promise';
 import RecentSlider from './lib/RecentSilder.js';
 import Crsor from './lib/Crsor.js';
-import browserDetection from '../../node_modules/browser-detection/src/browser-detection.js';
+import browserDetection from 'browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
-// import Cursor from './lib/Cursor.js';
+import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
+import CanvRender from './lib/canv';
 // import dragscroll from 'dragscroll';
-import WOW from '../../node_modules/wow.js/dist/wow.min.js';
-
+// import WOW from '../../node_modules/wow.js/dist/wow.min.js';
+import inView from 'in-view';
 $.fn.hasAttr = function(name) {
   return this.attr(name) !== undefined;
 };
@@ -24,12 +25,13 @@ var BarbaWitget = {
   init: function() {
     var scope = this;
 
-    var wow = new WOW({
-      callback:     function(box) {
-        box.classList.add('animate');
-      },
-    });
-    wow.init();
+    // var wow = new WOW({
+    //   callback: function(box) {
+    //     box.classList.add('animate');
+    //     box.removeAttribute('style');
+    //   },
+    // });
+    // wow.init();
     this.menu = new Menu();
     this.menu.init();
     Barba.Pjax.start();
@@ -183,7 +185,7 @@ var IndexPage = Barba.BaseView.extend({
   onEnterCompleted: function() {
     this.fullpage = new ScrollSlide('#work-wrapper'); 
     window.DOM.body.addClass('index-page');
-    
+    CanvRender();
     
     // Colorize();
     setTimeout(() => {
@@ -194,6 +196,7 @@ var IndexPage = Barba.BaseView.extend({
   },
   onLeave: function() {
     // this.menu.destroy();
+    this.fullpage.removeEvents();
     window.DOM.body.removeClass('index-page');
     delete this.fullpage;
     // delete this.menu;
@@ -219,6 +222,7 @@ var PortfolioPage = Barba.BaseView.extend({
     // Colorize();
   },
   onLeave: function() {
+    
     this.portfolio.delete();
     
     // delete this.menu;
@@ -306,6 +310,15 @@ var ContactsPage = Barba.BaseView.extend({
  
 function initSite() {
   window.DOM.getScrollWidth();
+  try {
+    var options = Object.defineProperty({}, 'passive', {
+      get: function() {
+        window.DOM.passiveSupported = true;
+      }
+    });
+    window.addEventListener('test', null, options);
+  } catch(err) {}
+
   window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
