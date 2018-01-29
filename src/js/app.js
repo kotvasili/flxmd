@@ -179,11 +179,10 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-
+    window.DOM.CanvRender();
     
   },
   onEnterCompleted: function() {
-    window.DOM.CanvRender();
     this.fullpage = new ScrollSlide('#work-wrapper'); 
     window.DOM.body.addClass('index-page');
     
@@ -192,15 +191,23 @@ var IndexPage = Barba.BaseView.extend({
     setTimeout(() => {
       this.fullpage.initSwiper(); 
     },500);
-
+ 
 
   },
   onLeave: function() {
     // this.menu.destroy();
+    let canv = document.getElementById('scene');
+
     this.fullpage.removeEvents();
     window.DOM.body.removeClass('index-page');
     delete this.fullpage;
-    $('#scene').trigger('click');
+
+    canv.flyAway = true;
+
+    setTimeout(function() {
+      canv.renderer.forceContextLoss();
+    }, 1000);
+    //$('#scene').trigger('click');
     // delete this.menu;
   },
   onLeaveComplete: function() {

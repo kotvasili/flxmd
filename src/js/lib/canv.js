@@ -296,7 +296,7 @@ export default window.DOM.CanvRender = () => {
   };
   var canvas = document.querySelector('#scene');
 
-  var width = canvas.offsetWidth + window.DOM.scrollWidth,
+  var width = canvas.offsetWidth,
     height = canvas.offsetHeight;
 
   var renderer = new THREE.WebGLRenderer({
@@ -305,17 +305,23 @@ export default window.DOM.CanvRender = () => {
   });
   renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
   renderer.setSize(width, height);
-  renderer.setClearColor(0xb5ea73);
+  renderer.setClearColor('rgb(205, 252, 145)');
 
   var scene = new THREE.Scene();
 
-  var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
-  camera.position.set(-120, 0, 70);
+  canvas.renderer = renderer;
+  
+  let cameraY = 0;
 
-  var light = new THREE.HemisphereLight(0xa8d96b, 0xa8d96b, 0.6);
+  canvas.flyAway = false;
+
+  var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
+  camera.position.set(-120, cameraY, 90);
+
+  var light = new THREE.HemisphereLight(0xa8d96b, 'rgb(205, 252, 145)', 0.6);
   scene.add(light);
 
-  var light = new THREE.DirectionalLight(0xa8d96b, 0.5);
+  var light = new THREE.DirectionalLight('rgb(205, 252, 145)', 0.3);
   light.position.set(200, 300, 400); 
   scene.add(light);
   var light2 = light.clone();
@@ -328,9 +334,9 @@ export default window.DOM.CanvRender = () => {
     vector._o = vector.clone();  
   }
   var material = new THREE.MeshPhongMaterial({
-    emissive: 0xa8d96b, 
+    emissive: 'rgb(205, 252, 145)', 
     emissiveIntensity: 0.3,
-    shininess: 1
+    shininess: 0
   });
   var shape = new THREE.Mesh(geometry, material);
   scene.add(shape);
@@ -350,10 +356,18 @@ export default window.DOM.CanvRender = () => {
     geometry.verticesNeedUpdate = true;
   }
 
+  let isPlay = false;
+
   function render(a) {
+    if(canvas.flyAway) {
+      cameraY ++;
+      camera.position.set(-120, cameraY, 90);
+    }
+    if(!isPlay) { 
+      updateVertices(a);
+      renderer.render(scene, camera);
+    }
     requestAnimationFrame(render);
-    updateVertices(a);
-    renderer.render(scene, camera);
   }
 
   function onResize() {
@@ -377,12 +391,14 @@ export default window.DOM.CanvRender = () => {
     resizeTm = clearTimeout(resizeTm);
     resizeTm = setTimeout(onResize, 200);
   });
-  $(canvas).on('click',() => {
-    // scene.remove(renderer);
-    projector = null;
-    camera = null;
-    scene = null;
-    
-  });
+
+  canvas.ply = () => {
+    isPlay = false;
+    console.log(isPlay);
+  };
+  canvas.stp = () => {
+    isPlay = true;
+    console.log(isPlay); 
+  };
 
 };

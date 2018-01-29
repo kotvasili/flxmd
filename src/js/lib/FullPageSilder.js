@@ -45,6 +45,7 @@ ScrollSlide.prototype = {
     this.scrollController = null;
     this.bgTargets;
     this.body = window.DOM.body;
+    this.scene = document.getElementById('scene');
     // this.initSwiper();
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
     this.setCurrentPage(this.options.currPage);
@@ -116,10 +117,8 @@ ScrollSlide.prototype = {
     this.element.on('mousewheel.fp DOMMouseScroll.fp',(e) => {
       e.preventDefault();
     });
-    document.addEventListener('onwheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
-    // $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)),{
-    //   passive: true
-    // });
+    // document.addEventListener('onwheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+    $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
   },
   removeEvents: function() {
     $(this.element).off('mousewheel.fp DOMMouseScroll.fp');
@@ -185,7 +184,10 @@ ScrollSlide.prototype = {
     } else {
       remove = this.options.sectionPrev;
     }
-
+    if(nextItem > 0) {
+      this.scene.stp();
+    }
+ 
     $(this.sections[nextItem]).removeClass(remove).siblings().removeClass('section__active');
 
     setTimeout(() => {
@@ -193,6 +195,7 @@ ScrollSlide.prototype = {
     }, 370);
   },
   goToSlide: function(curr, next) {
+    console.log(curr, next);
     var self = this;
     let nxt = $(next);
     let crr = $(curr);
@@ -212,7 +215,12 @@ ScrollSlide.prototype = {
     } else {
       $(self.element).add(self.logo).addClass('light');
     }
-
+    if(nxtInd === 0) {
+      this.scene.ply();
+      this.scene.classList.remove('hidden');
+    }else{
+      this.scene.classList.add('hidden');
+    }
     if(nxtInd > crrInd) {
       this.twn
         .fromTo(crr, 1.2, {

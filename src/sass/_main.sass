@@ -215,9 +215,15 @@ body
 	position: fixed
 	top: 0
 	left: 0
-	width: 100%
+	width: 100%;
 	height: 100%
 	pointer-events: none
+	opacity: 1
+	visibility: visible
+	transition: opacity .3s, visibility .3s
+	&.hidden
+		opacity: 0
+		visibility: hidden
 .full-screen-container
 	display: flex
 	height: 100%
@@ -226,7 +232,7 @@ body
 	.work-wrapper__container
 		flex: 1
 		position: relative
-		perspective: 1000px
+		// perspective: 1000px
 	.screen
 		position: absolute
 		width: 100%
@@ -364,7 +370,7 @@ body
 		// mix-blend-mode: multiply
 	.work-wrapper__navigation
 		position: fixed
-		z-index: 2
+		z-index: 5
 		+rem(bottom, 57px)
 		// +rem(left, 78px)
 		left: 5%
@@ -469,9 +475,11 @@ body
 	.container-carousel
 		width: 83.2%
 		position: relative
+		overflow: hidden
+		
 		.swiper-container
 			height: 100%
-			perspective: 1000px
+			// perspective: 1000px
 			.swiper-wrapper
 				// transform-style: flat
 			.swiper-slide
