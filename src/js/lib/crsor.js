@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { TimelineMax } from 'gsap';
-import debounce from './debounce';
+// import debounce from './debounce';
 import './domConf.js';
 
 export default class Crsor {
@@ -32,7 +32,7 @@ export default class Crsor {
     // $(document).on('mouseenter','a.cursor-plus', );
     // $(document).on('mouseleave','a.cursor-plus', (ev) => );
   }
-  getType(elem) {
+  getType() {
     
     this.clearClass();
 

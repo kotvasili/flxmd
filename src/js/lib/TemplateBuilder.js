@@ -4,9 +4,9 @@ import colorize from './Colorize.js';
 import LazyElement from './LazyImage.js';
 import SlipMouse from './SlipMouse.js';
 // import tiltCards from './tilt.js';
-import VanillaTilt from 'vanilla-tilt/src/vanilla-tilt';
+import VanillaTilt from './vanilla-tilt.js';
 import './domConf';
-import $ from 'jquery';
+import $ from 'jquery/dist/jquery.min';
 // import Cursor from './Cursor.js';
 import inView from 'in-view';
 
@@ -63,6 +63,7 @@ export default class TemplateBuilder {
           inView('.js-tilt')
             .on('enter', (el) => {
               VanillaTilt.init(el,this.tiltOptions);
+
             }).on('exit', (el) => {
               if(el.vanillaTilt !== undefined ) {
                 el.vanillaTilt.destroy();
@@ -109,7 +110,7 @@ export default class TemplateBuilder {
     // this.cursor.init();
     
     this.isInit = true;
-    $('html, body:not(:animated), .out:not(:animated)').animate({scrollTop: 1},100);
+    window.DOM.html.add(window.DOM.body).animate({scrollTop: 1},100);
     // this.wow.init();
   }
 

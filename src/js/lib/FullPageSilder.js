@@ -46,7 +46,7 @@ ScrollSlide.prototype = {
     this.bgTargets;
     this.body = window.DOM.body;
     // this.initSwiper();
-
+    this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
     this.setCurrentPage(this.options.currPage);
     this.setNavigationCurrItem(this.options.currPage);
     this.generateScrollBarPagination();
@@ -113,10 +113,13 @@ ScrollSlide.prototype = {
   },
   scrollEvent: function() {
     var self = this;
-    $(this.element).on('mousewheel.fp DOMMouseScroll.fp',(e) => {
+    this.element.on('mousewheel.fp DOMMouseScroll.fp',(e) => {
       e.preventDefault();
     });
-    $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
+    document.addEventListener('onwheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+    // $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)),{
+    //   passive: true
+    // });
   },
   removeEvents: function() {
     $(this.element).off('mousewheel.fp DOMMouseScroll.fp');
@@ -211,80 +214,76 @@ ScrollSlide.prototype = {
     }
 
     if(nxtInd > crrInd) {
-      requestAnimationFrame(() => {
-        this.twn
-          .fromTo(crr, 1.2, {
-            y: '0%'
-          }, {
-            y: '-=100%',
-            ease: Expo.easeInOut,
-            force3D:true,
-          })
-          .fromTo(crrContent, 1.2,{
-            y: '0%'
-          },{
-            y: '+=40%',
-            ease: Expo.easeInOut,
-          }, '-=1.2')
-          .fromTo(nxt, 1.2, {
-            className: '+=section__next',
-            y: '100%',
-          }, {
-            className: '+=section__active',
-            y: '-=100%',
-            ease: Expo.easeInOut,
-            force3D:true,
-            clearProps: 'transform',
-            onComplete: () => {
-              self.sapEnd(crrInd, nxtInd);
-            }
-          }, '-=1.2')
-          .fromTo(nxtContent, 1.25,{
-            y: '-40%'
-          },{
-            y: '+=40%',
-            ease: Expo.easeInOut,
-            clearProps: 'transform',
-          }, '-=1.2'); 
-      });
+      this.twn
+        .fromTo(crr, 1.2, {
+          y: '0%'
+        }, {
+          y: '-=100%',
+          ease: Expo.easeInOut,
+          force3D:true,
+        })
+        .fromTo(crrContent, 1.2,{
+          y: '0%'
+        },{
+          y: '+=40%',
+          ease: Expo.easeInOut,
+        }, '-=1.2')
+        .fromTo(nxt, 1.2, {
+          className: '+=section__next',
+          y: '100%',
+        }, {
+          className: '+=section__active',
+          y: '-=100%',
+          ease: Expo.easeInOut,
+          force3D:true,
+          clearProps: 'transform',
+          onComplete: () => {
+            self.sapEnd(crrInd, nxtInd);
+          }
+        }, '-=1.2')
+        .fromTo(nxtContent, 1.25,{
+          y: '-40%'
+        },{
+          y: '+=40%',
+          ease: Expo.easeInOut,
+          clearProps: 'transform',
+        }, '-=1.2'); 
     } else {
-      requestAnimationFrame(() => {
-        this.twn
-          .fromTo(crr, 1.25, {
-            y: '0%'
-          }, {
-            y: '+=100%',
-            ease: Expo.easeInOut,
-            force3D:true,
-          })
-          .fromTo(crrContent, 1.25,{
-            y: '0%'
-          },{
-            y: '-=40%',
-            ease: Expo.easeInOut,
-          }, '-=1.25')
+      this.twn
+        .fromTo(crr, 1.25, {
+          y: '0%'
+        }, {
+          y: '+=100%',
+          ease: Expo.easeInOut,
+          force3D:true,
+        })
+        .fromTo(crrContent, 1.25,{
+          y: '0%'
+        },{
+          y: '-=40%',
+          ease: Expo.easeInOut,
+        }, '-=1.25')
         
-          .fromTo(nxt, 1.25, {
-            className: '+=section__prev',
-            y: '-100%',
-          }, {
-            className: '+=section__active',
-            y: '+=100%',
-            ease: Expo.easeInOut,
-            force3D: true,
-            clearProps: 'transform',
-            onComplete: () => {
-              self.sapEnd(crrInd, nxtInd);
-            }
-          }, '-=1.25')
-          .fromTo(nxtContent, 1.25,{
-            y: '40%'
-          },{
-            y: '-=40%',
-            ease: Expo.easeInOut,
-            clearProps: 'transform',
-          }, '-=1.25');
-      });
+        .fromTo(nxt, 1.25, {
+          className: '+=section__prev',
+          y: '-100%',
+        }, {
+          className: '+=section__active',
+          y: '+=100%',
+          ease: Expo.easeInOut,
+          force3D: true,
+          clearProps: 'transform',
+          onComplete: () => {
+            self.sapEnd(crrInd, nxtInd);
+          }
+        }, '-=1.25')
+        .fromTo(nxtContent, 1.25,{
+          y: '40%'
+        },{
+          y: '-=40%',
+          ease: Expo.easeInOut,
+          clearProps: 'transform',
+        }, '-=1.25');
     }
   },
   initSwiper: function() {
@@ -330,7 +329,7 @@ ScrollSlide.prototype = {
                 speed + 'ms';
             }
           },
-          init: function(swiper) {
+          init: function() {
             var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
             var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
             var defaultCurrIndex = $this.find('.swiper-slide-active').data('swiper-slide-index');
@@ -376,7 +375,7 @@ ScrollSlide.prototype = {
       this.navItem.eq(currPage).addClass('nav__active');
       this.sections.eq(currPage).addClass('section__active');
     }
-    this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
+    
     this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
   },
   setNavigationCurrItem: function(currItem) {

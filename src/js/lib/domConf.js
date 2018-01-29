@@ -10,6 +10,7 @@ window.DOM = {
   passiveSupported: false,
   bodyScrollTop: null,
   scrollWidth: null,
+  render: false,
   getScrollWidth: function() {
     // Узнаем ширину скролл панели
     const div = document.createElement('div');
@@ -50,6 +51,6 @@ window.DOM = {
     $('.js-stick').trigger('sticky_kit:recalc');
   },
   addListenerMulti(el, s, fn) {
-    s.split(' ').forEach(e => el.addEventListener(e, fn, false));
+    s.split(' ').forEach(e => el.addEventListener(e, fn, window.DOM.passiveSupported ? { passive: true } : false));
   },
 };

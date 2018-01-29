@@ -1,3 +1,4 @@
+import $ from 'jquery/dist/jquery.min';
 import Swiper from 'swiper';
 import SwiperSettings from './SliderSettings';
 

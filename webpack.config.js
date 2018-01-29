@@ -27,6 +27,8 @@ export default (env) => {
     resolve: {
       extensions: ['.js'],
       alias: {
+        'swiper': 'swiper/dist/js/swiper.js',
+        'VanillaTilt': 'vanilla-tilt/dist/vanilla-tilt.babel.js',
     //     TweenLite: path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
     //     TweenMax: path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
     //     TimelineLite: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
@@ -37,17 +39,29 @@ export default (env) => {
       },
     },
     module: {
-        loaders: [
-          {
-            test: /.js$/,
-            loaders: 'buble',
-            include: path.resolve(__dirname, 'node_modules'),
-            query: {
-              objectAssign: 'Object.assign'
-            }
-          }
-        ],
+        // loaders: [
+        //   {
+        //     test: /.js$/,
+        //     loaders: 'buble',
+        //     include: path.resolve(__dirname, 'node_modules'),
+        //     query: {
+        //       objectKeys: 'Object.keys'
+        //     }
+        //   }
+        // ],
       rules: [
+        // {
+        // test: /\.js$/,
+        // exclude: path.resolve(__dirname, 'node_modules'),
+        // use: [
+        //   // { loader: 'cache' },
+        //   { loader: 'buble-loader', options: { 
+        //     objectAssign: 'Object.assign',
+        //     class: 'class'
+        //     } 
+        //   },
+        //   ],
+        // },
         {
           enforce: 'pre',
           test: /\.js$/,
@@ -104,13 +118,11 @@ export default (env) => {
       // new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-        	parallel: 4,
           warnings: false,
-          pure_getters: true,
+          // pure_getters: true,
           unsafe: true,
           unsafe_comps: true,
-          ecma: 8,
-          ie8: false
+          screw_ie8: true
         },
         output: {
           comments: false,

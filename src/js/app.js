@@ -11,7 +11,7 @@ import RecentSlider from './lib/RecentSilder.js';
 import Crsor from './lib/Crsor.js';
 import browserDetection from 'browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
-import Cursor from './lib/Cursor.js';
+// import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 import CanvRender from './lib/canv';
 // import dragscroll from 'dragscroll';
@@ -45,7 +45,7 @@ var BarbaWitget = {
 
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      window.DOM.cursor.defaultType();
+      // window.DOM.cursor.defaultType();
       // setTimeout(() => {
       Colorize();
       // },0);
@@ -179,13 +179,14 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-      
+
     
   },
   onEnterCompleted: function() {
+    window.DOM.CanvRender();
     this.fullpage = new ScrollSlide('#work-wrapper'); 
     window.DOM.body.addClass('index-page');
-    CanvRender();
+    
     
     // Colorize();
     setTimeout(() => {
@@ -199,10 +200,11 @@ var IndexPage = Barba.BaseView.extend({
     this.fullpage.removeEvents();
     window.DOM.body.removeClass('index-page');
     delete this.fullpage;
+    $('#scene').trigger('click');
     // delete this.menu;
   },
   onLeaveComplete: function() {
-
+    
   }
 });
 
@@ -257,9 +259,9 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     this.resent = new RecentSlider();
     // Colorize();
     
-    if (typeof dragscroll !== 'undefined') {
-      dragscroll.reset();  
-    }
+    // if (typeof dragscroll !== 'undefined') {
+    //   dragscroll.reset();  
+    // }
     
   },
   onLeave: function() {
@@ -319,7 +321,7 @@ function initSite() {
     window.addEventListener('test', null, options);
   } catch(err) {}
 
-  window.DOM.cursor = new Crsor();
+  // window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
   });

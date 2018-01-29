@@ -1,4 +1,3 @@
-import $ from 'jquery';
 
 export default class LazyElement {
   init() {

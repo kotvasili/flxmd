@@ -1,8 +1,8 @@
 // import noise from './perlin';
 import * as THREE from 'three';
-import { TimelineMax } from 'gsap';
+import Barba from 'barba.js/dist/barba.min';
+export default window.DOM.CanvRender = () => {
 
-export default function CanvRender() {
   var module = global.noise = {};
 
   function Grad(x, y, z) {
@@ -34,7 +34,7 @@ export default function CanvRender() {
     251,34,242,193,238,210,144,12,191,179,162,241, 81,51,145,235,249,14,239,107,
     49,192,214, 31,181,199,106,157,184, 84,204,176,115,121,50,45,127, 4,150,254,
     138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180];
-  // To remove the need for index wrapping, double the permutation table length
+    // To remove the need for index wrapping, double the permutation table length
   var perm = new Array(512);
   var gradP = new Array(512);
 
@@ -295,6 +295,7 @@ export default function CanvRender() {
       v);
   };
   var canvas = document.querySelector('#scene');
+
   var width = canvas.offsetWidth + window.DOM.scrollWidth,
     height = canvas.offsetHeight;
 
@@ -309,7 +310,7 @@ export default function CanvRender() {
   var scene = new THREE.Scene();
 
   var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
-  camera.position.set(-150, 0, 80);
+  camera.position.set(-120, 0, 70);
 
   var light = new THREE.HemisphereLight(0xa8d96b, 0xa8d96b, 0.6);
   scene.add(light);
@@ -318,10 +319,10 @@ export default function CanvRender() {
   light.position.set(200, 300, 400); 
   scene.add(light);
   var light2 = light.clone();
-  light2.position.set(-200, 300, 400); 
+  light2.position.set(-300, 300, 500); 
   scene.add(light2);
 
-  var geometry = new THREE.IcosahedronGeometry(120, 4);
+  var geometry = new THREE.IcosahedronGeometry(90, 4);
   for(var i = 0; i < geometry.vertices.length; i++) {
     var vector = geometry.vertices[i];
     vector._o = vector.clone();  
@@ -329,7 +330,7 @@ export default function CanvRender() {
   var material = new THREE.MeshPhongMaterial({
     emissive: 0xa8d96b, 
     emissiveIntensity: 0.3,
-    shininess: 0
+    shininess: 1
   });
   var shape = new THREE.Mesh(geometry, material);
   scene.add(shape);
@@ -366,19 +367,22 @@ export default function CanvRender() {
   }
 
   var mouse = new THREE.Vector2(0.8, 0.5);
-  function onMouseMove(e) {
-    TweenMax.to(mouse, 0.8, {
-      y: (e.clientY / height),
-      x : (e.clientX / width),
-      ease: Power1.easeOut
-    });
-  }
-
+  // console.log(document.getElementById('scene').length);
   requestAnimationFrame(render);
-  canvas.addEventListener('mousemove', onMouseMove,window.DOM.passiveSupported ? { passive: true } : false);
+  // canvas.addEventListener('mousemove', onMouseMove,window.DOM.passiveSupported ? { passive: true } : false);
+  // console.log
+
   var resizeTm;
   canvas.addEventListener('resize', function() {
     resizeTm = clearTimeout(resizeTm);
     resizeTm = setTimeout(onResize, 200);
   });
-}
+  $(canvas).on('click',() => {
+    // scene.remove(renderer);
+    projector = null;
+    camera = null;
+    scene = null;
+    
+  });
+
+};

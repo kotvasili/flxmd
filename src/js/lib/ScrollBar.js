@@ -2,7 +2,7 @@ import $ from 'jquery';
 // import Scrollbar from 'smooth-scrollbar';
 import './domConf';
 import TemplateBuilder from './TemplateBuilder';
-import debounce from './debounce';
+// import debounce from './debounce';
 // import Draggable from 'gsap/Draggable';
 import Tabs from './Tabs.js';
 
