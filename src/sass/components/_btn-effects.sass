@@ -1,0 +1,57 @@
+.touch-down
+	&-elem
+		transition: transform .2s $btntr
+		position: relative
+	&:hover
+		.touch-down
+			&-elem
+				transform: translateX(10px)
+		&:active
+			.touch-down
+				&-elem
+					filter: blur(.0)
+					transition: transform .1s
+					transform: scale(.95) translateX(10px)
+.custom__btn
+	background-color: transparent
+	border-radius: 2px
+	transition: border-color 0.25s, transform .1s $btntr
+	display: inline-block
+	border: .5px solid $nameUpp
+	position: relative
+	&:before
+		content: ''
+		display: inline-block
+		+coverdiv
+		z-index: -1
+		background-color: var(--color-link)
+		transition: transform .2s ease-in;
+		transform-origin: center right	
+		transform: scaleX(0)
+		opacity: .15
+		.edge15 &
+			color: $nameUpp
+	&>span
+		font-family: $Graphik
+		color: $bottonSection
+		+rem(font-size, 17px)
+		// transition: color 0.25s
+		padding-left: 15px
+		padding-right: 15px
+		padding-top: 10px
+		padding-bottom: 10px
+		letter-spacing: -0.3px
+		display: block
+		position: relative
+		overflow: hidden
+	&:hover
+		// background-color: var(--color-link)
+		border-color: var(--color-link)
+		&:before
+			transform: scaleX(1);
+			transform-origin: center left;
+		span
+			color: $black
+	&:active
+		transform: scale(.95)
+		transition-duration: .2s !important

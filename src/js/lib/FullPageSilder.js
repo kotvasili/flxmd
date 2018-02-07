@@ -61,30 +61,32 @@ ScrollSlide.prototype = {
   },
   initEventHandler: function() {
     var self = this;
+    this.navItem.each(function() {
+    	let _ = $(this);
+    	let a = _.find('a');
+    	let parentIndex = _.index();
+    	a.on('click',(event) => {
+    		event.preventDefault();
+	      if(self.canScroll || _.hasClass('nav__active')) {
+	        return false;
+	      }
+	      self.canScroll = true;
 
-    this.navItem.find('a').on('click', function(event) {
+	      this.item_curr = self.navItem.filter('.nav__active').index();
+	      this.item_next = parentIndex;
 
-      if(self.canScroll || $(this).parent().hasClass('nav__active')) {
-        return false;
-      }
+	      self._curr_slide = self.sections[this.item_curr];
+	      self._next_slide = self.sections[this.item_next];
 
-      self.canScroll = true;
+	      self.goToSlide(self._curr_slide, self._next_slide);
 
-      this.item_curr = $(this).parent().siblings('.nav__active').index();
-      this.item_next = $(this).parent().index();
+	      self.setNavigationCurrItem(this.item_next);
 
-      self._curr_slide = self.sections[this.item_curr];
-      self._next_slide = self.sections[this.item_next];
+	      self.options.currPage = this.item_next;
+	      self.setScrollBar(this.item_next);
 
-      self.goToSlide(self._curr_slide, self._next_slide);
-
-      self.setNavigationCurrItem(this.item_next);
-
-      self.options.currPage = this.item_next;
-      self.setScrollBar(this.item_next);
-
-      event.preventDefault();
-
+	      
+    	});
     });
 
     $('.bar__item a').on('click', function(event) {
@@ -114,27 +116,36 @@ ScrollSlide.prototype = {
   },
   scrollEvent: function() {
     var self = this;
-    this.element.on('mousewheel.fp DOMMouseScroll.fp',(e) => {
+    this.element.on('mousewheel DOMMouseScroll',(e) => {
       e.preventDefault();
     });
-    // document.addEventListener('onwheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
-    $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
+    if(window.DOM.html.hasClass('firefox')) {
+      this.element[0].addEventListener('DOMMouseScroll',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+    }else{
+      this.element[0].addEventListener('mousewheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+    }
+    
+    
+    // $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
   },
   removeEvents: function() {
-    $(this.element).off('mousewheel.fp DOMMouseScroll.fp');
+    $(this.element).off('mousewheel DOMMouseScroll');
   },
   checkDirection: function(e) {
     if(this.body.hasClass('menu-open')) {
       return false;
     }
+    // console.log(e);
 
-    var delta = e.originalEvent.wheelDelta ? -e.originalEvent.wheelDelta : e.originalEvent.detail * 20;
+    var delta = e.wheelDelta ? -e.wheelDelta : e.detail * 20;
     if(delta > 50 && !this.canScroll) {
       this.canScroll = true;
       this.nextSection();
+      return false;
     } else if(delta < -50 && !this.canScroll) {
       this.canScroll = true;
       this.prevSection();
+      return false;
     }
   },
 
@@ -195,7 +206,6 @@ ScrollSlide.prototype = {
     }, 370);
   },
   goToSlide: function(curr, next) {
-    console.log(curr, next);
     var self = this;
     let nxt = $(next);
     let crr = $(curr);
@@ -235,6 +245,7 @@ ScrollSlide.prototype = {
         },{
           y: '+=40%',
           ease: Expo.easeInOut,
+          force3D:true,
         }, '-=1.2')
         .fromTo(nxt, 1.2, {
           className: '+=section__next',

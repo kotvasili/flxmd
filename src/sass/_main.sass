@@ -4,6 +4,10 @@ a
 	text-decoration: none
 img
 	display: block
+input::-webkit-clear-button,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+	-webkit-appearance: none;
 button
 	background-color: transparent
 	outline: none
@@ -12,6 +16,13 @@ html
 	height: 100%
 	font-size: 16px
 	min-width: 980px
+	-webkit-tap-highlight-color: transparent
+	-webkit-user-drag: none;
+	-webkit-text-size-adjust: none
+	-webkit-overflow-scrolling: touch;
+	text-rendering: optimizeLegibility
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	&.safari
 		overflow: visible !important
 	+r(1366)
@@ -24,8 +35,6 @@ body
 	// overflow: hidden
 	height: 100%
 	font-family: $Book
-	text-rendering: optimizeLegibility
-	-webkit-font-smoothing: antialiased
 	&.index-page
 		overflow: hidden !important
 		
@@ -60,25 +69,6 @@ body
 [cursor-type]
 	& *
 		cursor: none
-.custom__btn
-	background-color: transparent
-	border: 1px solid $nameUpp
-	border-radius: 2px
-	transition: border-color 0.25s, background-color 0.25s
-	display: inline-block
-	span
-		font-family: $Graphik
-		color: $bottonSection
-		+rem(font-size, 17px)
-		transition: color 0.25s
-		padding: 10px 15px
-		letter-spacing: -0.3px
-		display: block
-	&:hover
-		// background-color: var(--color-link)
-		border-color: var(--color-link)
-		span
-			color: $black
 
 .root
 	height: 100%
@@ -137,21 +127,34 @@ body
 	+rem(height, 80px)
 	+rem(right, 0)
 	top: 0
+	will-change: transform
 	cursor: pointer
 	display: flex
 	align-items: center
 	justify-content: center
 	z-index: 5
+	
 	@supports(mix-blend-mode: difference)
 		mix-blend-mode: difference
-	&:hover
+	&:active
 		.burger
-			transform: scale(1.1)
+			div
+				transform: scale(.9)
+				transition-duration: .2s
+				will-change: transform
+		// mix-blend-mode: initial
+		.burger
+			span 
+				&:before
+					// background: color(link)
+					// mix-blend-mode: initial
+			// transform: scale(1.1)
 	.burger
 		+rem(width, 40px)
 		+rem(height, 20px)
 		display: flex
-		transition: transform .25s
+		// transition: transform .25s
+
 		div
 			width: 100%
 			+rem(height, 20px)
@@ -159,6 +162,7 @@ body
 			flex-wrap: wrap
 			flex-direction: column
 			justify-content: space-between
+			transition: all .1s $btntr
 			span
 				width: 100%
 				+rem(height, 4px)
@@ -171,6 +175,8 @@ body
 					width: 100%
 					+rem(height, 4px)
 					background: $black
+					// transition: background .1s
+					// +tr()
 					@supports(mix-blend-mode: difference)
 						background: $white
 
@@ -221,9 +227,11 @@ body
 	opacity: 1
 	visibility: visible
 	transition: opacity .3s, visibility .3s
+	transition-delay: .85s
 	&.hidden
 		opacity: 0
 		visibility: hidden
+		transition-delay: 0s
 .full-screen-container
 	display: flex
 	height: 100%
@@ -326,10 +334,11 @@ body
 						font-family: $Graphik
 						// border-top: 1px solid #c2c2c2
 						color: $black
-						display: block
+						display: inline-block
 						+rem(padding, 14px 0 22px 2px)
-						transition: color 0.25s
+						transition: color 0.2s, transform .2s cubic-bezier(.25,.1,.25,1)
 						position: relative
+						// transform-origin: left center
 					.hover-line
 						position: absolute
 						top: 0
@@ -355,6 +364,11 @@ body
 					&:hover
 						span
 							color: inherit
+							transform: translateX(10px)
+						&:active
+							span
+								transition: transform .1s,color 0.2s
+								transform: scale(.92) translateX(10px)
 						.hover-line
 							&::after
 								transform: scaleX(1)
@@ -381,6 +395,7 @@ body
 				a
 					display: inline-block
 					position: relative
+					// transform-origin: left center
 					span
 						font-family: $CondMedium
 						+rem(font-size, 60px)
@@ -407,6 +422,7 @@ body
 							color: $white
 				&.nav__active
 					a
+						// pointer-events: none
 						span
 							color: $black
 						.mask-nav
@@ -423,10 +439,17 @@ body
 					a
 						span
 							color: rgba(255,255,255,.5)
+					// a
 					&.nav__active
 						a
 							span
 								color: $white
+					&:not(.nav__active)
+						a:hover
+							.touch-down-elem
+								&>span 
+									color: rgba(255,255,255,.7)
+									transition-duration: .2s !important
 .reval-container
 	transform: translateY(-50px)
 	opacity: 0
@@ -617,6 +640,75 @@ body
 		background-position: 50%
 		+rem(bottom, 60px)
 		+rem(right, 80px)
+		animation: moveUp 1.8s ease-in-out infinite
+		-moz-transform-style: preserve-3d
+		&:after
+			content: ''
+			display: inline-block
+			// +rem(bottom, 60px)
+			// +rem(right, 80px)
+			margin-left: 2px
+			margin-top: 5px
+			position: absolute
+			width: 20px
+			height: 20px
+			border-radius: 50%
+			// border: 20px solid transparent
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+			// opacity: 0
+			animation: pulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+
+
+@keyframes moveUp
+	0%
+		transform: none
+	10%
+		transform: none
+	45%
+		transform: translateY(15px)
+	55%
+		transform: translateY(15px)
+	90%
+		transform: none
+	100%
+		transform: none
+// @keyframes growUp
+// 	0%
+// 		transform: none
+// 		opacity: 0
+// 	20%
+// 		transform: none
+// 		opacity: 0
+// 	25%
+// 		transform: scale(1.25)
+// 		opacity: 0
+// 	30%
+// 		transform: scale(1.5)
+// 		opacity: .1
+// 	35%
+// 		transform: scale(1.75)
+// 		opacity: .2
+// 	40%
+// 		transform: scale(2)
+// 		opacity: .4
+// 	45%
+// 		transform: scale(2)
+// 		opacity: .3
+// 	50%
+// 		transform: scale(2)
+// 		opacity: .1
+// 	55%
+// 		transform: scale(2)
+// 		opacity: .0
+// 	90%
+// 		transform: none
+// 		opacity: 0
+// 	100%
+// 		transform: none
+// 		opacity: 0
+@keyframes pulse 
+	to 
+		box-shadow: 0 0 0 45px rgba(232, 76, 61, 0)
 // .swiper-container.animating .swiper-wrapper
 //     transition: 0s!important
 .swiper-container
@@ -676,20 +768,22 @@ body
 		+rem(top, 22px)
 		cursor: pointer
 		&:hover
+			svg
+				fill: color(link)
+		&:active
 			span
-				transform: scale(.7)
-				svg
-					fill: #9b9b9b
+				transform: scale(.9)
+				transition-duration: .2s
 		span
 			display: block
 			width: 100%
 			height: 100%
-			transition: transform .25s
+			transition: transform .1s $btntr
 			svg
 				width: 100%
 				height: 100%
 				fill: $black
-				transition: fill 0.3s
+				transition: fill 0.25s
 	.menu-hover__container
 		display: flex
 		width: 100%
@@ -736,11 +830,13 @@ body
 			.topper-container
 				display: flex
 				align-items: center
+				// align-items: flex-start
 				justify-content: space-between
 				width: 100%
 				.navigation-main
 					flex: 1
 					padding-left: 80px
+					// margin-top: 10px
 					+r(1365)
 						padding-left: 5.8%
 						width: 66.66%
@@ -843,7 +939,7 @@ body
 			@for $i from 1 through $item
 				.order_#{$i}
 					opacity: 1
-					transform: translateY(0)
+					transform: none
 					transition: transform 0.6s, opacity 0.6s
 					transition-delay: 0.2s + $i / 10
 .navigation-site
@@ -940,61 +1036,71 @@ body
 		li
 			position: relative
 			margin-bottom: 18px
-			&.marker
-				&:before
-					content: ''
-					position: absolute
-					left: -28px
-					top: 8px
-					width: 6px
-					height: 6px
-					background-color: $nameUpp
-					transition: background-color 0.25s
-					border-radius: 50%
-
-					+r(1366)
-						top: 6px
-						left: -20px
 			a
 				font-family: $Graphik
 				font-size: 20px
 				color: $black
 				position: relative
 				transition: color 0.25s
+				display: inline-block
+				
 				+r(1366)
 					font-size: 18px
+				&.marker
+					&:before
+						content: ''
+						position: absolute
+						left: -28px
+						top: 8px
+						width: 6px
+						height: 6px
+						background-color: $nameUpp
+						transition: background-color 0.25s
+						border-radius: 50%
+
+						+r(1366)
+							top: 6px
+							left: -20px
+				span 
+
+				// .touch-down-elem
+				// 	display: inline-block
+					
 				&:after
 					content: ""
 					position: absolute
 					bottom: -7px
-					left: 0
+					left: 0px
 					width: 100%
 					height: 1px
 					transform: scaleX(0)
 					transform-origin: 0 0
 					background-color: var(--color-link)
-					transition: transform 0.25s
+					transition: transform 0.15s, left .25s
 					.edge15 &
 						background-color: $nameUpp
-			&:hover
-				&.marker
-					&:before
-						background-color: var(--color-link)
-						.edge15 &
-							background-color: $nameUpp
-				a
+				&:hover
+					&.marker
+						&:before
+							background-color: var(--color-link)
+							.edge15 &
+								background-color: $nameUpp
 					color: var(--color-link)
 					.edge15 &
 						color: $nameUpp
+					// .touch-down-elem
 					&:after
 						transform: scaleX(1)
+						left: 10.5px
+						transition: transform 0.25s, left .25s
+							
 
 .menu-open
 	.overlay
 		opacity: 1
 		visibility: visible
 	.menu
-		transform: translate(0, 0)
+		transform: none
 
 .menu-primary
 	+rem(margin-bottom, 22px)
@@ -1431,21 +1537,6 @@ body
 						+rem(font-size, 22px)
 			& + .w__50
 				// transition-delay: 0.25s
-		// &.unload__item
-		// 	background-color: #FFF
-		// 	position: relative
-		// 	&:before
-		// 		content: ""
-		// 		position: absolute
-		// 		right: -1px
-		// 		bottom: -1px
-		// 		left: -1px
-		// 		top: -1px
-		// 		border: 1px solid #dfe4f0
-		// 	.portfolio__item
-		// 		background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 500 160' width='500' height='160'><rect x='35.7' y='36' fill='#DFE4EF' width='244.7' height='14'/><rect x='35.7' y='74.8' fill='#DFE4EF' width='450' height='36'/></svg>") 0% 0% no-repeat
-		// 		& > *
-		// 			opacity: 0
 		&.transition
 			// &:not(:nth-child(-n+3))
 			// 	.portfolio__item
@@ -1509,7 +1600,7 @@ body
 				top: 25px
 				left: 25px
 			.breadcrumbs
-				opacity: 0.7
+				
 				+rem(margin-bottom, 20px)
 				font-size: 0
 				+r(1366)
@@ -1529,6 +1620,14 @@ body
 							+rem(line-height, 21px)
 					a
 						pointer-events: auto
+						opacity: 0.7
+						+tr(opacity .3s)
+						span 
+							+tr(color .3s)
+						&:hover
+							opacity: 1
+							span
+								color: $white !important
 					span
 						color: $projectBread
 			.link-color

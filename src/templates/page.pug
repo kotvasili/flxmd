@@ -277,9 +277,10 @@ block content
 									- var navItems = ["Staylime", "Magento", "development", "design"]
 										each navItem, count in navItems
 											li.navigation__item
-												a(href="#" class="no-barba" data-index-screen=count)
-													span #{navItem}
-													.mask-nav
+												a(href="#" class="no-barba touch-down" data-index-screen=count)
+													.touch-down-elem
 														span #{navItem}
+														.mask-nav
+															span #{navItem}
 					include partials/_menu
 					include partials/_cross

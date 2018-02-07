@@ -189,6 +189,7 @@ var IndexPage = Barba.BaseView.extend({
     
     // Colorize();
     setTimeout(() => {
+     
       this.fullpage.initSwiper(); 
     },500);
  
@@ -343,7 +344,7 @@ function initSite() {
 }
 
 window.onload = () => {
-  initSite();
+
 };
 if (!window.Promise) {
   window.Promise = Promise;
@@ -351,5 +352,15 @@ if (!window.Promise) {
 document.addEventListener('DOMContentLoaded', () => {
 
 });
+ready(() => {
+  initSite();
+});
 
-
+// replacement for domcontentloaded event
+function ready(fn) {
+  if (document.readyState !== 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}

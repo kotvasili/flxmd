@@ -394,11 +394,11 @@ export default window.DOM.CanvRender = () => {
 
   canvas.ply = () => {
     isPlay = false;
-    console.log(isPlay);
+    // console.log(isPlay);
   };
   canvas.stp = () => {
     isPlay = true;
-    console.log(isPlay); 
+    // console.log(isPlay); 
   };
 
 };
