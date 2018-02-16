@@ -39,7 +39,7 @@ ScrollSlide.prototype = {
     this.swiper = $(this.options.swiperContainer);
     this.menuPrimary = $(this.options.mainMenu);
     this.logo = $('.logo');
-    this.swiperInstances = {};
+    this.swiperInstances = [];
     this.colorChange = null;
     this.canScroll = false;
     this.scrollController = null;
@@ -130,6 +130,11 @@ ScrollSlide.prototype = {
   },
   removeEvents: function() {
     $(this.element).off('mousewheel DOMMouseScroll');
+    console.log(this.swiperInstances);
+    this.swiperInstances.forEach(item => {
+      // console.log(this.swiper);
+      item.destroy();
+    });
   },
   checkDirection: function(e) {
     if(this.body.hasClass('menu-open')) {
@@ -226,8 +231,11 @@ ScrollSlide.prototype = {
       $(self.element).add(self.logo).addClass('light');
     }
     if(nxtInd === 0) {
-      this.scene.ply();
-      this.scene.classList.remove('hidden');
+      setTimeout(() => {
+        this.scene.ply();
+        this.scene.classList.remove('hidden'); 
+      },500);
+
     }else{
       this.scene.classList.add('hidden');
     }
@@ -381,7 +389,8 @@ ScrollSlide.prototype = {
       };
 
       let assignSettings = Object.assign(DefaultSettings, SwiperSettings);
-      this.swiperInstances = new Swiper('.instance-' + index, assignSettings);
+      this.swiperInstance = new Swiper('.instance-' + index, assignSettings);
+      self.swiperInstances.push(this.swiperInstance);
       
     });
   },

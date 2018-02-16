@@ -1,8 +1,8 @@
 import { Template } from './Template.js';
 import $ from 'jquery';
-import LazyElement from './LazyImage.js';
+import './LazyImage';
 import Swiper from 'swiper';
-import Cursor from './Cursor.js';
+// import Cursor from './Cursor.js';
 
 export default class RecentSlider {
   constructor() {
@@ -10,8 +10,8 @@ export default class RecentSlider {
   	this.carouselContainer = '.recent-carousel';
   	this.slide = 'grid__item';
   	this.arrows = '.arrow__container';
-  	this.lazy = new LazyElement();    
-    this.cursor = new Cursor();
+  	// this.lazy = new LazyElement();    
+    // this.cursor = new Cursor();
   	this.init();
   }
 
@@ -23,7 +23,7 @@ export default class RecentSlider {
 
   templateBuilder(slider) {
     $(this.container).append(slider.map((template) => Template(template))).promise().done(() => {
-      this.lazy.init();
+      window.DOM.LazyImage();
       this.sliderWork();
     });
   }
@@ -53,8 +53,7 @@ export default class RecentSlider {
           $('.link-color').css({
             'color': $(self.carouselContainer).parents('.barba-container').data('textcolor')
           });
-          self.cursor.init();
-          console.log(true);
+          // self.cursor.init();
         }    
       }
 

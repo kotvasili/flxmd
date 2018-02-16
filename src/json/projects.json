@@ -802,7 +802,7 @@
 			"bgimage": "#2a2a32",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Mobile",
 					"link": "#"
 				}
 			],
@@ -836,7 +836,7 @@
 			"bgimage": "#0432da",
 			"breadcrumbs": [
 				{
-					"name": "Webservice",
+					"name": "Print",
 					"link": "#"
 				},
 				{
@@ -855,15 +855,15 @@
 			"bgimage": "#0e6bb6",
 			"breadcrumbs": [
 				{
-					"name": "Magento",
+					"name": "Branding",
 					"link": "#"
 				},
 				{
-					"name": "Website",
+					"name": "Print",
 					"link": "#"
 				},
 				{
-					"name": "E-commerce",
+					"name": "Mobile",
 					"link": "#"
 				}
 			],
@@ -878,7 +878,7 @@
 			"bgimage": "#2056ca",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -893,7 +893,7 @@
 			"bgimage": "#000000",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -927,7 +927,7 @@
 					"link": "#"
 				},
 				{
-					"name": "E-commerce",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -942,11 +942,11 @@
 			"bgimage": "#0432da",
 			"breadcrumbs": [
 				{
-					"name": "Webservice",
+					"name": "Mobile",
 					"link": "#"
 				},
 				{
-					"name": "E-commerce",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -965,11 +965,11 @@
 					"link": "#"
 				},
 				{
-					"name": "Website",
+					"name": "Graphic design",
 					"link": "#"
 				},
 				{
-					"name": "E-commerce",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -984,7 +984,7 @@
 			"bgimage": "#2056ca",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Graphic design",
 					"link": "#"
 				}
 			],
@@ -999,7 +999,7 @@
 			"bgimage": "#000000",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Graphic design",
 					"link": "#"
 				}
 			],
@@ -1014,7 +1014,7 @@
 			"bgimage": "#2a2a32",
 			"breadcrumbs": [
 				{
-					"name": "Website",
+					"name": "Graphic design",
 					"link": "#"
 				}
 			],
@@ -1033,7 +1033,7 @@
 					"link": "#"
 				},
 				{
-					"name": "E-commerce",
+					"name": "Branding",
 					"link": "#"
 				}
 			],
@@ -1135,7 +1135,7 @@
 			"bgimage": "#2d2d2d",
 			"breadcrumbs": [
 				{
-					"name": "Webservice",
+					"name": "Branding",
 					"link": "#"
 				},
 				{
@@ -1154,7 +1154,7 @@
 			"bgimage": "#0432da",
 			"breadcrumbs": [
 				{
-					"name": "Webservice",
+					"name": "Branding",
 					"link": "#"
 				},
 				{

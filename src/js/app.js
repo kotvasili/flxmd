@@ -8,6 +8,7 @@ import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import Promise from './lib/Promise';
 import RecentSlider from './lib/RecentSilder.js';
+import './lib/LazyImage';
 import Crsor from './lib/Crsor.js';
 import browserDetection from 'browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
@@ -16,7 +17,9 @@ import './lib/domConf.js';
 import CanvRender from './lib/canv';
 // import dragscroll from 'dragscroll';
 // import WOW from '../../node_modules/wow.js/dist/wow.min.js';
-import inView from 'in-view';
+// import inView from 'in-view';
+// import ScrollAnim from './lib/ScrollAnim';
+
 $.fn.hasAttr = function(name) {
   return this.attr(name) !== undefined;
 };
@@ -24,36 +27,40 @@ $.fn.hasAttr = function(name) {
 var BarbaWitget = {
   init: function() {
     var scope = this;
-
-    // var wow = new WOW({
-    //   callback: function(box) {
-    //     box.classList.add('animate');
-    //     box.removeAttribute('style');
-    //   },
-    // });
-    // wow.init();
     this.menu = new Menu();
     this.menu.init();
     Barba.Pjax.start();
     Barba.Prefetch.init();
     Colorize();
-    Barba.Pjax.getTransition = function() {
+    Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
+    Barba.Pjax.preventCheck = (evt, element) => {
+      if ($(element).attr('href') && $(element).attr('href').indexOf('#') > -1)
+        return true;
+      else
+        return Barba.Pjax.originalPreventCheck(evt, element);
+    };
+    Barba.Pjax.getTransition = () => {
       return scope.MovePage;
     };
     // var myEase:Function = CustomEase.create("SlowMo", [{s:0,cp:0.394,e:0.644},{s:0.644,cp:0.894,e:1}]);
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
-
+      
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      // window.DOM.cursor.defaultType();
+      window.DOM.cursor.defaultType();
       // setTimeout(() => {
       Colorize();
       // },0);
+      window.DOM.LazyImage();
       this.menu.destroy();
       delete this.menu;
       this.menu = new Menu();
       this.menu.init();
-
+      // ScrollAnim();
+      // setTimeout(() => {
+      //   window.DOM.html.add(window.DOM.body).animate({scrollTop: 0},150);
+      //   console.log('2323');
+      // },100); 
     });    
   },
   MovePage: Barba.BaseTransition.extend({
@@ -70,12 +77,15 @@ var BarbaWitget = {
         }
       });
       this.oldCont = $(this.oldContainer);
-      window.DOM.hideScrollSimple();
+      
+      let fullwidth = this.oldCont.data('namespace') === 'home' ? true : false;
       let frame = this.oldCont.find('.wrapper-frame');
       let overlayOuter = this.oldCont.find('.overlay__color');
-      let overlayW = overlayOuter.outerWidth();
-      let overlayColor = overlayOuter.css('backgroundColor');      
 
+      let overlayW = overlayOuter.outerWidth();
+      window.DOM.hideScrollSimple();
+      let overlayColor = overlayOuter.css('backgroundColor');      
+      
       if(window.DOM.body.hasClass('menu-open')) {
         tl.set(window.DOM.body, {
           className: '-=menu-open'
@@ -85,6 +95,7 @@ var BarbaWitget = {
         this.delay = 0.3;
       }
       this.screenWidth = $(window).width();
+      
       tl
         .set(window.DOM.trnsContOUT, {
           width: overlayW,
@@ -110,12 +121,13 @@ var BarbaWitget = {
     pageIn: function() {
       var self = this;
       this.newCont = $(this.newContainer);
+      let fullwidth = this.newCont.data('namespace') === 'home' ? true : false;
       let frame = this.newCont.find('.wrapper-frame');
       let overlayInner = this.newCont.find('.overlay__color');
-      let overlayW = overlayInner.innerWidth();
+      let overlayW =   overlayInner.innerWidth();
       let overlayColor = this.newCont.data('bgcolor');
       let tlr = new TimelineMax();
-
+      
       tlr
 
         .set(window.DOM.trnsContIN, {
@@ -154,12 +166,13 @@ var BarbaWitget = {
           onComplete: () => {
            
             self.done();
+            $(window).scrollTop(0,0);
             TweenMax.to(frame, 0.5, {
               y: 0,
               autoAlpha: 1,
               clearProps: 'all',
               onComplete: () => {
-                window.DOM.showScrollSimple();
+                !fullwidth ? window.DOM.showScrollSimple(): false;
                 TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
                 TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
                 
@@ -180,11 +193,11 @@ var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
     window.DOM.CanvRender();
-    
+    window.DOM.body.addClass('index-page');
   },
   onEnterCompleted: function() {
     this.fullpage = new ScrollSlide('#work-wrapper'); 
-    window.DOM.body.addClass('index-page');
+    
     
     
     // Colorize();
@@ -198,11 +211,7 @@ var IndexPage = Barba.BaseView.extend({
   onLeave: function() {
     // this.menu.destroy();
     let canv = document.getElementById('scene');
-
-    this.fullpage.removeEvents();
     window.DOM.body.removeClass('index-page');
-    delete this.fullpage;
-
     canv.flyAway = true;
 
     setTimeout(function() {
@@ -212,7 +221,9 @@ var IndexPage = Barba.BaseView.extend({
     // delete this.menu;
   },
   onLeaveComplete: function() {
+    this.fullpage.removeEvents();
     
+    delete this.fullpage;
   }
 });
 
@@ -234,22 +245,19 @@ var PortfolioPage = Barba.BaseView.extend({
   onLeave: function() {
     
     this.portfolio.delete();
-    
+    delete this.portfolio;
     // delete this.menu;
   },
   onLeaveComplete: function() {
     console.log('PortfolioPage');
-    
-    // this.menu.destroy();
-    delete this.portfolio;
+    // delete this.portfolio;
   }
 });
 
 var PortfolioInnerPage = Barba.BaseView.extend({
   namespace: 'portfolio-project',
   onEnter: function() {
-    // this.menu = new Menu();
-    // this.menu.init();
+
   },
   onEnterCompleted: function() {
     let scrollsMain = document.getElementById('scroll-container');
@@ -329,7 +337,7 @@ function initSite() {
     window.addEventListener('test', null, options);
   } catch(err) {}
 
-  // window.DOM.cursor = new Crsor();
+  window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
   });
@@ -354,6 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ready(() => {
   initSite();
+  window.DOM.LazyImage();
+  // ScrollAnim();
 });
 
 // replacement for domcontentloaded event

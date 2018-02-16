@@ -102,6 +102,7 @@
             <div class="barba-container home-page" data-namespace="home" data-bgcolor="#cdfc91" data-textcolor="#a8d96b" data-titlecolor="#a8d96b" data-loader="#cdfc91">
               <header class="header">
                 <!--BEGIN header-->
+                <!-- на главной заменить ссылку на див. и будет счастье-->
                 <a class="logo" href="page.html">
                   <i class="staylime">
                     <svg width="151.1" height="80" viewBox="0 0 151.1 80" xmlns="http://www.w3.org/2000/svg">
@@ -160,7 +161,7 @@
                                       </a>
                                     </li>
                                     <li class="category__list-item">
-                                      <a class="link-color" href="contacts.html">
+                                      <a class="link-color" href="services.html">
                                         <div class="hover-line"></div>
                                         <span>Services</span>
                                       </a>
@@ -189,7 +190,7 @@
                           <div class="content__side">
                             <div class="container-carousel">
                               <div class="swiper-container">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper crsor-trgr" data-cursor-type="plus">
                                   <div class="swiper-slide" data-bgcolor-item="#0e6bb6" data-textcolor="#0e6bb6">
                                     <a class="image-container" href="portfolio-project.html">
                                       <div class="image-inner">
@@ -206,7 +207,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-prev">
+                              <div class="swiper-button-prev crsor-trgr" data-cursor-type="arrl">
                                 <div class="swiper-button_text">
                                   <span>Prev</span>
                                   <div class="icon">
@@ -217,7 +218,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-next">
+                              <div class="swiper-button-next crsor-trgr" data-cursor-type="arrr">
                                 <div class="swiper-button_text">
                                   <span>next</span>
                                   <div class="icon">
@@ -282,17 +283,12 @@
                                         <div class="name-tags">
                                           <ul>
                                             <li class="tag-item">
-                                              <a href="#">
-                                                <span>Magento</span>
-                                              </a>
-                                            </li>
-                                            <li class="tag-item">
-                                              <a href="#">
+                                              <a href="portfolio.html#website">
                                                 <span>Website</span>
                                               </a>
                                             </li>
                                             <li class="tag-item">
-                                              <a href="#">
+                                              <a href="portfolio.html#ecommerce">
                                                 <span>E-commerce</span>
                                               </a>
                                             </li>
@@ -308,17 +304,12 @@
                                         <div class="name-tags">
                                           <ul>
                                             <li class="tag-item">
-                                              <a href="#">
-                                                <span>Magento</span>
-                                              </a>
-                                            </li>
-                                            <li class="tag-item">
-                                              <a href="#">
+                                              <a href="portfolio.html#website">
                                                 <span>Website</span>
                                               </a>
                                             </li>
                                             <li class="tag-item">
-                                              <a href="#">
+                                              <a href="portfolio.html#ecommerce">
                                                 <span>E-commerce</span>
                                               </a>
                                             </li>
@@ -343,7 +334,7 @@
                           <div class="content__side">
                             <div class="container-carousel">
                               <div class="swiper-container">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper crsor-trgr" data-cursor-type="plus">
                                   <div class="swiper-slide" data-bgcolor-item="#000000" data-textcolor="#000000">
                                     <a class="image-container" href="portfolio-project.html" data-scale="true">
                                       <div class="image-inner">
@@ -367,7 +358,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-prev">
+                              <div class="swiper-button-prev crsor-trgr" data-cursor-type="arrl">
                                 <div class="swiper-button_text">
                                   <span>Prev</span>
                                   <div class="icon">
@@ -378,7 +369,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-next">
+                              <div class="swiper-button-next crsor-trgr" data-cursor-type="arrr">
                                 <div class="swiper-button_text">
                                   <span>next</span>
                                   <div class="icon">
@@ -530,7 +521,7 @@
                           <div class="content__side">
                             <div class="container-carousel">
                               <div class="swiper-container">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper crsor-trgr" data-cursor-type="plus">
                                   <div class="swiper-slide" data-bgcolor-item="#007431" data-textcolor="#007431">
                                     <a class="image-container" href="portfolio-project.html" data-scale="true">
                                       <div class="image-inner">
@@ -554,7 +545,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-prev">
+                              <div class="swiper-button-prev crsor-trgr" data-cursor-type="arrl">
                                 <div class="swiper-button_text">
                                   <span>Prev</span>
                                   <div class="icon">
@@ -565,7 +556,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="swiper-button-next">
+                              <div class="swiper-button-next crsor-trgr" data-cursor-type="arrr">
                                 <div class="swiper-button_text">
                                   <span>next</span>
                                   <div class="icon">
@@ -786,17 +777,25 @@
                       <div class="topper-container">
                         <div class="navigation-main order_1">
                           <div class="navigation-site">
-                            <a class="site__links touch-down active" href="page.html">
-                              <span>Home</span>
+                            <a class="site__links touch-down not-move active" href="page.html">
+                              <div class="touch-down-elem">
+                                <span>Home</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>Agency</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>Agency</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>News</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>News</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>Contact us</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>Contact us</span>
+                              </div>
                             </a>
                           </div>
                         </div>
@@ -812,49 +811,51 @@
                         <div class="navigation-category">
                           <div class="navigation-category__item order_3" data-idx="1">
                             <div class="category-head">
-                              <a href="portfolio.html">
-                                <span>Portfolio</span>
+                              <a class="touch-down not-move" href="portfolio.html">
+                                <div class="touch-down-elem">
+                                  <span>Portfolio</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down marker" href="portfolio.html#website">
                                     <div class="touch-down-elem">
                                       <span>Website</span>
                                     </div>
                                   </a>
                                 </li>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down" href="portfolio.html#ecommerce">
                                     <div class="touch-down-elem">
                                       <span>E-commerce</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#graphicdesign">
                                     <div class="touch-down-elem">
                                       <span>Graphic design</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#branding">
                                     <div class="touch-down-elem">
                                       <span>Branding</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#print">
                                     <div class="touch-down-elem">
                                       <span>Print</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#mobile">
                                     <div class="touch-down-elem">
                                       <span>Mobile</span>
                                     </div>
@@ -865,13 +866,15 @@
                           </div>
                           <div class="navigation-category__item order_4" data-idx="2">
                             <div class="category-head">
-                              <a href="industries.html">
-                                <span>Industries</span>
+                              <a class="touch-down not-move" href="industries.html">
+                                <div class="touch-down-elem">
+                                  <span>Industries</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
+                                <li>
                                   <a class="catagory__link touch-down marker" href="#">
                                     <div class="touch-down-elem">
                                       <span>Retail &amp; Wholesale</span>
@@ -892,8 +895,8 @@
                                     </div>
                                   </a>
                                 </li>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down" href="#">
                                     <div class="touch-down-elem">
                                       <span>Media &amp; Entertainment</span>
                                     </div>
@@ -918,13 +921,15 @@
                           </div>
                           <div class="navigation-category__item order_5" data-idx="3">
                             <div class="category-head">
-                              <a href="services.html">
-                                <span>Services</span>
+                              <a class="touch-down not-move" href="services.html">
+                                <div class="touch-down-elem">
+                                  <span>Services</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
+                                <li>
                                   <a class="catagory__link touch-down marker" href="magento.html">
                                     <div class="touch-down-elem">
                                       <span>Magento</span>
@@ -955,6 +960,7 @@
                       <div class="lower-container">
                         <div class="lang-container order_6">
                           <div class="lang">
+                            <!--.active для текущего языка-->
                             <a class="lang__item no-barba" href="#">
                               <span>English</span>
                             </a>

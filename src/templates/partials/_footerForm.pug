@@ -1,0 +1,53 @@
+form(action="")
+	input(class="hidden" type="text")
+	.form__field.field__checkbox
+		.form__head
+			span Type of project
+		.form__content
+			.checkboxes
+				- var checkboxes = [{"id":"web", "checked":true,"name":"Website"},{"id":"commerce", "checked":false,"name":"E-commerce"},{"id":"branding", "checked":false,"name":"Branding"}, {"id":"magento", "checked":false,"name":"Magento support"}, {"id":"mobile", "checked":false,"name":"Mobbile app"}]
+				each checkbox in checkboxes
+					.checkbox__item
+						input(
+						type="checkbox"
+						id=checkbox.id
+						checked=checkbox.checked
+						)
+						label(for=checkbox.id)
+							.check__custom
+								i
+							span #{checkbox.name}
+	.form__field
+		.form__head
+			span Your name
+		.form__content
+			.input
+				input(type="text" placeholder="Eugene Selenkov")
+	.form__field
+		.form__head
+			span Company
+		.form__content
+			.input
+				input(type="text" placeholder="Tesla LLC")
+	.form__field.field__short
+		.form__head
+			span E-mail
+		.form__content
+			.input
+				input(type="text" placeholder="es@tesla.com")
+	.form__field.field__short
+		.form__head
+			span Phone number
+		.form__content
+			.input
+				input(type="text" placeholder="+375 29 6727447")
+	.form__field.field__textarea
+		.form__head
+			span Comment
+		.form__content
+			.textarea
+				textarea.grab-container(type="text" placeholder="Our budget is about $12 000, and we want you to ...")
+	.form__field
+		.field__send
+			button(type="submit")
+				span Send a business request

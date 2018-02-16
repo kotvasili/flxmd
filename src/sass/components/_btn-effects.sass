@@ -2,7 +2,9 @@
 	&-elem
 		transition: transform .2s $btntr
 		position: relative
-	&:hover
+		display: inline-block
+		
+	&:hover:not(.not-move)
 		.touch-down
 			&-elem
 				transform: translateX(10px)
@@ -12,6 +14,13 @@
 					filter: blur(.0)
 					transition: transform .1s
 					transform: scale(.95) translateX(10px)
+	&.not-move
+		&:active
+			.touch-down
+				&-elem
+					filter: blur(.0)
+					transition: transform .1s
+					transform: scale(.95)
 .custom__btn
 	background-color: transparent
 	border-radius: 2px
@@ -19,13 +28,14 @@
 	display: inline-block
 	border: .5px solid $nameUpp
 	position: relative
+	+nosel
 	&:before
 		content: ''
 		display: inline-block
 		+coverdiv
 		z-index: -1
 		background-color: var(--color-link)
-		transition: transform .2s ease-in;
+		transition: transform .2s ease-in, opacity .1s
 		transform-origin: center right	
 		transform: scaleX(0)
 		opacity: .15
@@ -53,5 +63,64 @@
 		span
 			color: $black
 	&:active
-		transform: scale(.95)
+		&:before
+			opacity: .3
+		// transform: scale(.96)
 		transition-duration: .2s !important
+.category__list
+	+rem(margin, 0 -26px)
+	+clr
+	display: flex
+	flex-wrap: wrap
+	.category__list-item
+		width: 50%
+		+rem(padding, 0 26px)
+		+rem(margin-bottom, 6px)
+		a 
+			display: block
+			+rem(padding, 8px 0)
+			position: relative
+			span
+				+rem(font-size, 20px)
+				font-family: $Graphik
+				// border-top: 1px solid #c2c2c2
+				color: $black
+				display: inline-block
+				+rem(padding, 14px 0 22px 2px)
+				transition: color 0.2s, transform .2s cubic-bezier(.25,.1,.25,1)
+				position: relative
+				// transform-origin: left center
+			.hover-line
+				position: absolute
+				top: 0
+				right: 0
+				width: 100%
+				&::before
+					content: ""
+					position: absolute
+					left: 0
+					width: 100%
+					background-color: #c2c2c2
+					height: 1px
+				&::after
+					content: ""
+					position: absolute
+					left: 0
+					width: 100%
+					height: 1px
+					transition: 0.25s
+					transform: scaleX(0)
+					transform-origin: 0 0
+					will-change: transform
+			&:hover
+				span
+					color: inherit
+					transform: translateX(10px)
+				&:active
+					span
+						transition: transform .1s,color 0.2s
+						transform: scale(.92) translateX(10px)
+				.hover-line
+					&::after
+						transform: scaleX(1)
+						background-color: inherit

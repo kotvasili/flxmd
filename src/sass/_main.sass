@@ -13,6 +13,7 @@ button
 	outline: none
 
 html
+	width: 100%	
 	height: 100%
 	font-size: 16px
 	min-width: 980px
@@ -23,6 +24,7 @@ html
 	text-rendering: optimizeLegibility
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	// scroll-behavior: smooth;
 	&.safari
 		overflow: visible !important
 	+r(1366)
@@ -31,13 +33,21 @@ html
 		font-size: 12px
 	+rm(1921)
 		font-size: 20px
+	+rm(2500)
+		font-size: 22px
 body
 	// overflow: hidden
 	height: 100%
-	font-family: $Book
-	&.index-page
-		overflow: hidden !important
+	font-family: $Graphik
+	-webkit-overflow-scrolling: touch
+	// scroll-behavior: smooth;
+	&>span 
+		display: none
 		
+	&.index-page
+		// overflow: hidden !important
+		.logo
+			pointer-events: none
 	&.no-cursor 
 		cursor: none !important
 		*
@@ -64,11 +74,11 @@ body
 		background-color: $white
 	+scrollbar-thumb
 		background-color: rgba(0,0,0,.3);
-.dragscroll
-	cursor: grab
-[cursor-type]
-	& *
-		cursor: none
+// .dragscroll
+// 	cursor: grab
+// [cursor-type]
+// 	& *
+// 		cursor: none
 
 .root
 	height: 100%
@@ -78,8 +88,10 @@ body
 	visibility: hidden
 	background-color: $white
 	width: 100%
-.root-wrapper
 	height: 100%
+.root-wrapper
+	.safari &
+		height: 100%
 	width: 100%
 .header
 	position: fixed
@@ -87,6 +99,7 @@ body
 	width: 100%
 	top: 0
 	left: 0
+    will-change: transform
 .scroll-content
 	height: 100%
 [data-scrollbar]
@@ -102,14 +115,25 @@ body
 .logo
 	position: absolute;
 	// +rem(left, 80px)
-	left: 5%
+	left: 4.3%
+	// width: 7.8%
+	+rem(width,150px)
 	+rem(top, 31px)
 	z-index: 15
 	color: $black
-	transition: color 1.25s
+	transition: color 1.25s, padding .1s
+	-moz-transform-style: preserve-3d
+	&:active 
+		padding-left: .15%
+		padding-right: .15%
+		transition: color 1.25s, padding .2s
 	i
-		// display: block
+		display: block
+		width: 100%
+		svg
+			width: 100%
 		// +rem(width, 52px)
+		transform-origin: left center
 		+rem(height, 80px)
 		path
 			fill: currentcolor
@@ -133,7 +157,7 @@ body
 	align-items: center
 	justify-content: center
 	z-index: 5
-	
+    -webkit-transform: translateZ(0);
 	@supports(mix-blend-mode: difference)
 		mix-blend-mode: difference
 	&:active
@@ -190,7 +214,7 @@ body
 	.header-phone
 		display: inline-block
 		span
-			font-family: $Medium
+			font-family: $GraphikMedium
 			+rem(font-size, 18px)
 	.header-request
 		display: inline-block
@@ -215,6 +239,7 @@ body
 .wrapper-frame
 	width: 100%
 	background-color: $white
+	height: 100%
 	.loading &
 		background-color: transparent
 #scene
@@ -274,16 +299,19 @@ body
 		min-width: 0
 		.content__side
 			display: flex
+			flex-flow: row nowrap
 			align-items: stretch
 			justify-content: space-between
 			position: relative
 			&:nth-child(1)
-				width: 60%
+				width: 60vw
+				flex-shrink: 0
 				justify-content: flex-end
 					// width: 83.2%
 
 			&:nth-child(2)
 				width: 40%
+				flex-grow: 1
 				+rem(padding-top, 95px)
 				background-color: $white
 		.content__side-name
@@ -294,7 +322,7 @@ body
 			flex-direction: column
 			width: 100%
 			+r(1500)
-				padding-top: 2%
+				padding-top: 4%
 				padding-left: 10.3%
 				padding-right: 10%
 		.side-upp__container
@@ -303,12 +331,13 @@ body
 				font-family: $GraphikMedium
 				+rem(font-size, 20px)
 				color: $nameUpp
-				letter-spacing: -0.5px
+				letter-spacing: -0.8px
+				line-height: 1.8
 		.side-name__container
 			+rem(margin-bottom, 38px)
 			position: relative
 			.container-title
-				font-family: $GraphikMedium
+				font-family: $GraphikSemiBold
 				+rem(font-size, 40px)
 				line-height: 1.25
 				letter-spacing: -0.9px
@@ -316,63 +345,7 @@ body
 			position: relative
 			padding-right: 10.5%
 			transform-origin: 0 100%
-		.category__list
-			+rem(margin, 0 -26px)
-			+clr
-			display: flex
-			flex-wrap: wrap
-			.category__list-item
-				width: 50%
-				+rem(padding, 0 26px)
-				+rem(margin-bottom, 6px)
-				a 
-					display: block
-					+rem(padding, 8px 0)
-					position: relative
-					span
-						+rem(font-size, 20px)
-						font-family: $Graphik
-						// border-top: 1px solid #c2c2c2
-						color: $black
-						display: inline-block
-						+rem(padding, 14px 0 22px 2px)
-						transition: color 0.2s, transform .2s cubic-bezier(.25,.1,.25,1)
-						position: relative
-						// transform-origin: left center
-					.hover-line
-						position: absolute
-						top: 0
-						right: 0
-						width: 100%
-						&::before
-							content: ""
-							position: absolute
-							left: 0
-							width: 100%
-							background-color: #c2c2c2
-							height: 1px
-						&::after
-							content: ""
-							position: absolute
-							left: 0
-							width: 100%
-							height: 1px
-							transition: 0.25s
-							transform: scaleX(0)
-							transform-origin: 0 0
-							will-change: transform
-					&:hover
-						span
-							color: inherit
-							transform: translateX(10px)
-						&:active
-							span
-								transition: transform .1s,color 0.2s
-								transform: scale(.92) translateX(10px)
-						.hover-line
-							&::after
-								transform: scaleX(1)
-								background-color: inherit
+
 	.work-wrapper__overlay
 		position: fixed
 		top: 0
@@ -380,31 +353,34 @@ body
 		bottom: 0
 		width: 60%
 		transition: background-color .8s cubic-bezier(.7,0,.3,1)
+		-webkit-transform: translateZ(0);
 		// z-index: -1
 		// mix-blend-mode: multiply
 	.work-wrapper__navigation
 		position: fixed
 		z-index: 5
-		+rem(bottom, 57px)
+		+rem(bottom, 52px)
 		// +rem(left, 78px)
 		left: 5%
+		-webkit-transform: translateZ(0);
 		.navigation__container
 			.navigation__item
 				line-height: 0
-				+rem(margin-top, 9px)
+				// +rem(margin-top, 9px)
 				a
 					display: inline-block
 					position: relative
 					// transform-origin: left center
 					span
 						font-family: $CondMedium
-						+rem(font-size, 60px)
+						+rem(font-size, 48px)
 						color: rgba(0, 0, 0, .3)
 						text-transform: uppercase
-						+rem(line-height, 45px)
+						line-height: 1
 						transition: color 1.25s
 						position: relative
 						pointer-events: none
+						letter-spacing: 1px
 					.mask-nav
 						position: absolute
 						top: 0
@@ -485,37 +461,29 @@ body
 			&.order__4
 				.reval__span
 					transition-delay: 0.95s
-.section__active,
-.section__prev,
-.section__next,
-	.swiper-slide
-		img
-			// transform: scale(1.1)
-			// .ie-11 &
-			// 	transform: none
-				
 .content__side
 	.container-carousel
 		width: 83.2%
 		position: relative
 		overflow: hidden
-		
 		.swiper-container
 			height: 100%
-			// perspective: 1000px
 			.swiper-wrapper
-				// transform-style: flat
 			.swiper-slide
 				display: flex
 				overflow: hidden
-				// transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-				// transform-style: preverse-3d
+		.swiper-slide-active
+			.image-container
+				&:hover
+					img
+						opacity: 1	
 		.image-container
 			height: 100%
 			width: 100%
-			// backface-visibility: hidden
 			position: relative
-			// transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+			// &:hover
+			// 	img
+			// 		transform: scale(1.1)
 			.image-inner
 				position: absolute
 				width: 100%
@@ -525,14 +493,13 @@ body
 					width: 100%
 					height: 100%
 					object-fit: cover
-					// transition: 2s
-					// .ie-11 &
-					// 	transition: none
+					opacity: .8
+					+tr(opacity .25s)
 		[class^=swiper-button-]
 			position: absolute
 			right: 0
 			+rem(width, 200px)
-			height: 50%
+			height: 25%
 			z-index: 5
 			cursor: pointer
 			transition: opacity .25s
@@ -543,12 +510,12 @@ body
 			.swiper-button_text
 				display: inline-block
 				position: relative
-				transform: translateZ(0)
+				// transform: translateZ(0)
 				span
 					+rem(font-size, 36px)
 					text-transform: uppercase
 					color: $white
-					font-family: $CondBook
+					font-family: $CondMedium
 					position: relative
 					display: inline-block
 				.icon
@@ -568,10 +535,10 @@ body
 				+rem(margin-bottom, 50px)
 				span
 					left: 0
-					transition: transform $animation 0s
+					transition: transform .2s 0s $btntr
 				.icon
 					left: 100%
-					transition: opacity $animation 0s
+					transition: opacity .2s 0s
 			&:hover
 				.swiper-button_text
 					span
@@ -586,7 +553,7 @@ body
 				+rem(margin-top, 50px)
 				span
 					right: 0
-					transition: transform $animation 0s
+					transition: transform .2s 0s $btntr
 				.icon
 					right: 100%
 					transition: opacity $animation 0s
@@ -600,7 +567,7 @@ body
 	.content__side-news
 		position: absolute
 		left: 7.3%
-		+rem(bottom, 51px)
+		+rem(bottom, 50px)
 		right: 13%
 		padding-left: 5%
 		.news-head
@@ -608,7 +575,7 @@ body
 			color: #a3a3a3
 		.news-body
 			.news-app
-				+rem(margin-bottom, 5px)
+				+rem(margin-bottom, 9px)
 				span 
 					color: $nameUpp
 					font-family: $Graphik
@@ -628,8 +595,12 @@ body
 					+rem(font-size, 17px)
 					color: $bottonSection
 					font-family: $GraphikMedium
-					line-height: 1.8
+					line-height: 1.76;
 					letter-spacing: -.3px
+					display: inline-block
+					+tr(color .25s)
+					&:hover
+						color: color(link)
 	.icon-scroll
 		+rem(width, 24px)
 		+rem(height, 37px)
@@ -654,7 +625,7 @@ body
 			height: 20px
 			border-radius: 50%
 			// border: 20px solid transparent
-			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
 			// opacity: 0
 			animation: pulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
 
@@ -672,57 +643,24 @@ body
 		transform: none
 	100%
 		transform: none
-// @keyframes growUp
-// 	0%
-// 		transform: none
-// 		opacity: 0
-// 	20%
-// 		transform: none
-// 		opacity: 0
-// 	25%
-// 		transform: scale(1.25)
-// 		opacity: 0
-// 	30%
-// 		transform: scale(1.5)
-// 		opacity: .1
-// 	35%
-// 		transform: scale(1.75)
-// 		opacity: .2
-// 	40%
-// 		transform: scale(2)
-// 		opacity: .4
-// 	45%
-// 		transform: scale(2)
-// 		opacity: .3
-// 	50%
-// 		transform: scale(2)
-// 		opacity: .1
-// 	55%
-// 		transform: scale(2)
-// 		opacity: .0
-// 	90%
-// 		transform: none
-// 		opacity: 0
-// 	100%
-// 		transform: none
-// 		opacity: 0
 @keyframes pulse 
 	to 
 		box-shadow: 0 0 0 45px rgba(232, 76, 61, 0)
 // .swiper-container.animating .swiper-wrapper
 //     transition: 0s!important
 .swiper-container
-	.swiper-wrapper *
-		-moz-transform-style: preserve-3d;
-	.swiper-slide
-		.image-inner
-			+tr(transform .1s 1.2s)
-			transform: scale(1.25)
-			// will-change: transform
-		&.swiper-slide-active,&.swiper-slide-duplicate-active
+	&.swiper-container-horizontal
+		.swiper-wrapper *
+			-moz-transform-style: preserve-3d;
+		.swiper-slide
 			.image-inner
-				transform: none
-				+tr(transform 1.25s)
+				+tr(transform .1s .9s)
+				transform: scale(1.25)
+				// will-change: transform
+			&.swiper-slide-active,&.swiper-slide-duplicate-active
+				.image-inner
+					transform: none
+					+tr(transform 1s)
 		
 			// .image-inner
 			// 	transform: none
@@ -749,7 +687,7 @@ body
 	width: 77.5%
 	background-color: $white
 	z-index: 915
-	transition: transform .25s
+	transition: transform .3s ease-in-out
 	transform: translate(100%, 0)
 	.menu-content
 		position: absolute
@@ -836,6 +774,7 @@ body
 				.navigation-main
 					flex: 1
 					padding-left: 80px
+					+nosel
 					// margin-top: 10px
 					+r(1365)
 						padding-left: 5.8%
@@ -871,6 +810,8 @@ body
 						font-family: $Graphik
 						font-size: 16px
 						color: $bottonSection
+						.active
+							
 				.social-container
 					width: 61.5%
 					padding-left: 7.8%
@@ -886,10 +827,11 @@ body
 		margin-right: 31px
 	a
 		font-family: $Graphik
-		font-size: 16px
+		font-size: 17px
 		color: $bottonSection
 		position: relative
 		transition: color 0.25s
+		line-height: 1
 		&:after
 			content: ""
 			position: absolute
@@ -899,8 +841,11 @@ body
 			height: 1px
 			transform: scaleX(0)
 			transform-origin: 0 0
-			transition: transform 0.25s, background-color 0.25s
+			transition: transform 0.15s, background-color 0.25s
 			background-color: $bottonSection
+		&:hover 
+			&:after
+				transition: transform 0.25s, background-color 0.25s
 		&.facebook
 			&:hover
 				color: #4267b2
@@ -961,7 +906,7 @@ body
 				position: absolute
 				left: 0
 				transform: scaleX(0)
-				transition: transform .25s, background-color .25s
+				transition: transform .15s, background-color .25s
 				transform-origin: 0 0
 		&:not(:last-child)
 			+rem(margin-right, 48px)
@@ -972,24 +917,29 @@ body
 				color: var(--color-link)
 				&:after
 					background-color: var(--color-link)
+
 		&:hover
 			span
 				&:after
 					transform: scaleX(1)
+					transition: transform .25s, background-color .25s
 .navigation-category
 	display: flex
 	margin-top: 7%
+	+nosel
 	.navigation-category__item
 		display: flex
 		flex-direction: column
 		&:nth-child(1)
 			flex: 1
 			padding-left: 80px
+			padding-right: 5%
 			+r(1365)
 				padding-left: 5.8%
 		&:nth-child(2)
 			width: 32.5%
 			padding-left: 7.2%
+			padding-right: 5%
 			+rm(1366)
 				min-width: 302px
 			+r(1365)
@@ -999,6 +949,7 @@ body
 		&:nth-child(3)
 			width: 29%
 			padding-left: 5.8%
+			padding-right: 5%
 			+rm(1366)
 				min-width: 302px
 			+r(1365)
@@ -1016,12 +967,15 @@ body
 			.category-body
 				a
 					color: $nameUpp
+					&:before
+						background-color: $nameUpp
 	.category-head
 		+rem(margin-bottom, 26px)
 		a
-			font-family: $GraphikMedium
+			font-family: $GraphikSemiBold
 			font-size: 40px
 			letter-spacing: -.8px
+			line-height: 1.25
 			span
 				color: $nameUpp
 				transition: color 0.25s
@@ -1038,23 +992,25 @@ body
 			margin-bottom: 18px
 			a
 				font-family: $Graphik
-				font-size: 20px
+				+rem(font-size,17px)
 				color: $black
 				position: relative
 				transition: color 0.25s
 				display: inline-block
-				
+				line-height: 1.3
 				+r(1366)
-					font-size: 18px
+					font-size: 16px
 				&.marker
+					pointer-events: none
+					font-family: $GraphikMedium
 					&:before
 						content: ''
 						position: absolute
 						left: -28px
-						top: 8px
+						top: 5px
 						width: 6px
 						height: 6px
-						background-color: $nameUpp
+						background-color: $black
 						transition: background-color 0.25s
 						border-radius: 50%
 
@@ -1128,7 +1084,7 @@ body
 		+rem(margin-bottom, 13px)
 		a
 			span
-				font-family: $Medium
+				font-family: $GraphikMedium
 				+rem(font-size, 18px)
 				color: $black
 .menu-offices
@@ -1142,52 +1098,61 @@ body
 		vertical-align: top
 		+rem(margin-right, -4px)
 	.menu-offices_item-phone
-		font-family: $Medium
+		font-family: $GraphikMedium
 		+rem(font-size, 18px)
 		color: $black
 		line-height: 1.3
 		+rem(margin-bottom, 20px)
 	.menu-offices_item-address
-		font-family: $Book
+		font-family: $Graphik
 		+rem(font-size, 18px)
 		color: $black
 		line-height: 1.3
 .side-body__projects
 	position: absolute
-	+rem(bottom, 11px)
+	+rem(bottom, 47px)
 	left: 12.4%
 	right: 13%
+	overflow: visible !important
+	.swiper-projects
+		padding-bottom: 0 !important
+		min-height: 0 !important
 	.name-projects_head
-		font-family: $Book
+		font-family: $Graphik
 		+rem(font-size, 18px)
 		color: $grey-1
+
 	.name-projects_container
 		+rem(min-height, 46px)
 		+rem(padding-bottom, 40px)
 	.slider-container
 		position: relative
+		// +rem(min-height, 72px)
 	.name-projects_item
 		position: absolute
-		top: 0px
+		bottom: 0px
+		left: 0
 		transition: top 1.25s
-		+rem(min-height, 72px)
+		// +rem(min-height, 72px)
 		display: flex
 		flex-direction: column
 		justify-content: flex-end
 		// margin-top: 5px	
 		&.current
-			position: relative
+			// position: relative
 			z-index: 5
 			.name-inner
 				position: relative
 				transform: none
 				opacity: 1
+				visibility: visible
 		.name-inner
-			transition: transform 1.25s, opacity 1.25s
+			transition: transform 1.25s, opacity 1.25s,visibility 1.25s
 			transform: translate(0, 100%)
 			opacity: 0
+			visibility: hidden
 		.name-tags
-			+rem(margin-bottom, 9px)
+			+rem(margin-bottom, 10px)
 			ul
 				display: flex
 				.tag-item
@@ -1217,13 +1182,17 @@ body
 			color: $nameUpp
 			
 			&.link-color
-				line-height: 1.8;
+				line-height: 1.76
+				display: block
+				
 			span
+				// color: inherit
 				color: $bottonSection
 				transition: color .25s
 			&:hover
 				span
 					color: inherit
+					// color: $bottonSection
 .work-wrapper__scrollbar
 	position: fixed
 	right: 0
@@ -1270,18 +1239,18 @@ body
 				width: 100%
 				background-color: color(link)
 				transform: scaleY(0)
-				transform-origin: 50% 0
+				transform-origin: 50% 0%
 				transition: all .8s cubic-bezier(.7,0,.3,1)
 				display: inline-block
 			&.is-current
 				span
-					transform: translate3d(0,0,0) scaleY(1)
+					transform: translateY(0) scaleY(1)
 			&.is-up
 				span
-					transform: translate3d(0,0,0) scaleY(0)
+					transform: translateY(0) scaleY(0)
 			&.is-down
 				span
-					transform: translate3d(0,100%,0) scaleY(0)
+					transform: translateY(100%) scaleY(0)
 			a 
 				flex: 1 0 auto
 				display: block
@@ -1299,6 +1268,9 @@ body
 	transition: background-color .8s cubic-bezier(.7,0,.3,1)
 	.portfolio_project &
 		+rem(width, 400px)
+.portfolio__body
+	overflow: hidden
+	
 .frame__container
 	display: flex
 	width: 100%
@@ -1318,11 +1290,14 @@ body
 		position: relative
 		&:first-child
 			+rem(padding-top, 115px)
-			+rem(padding-bottom, 140px)
+			// +rem(padding-bottom, 140px)
+			display: flex 
+			flex-flow: column nowrap
+			justify-content: flex-end
+			+rem(padding-bottom,42px)
 			+rem(width, 480px)
-			padding-left: 5%
+			padding-left: 4.6%
 			padding-right: 5%
-			float: left
 			height: 100vh
 			position: fixed
 			left: 0
@@ -1351,18 +1326,25 @@ body
 				padding-top: 0
 				padding-right: 0
 .page-title
-	position: absolute
-	+rem(bottom, 42px)
-	left: 16.1%
-	right: 5%
+	// position: absolute
+	// +rem(bottom, 42px)
+	// left: 16.1%
+	// right: 5%
 	z-index: 2
+	max-width: 270px
 	.portfolio_project &
 		left: 19.5%
 	.breadcrumbs
-		+rem(margin, 0 0 -4px 3px)
+		+rem(margin, 0 0 15px 0px)
 		.breadcumbs__item
 			+rem(padding-right, 15px)
 			+rem(margin-right, 9px)
+			a 
+				&>span,&>i 
+					display: inline-block
+					vertical-align: middle
+				&>i 
+					+rem(padding-right,3px	)
 			&:not(:last-child)
 				&:after
 					content: "/"
@@ -1378,12 +1360,15 @@ body
 					color: $white
 				&:after
 					color: $white
+
 	.page__name
+
 		span
 			font-family: $CondMedium
 			+rem(font-size, 60px)
 			text-transform: uppercase
 			color: $black
+			line-height: 1
 		.portfolio_project &
 			span
 				color: $white
@@ -1399,25 +1384,51 @@ body
 			color: $black 
 		
 .filter-container
-	top: 46.5%
-	transform: translateY(-50%)
+	// top: 46.5%
+	// transform: translateY(-50%)
 	font-size: 0
-	position: relative
+	// position: relative
 	z-index: 5
+	// display: inline-block
+	margin-top: auto
+	margin-bottom: auto
+		
 	+rh(768)
 		padding-top: 0%
 	.filter-item
+		+nosel
 		&:not(:last-child)
 			+rem(margin-bottom, 18px)
 		a
+			position: relative
+			display: inline-block
+			
+			&:before
+				content: "";
+				position: absolute;
+				left: -28px;
+				top: 7px;
+				width: 6px;
+				height: 6px;
+				background-color: $black;
+				transition: background-color .25s, opacity .25s, transform .25s ease-in-out
+				border-radius: 50%;
+				opacity: 0
+				transform: translateX(10px)
 			span
 				font-family: $Graphik
 				+rem(font-size, 20px)
 				color: $black
+
 		&.is-active
+			pointer-events: none
 			a
 				span
 					font-family: $GraphikMedium
+				&:before
+					opacity: 1
+					transform: none
+
 .frame__names
 	position: fixed
 	+rem(bottom, -50px)
@@ -1436,7 +1447,7 @@ body
 			opacity: 0
 			.slide__element
 				span
-					font-family: $GraphikMedium
+					font-family: $GraphikSemiBold
 					+rem(font-size, 400px)
 					letter-spacing: -6.9px
 					white-space: nowrap
@@ -1447,7 +1458,7 @@ body
 	.projects-head
 		display: flex
 		justify-content: space-between
-		align-items: flex-end
+		align-items: flex-start
 		+rem(margin-bottom, 40px)
 		.head__title
 			flex: 1
@@ -1456,70 +1467,93 @@ body
 					font-family: $GraphikMedium
 					+rem(font-size, 20px)
 					letter-spacing: -.3px
+					color: $nameUpp
 
 			.title
 				h1
-					font-family: $GraphikMedium
+					font-family: $GraphikSemiBold
 					+rem(font-size, 80px)
 					letter-spacing: -1.6px
-		.head__order
+		.head__descr
+			max-width: 50%
 			+rem(margin-bottom, 19px)
-
-	.portfolio__body
- .portfolio__item-inner
-	// transform-style: preserve-3d
-	.link-color
-		// transform: translateZ(300px)
-		// text-shadow: 0 0 16px rgba(0,0,0,.6);
-.js-tilt-glare
-	pointer-events: none
+			.info__description
+				padding-right: 0
+			.info__container
+				+rem(margin-bottom,30px)
+				+rem(padding-top,35px)
 .grid__container
 	display: flex
-	flex-wrap: wrap
+	flex-flow: row wrap
 	overflow: hidden
+	+nosel
+	&.all-50
+		.grid__item
+			&.w__100
+				width: 50%
+				.portfolio__item
+					&:after
+						padding-bottom: 100%
+				.portfolio__item-header
+					.h2
+						+rem(font-size, 28px)
+						+r(1366)
+							+rem(font-size, 22px)
+			img
+				object-fit: cover
+				width: 100%
+				height: 100%
+			video
+				min-height: 100%
+				// width: auto
+				object-fit: cover
+	&.all-100
+		.grid__item
+			&.w__50
+				width: 100%
+				.portfolio__item
+					&:after
+						padding-bottom: 50%
+				.portfolio__item-header
+					.h2
+						+rem(font-size, 40px)
+						+r(1366)
+							+rem(font-size, 34px)
 	.grid__item	
 		position: relative
 		overflow: hidden
-		opacity: 0
-		transition: opacity .6s, transform .4s ease-out
-		transform: scale(.9)
-		&.is-visible
-
-			opacity: 1
-			transform: none
+		// opacity: 0
+		// transition: opacity .3s, transform .4s ease-out
+		// transform: scale(.9)
 		.portfolio__item
+			img,video
+				opacity: 0
+				+tr(opacity .25s)
+		&.is-visible
+			img,video
+				opacity: 1
+			// transform: none
+		.portfolio__item	
 			+tr(transform .1s)
+
 			&:active 
-				transform: scale(.99) !important
-			&-inner
-				position: absolute
-				left: -30px
-				right: -30px
-				top: -30px
-				bottom: -30px
-				will-change: initial !important
-				z-index: 0
-				// -webkit-backface-visibility: hidden
-
-
-					
-			&-content 
-
-				width: 100%
-				height: 100%
-				padding: 30px
-				&-inner 
-					position: relative	
-					width: 100%
-					height: 100%		
+				transition-duration: .2s
+				transform: scale(.98) !important
+		// .portfolio__item-video,.portfolio__item-img
+		// 	// &~div
+		// 	// 	+tr(transform .1s)
+		// 	+tr(transform .1s)
+		// 	&:active 
+		// 		// &~div
+		// 		// 	transition-duration: .2s
+		// 		// 	transform: scale(.95) !important	
+		// 		transition-duration: .2s
+		// 		transform: scale(.95) !important		
 		&.w__100
 			width: 100%
 			.portfolio__item
 				&:after
 					padding-bottom: 50%
-
-					
-					
 			.portfolio__item-header
 				.h2
 					+rem(font-size, 40px)
@@ -1570,12 +1604,14 @@ body
 			position: absolute
 			width: 100%
 			height: 100%
+			top: 0	
+			left: 0	
 			overflow: hidden
 			img
 				display: block
 				width: 100%
 				height: 100%
-				// object-fit: cover
+				object-fit: cover
 				contain: paint
 
 		.portfolio__item-video
@@ -1583,11 +1619,14 @@ body
 			width: 100%
 			height: 100%
 			overflow: hidden
-			&-inner
+			video
+				contain: paint;
+				min-width: 100%;
+				min-height: 100%;
 				width: 100%
-				video
-					width: 100%
-					height: 100%
+				height: 100%
+				object-fit: cover
+
 		.portfolio__item-header
 			position: absolute
 			+rem(top, 43px)
@@ -1606,6 +1645,8 @@ body
 				+r(1366)
 					+rem(margin-bottom, 10px)
 				.breadcumbs__item
+					display: inline-block
+						
 					&:not(:first-child)
 						+rem(margin-left, 9px)
 						+rem(padding-left, 13px)
@@ -1618,6 +1659,7 @@ body
 							+rem(font-size, 15px)
 							color: $projectBread
 							+rem(line-height, 21px)
+							opacity: .7
 					a
 						pointer-events: auto
 						opacity: 0.7
@@ -1631,7 +1673,7 @@ body
 					span
 						color: $projectBread
 			.link-color
-				font-family: $GraphikMedium
+				font-family: $GraphikSemiBold
 				letter-spacing: -.8px
 				span
 					color: $white
@@ -1687,9 +1729,10 @@ body
 			+rem(margin-bottom, 43px)
 			span 
 				font-family: $GraphikMedium
-				font-size: 80px
+				+rem(font-size, 80px)
 				color: $white
-				letter-spacing: -1.65px
+				+rem(letter-spacing, -1.65px)
+				// letter-spacing: -1.65px
 .screen__content, .resent__container
 	.l
 		+rem(padding, 0 $padding)
@@ -1703,6 +1746,8 @@ body
 		font-family: $Graphik
 		+rem(font-size, 20px)
 		line-height: 1.8
+	.arrows
+		cursor: pointer
 .info__container
 	display: flex
 	+rem(margin-bottom, $mb)
@@ -1765,6 +1810,8 @@ body
 
 .project-carousel
 	+rem(margin-bottom, $mb - 16)
+	overflow: hidden
+	font-size: 0	
 	.swiper-container
 		.swiper-pagination
 			bottom: 14px
@@ -1783,6 +1830,9 @@ body
 			position: relative
 			display: block
 			overflow: hidden
+			*
+				overflow: hidden
+				
 			&::after
 				content: ""
 				padding-bottom: 55.8%
@@ -1793,6 +1843,8 @@ body
 			left: 0
 			width: 100%
 			height: 100%
+			overflow: hidden
+				
 			.image-inner
 				height: 100%
 				width: 100%
@@ -1853,17 +1905,19 @@ body
 		flex: 0 0 100%
 		+rem(margin-bottom, $mb - 21)
 h1, .h1
-	font-family: $GraphikMedium
+	font-family: $GraphikSemiBold
 	+rem(font-size, 80px)
 	letter-spacing: -1.6px
 	line-height: 1.18
 h2, .h2
-	font-family: $GraphikMedium
+	font-family: $GraphikSemiBold
 	+rem(font-size, 40px)
 	letter-spacing: -.9px
 	line-height: 1.3
+	+r(1450)
+		+rem(font-size, 36px)
 h3, .h3
-	font-family: $GraphikMedium
+	font-family: $GraphikSemiBold
 	+rem(font-size, 28px)
 	// letter-spacing: -1.2px
 	line-height: 1.3
@@ -1930,6 +1984,7 @@ hr
 		.work__service-text
 			flex: 1
 .screen-section__picture
+	width: 100%	
 	+rem(margin-bottom, $padding / 2)
 	.p &
 		.picture__image
@@ -2072,6 +2127,7 @@ hr
 .counter__rate
 	display: flex
 	flex: 1
+	width: 100%	
 	.counter__rate-container
 		display: flex
 		justify-content: space-between
@@ -2240,6 +2296,7 @@ hr
 		+rem(padding-right, $padding)
 	.form__field
 		display: flex
+		+rem(max-width,811px)
 		&.field__short
 			.form__content
 				flex: 0 0 50%
@@ -2249,6 +2306,7 @@ hr
 			+rem(margin-bottom, 16px)
 		&.field__checkbox
 			+rem(margin-bottom, $padding / 2)
+			+rem(max-width,815px)
 			.form__head
 				+rem(padding-top, 13px)
 		&.field__textarea
@@ -2283,6 +2341,7 @@ hr
 			position: relative
 			margin-left: -1px
 			margin-top: -1px
+
 			&:last-child
 				label
 					&:after
@@ -2300,14 +2359,18 @@ hr
 						&:after
 							outline-color: #000
 						.check__custom
-							&:after
-								opacity: 1
-								visibility: visible
+							i
+								&:after
+									transition: width 0.25s
+									+rem(width, 23px)
+								// opacity: 1
+								// visibility: visible
 			label
 				+rem(padding, 14px 15px)
 				background-color: $white
 				display: flex
 				align-items: center
+				cursor: pointer
 				//fix
 				// cursor: pointer
 				&:before
@@ -2334,20 +2397,29 @@ hr
 					border: 1px solid #b1b1b1
 					+rem(margin-right, 17px)
 					position: relative
-					&:after
-						content: ''
-						position: absolute
-						+rem(top, -2px)
-						+rem(left, 2px)
-						+rem(width, 23px)
-						+rem(height, 17.5px)
-						background-image: url("../img/svg/icon-check.svg")
-						background-size: cover
-						z-index: 5
-						opacity: 0
-						visibility: hidden
-						transition: opacity 0.3s, visibility 0.3s
-						will-change: opacity
+					// &:after
+					i
+						width: 100%
+						height: 100%
+						// overflow: hidden
+						+tr(width .25s)
+						position: relative
+						display: inline-block
+						&:after
+							content: ''
+							position: absolute
+							+rem(top, -2px)
+							+rem(left, 2px)
+							+rem(width, 0)
+							+rem(height, 17.5px)
+							background-image: url("../img/svg/icon-check.svg")
+							+rem(background-size, 22px 17px)
+							background-position: bottom left
+							z-index: 5
+							// opacity: 0
+							// visibility: hidden
+							transition: width 0.1s 
+							will-change: width
 				span
 					font-family: $Graphik
 					+rem(font-size, 17px)
@@ -2414,7 +2486,29 @@ hr
 // 	.transition
 // 		opacity: 0
 // 		transform: translateY(20%)
+#barba-wrapper,.barba-container
+	height: 100%
+	width: 100%	
+[data-namespace="portfolio"]
+	.safari &
+		min-height: 100%
+		.frame__container
+			height: 100%
+		.frame__side
+			&:last-child
+				height: 100%
+				overflow-y: scroll
+				width: 100%
+				padding-left: 30rem
+				-webkit-overflow-scrolling: touch;
+			&:first-child
+				position: absolute
+				z-index: 1
+				pointer-events: none
+				.page-title,.filter-container
+					pointer-events: all
 
+		
 .barba-container.contacts
 	.screen__section-head
 		.upper
@@ -2472,6 +2566,7 @@ hr
 	width: 100%
 	+rem(margin, 14px 0 $padding / 2)
 	flex-wrap: wrap
+	+nosel
 	.tab__navigations
 		display: flex
 		justify-content: space-between
@@ -2485,27 +2580,28 @@ hr
 			+rem(margin-right, 48px)
 			position: relative
 			//fix
-			// cursor: pointer
-			user-select: none
+			cursor: pointer
+			// user-select: none
 			span
 				font-family: $Graphik
 				+rem(font-size, 20px)
 				letter-spacing: -.4px
+				pointer-events: none
 			&:after
 				position: absolute
 				content: ''
-				bottom: -4px
+				bottom: -3px
 				height: 3px
 				background-color: $black
 				left: 0
 				width: 100%
-				opacity: 0
-				transition: opacity .3s
+				transition: transform .25s
+				transform: scaleY(1) scaleX(0)
 			&.is-active
 				span
 					font-family: $GraphikMedium
 				&:after
-					opacity: 1
+					transform: scaleY(1) scaleX(1)
 	.tab__containers
 		// display: flex
 		// justify-content: space-between

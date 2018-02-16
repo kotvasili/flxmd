@@ -24,10 +24,12 @@ block content
 								.page-title
 									.breadcrumbs
 										ul
-											- var crumbs = ["Home", "Portfolio"]
+											- var crumbs = ["Portfolio"]
 											each crumbsItem in crumbs
 												li.breadcumbs__item
-													a(href="page.html")
+													a(href="portfolio.html")
+														i.back-icon
+															<svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16"><path fill="#FFF" fill-rule="evenodd" d="M.34271018 7.2426098a1.05032758 1.05032758 0 0 0-.00130226.0011405C-.074137 7.607537-.1162267 8.2393014.24747366 8.654922c.02989433.034162.06159971.0658003.09484724.0948971l6.99458721 7.0030276c.41543268.363915 1.04721881.3221517 1.41113382-.093281.36391501-.4154327.32215169-1.0472188-.09328099-1.4111338L2.41061142 7.9967476l6.24308946-6.2441862c.41562062-.3637004.45771031-.9954648.09400996-1.4110855-.36370035-.4156206-.99546483-.4577103-1.41108545-.0940099L.34271018 7.2426098z" opacity=".8"/></svg>
 														span #{crumbsItem}
 									.page__name
 										span#name-project Solcata
@@ -48,7 +50,7 @@ block content
 									section.screen__content
 										.l
 											
-											.info__container.l_p.wow.fadeInUp(data-wow-duration=".8s")
+											.info__container.l_p
 												.info__description
 													p Liesegang & Partner is an IP and commercial-law boutique law firm mainly focussing on the various aspects of national and international trademark law, design law and company law. With a team of top-level professionals, many of them being a&nbsp;“Fachanwalt für Gewerblichen Rechtsschutz” — German Certified IP Lawyer.
 													a.site__link.link-color(href="#" target="_blank")
@@ -64,7 +66,7 @@ block content
 																-var services = ["UI/UX", "Graphic design", "Responsive design"]
 																each service in services
 																	li #{service}
-											.project-carousel.wow.fadeInUp(data-wow-duration=".8s")
+											.project-carousel
 												.swiper-container
 													.swiper-wrapper
 														- var length = 5;
@@ -74,16 +76,16 @@ block content
 																	.image-inner
 																		img(class="swiper-lazy" src="img/gallery/gallery-1.jpg", alt="project-1")
 													.swiper-pagination
-													.swiper-button-next(cursor-type="next")
-													.swiper-button-prev(cursor-type="prev")
-											.screen__section.l_p.wow.fadeInUp(data-wow-duration=".8s")
+													.swiper-button-next.crsor-trgr(data-cursor-type="arrr")
+													.swiper-button-prev.crsor-trgr(data-cursor-type="arrl")
+											.screen__section.l_p
 												.screen__section-head
 													h2.h2 Challenge
 												.screen__section-content
 													p The key goal of the upgrade was to ensure com&shy;plete integrity security of the company’s data&shy;customers, orders and products. Extra things to consider was theme and extensions compatibility.
-											hr.wow.fadeInUp(data-wow-duration=".8s")
+											hr
 											.screen__section.p
-												.screen-section__text.wow.fadeInUp(data-wow-duration=".8s")
+												.screen-section__text
 													.screen-section__headline
 														h3.h3 Following the best practices and experience, the team outlined 4&nbsp;main stages of the upgrade:
 												mixin workService(image, title, description)
@@ -105,7 +107,7 @@ block content
 																if(subtitle)
 																	.work__service-subtitle!= subtitle
 																.work__service-description!= description
-												.work__service-list.wow.fadeInUp(data-wow-duration=".8s")
+												.work__service-list
 													+workService("", 
 														"Moving the website to the test hosting server",
 														"Website database and sources were duplicated and moved to the Mageworx test hosting server. This was done to avoid unnecessary downtime and any potential risks.")
@@ -126,26 +128,26 @@ block content
 														'<a href="#" class="link-color"><span>Store upgrade</span></a>', 
 														'',
 														'Website database and sources were duplicated and <a href="#" class="link-color"><span>moved to the Mageworx</span></a> test hosting server.')
-												.screen-section__picture.wow.fadeInUp(data-wow-duration=".8s")
+												.screen-section__picture
 													.picture__title Home page
 													.picture__image
 														img(src="img/pictures/picture.jpg", alt="")
 													.picture__caption After the upgrade, the client and the team tested the updated version
-											hr.wow.fadeInUp(data-wow-duration=".8s")
-											.screen__section.l_p.wow.fadeInUp(data-wow-duration=".8s")
+											hr
+											.screen__section.l_p
 												.screen__section-head
 													h2.h2 Result
 												.screen__section-content
 													p The website is successfully running the latest version of Magento 1 with all its bells, whistles and security patches. The client is satisfied with the speed and functionality improvements of the store.
-											.screen__section.l_p.wow.fadeInUp(data-wow-duration=".8s")
+											.screen__section.l_p
 												.review__container
 													.review__line.color-bg
 													.review__text The team from Mageworx is our reliable partner for develop&shy;ment and maintenance of Magento installations and individual extensions. They are very competent, always responsive to our needs, friendly and have reasonable service fees. Mageworx is definitely a clear recommendation for everyone who seeks a trustworthy Magento development partner.
 													.review__author
 														.author__name Jens Liesegang
 														.author__position Managing Partner at Liesegang&Partner
-											hr.wow.fadeInUp(data-wow-duration=".8s")
-											.screen__section.wow.fadeInUp(data-wow-duration=".8s")
+											hr
+											.screen__section
 												.case__container
 													.case__item.inversion
 														.case__item-picture
@@ -163,8 +165,8 @@ block content
 																h3 Not the team
 															.case__text
 																p The website is successfully run&shy;ning the latest version of Magento 1 with all its bells, whistles and se&shy;curity patches. The client is satis&shy;fied with the speed and function&shy;ality improvements of the store.
-											hr.wow.fadeInUp(data-wow-duration=".8s")
-											.screen__section.p.wow.fadeInUp(data-wow-duration=".8s")
+											hr
+											.screen__section.p
 												.about__container
 													.about__title 
 														h2 About Staylime
@@ -177,8 +179,8 @@ block content
 														-var content = ['Magento 1 with all its bells of 3rd party software vital for of 3rd party software vital for;','Magento is not about having the latest version;', 'Support of 3rd party software vital.']
 														each text in content
 															li #{text}
-											hr.wow.fadeInUp(data-wow-duration=".8s")
-											.screen__section.p.wow.fadeInUp(data-wow-duration=".8s")
+											hr
+											.screen__section.p
 												.screen__section-head
 													h3.h3 Best practies
 												.screen__section-text
@@ -190,8 +192,8 @@ block content
 															.rate__item
 																.rate__head!= rate.name
 																.rate__counter(data-rate=rate.num)!= rate.num
-											hr.wow.fadeInUp(data-wow-duration=".8s")
-											.screen__section.wow.fadeInUp(data-wow-duration=".8s")
+											hr
+											.screen__section
 												.view__pages
 													.view__pages-contaner
 														.view__pages-text
@@ -203,7 +205,7 @@ block content
 															.scroller__container
 																.scroll.grab-container.dragscroll
 																	img(src="img/scroll-image.jpg", alt="")
-									section.resent__container.wow.fadeInUp(data-wow-duration=".8s")
+									section.resent__container
 										.recent__bg
 											img(src="img/recent-bg.jpg", alt="")
 										.l
@@ -223,7 +225,7 @@ block content
 									section.section__request.request__fixed
 										.screen__content
 											.l
-												.form__request.wow.fadeInUp(data-wow-duration=".8s")
+												.form__request
 													.form__request-front
 														.screen__section.l_p
 															.screen__section-head
@@ -234,58 +236,7 @@ block content
 																		span contacts
 																	|  to call
 														.form__container
-															form(action="")
-																input(class="hidden" type="text")
-																.form__field.field__checkbox
-																	.form__head
-																		span Type of project
-																	.form__content
-																		.checkboxes
-																			- var checkboxes = [{"id":"web", "checked":true,"name":"Website"},{"id":"commerce", "checked":false,"name":"E-commerce"},{"id":"branding", "checked":false,"name":"Branding"}, {"id":"magento", "checked":false,"name":"Magento support"}, {"id":"mobile", "checked":false,"name":"Mobbile app"}]
-																			each checkbox in checkboxes
-																				.checkbox__item
-																					input(
-																					type="checkbox"
-																					id=checkbox.id
-																					checked=checkbox.checked
-																					)
-																					label(for=checkbox.id)
-																						.check__custom
-																						span #{checkbox.name}
-																.form__field
-																	.form__head
-																		span Your name
-																	.form__content
-																		.input
-																			input(type="text" placeholder="Eugene Selenkov")
-																.form__field
-																	.form__head
-																		span Company
-																	.form__content
-																		.input
-																			input(type="text" placeholder="Tesla LLC")
-																.form__field.field__short
-																	.form__head
-																		span E-mail
-																	.form__content
-																		.input
-																			input(type="text" placeholder="es@tesla.com")
-																.form__field.field__short
-																	.form__head
-																		span Phone number
-																	.form__content
-																		.input
-																			input(type="text" placeholder="+375 29 6727447")
-																.form__field.field__textarea
-																	.form__head
-																		span Comment
-																	.form__content
-																		.textarea
-																			textarea.grab-container(type="text" placeholder="Our budget is about $12 000, and we want you to ...")
-																.form__field
-																	.field__send
-																		button(type="submit")
-																			span Send a business request
+															include partials/_footerForm
 													.form__request-back
 														.screen__section.l_p
 															.screen__section-head

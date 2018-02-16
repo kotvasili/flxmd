@@ -20,6 +20,14 @@ block content
 							.frame___names-list#project__names
 						.frame__container#scroll-container
 							.frame__side.layout_fixed
+								.filter-container
+									- var filters = [["All","all"], ["Website",'website'], ["E-commerce",'ecommerce'], ["Graphic design",'graphicdesign'], ["Branding",'branding'], ["Print",'print'], ["Mobile",'mobile']]
+									- var activeClass = 1
+										each filterItem, index in filters
+											- var indexIncr = index + 1
+											.filter-item(class={"is-active": indexIncr === activeClass})
+												a.no-barba(href="#",data-filter=filterItem[1])
+													span #{filterItem[0]}
 								.page-title
 									.breadcrumbs
 										ul
@@ -30,15 +38,6 @@ block content
 														span #{crumbsItem}
 									.page__name
 										span#name-project #{currPage}
-								.filter-container
-									- var filters = ["All", "Website", "E-commerce", "Graphic design", "Branding", "Print", "Mobile"]
-									- var activeClass = 1
-										each filterItem, index in filters
-											- var indexIncr = index + 1
-											.filter-item(class={"is-active": indexIncr === activeClass})
-												a.no-barba(href="#")
-													span #{filterItem}
-								
 							.frame__side
 								.portfolio__projects
 									.projects-head
@@ -47,11 +46,14 @@ block content
 												span Favourite projects
 											.title
 												h1 Our results
-										.head__order
+										.head__descr
+											.info__container 
+												.info__description
+													p Liesegang & Partner is an IP and commercial-law boutique law firm mainly focussing on the various aspects of national and international trademark law, design law and company law. 
 											a(href="#" class="custom__btn")
 												span Make an order
 									.portfolio__body
-										.grid__container#grid__container.crsor-trgr(data-cursor-type="plus")
+										.grid__container#grid__container
 
 											
 					include partials/_menu

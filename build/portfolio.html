@@ -102,6 +102,7 @@
             <div class="barba-container" data-namespace="portfolio" data-bgcolor="#cdfc91" data-textcolor="#c1ed89" data-titlecolor="#c1ed89" data-loader="#cdfc91">
               <header class="header header-inner">
                 <!--BEGIN header-->
+                <!-- на главной заменить ссылку на див. и будет счастье-->
                 <a class="logo" href="page.html">
                   <i class="staylime">
                     <svg width="151.1" height="80" viewBox="0 0 151.1 80" xmlns="http://www.w3.org/2000/svg">
@@ -120,6 +121,43 @@
                 </div>
                 <div class="frame__container" id="scroll-container">
                   <div class="frame__side layout_fixed">
+                    <div class="filter-container">
+                      <div class="filter-item is-active">
+                        <a class="no-barba" href="#" data-filter="all">
+                          <span>All</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="website">
+                          <span>Website</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="ecommerce">
+                          <span>E-commerce</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="graphicdesign">
+                          <span>Graphic design</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="branding">
+                          <span>Branding</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="print">
+                          <span>Print</span>
+                        </a>
+                      </div>
+                      <div class="filter-item">
+                        <a class="no-barba" href="#" data-filter="mobile">
+                          <span>Mobile</span>
+                        </a>
+                      </div>
+                    </div>
                     <div class="page-title">
                       <div class="breadcrumbs">
                         <ul>
@@ -134,43 +172,6 @@
                         <span id="name-project">Portfolio</span>
                       </div>
                     </div>
-                    <div class="filter-container">
-                      <div class="filter-item is-active">
-                        <a class="no-barba" href="#">
-                          <span>All</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>Website</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>E-commerce</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>Graphic design</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>Branding</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>Print</span>
-                        </a>
-                      </div>
-                      <div class="filter-item">
-                        <a class="no-barba" href="#">
-                          <span>Mobile</span>
-                        </a>
-                      </div>
-                    </div>
                   </div>
                   <div class="frame__side">
                     <div class="portfolio__projects">
@@ -183,14 +184,19 @@
                             <h1>Our results</h1>
                           </div>
                         </div>
-                        <div class="head__order">
+                        <div class="head__descr">
+                          <div class="info__container">
+                            <div class="info__description">
+                              <p>Liesegang & Partner is an IP and commercial-law boutique law firm mainly focussing on the various aspects of national and international trademark law, design law and company law. </p>
+                            </div>
+                          </div>
                           <a class="custom__btn" href="#">
                             <span>Make an order</span>
                           </a>
                         </div>
                       </div>
                       <div class="portfolio__body">
-                        <div class="grid__container crsor-trgr" id="grid__container" data-cursor-type="plus"></div>
+                        <div class="grid__container" id="grid__container"></div>
                       </div>
                     </div>
                   </div>
@@ -224,17 +230,25 @@
                       <div class="topper-container">
                         <div class="navigation-main order_1">
                           <div class="navigation-site">
-                            <a class="site__links touch-down" href="page.html">
-                              <span>Home</span>
+                            <a class="site__links touch-down not-move" href="page.html">
+                              <div class="touch-down-elem">
+                                <span>Home</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>Agency</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>Agency</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>News</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>News</span>
+                              </div>
                             </a>
-                            <a class="site__links touch-down" href="contacts.html">
-                              <span>Contact us</span>
+                            <a class="site__links touch-down not-move" href="contacts.html">
+                              <div class="touch-down-elem">
+                                <span>Contact us</span>
+                              </div>
                             </a>
                           </div>
                         </div>
@@ -250,49 +264,51 @@
                         <div class="navigation-category">
                           <div class="navigation-category__item order_3" data-idx="1">
                             <div class="category-head">
-                              <a href="portfolio.html">
-                                <span>Portfolio</span>
+                              <a class="touch-down not-move" href="portfolio.html">
+                                <div class="touch-down-elem">
+                                  <span>Portfolio</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down marker" href="portfolio.html#website">
                                     <div class="touch-down-elem">
                                       <span>Website</span>
                                     </div>
                                   </a>
                                 </li>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down" href="portfolio.html#ecommerce">
                                     <div class="touch-down-elem">
                                       <span>E-commerce</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#graphicdesign">
                                     <div class="touch-down-elem">
                                       <span>Graphic design</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#branding">
                                     <div class="touch-down-elem">
                                       <span>Branding</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#print">
                                     <div class="touch-down-elem">
                                       <span>Print</span>
                                     </div>
                                   </a>
                                 </li>
                                 <li>
-                                  <a class="catagory__link touch-down" href="#">
+                                  <a class="catagory__link touch-down" href="portfolio.html#mobile">
                                     <div class="touch-down-elem">
                                       <span>Mobile</span>
                                     </div>
@@ -303,13 +319,15 @@
                           </div>
                           <div class="navigation-category__item order_4" data-idx="2">
                             <div class="category-head">
-                              <a href="industries.html">
-                                <span>Industries</span>
+                              <a class="touch-down not-move" href="industries.html">
+                                <div class="touch-down-elem">
+                                  <span>Industries</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
+                                <li>
                                   <a class="catagory__link touch-down marker" href="#">
                                     <div class="touch-down-elem">
                                       <span>Retail &amp; Wholesale</span>
@@ -330,8 +348,8 @@
                                     </div>
                                   </a>
                                 </li>
-                                <li class="true">
-                                  <a class="catagory__link touch-down marker" href="#">
+                                <li>
+                                  <a class="catagory__link touch-down" href="#">
                                     <div class="touch-down-elem">
                                       <span>Media &amp; Entertainment</span>
                                     </div>
@@ -356,13 +374,15 @@
                           </div>
                           <div class="navigation-category__item order_5" data-idx="3">
                             <div class="category-head">
-                              <a href="services.html">
-                                <span>Services</span>
+                              <a class="touch-down not-move" href="services.html">
+                                <div class="touch-down-elem">
+                                  <span>Services</span>
+                                </div>
                               </a>
                             </div>
                             <div class="category-body">
                               <ul>
-                                <li class="true">
+                                <li>
                                   <a class="catagory__link touch-down marker" href="magento.html">
                                     <div class="touch-down-elem">
                                       <span>Magento</span>
@@ -393,6 +413,7 @@
                       <div class="lower-container">
                         <div class="lang-container order_6">
                           <div class="lang">
+                            <!--.active для текущего языка-->
                             <a class="lang__item no-barba" href="#">
                               <span>English</span>
                             </a>

@@ -35,7 +35,7 @@ block content
 													.side-body__container.reval.order__3
 														.reval__span
 															ul.category__list
-																- var sectionSite = [["portfolio.html", "Portfolio"], ["portfolio.html","Agency"], ["portfolio.html", "Industries"], ["contacts.html", "Contact us"], ["contacts.html","Services"]]
+																- var sectionSite = [["portfolio.html", "Portfolio"], ["portfolio.html","Agency"], ["portfolio.html", "Industries"], ["contacts.html", "Contact us"], ["services.html","Services"]]
 																each sectionSiteItem in sectionSite
 																	li.category__list-item
 																		a(href=sectionSiteItem[0]).link-color
@@ -53,7 +53,7 @@ block content
 											.content__side
 												.container-carousel
 													.swiper-container
-														.swiper-wrapper
+														.swiper-wrapper.crsor-trgr(data-cursor-type="plus")
 															.swiper-slide(data-bgcolor-item="#0e6bb6" data-textcolor="#0e6bb6")
 																a(href="portfolio-project.html").image-container
 																	.image-inner
@@ -62,12 +62,12 @@ block content
 																a(href="portfolio-project-1.html").image-container
 																	.image-inner
 																		img(class="swiper-lazy" src="img/projects/project-2.jpg", alt="project-2")
-													.swiper-button-prev
+													.swiper-button-prev.crsor-trgr(data-cursor-type="arrl")
 														.swiper-button_text
 															span Prev
 															.icon
 																<svg width="32" height="22" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg"><path stroke="null" fill-rule="evenodd" d="m30.96046,10.11951l-27.62951,0l8.26562,-8.23385c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391c-0.38821,-0.38821 -1.0167,-0.38821 -1.40391,0l-9.82938,9.82839c-0.38225,0.38225 -0.38225,1.02166 0,1.40391l9.82938,9.82938c0.38821,0.38821 1.0167,0.38821 1.40391,0c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391l-8.26562,-8.03428l27.62951,0c0.54806,0 0.99287,-0.4448 0.99287,-0.99287c0,-0.54806 -0.4448,-0.99287 -0.99287,-0.99287z" clip-rule="evenodd"/></svg>
-													.swiper-button-next
+													.swiper-button-next.crsor-trgr(data-cursor-type="arrr")
 														.swiper-button_text
 															span next
 															.icon
@@ -93,23 +93,23 @@ block content
 																.name-projects_item
 																	.name-inner
 																		.name-tags
-																			- var tags = ["Magento", "Website", "E-commerce"]
+																			- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
 																			ul
 																				each tag in tags
 																					li.tag-item
-																						a(href="#")
-																							span #{tag}
+																						a(href=tag[0])
+																							span #{tag[1]}
 																		a(href="#").link-color 
 																			span IT Integrator Atlant Consult IT Integrator Atlant Consult IT Integrator Atlant Consult
 																.name-projects_item
 																	.name-inner
 																		.name-tags
-																			- var tags = ["Magento", "Website", "E-commerce"]
+																			- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
 																			ul
 																				each tag in tags
 																					li.tag-item
-																						a(href="#")
-																							span #{tag}
+																						a(href=tag[0])
+																							span #{tag[1]}
 																		a(href="#").link-color 
 																			span IT Integrator Solcata
 								section.screen.screen__category(data-dark="false")
@@ -118,7 +118,7 @@ block content
 											.content__side
 												.container-carousel
 													.swiper-container
-														.swiper-wrapper
+														.swiper-wrapper.crsor-trgr(data-cursor-type="plus")
 															.swiper-slide(data-bgcolor-item="#000000" data-textcolor="#000000")
 																a(href="portfolio-project.html" data-scale="true").image-container
 																	.image-inner
@@ -131,12 +131,12 @@ block content
 																a(href="portfolio-project.html" data-scale="true").image-container
 																	.image-inner
 																		img(class="swiper-lazy" src="img/grafics/grafics-3.jpg", alt="grafics-3")
-													.swiper-button-prev
+													.swiper-button-prev.crsor-trgr(data-cursor-type="arrl")
 														.swiper-button_text
 															span Prev
 															.icon
 																<svg width="32" height="22" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg"><path stroke="null" fill-rule="evenodd" d="m30.96046,10.11951l-27.62951,0l8.26562,-8.23385c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391c-0.38821,-0.38821 -1.0167,-0.38821 -1.40391,0l-9.82938,9.82839c-0.38225,0.38225 -0.38225,1.02166 0,1.40391l9.82938,9.82938c0.38821,0.38821 1.0167,0.38821 1.40391,0c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391l-8.26562,-8.03428l27.62951,0c0.54806,0 0.99287,-0.4448 0.99287,-0.99287c0,-0.54806 -0.4448,-0.99287 -0.99287,-0.99287z" clip-rule="evenodd"/></svg>
-													.swiper-button-next
+													.swiper-button-next.crsor-trgr(data-cursor-type="arrr")
 														.swiper-button_text
 															span next
 															.icon
@@ -198,7 +198,7 @@ block content
 											.content__side
 												.container-carousel
 													.swiper-container
-														.swiper-wrapper
+														.swiper-wrapper.crsor-trgr(data-cursor-type="plus")
 															.swiper-slide(data-bgcolor-item="#007431" data-textcolor="#007431")
 																a(href="portfolio-project.html" data-scale="true").image-container
 																	.image-inner
@@ -211,12 +211,12 @@ block content
 																a(href="portfolio-project.html" data-scale="true").image-container
 																	.image-inner
 																		img(class="swiper-lazy" src="img/grafics/grafics-3.jpg", alt="grafics-3")
-													.swiper-button-prev
+													.swiper-button-prev.crsor-trgr(data-cursor-type="arrl")
 														.swiper-button_text
 															span Prev
 															.icon
 																<svg width="32" height="22" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg"><path stroke="null" fill-rule="evenodd" d="m30.96046,10.11951l-27.62951,0l8.26562,-8.23385c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391c-0.38821,-0.38821 -1.0167,-0.38821 -1.40391,0l-9.82938,9.82839c-0.38225,0.38225 -0.38225,1.02166 0,1.40391l9.82938,9.82938c0.38821,0.38821 1.0167,0.38821 1.40391,0c0.38821,-0.38821 0.38821,-1.0167 0,-1.40391l-8.26562,-8.03428l27.62951,0c0.54806,0 0.99287,-0.4448 0.99287,-0.99287c0,-0.54806 -0.4448,-0.99287 -0.99287,-0.99287z" clip-rule="evenodd"/></svg>
-													.swiper-button-next
+													.swiper-button-next.crsor-trgr(data-cursor-type="arrr")
 														.swiper-button_text
 															span next
 															.icon

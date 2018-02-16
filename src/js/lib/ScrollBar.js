@@ -43,10 +43,17 @@ Scroller.prototype = {
     this.body = window.DOM.body[0];
 
     if(this.param._ajax) {
+      let mainGridCont = document.querySelector('#grid__container');
       const portfolio = await this.ajaxLoadPortfolio();
 
       this.templateBuilder = new TemplateBuilder(portfolio, '#grid__container', '#project__names');
       this.templateBuilder.init();
+      $(mainGridCont).on('prevpos_update',() => {
+        setTimeout(() => {
+          this.prevScrolltop = 0;
+        },600);
+        
+      });
     }
 
 
@@ -59,11 +66,13 @@ Scroller.prototype = {
     }
     
     this._onScroll = this.scrollEvent.bind(this);
-    window.addEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
+    this.scrollContainer = $('.frame__side:last-child')[0].offsetHeight <= $(window).height() && window.DOM.html.hasClass('safari')? $('.frame__side:last-child')[0]: document;
+    this.scrollContainer.addEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
+    // console.log(this.scrollContainer);
   },
 
   scrollEvent: function() {
-    let scrolltop = $(window).scrollTop();
+    let scrolltop = $(window).scrollTop() || this.scrollContainer.scrollTop;
     if(this.param._ajax) {
       if(scrolltop > this.prevScrolltop) {
         this.templateBuilder.updateTemplatesIfNeed(scrolltop);
@@ -82,6 +91,7 @@ Scroller.prototype = {
 
   fixedPositionSidebar: function(state) {
     var toPos = state;
+    // console.log(toPos);
     if(this.nextLink) {
       if(toPos > 500) {
         this.nextLink.classList.add('is-show');
@@ -121,7 +131,7 @@ Scroller.prototype = {
   },
 
   delete: function() {
-    window.removeEventListener('scroll',this._onScroll,true);
+    this.scrollContainer.removeEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
   }
 
 };

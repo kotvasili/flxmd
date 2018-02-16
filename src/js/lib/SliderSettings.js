@@ -3,7 +3,7 @@ let SwiperSettings = {
   lazyLoading: false,
   loop: true,
   watchSlidesProgress: true,
-  speed: 1250,
+  speed: 1000,
   // parallax: true,
   simulateTouch: false
 };

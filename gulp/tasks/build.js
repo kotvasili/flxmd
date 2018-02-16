@@ -11,7 +11,7 @@ const build = (cb, build=false) => {
       'pug',
       'webpack',
       'copy',
-      'critical',
+      // 'critical',
       'list-pages',
       cb);
   }

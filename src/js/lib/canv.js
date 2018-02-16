@@ -296,7 +296,7 @@ export default window.DOM.CanvRender = () => {
   };
   var canvas = document.querySelector('#scene');
 
-  var width = canvas.offsetWidth,
+  var width = canvas.offsetWidth - window.DOM.scrollWidth,
     height = canvas.offsetHeight;
 
   var renderer = new THREE.WebGLRenderer({
@@ -316,7 +316,7 @@ export default window.DOM.CanvRender = () => {
   canvas.flyAway = false;
 
   var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
-  camera.position.set(-120, cameraY, 90);
+  camera.position.set(-110, cameraY, 70);
 
   var light = new THREE.HemisphereLight(0xa8d96b, 'rgb(205, 252, 145)', 0.6);
   scene.add(light);
@@ -328,7 +328,7 @@ export default window.DOM.CanvRender = () => {
   light2.position.set(-300, 300, 500); 
   scene.add(light2);
 
-  var geometry = new THREE.IcosahedronGeometry(90, 4);
+  var geometry = new THREE.IcosahedronGeometry(85, 4);
   for(var i = 0; i < geometry.vertices.length; i++) {
     var vector = geometry.vertices[i];
     vector._o = vector.clone();  
@@ -387,7 +387,7 @@ export default window.DOM.CanvRender = () => {
   // console.log
 
   var resizeTm;
-  canvas.addEventListener('resize', function() {
+  window.addEventListener('resize', function() {
     resizeTm = clearTimeout(resizeTm);
     resizeTm = setTimeout(onResize, 200);
   });

@@ -15,8 +15,9 @@ nav.menu
 						.navigation-site
 							- var links = [["Home", "page.html"], ["Agency", "contacts.html"], ["News", "contacts.html"], ["Contact us", "contacts.html"]]
 							each link in links
-								a(href=link[1] class="site__links touch-down", class={active: link[0] === currPage})
-									span #{link[0]}
+								a(href=link[1] class="site__links touch-down not-move", class={active: link[0] === currPage})
+									.touch-down-elem
+										span #{link[0]}
 					.navigation-request.order_2
 						a(href="#" class="custom__btn")
 							span Make an order
@@ -26,8 +27,9 @@ nav.menu
 						mixin category(order, idx, name, ...linkArr)
 							.navigation-category__item(class="order_" + order, data-idx=idx)
 								.category-head
-									a(href=name[0])
-										span #{name[1]}
+									a(href=name[0]).touch-down.not-move
+										.touch-down-elem
+											span #{name[1]}
 								.category-body
 									ul
 										each item in linkArr
@@ -37,18 +39,19 @@ nav.menu
 														.touch-down-elem
 															span #{item[1]}
 											else
-												li(class=)
+												li
 													a(href=item[0] class="catagory__link touch-down "+item[2]+"")
 														.touch-down-elem
 															span #{item[1]}
-						+category(3, 1, ['portfolio.html', 'Portfolio'], ['#', 'Website', 'marker'], [ '#', 'E-commerce', 'marker'], ['#', 'Graphic design'], ['#', 'Branding'], ['#', 'Print'], ['#', 'Mobile'])
-						+category(4, 2, ['industries.html', 'Industries'], ['#', 'Retail & Wholesale', 'marker'], [ '#', 'Finance'], ['#', 'Healthcare'], ['#', 'Media & Entertainment', 'marker'], ['#', 'Telecommunications'], ['#', 'Education'])
+						+category(3, 1, ['portfolio.html', 'Portfolio'], ['portfolio.html#website', 'Website', 'marker'], [ 'portfolio.html#ecommerce', 'E-commerce'], ['portfolio.html#graphicdesign', 'Graphic design'], ['portfolio.html#branding', 'Branding'], ['portfolio.html#print', 'Print'], ['portfolio.html#mobile', 'Mobile'])
+						+category(4, 2, ['industries.html', 'Industries'], ['#', 'Retail & Wholesale', 'marker'], [ '#', 'Finance'], ['#', 'Healthcare'], ['#', 'Media & Entertainment'], ['#', 'Telecommunications'], ['#', 'Education'])
 						+category(5, 3, ['services.html', 'Services'], ['magento.html', 'Magento', 'marker'], ['#', 'Development'], [ '#', 'Design'])
 			.menu-lower
 				.lower-container
 					.lang-container.order_6
 						-var langs = ["English", "Русский"]
 						.lang
+							//.active для текущего языка
 							each lang in langs
 								a.lang__item(href="#" class="no-barba")
 									span #{lang}
