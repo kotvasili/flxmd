@@ -7,9 +7,10 @@ import Scroller from './lib/ScrollBar';
 import Colorize from './lib/Colorize';
 import Carousel from './lib/Carousel.js';
 import Promise from './lib/Promise';
+import scrollToEl from './lib/scrollToEl';
 import RecentSlider from './lib/RecentSilder.js';
 import './lib/LazyImage';
-import Crsor from './lib/Crsor.js';
+// import Crsor from './lib/Crsor.js';
 import browserDetection from 'browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
 // import Cursor from './lib/Cursor.js';
@@ -32,6 +33,8 @@ var BarbaWitget = {
     Barba.Pjax.start();
     Barba.Prefetch.init();
     Colorize();
+    window.DOM.tl = new TimelineMax();
+    window.DOM.tlr = new TimelineMax();
     Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
     Barba.Pjax.preventCheck = (evt, element) => {
       if ($(element).attr('href') && $(element).attr('href').indexOf('#') > -1)
@@ -47,7 +50,7 @@ var BarbaWitget = {
       
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
-      window.DOM.cursor.defaultType();
+      // window.DOM.cursor.defaultType();
       // setTimeout(() => {
       Colorize();
       // },0);
@@ -56,11 +59,7 @@ var BarbaWitget = {
       delete this.menu;
       this.menu = new Menu();
       this.menu.init();
-      // ScrollAnim();
-      // setTimeout(() => {
-      //   window.DOM.html.add(window.DOM.body).animate({scrollTop: 0},150);
-      //   console.log('2323');
-      // },100); 
+      scrollToEl();
     });    
   },
   MovePage: Barba.BaseTransition.extend({
@@ -71,11 +70,7 @@ var BarbaWitget = {
     },
     pageOut: function() {
       var deferred = Barba.Utils.deferred();
-      let tl = new TimelineMax({
-        onComplete: () => {
-          deferred.resolve();
-        }
-      });
+      
       this.oldCont = $(this.oldContainer);
       
       let fullwidth = this.oldCont.data('namespace') === 'home' ? true : false;
@@ -87,7 +82,7 @@ var BarbaWitget = {
       let overlayColor = overlayOuter.css('backgroundColor');      
       
       if(window.DOM.body.hasClass('menu-open')) {
-        tl.set(window.DOM.body, {
+        window.DOM.tl.set(window.DOM.body, {
           className: '-=menu-open'
         });
         this.delay = 0.6;
@@ -96,7 +91,7 @@ var BarbaWitget = {
       }
       this.screenWidth = $(window).width();
       
-      tl
+      window.DOM.tl
         .set(window.DOM.trnsContOUT, {
           width: overlayW,
           backgroundColor: overlayColor
@@ -114,6 +109,9 @@ var BarbaWitget = {
         .to(window.DOM.trnsContOUT, 1.5, {
           width: parseInt(this.screenWidth),
           ease: Circ.easeIn.Power2,
+          onComplete: () => {
+            deferred.resolve();
+          }
         });
 
       return deferred.promise;
@@ -126,10 +124,9 @@ var BarbaWitget = {
       let overlayInner = this.newCont.find('.overlay__color');
       let overlayW =   overlayInner.innerWidth();
       let overlayColor = this.newCont.data('bgcolor');
-      let tlr = new TimelineMax();
+      // let tlr = new TimelineMax();
       
-      tlr
-
+      window.DOM.tlr
         .set(window.DOM.trnsContIN, {
           width: overlayW,
           x: -overlayW,
@@ -175,8 +172,8 @@ var BarbaWitget = {
                 !fullwidth ? window.DOM.showScrollSimple(): false;
                 TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
                 TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
-                
-                tlr.kill();
+                window.DOM.tl.kill();
+                window.DOM.tlr.kill();
                
                 // document.body.style.overflow = 'visible';
               }
@@ -192,12 +189,14 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    window.DOM.CanvRender();
+    this.canv = document.getElementById('scene');
+    if(this.canv !== undefined && this.canv !== null) {
+      window.DOM.CanvRender();
+    }
     window.DOM.body.addClass('index-page');
   },
   onEnterCompleted: function() {
     this.fullpage = new ScrollSlide('#work-wrapper'); 
-    
     
     
     // Colorize();
@@ -209,20 +208,16 @@ var IndexPage = Barba.BaseView.extend({
 
   },
   onLeave: function() {
-    // this.menu.destroy();
-    let canv = document.getElementById('scene');
     window.DOM.body.removeClass('index-page');
-    canv.flyAway = true;
-
-    setTimeout(function() {
-      canv.renderer.forceContextLoss();
-    }, 1000);
-    //$('#scene').trigger('click');
-    // delete this.menu;
+    if(this.canv !== undefined && this.canv !== null) {
+      this.canv.flyAway = true;
+      setTimeout(() => {
+        this.canv.renderer.forceContextLoss();
+      }, 1000);
+    }
   },
   onLeaveComplete: function() {
     this.fullpage.removeEvents();
-    
     delete this.fullpage;
   }
 });
@@ -240,17 +235,13 @@ var PortfolioPage = Barba.BaseView.extend({
       animElements: '.js-scroll',
       _ajax: true
     }, true);
-    // Colorize();
   },
   onLeave: function() {
-    
     this.portfolio.delete();
     delete this.portfolio;
-    // delete this.menu;
   },
   onLeaveComplete: function() {
     console.log('PortfolioPage');
-    // delete this.portfolio;
   }
 });
 
@@ -337,7 +328,7 @@ function initSite() {
     window.addEventListener('test', null, options);
   } catch(err) {}
 
-  window.DOM.cursor = new Crsor();
+  // window.DOM.cursor = new Crsor();
   browserDetection({
     addClasses: true
   });
@@ -352,7 +343,7 @@ function initSite() {
 }
 
 window.onload = () => {
-
+  scrollToEl();
 };
 if (!window.Promise) {
   window.Promise = Promise;
@@ -361,6 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 ready(() => {
+  window.scrollTo(0,0);
   initSite();
   window.DOM.LazyImage();
   // ScrollAnim();

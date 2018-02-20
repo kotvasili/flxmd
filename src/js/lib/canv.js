@@ -1,6 +1,7 @@
 // import noise from './perlin';
 import * as THREE from 'three';
-import Barba from 'barba.js/dist/barba.min';
+// import Stats from 'stats-js';
+// import Barba from 'barba.js/dist/barba.min';
 export default window.DOM.CanvRender = () => {
 
   var module = global.noise = {};
@@ -295,15 +296,20 @@ export default window.DOM.CanvRender = () => {
       v);
   };
   var canvas = document.querySelector('#scene');
-
+  // var stats = new Stats();
+  // stats.domElement.style.position = 'absolute';
+  // stats.domElement.style.left = '0px';
+  // stats.domElement.style.top = '0px';
+  // document.body.appendChild( stats.domElement );
   var width = canvas.offsetWidth - window.DOM.scrollWidth,
     height = canvas.offsetHeight;
 
   var renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true
+    antialias: false
   });
-  renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+  // renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+  // renderer.setPixelRatio(1);
   renderer.setSize(width, height);
   renderer.setClearColor('rgb(205, 252, 145)');
 
@@ -358,7 +364,8 @@ export default window.DOM.CanvRender = () => {
 
   let isPlay = false;
 
-  function render(a) {
+  canvas.render = (a) => {
+    // stats.update();
     if(canvas.flyAway) {
       cameraY ++;
       camera.position.set(-120, cameraY, 90);
@@ -366,10 +373,10 @@ export default window.DOM.CanvRender = () => {
     if(!isPlay) { 
       updateVertices(a);
       renderer.render(scene, camera);
+      requestAnimationFrame(canvas.render);
     }
-    requestAnimationFrame(render);
-  }
-
+  };
+  
   function onResize() {
     canvas.style.width = '';
     canvas.style.height = '';
@@ -382,7 +389,7 @@ export default window.DOM.CanvRender = () => {
 
   var mouse = new THREE.Vector2(0.8, 0.5);
   // console.log(document.getElementById('scene').length);
-  requestAnimationFrame(render);
+  requestAnimationFrame(canvas.render);
   // canvas.addEventListener('mousemove', onMouseMove,window.DOM.passiveSupported ? { passive: true } : false);
   // console.log
 

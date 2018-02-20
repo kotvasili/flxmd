@@ -20,7 +20,7 @@ html
 	-webkit-tap-highlight-color: transparent
 	-webkit-user-drag: none;
 	-webkit-text-size-adjust: none
-	-webkit-overflow-scrolling: touch;
+	// -webkit-overflow-scrolling: touch;
 	text-rendering: optimizeLegibility
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -48,6 +48,8 @@ body
 		// overflow: hidden !important
 		.logo
 			pointer-events: none
+		.root-wrapper
+			height: 100%
 	&.no-cursor 
 		cursor: none !important
 		*
@@ -243,7 +245,7 @@ body
 	.loading &
 		background-color: transparent
 #scene
-	position: fixed
+	position: absolute
 	top: 0
 	left: 0
 	width: 100%;
@@ -261,11 +263,15 @@ body
 	display: flex
 	height: 100%
 	overflow: hidden
-	// padding-right: 8px
+	flex-flow: row nowrap
 	.work-wrapper__container
-		flex: 1
+		// flex: 1
+		width: 60vw
 		position: relative
-		// perspective: 1000px
+	.work-wrapper__sidecontainer
+		width: 40vw
+		position: relative
+		background-color: $white
 	.screen
 		position: absolute
 		width: 100%
@@ -273,159 +279,159 @@ body
 		opacity: 0
 		visibility: hidden
 		z-index: 1
-		// will-change: transform
 		overflow: hidden
 		&.section__active
-			z-index: 2
+			// z-index: 2
 			opacity: 1
 			visibility: visible
-		&.section__next,
-		&.section__prev
-			z-index: 3
-			opacity: 1
-			visibility: visible
-		.section__overlay
-			display: flex
-			height: 100%
-		.section__content
-			flex: 1
-			height: 100%
-			display: flex
-			min-width: 0
-	.section__content
-		flex: 1
-		height: 100%
+
+		// &.section__next,
+		// &.section__prev
+		// &.section__next
+		// 	z-index: 3
+		// 	opacity: 1
+		// 	visibility: visible
+	.content__side
 		display: flex
-		min-width: 0
-		.content__side
-			display: flex
-			flex-flow: row nowrap
-			align-items: stretch
-			justify-content: space-between
-			position: relative
-			&:nth-child(1)
-				width: 60vw
-				flex-shrink: 0
-				justify-content: flex-end
-					// width: 83.2%
+		height: 100%
+		width: 100%
+		flex-flow: row nowrap
+		align-items: stretch
+		justify-content: space-between
+		position: relative
+		&:nth-child(1)
+			width: 60vw
+			flex-shrink: 0
+			justify-content: flex-end
+			// position: fixed
+			// left: 0
+			// top: 0
+			height: 100%
+			contain: paint
 
-			&:nth-child(2)
-				width: 40%
-				flex-grow: 1
-				+rem(padding-top, 95px)
-				background-color: $white
-		.content__side-name
-			padding-left: 12.3%
-			padding-right: 13%
-			padding-top: 16.9%
-			display: flex
-			flex-direction: column
-			width: 100%
-			+r(1500)
-				padding-top: 4%
-				padding-left: 10.3%
-				padding-right: 10%
-		.side-upp__container
-			+rem(margin-bottom, 17px)
-			span
-				font-family: $GraphikMedium
-				+rem(font-size, 20px)
-				color: $nameUpp
-				letter-spacing: -0.8px
-				line-height: 1.8
-		.side-name__container
-			+rem(margin-bottom, 38px)
-			position: relative
-			.container-title
-				font-family: $GraphikSemiBold
-				+rem(font-size, 40px)
-				line-height: 1.25
-				letter-spacing: -0.9px
-		.side-body__container
-			position: relative
-			padding-right: 10.5%
-			transform-origin: 0 100%
+			// contain: paint
+			// backface-visibility: hidden
+			// transform: translateZ(-1px) scale(1.1)
+				// width: 83.2%
 
-	.work-wrapper__overlay
-		position: fixed
-		top: 0
-		left: 0
-		bottom: 0
-		width: 60%
-		transition: background-color .8s cubic-bezier(.7,0,.3,1)
-		-webkit-transform: translateZ(0);
+		&:nth-child(2)
+			width: 40%
+			// flex-grow: 1
+			+rem(padding-top, 95px)
+			background-color: $white
+			margin-left: auto
+			
+	.content__side-name
+		padding-left: 12.3%
+		padding-right: 13%
+		padding-top: 16.9%
+		display: flex
+		flex-direction: column
+		width: 100%
+		+r(1500)
+			padding-top: 4%
+			padding-left: 10.3%
+			padding-right: 10%
+	.side-upp__container
+		+rem(margin-bottom, 17px)
+		span
+			font-family: $GraphikMedium
+			+rem(font-size, 20px)
+			color: $nameUpp
+			letter-spacing: -0.8px
+			line-height: 1.8
+	.side-name__container
+		+rem(margin-bottom, 38px)
+		position: relative
+		.container-title
+			font-family: $GraphikSemiBold
+			+rem(font-size, 40px)
+			line-height: 1.25
+			letter-spacing: -0.9px
+	.side-body__container
+		position: relative
+		padding-right: 10.5%
+		transform-origin: 0 100%
+
+.work-wrapper__overlay
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	width: 60%
+	transition: background-color .8s cubic-bezier(.7,0,.3,1)
+	// -webkit-transform: translateZ(0);
 		// z-index: -1
 		// mix-blend-mode: multiply
-	.work-wrapper__navigation
-		position: fixed
-		z-index: 5
-		+rem(bottom, 52px)
-		// +rem(left, 78px)
-		left: 5%
-		-webkit-transform: translateZ(0);
+	will-change: background-color
+.work-wrapper__navigation
+	position: fixed
+	z-index: 5
+	+rem(bottom, 52px)
+	// +rem(left, 78px)
+	left: 5%
+	// -webkit-transform: translateZ(0);
+	.navigation__container
+		.navigation__item
+			line-height: 0
+			// +rem(margin-top, 9px)
+			a
+				display: inline-block
+				position: relative
+				// transform-origin: left center
+				span
+					font-family: $CondMedium
+					+rem(font-size, 48px)
+					color: rgba(0, 0, 0, .3)
+					text-transform: uppercase
+					line-height: 1
+					transition: color 1.25s
+					position: relative
+					pointer-events: none
+					letter-spacing: 1px
+				.mask-nav
+					position: absolute
+					top: 0
+					right: 0
+					overflow: hidden
+					width: 0
+					height: 100%
+					transition: width 1.25s
+					span
+						position: absolute
+						right: 0
+						left: initial
+						top: 0
+						bottom: 0
+						color: $white
+			&.nav__active
+				a
+					// pointer-events: none
+					span
+						color: $black
+					.mask-nav
+						width: 100%
+						left: 0
+						right: auto
+						span
+							left: 0
+	.light &
 		.navigation__container
 			.navigation__item
-				line-height: 0
-				// +rem(margin-top, 9px)
 				a
-					display: inline-block
-					position: relative
-					// transform-origin: left center
 					span
-						font-family: $CondMedium
-						+rem(font-size, 48px)
-						color: rgba(0, 0, 0, .3)
-						text-transform: uppercase
-						line-height: 1
-						transition: color 1.25s
-						position: relative
-						pointer-events: none
-						letter-spacing: 1px
-					.mask-nav
-						position: absolute
-						top: 0
-						right: 0
-						overflow: hidden
-						width: 0
-						height: 100%
-						transition: width 1.25s
-						span
-							position: absolute
-							right: 0
-							left: initial
-							top: 0
-							bottom: 0
-							color: $white
+						color: rgba(255,255,255,.5)
+				// a
 				&.nav__active
 					a
-						// pointer-events: none
 						span
-							color: $black
-						.mask-nav
-							width: 100%
-							left: 0
-							right: auto
-							span
-								left: 0
-.full-screen-container
-	&.light
-		.work-wrapper__navigation
-			.navigation__container
-				.navigation__item
-					a
-						span
-							color: rgba(255,255,255,.5)
-					// a
-					&.nav__active
-						a
-							span
-								color: $white
-					&:not(.nav__active)
-						a:hover
-							.touch-down-elem
-								&>span 
-									color: rgba(255,255,255,.7)
-									transition-duration: .2s !important
+							color: $white
+				&:not(.nav__active)
+					a:hover
+						.touch-down-elem
+							&>span 
+								color: rgba(255,255,255,.7)
+								transition-duration: .2s !important
 .reval-container
 	transform: translateY(-50px)
 	opacity: 0
@@ -462,108 +468,116 @@ body
 				.reval__span
 					transition-delay: 0.95s
 .content__side
-	.container-carousel
+	// .container-carousel
+	// 	width: 83.2%
+	// 	position: relative
+	// 	overflow: hidden
+	.swiper-container
+		height: 100%
 		width: 83.2%
 		position: relative
 		overflow: hidden
-		.swiper-container
-			height: 100%
-			.swiper-wrapper
-			.swiper-slide
-				display: flex
-				overflow: hidden
-		.swiper-slide-active
-			.image-container
-				&:hover
-					img
-						opacity: 1	
+		margin-left: auto
+		margin-right: 0
+		.swiper-wrapper
+		.swiper-slide
+			display: flex
+			overflow: hidden
+	.swiper-slide-active
 		.image-container
-			height: 100%
-			width: 100%
-			position: relative
-			// &:hover
-			// 	img
-			// 		transform: scale(1.1)
-			.image-inner
-				position: absolute
-				width: 100%
-				height: 100%
-				background-size: cover
+			&:hover
 				img
-					width: 100%
-					height: 100%
-					object-fit: cover
-					opacity: .8
-					+tr(opacity .25s)
-		[class^=swiper-button-]
-			position: absolute
-			right: 0
-			+rem(width, 200px)
-			height: 25%
-			z-index: 5
-			cursor: pointer
-			transition: opacity .25s
-			+vertical
-			+nosel
-			&.animating
-				pointer-events: none
-			.swiper-button_text
-				display: inline-block
+					opacity: 1	
+	.image-container
+		height: 100%
+		width: 100%
+		position: relative
+		display: block
+		
+		// &:hover
+		// 	img
+		// 		transform: scale(1.1)
+		// .image-inner
+		// 	position: absolute
+		// 	width: 100%
+		// 	height: 100%
+		// 	background-size: cover
+		img
+			width: 100%
+			height: 100%
+			object-fit: cover
+			contain: paint
+				// opacity: .8
+				// +tr(opacity .25s)
+	[class^=swiper-button-]
+		position: absolute
+		right: 0
+		+rem(width, 200px)
+		height: 25%
+		z-index: 5
+		cursor: pointer
+		transition: opacity .25s
+		+vertical
+		+nosel
+		&.animating
+			pointer-events: none
+		.swiper-button_text
+			display: inline-block
+			position: relative
+			// transform: translateZ(0)
+			span
+				+rem(font-size, 36px)
+				text-transform: uppercase
+				color: $white
+				font-family: $CondMedium
 				position: relative
-				// transform: translateZ(0)
-				span
-					+rem(font-size, 36px)
-					text-transform: uppercase
-					color: $white
-					font-family: $CondMedium
-					position: relative
-					display: inline-block
-				.icon
-					position: absolute
-					top: 50%
-					margin-top: -11px
-					opacity: 0
-					svg
-						path
-							fill: $white
-			&.swiper-button-disabled
-				opacity: 0.5
-		.swiper-button-next
-			bottom: 0
+				display: inline-block
+			.icon
+				position: absolute
+				top: 50%
+				margin-top: -11px
+				opacity: 0
+				svg
+					path
+						fill: $white
+		&.swiper-button-disabled
+			opacity: 0.5
+	.swiper-button-next
+		bottom: 0
+		.swiper-button_text
+			vertical-align: bottom
+			+rem(margin-bottom, 50px)
+			span
+				left: 0
+				transition: transform .2s 0s $btntr
+			.icon
+				left: 100%
+				transition: opacity .2s 0s
+		&:hover
 			.swiper-button_text
-				vertical-align: bottom
-				+rem(margin-bottom, 50px)
 				span
-					left: 0
-					transition: transform .2s 0s $btntr
+					// left: -20px
+					transform: translate(-20px, 0)
 				.icon
-					left: 100%
-					transition: opacity .2s 0s
-			&:hover
-				.swiper-button_text
-					span
-						// left: -20px
-						transform: translate(-20px, 0)
-					.icon
-						opacity: 1
-		.swiper-button-prev
-			top: 0
+					opacity: 1
+	.swiper-button-prev
+		top: 0
+		.swiper-button_text
+			vertical-align: top
+			+rem(margin-top, 50px)
+			span
+				right: 0
+				transition: transform .2s 0s $btntr
+			.icon
+				right: 100%
+				transition: opacity $animation 0s
+		&:hover
 			.swiper-button_text
-				vertical-align: top
-				+rem(margin-top, 50px)
 				span
-					right: 0
-					transition: transform .2s 0s $btntr
+					// right: -20px
+					transform: translate(20px, 0)
 				.icon
-					right: 100%
-					transition: opacity $animation 0s
-			&:hover
-				.swiper-button_text
-					span
-						// right: -20px
-						transform: translate(20px, 0)
-					.icon
-						opacity: 1
+					opacity: 1
 	.content__side-news
 		position: absolute
 		left: 7.3%
@@ -618,16 +632,19 @@ body
 			display: inline-block
 			// +rem(bottom, 60px)
 			// +rem(right, 80px)
-			margin-left: 2px
-			margin-top: 5px
+			// margin-left: 2px
+			// margin-top: 5px
+			+rem(margin-left,2px)
+			+rem(margin-top,5px)
 			position: absolute
-			width: 20px
-			height: 20px
+			+rem(width, 20px)
+			+rem(height, 20px)
 			border-radius: 50%
 			// border: 20px solid transparent
 			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
 			// opacity: 0
 			animation: pulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+			will-change: box-shadow
 
 
 @keyframes moveUp
@@ -653,12 +670,12 @@ body
 		.swiper-wrapper *
 			-moz-transform-style: preserve-3d;
 		.swiper-slide
-			.image-inner
+			img
 				+tr(transform .1s .9s)
 				transform: scale(1.25)
 				// will-change: transform
 			&.swiper-slide-active,&.swiper-slide-duplicate-active
-				.image-inner
+				img
 					transform: none
 					+tr(transform 1s)
 		
@@ -1113,7 +1130,10 @@ body
 	+rem(bottom, 47px)
 	left: 12.4%
 	right: 13%
-	overflow: visible !important
+	// overflow: visible !important
+	+rem(min-height,150px)
+	display: flex !important
+	align-items: stretch
 	.swiper-projects
 		padding-bottom: 0 !important
 		min-height: 0 !important
@@ -1123,10 +1143,14 @@ body
 		color: $grey-1
 
 	.name-projects_container
-		+rem(min-height, 46px)
+		// +rem(min-height, 46px)
+		width: 100%
 		+rem(padding-bottom, 40px)
+
 	.slider-container
 		position: relative
+		width: 100%
+		height: 100%
 		// +rem(min-height, 72px)
 	.name-projects_item
 		position: absolute
@@ -1146,6 +1170,10 @@ body
 				transform: none
 				opacity: 1
 				visibility: visible
+		&.hover 
+			a 
+				span 
+					color: inherit
 		.name-inner
 			transition: transform 1.25s, opacity 1.25s,visibility 1.25s
 			transform: translate(0, 100%)
@@ -1325,6 +1353,8 @@ body
 				width: calc(100% - 25rem)
 				padding-top: 0
 				padding-right: 0
+#stats
+	z-index: 500
 .page-title
 	// position: absolute
 	// +rem(bottom, 42px)
@@ -1340,11 +1370,23 @@ body
 			+rem(padding-right, 15px)
 			+rem(margin-right, 9px)
 			a 
+				color: #000
 				&>span,&>i 
 					display: inline-block
 					vertical-align: middle
+					color: inherit
 				&>i 
 					+rem(padding-right,3px	)
+					transition: transform .25s, opacity .2s
+					opacity: 0
+					transform: translateX(10px)
+				&>span 
+					transition: transform .25s
+					transform: translateX(-15px)
+				&:hover
+					&>span,&>i 
+						transform: none 
+						opacity: 1
 			&:not(:last-child)
 				&:after
 					content: "/"
@@ -1356,10 +1398,12 @@ body
 					color: $black
 					+rem(line-height, 21px)
 			.portfolio_project &
-				span
+				a
 					color: $white
-				&:after
-					color: $white
+				// span
+				// 	color: $white
+				// &:after
+				// 	color: $white
 
 	.page__name
 

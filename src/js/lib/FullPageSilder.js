@@ -33,7 +33,8 @@ export default function ScrollSlide(container, options) {
 ScrollSlide.prototype = {
   init() {
 
-    this.sections = $(this.options.screen);
+    // this.sections = $(this.options.screen);
+    this.sections = Array.from(document.querySelectorAll(this.options.screen));
     this.sectionsLength = this.sections.length;
     this.navItem = $(this.options.navigationItem);
     this.swiper = $(this.options.swiperContainer);
@@ -55,16 +56,18 @@ ScrollSlide.prototype = {
     this.initEventHandler();
     this.scrollEvent();
     this.twn = new TimelineMax();
-
+    this.slideTwn = new TimelineMax();
 
 
   },
   initEventHandler: function() {
     var self = this;
+
     this.navItem.each(function() {
     	let _ = $(this);
     	let a = _.find('a');
     	let parentIndex = _.index();
+      console.log(self.sections);
     	a.on('click',(event) => {
     		event.preventDefault();
 	      if(self.canScroll || _.hasClass('nav__active')) {
@@ -72,12 +75,10 @@ ScrollSlide.prototype = {
 	      }
 	      self.canScroll = true;
 
-	      this.item_curr = self.navItem.filter('.nav__active').index();
-	      this.item_next = parentIndex;
-
-	      self._curr_slide = self.sections[this.item_curr];
-	      self._next_slide = self.sections[this.item_next];
-
+	      self.curr_slide = self.options.currPage;
+	      self.next_slide = parentIndex;
+	      self._curr_slide = self.sections[self.item_curr];
+	      self._next_slide = self.sections[self.item_next];
 	      self.goToSlide(self._curr_slide, self._next_slide);
 
 	      self.setNavigationCurrItem(this.item_next);
@@ -97,8 +98,8 @@ ScrollSlide.prototype = {
 
       self.canScroll = true;
 
-      this.item_curr = $(this).parent().siblings('.is-current').index();
-      this.item_next = $(this).parent().index();
+      self.curr_slide = self.options.currPage;
+      self.next_slide = $(this).parent().index();
 
       self._curr_slide = self.sections[this.item_curr];
       self._next_slide = self.sections[this.item_next];
@@ -120,197 +121,219 @@ ScrollSlide.prototype = {
       e.preventDefault();
     });
     if(window.DOM.html.hasClass('firefox')) {
-      this.element[0].addEventListener('DOMMouseScroll',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+      this.element[0].addEventListener('DOMMouseScroll',(e) => debounce(self.checkDirection(e)));
     }else{
-      this.element[0].addEventListener('mousewheel',(e) => debounce(self.checkDirection(e)),window.DOM.passiveSupported ? { passive: true } : false);
+      this.element[0].addEventListener('mousewheel',(e) => debounce(self.checkDirection(e)));
     }
     
     
     // $(this.element).on('mousewheel.fp DOMMouseScroll.fp', (e) => debounce(self.checkDirection(e)));
   },
   removeEvents: function() {
-    $(this.element).off('mousewheel DOMMouseScroll');
-    console.log(this.swiperInstances);
+    this.twn.kill();
+    this.slideTwn.kill();
+    this.element.off('mousewheel DOMMouseScroll');
     this.swiperInstances.forEach(item => {
-      // console.log(this.swiper);
       item.destroy();
     });
   },
   checkDirection: function(e) {
+    // console.log(1);
+    e.preventDefault();
     if(this.body.hasClass('menu-open')) {
       return false;
     }
-    // console.log(e);
+    // console.log(2);
+    if(!this.canScroll) {
+      var delta = e.wheelDelta ? -e.wheelDelta : e.detail * 20;
+      if(delta > 50 ) {
+        this.curr_slide = this.options.currPage;
+        this.next_slide = this.curr_slide + 1;
+        this._curr_slide = this.sections[this.curr_slide];
+        this._next_slide = this.sections[this.next_slide];
+        this.canScroll = true;
+        this.moveSection();
+        return false;
 
-    var delta = e.wheelDelta ? -e.wheelDelta : e.detail * 20;
-    if(delta > 50 && !this.canScroll) {
-      this.canScroll = true;
-      this.nextSection();
-      return false;
-    } else if(delta < -50 && !this.canScroll) {
-      this.canScroll = true;
-      this.prevSection();
-      return false;
+      } else if(delta < -50) {
+        
+        this.curr_slide = this.options.currPage;
+        this.next_slide = this.curr_slide - 1;
+        this._curr_slide = this.sections[this.curr_slide];
+        this._next_slide = this.sections[this.next_slide];
+        console.log(this._curr_slide,this._next_slide);
+        this.canScroll = true;
+        this.moveSection();
+        return false;
+
+        // this.prevSection();
+      }
     }
+
   },
 
-  nextSection: function() {
-
-    this.curr_slide = this.options.currPage;
-    this.next_slide = this.curr_slide + 1;
-
-    this._curr_slide = this.sections[this.curr_slide];
-    this._next_slide = this.sections[this.next_slide];
-
+  moveSection: function() {
     if(typeof this._next_slide === 'undefined') {
       this.canScroll = false;
       return false;
     }
-
-    this.goToSlide(this._curr_slide, this._next_slide);
     this.setNavigationCurrItem(this.next_slide);
-
-    this.options.currPage = this.next_slide;
-    this.setScrollBar(this.next_slide);
-  },
-  prevSection: function() {
-
-    this.curr_slide = this.options.currPage;
-    this.next_slide = this.curr_slide - 1;
-
-    this._curr_slide = this.sections[this.curr_slide];
-    this._next_slide = this.sections[this.next_slide];
-
-    if(typeof this._next_slide === 'undefined') {
-      this.canScroll = false;
-      return false;
-    }
-
     this.goToSlide(this._curr_slide, this._next_slide);
-    this.setNavigationCurrItem(this.next_slide);
-
+    
     this.options.currPage = this.next_slide;
     this.setScrollBar(this.next_slide);
   },
   sapEnd: function(currentItem, nextItem) {
-    // var self = this;
-    var remove = null;
-    if(currentItem < nextItem) {
-      remove = this.options.sectionNext;
-    } else {
-      remove = this.options.sectionPrev;
-    }
-    if(nextItem > 0) {
-      this.scene.stp();
-    }
- 
-    $(this.sections[nextItem]).removeClass(remove).siblings().removeClass('section__active');
 
+    this.sections.filter((child) => {
+      child.classList.remove('section__active');
+    });
+    nextItem.classList.add('section__active');
     setTimeout(() => {
       this.canScroll = false;	
     }, 370);
   },
   goToSlide: function(curr, next) {
     var self = this;
-    let nxt = $(next);
-    let crr = $(curr);
-    let nxtInd = nxt.index();
-    let crrInd = crr.index();
-    let crrContent = crr.find('.content__side').eq(0);
-    let nxtContent = nxt.find('.content__side').eq(0);
-    let swiperActive = nxt.find('.swiper-slide-active');
-    if(nxt.find('.container-carousel').length) {
-      this.setColor(swiperActive.data('bgcolor-item'), swiperActive.data('textcolor'));
+    // let nxt = $(next);
+    // let crr = $(curr);
+    
+    let nxtInd = this.curr_slide;
+    let crrInd = this.next_slide;
+    console.log(nxtInd,crrInd);
+    let crrContent = curr.querySelector('.content__side');
+    let nxtContent = next.querySelector('.content__side');
+    let swiperActive = next.querySelector('.swiper-slide-active');
+    // if(next.find('.swiper-container').length) {
+    next.classList.add('section__active');
+    if(swiperActive !== null) {
+      this.setColor(swiperActive.getAttribute('data-bgcolor-item'), swiperActive.getAttribute('data-textcolor'));
     } else {
-      this.setColor(nxt.data('bgcolor'), nxt.data('textcolor'));
+      this.setColor(next.dataset.bgcolor, next.dataset.textcolor);
     }
 
-    if (nxt.data('dark')) {
-      $(self.element).add(self.logo).removeClass('light');
+    if (next.dataset.dark !== null) {
+      this.element.add(this.logo).removeClass('light');
     } else {
-      $(self.element).add(self.logo).addClass('light');
+      this.element.add(this.logo).addClass('light');
     }
-    if(nxtInd === 0) {
-      setTimeout(() => {
-        this.scene.ply();
-        this.scene.classList.remove('hidden'); 
-      },500);
+    if(this.scene !== null) {
+      if(nxtInd === 0) {
+        setTimeout(() => {
+          this.scene.ply();
+          requestAnimationFrame(this.scene.render);
+          this.scene.classList.remove('hidden'); 
+        },500);
+      }else{
+        this.scene.classList.add('hidden');
+        setTimeout(() => {
+          this.scene.stp();
+        },100);
+      }
+    }
+    
+    // curr.addClass('section__prev')
+    if(crrInd > nxtInd) {
+      // requestAnimationFrame(() => {
 
-    }else{
-      this.scene.classList.add('hidden');
-    }
-    if(nxtInd > crrInd) {
       this.twn
-        .fromTo(crr, 1.2, {
-          y: '0%'
+        .fromTo(curr, 1.2, {
+          yPercent: 0
         }, {
-          y: '-=100%',
+          yPercent: -100,
           ease: Expo.easeInOut,
           force3D:true,
         })
         .fromTo(crrContent, 1.2,{
-          y: '0%'
+          yPercent: 0
         },{
-          y: '+=40%',
+          yPercent: 40,
           ease: Expo.easeInOut,
-          force3D:true,
+
+          // force3D:true,
         }, '-=1.2')
-        .fromTo(nxt, 1.2, {
-          className: '+=section__next',
-          y: '100%',
+        .fromTo(next, 1.2, {
+          // className: '+= section__active',
+          yPercent: 100,
         }, {
-          className: '+=section__active',
-          y: '-=100%',
+          // className: '+=',
+          yPercent: 0,
           ease: Expo.easeInOut,
+          // rotation:0.001,
           force3D:true,
-          clearProps: 'transform',
+          // willChange: 'transform',
+          // clearProps: 'All',
+          //here
+
+        }, '-=1.2')
+        .fromTo(nxtContent, 1.2,{
+          yPercent: -40
+        },{
+          yPercent: 0,
+          ease: Expo.easeInOut,
+          // force3D: true,
+          // rotation:0.001,
+          // willChange: 'transform',
+          // clearProps: 'All',
           onComplete: () => {
-            self.sapEnd(crrInd, nxtInd);
+            TweenMax.set(nxtContent,{clearProps:'all'});
+            TweenMax.set(next,{clearProps:'all'});
+            // TweenMax.set(crrContent,{clearProps:'all'});
+            // TweenMax.set(curr,{clearProps:'all'});
+            self.sapEnd(curr, next);
+            // this.twn.kill();
           }
-        }, '-=1.2')
-        .fromTo(nxtContent, 1.25,{
-          y: '-40%'
-        },{
-          y: '+=40%',
-          ease: Expo.easeInOut,
-          clearProps: 'transform',
         }, '-=1.2'); 
+      // });
     } else {
+      // requestAnimationFrame(() => {
       this.twn
-        .fromTo(crr, 1.25, {
-          y: '0%'
+        .fromTo(curr, 1.2, {
+          yPercent : 0
         }, {
-          y: '+=100%',
+          yPercent: 100,
           ease: Expo.easeInOut,
           force3D:true,
         })
-        .fromTo(crrContent, 1.25,{
-          y: '0%'
+        .fromTo(crrContent, 1.2,{
+          yPercent: 0
         },{
-          y: '-=40%',
+          yPercent: -40,
           ease: Expo.easeInOut,
-        }, '-=1.25')
-        
-        .fromTo(nxt, 1.25, {
-          className: '+=section__prev',
-          y: '-100%',
+          // force3D:true,
+        }, '-=1.2')
+        .fromTo(next, 1.2, {
+          // className: '+=section__prev section__active',
+          yPercent: -100,
         }, {
-          className: '+=section__active',
-          y: '+=100%',
+          // className: '+=section__active',
+          yPercent: 0,
           ease: Expo.easeInOut,
           force3D: true,
-          clearProps: 'transform',
-          onComplete: () => {
-            self.sapEnd(crrInd, nxtInd);
-          }
-        }, '-=1.25')
-        .fromTo(nxtContent, 1.25,{
-          y: '40%'
+          // rotation:0.001,
+          // clearProps: 'All',
+
+        }, '-=1.2')
+        .fromTo(nxtContent, 1.2,{
+          yPercent: 40
         },{
-          y: '-=40%',
+          yPercent: 0,
           ease: Expo.easeInOut,
-          clearProps: 'transform',
-        }, '-=1.25');
+          // force3D:true,
+          // willChange: 'transform',
+          // clearProps: 'All',
+          onComplete: () => {
+            TweenMax.set(nxtContent,{clearProps:'all'});
+            TweenMax.set(next,{clearProps:'all'});
+            // TweenMax.set(crrContent,{clearProps:'all'});
+            // TweenMax.set(curr,{clearProps:'all'});
+
+            self.sapEnd(curr, next);
+            // this.twn.kill();
+          }
+        }, '-=1.2');
+      // });
+
     }
   },
   initSwiper: function() {
@@ -323,8 +346,8 @@ ScrollSlide.prototype = {
       const screenParent = $this.closest(self.options.screen);
       const interleaveOffset = 0.8;
       $this.addClass('instance-' + index);
-      const $project = screenParent.find('.swiper-projects');
-      const slideTwn = new TimelineMax();
+      const $project = screenParent.find('.swiper-projects').find('.name-projects_item');
+      const slideTwn = self.slideTwn;
       let DefaultSettings = {
         navigation:{
           nextEl: $btnNext,
@@ -343,7 +366,7 @@ ScrollSlide.prototype = {
               var innerOffset = swiper.width * interleaveOffset;
               var innerTranslate = slideProgress * innerOffset;
               slideTwn
-                .set($(img),{
+                .set(img,{
                   x: innerTranslate,
                 });
             }
@@ -360,20 +383,32 @@ ScrollSlide.prototype = {
             var defaultColor = $this.find('.swiper-slide-active').data('bgcolor-item');
             var defaultTextColor = $this.find('.swiper-slide-active').data('textcolor');
             var defaultCurrIndex = $this.find('.swiper-slide-active').data('swiper-slide-index');
-            $project.find('.name-projects_item').eq(defaultCurrIndex).addClass('current');
+            $project.eq(defaultCurrIndex).addClass('current');
             screenParent.attr('data-bgcolor', defaultColor);
             screenParent.attr('data-textcolor', defaultTextColor);
+            $this.on({
+              mouseenter: function() {
+                // console.log(3434);
+                $project.addClass('hover');
+              },
+              mouseleave: function() {
+                // console.log(35554);
+                $project.removeClass('hover'); 
+              }
+            });
+
+            
+
           },
           transitionStart: function() {
             if(screenParent.hasClass('section__active')) {
-
               requestAnimationFrame(() => {
                 $this.addClass('animating');
                 let realInd = $this[0].swiper.realIndex;
                 var bgColor = $this.find('[data-swiper-slide-index="' + realInd + '"]').data('bgcolor-item');
                 var textcolor = $this.find('[data-swiper-slide-index="' + realInd + '"]').data('textcolor');
                 screenParent.attr('data-bgcolor', bgColor).attr('data-textcolor', textcolor);
-                $project.find('.name-projects_item').eq(realInd).addClass('current').siblings().removeClass('current');
+                $project.eq(realInd).addClass('current').siblings().removeClass('current');
                 self.setColor(bgColor, textcolor);
               });   
             }
@@ -398,10 +433,10 @@ ScrollSlide.prototype = {
   setCurrentPage: function(currPage) {
     if(currPage === null) {
       this.navItem.eq(0).addClass('nav__active');
-      this.sections.eq(0).addClass('section__active');
+      this.sections[0].classList.add('section__active');
     } else {
       this.navItem.eq(currPage).addClass('nav__active');
-      this.sections.eq(currPage).addClass('section__active');
+      this.sections[currPage].classList.add('section__active');
     }
     
     this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));

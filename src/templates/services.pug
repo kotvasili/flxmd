@@ -5,13 +5,12 @@ title: Portfolio_Page
 extends layouts/_layout
 block content
 	- var currPage = 'Services'
-	//- - var external = '<svg width="23.5" height="23.5" viewBox="0 0 23.5 23.5" xmlns="http://www.w3.org/2000/svg"><g><path d="m21.78148,11.36297l0,8.3c0,1.5 -1.2,2.8 -2.8,2.8l-15.2,0c-1.5,0 -2.8,-1.2 -2.8,-2.8l0,-15.3c0,-1.5 1.2,-2.8 2.8,-2.8l8.3,0" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><polyline points="16.481476068496704,0.9629654884338379 22.481476068496704,0.9629654884338379 22.481476068496704,6.962967872619629 " stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/><line y2="0.96297" x2="22.48148" y1="12.76297" x1="10.68148" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"/></g></svg>'
 	.root-wrapper
 		.overlay
 		.root-frame
 			include partials/_burger
 			#barba-wrapper
-				.barba-container(data-namespace="services" data-bgcolor="#cdfc91" data-textcolor="#c1ed89" data-titlecolor="#c1ed89" data-loader="#cdfc91")
+				.barba-container(data-namespace="services" data-bgcolor="#cdfc91" data-textcolor="#92bd5c" data-titlecolor="#c1ed89" data-loader="#cdfc91")
 					header.header.header-inner
 						include partials/_header
 					.wrapper-frame
@@ -24,7 +23,7 @@ block content
 									- var filters = ["Development", "Design", "Marketing"]
 										each filterItem in filters
 											.filter-item
-												a(href="#")
+												a(href='#'+filterItem,data-href=filterItem).js-scroll-to.no-barba
 													span #{filterItem}
 								.page-title
 									.breadcrumbs
@@ -32,7 +31,9 @@ block content
 											- var crumbs = ["Home"]
 											each crumbsItem in crumbs
 												li.breadcumbs__item
-													a(href="page.html")
+													a(href="home.html")
+														i.back-icon
+															<svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16"><path fill="currentcolor" fill-rule="evenodd" d="M.34271018 7.2426098a1.05032758 1.05032758 0 0 0-.00130226.0011405C-.074137 7.607537-.1162267 8.2393014.24747366 8.654922c.02989433.034162.06159971.0658003.09484724.0948971l6.99458721 7.0030276c.41543268.363915 1.04721881.3221517 1.41113382-.093281.36391501-.4154327.32215169-1.0472188-.09328099-1.4111338L2.41061142 7.9967476l6.24308946-6.2441862c.41562062-.3637004.45771031-.9954648.09400996-1.4110855-.36370035-.4156206-.99546483-.4577103-1.41108545-.0940099L.34271018 7.2426098z" opacity=".8"/></svg>
 														span #{crumbsItem}
 									.page__name
 										span#name-project #{currPage}
@@ -47,7 +48,7 @@ block content
 												h1 Services
 									.portfolio__body.service-body
 										.grid__container
-											.grid__item.w__100.load-parent
+											.grid__item.w__100.load-parent(data-id='Development')
 												.service-block(style='background-color: #0A253A;')
 													.service-block-bg.js-image.bg(data-src='img/grafics/grafics-3.jpg')
 													.service-block-main
@@ -64,7 +65,7 @@ block content
 																		a(href=sectionSiteItem[0]).link-color
 																			.hover-line
 																			span #{sectionSiteItem[1]}
-											.grid__item.w__100.load-parent
+											.grid__item.w__100.load-parent(data-id='Design')
 												.service-block(style='background-color:#0e6bb6;')
 													.service-block-bg.js-image.bg(data-src='img/grafics/grafics-3.jpg')
 													.service-block-main
@@ -81,7 +82,7 @@ block content
 																		a(href=sectionSiteItem[0] class='link-color')
 																			.hover-line
 																			span #{sectionSiteItem[1]}
-											.grid__item.w__100.load-parent
+											.grid__item.w__100.load-parent(data-id='Marketing')
 												a(href="#").service-block(style='background-color: #26b889;')
 													.service-block-bg.js-image.bg(data-src='img/grafics/grafics-3.jpg')
 													.service-block-main
