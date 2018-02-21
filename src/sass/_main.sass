@@ -259,6 +259,7 @@ body
 		opacity: 0
 		visibility: hidden
 		transition-delay: 0s
+		
 .full-screen-container
 	display: flex
 	height: 100%
@@ -268,29 +269,67 @@ body
 		// flex: 1
 		width: 60vw
 		position: relative
+		display: flex 
+		+gpu
 	.work-wrapper__sidecontainer
-		width: 40vw
+		width: auto !important
 		position: relative
 		background-color: $white
+		contain: paint
+		flex-grow: 1
+		.content__side
+			max-width: 100%	
+			+coverdiv
+			&-inner
+				display: flex	
+				align-items: center
+			&.section__active
+				z-index: 1
+				.reval
+					.reval__span
+						transform: none
+					// $item: 4
+					// @for $i from 1 through $item
+					// 	&.order__#{$i}
+							// .reval__span
+							// 	transition: transform 0.5s
+					&.order__1
+						.reval__span
+							transition-delay: 0.65s
+					&.order__2
+						.reval__span
+							transition-delay: .75s
+					&.order__3
+						.reval__span
+							transition-delay: .85s
+					&.order__4
+						.reval__span
+							transition-delay: 0.95s
+		.reval
+			overflow: hidden
+			display: block
+			.reval__span
+				transform: translateY(100%)
+				transition: transform 0.65s cubic-bezier(0.62,0.02,0.34,1)
+				display: block
+
 	.screen
 		position: absolute
 		width: 100%
 		height: 100%
-		opacity: 0
+		// opacity: 0
 		visibility: hidden
 		z-index: 1
 		overflow: hidden
+		display: flex
+		will-change: transform
+		pointer-events: none
 		&.section__active
-			// z-index: 2
-			opacity: 1
+			// opacity: 1
 			visibility: visible
-
-		// &.section__next,
-		// &.section__prev
-		// &.section__next
-		// 	z-index: 3
-		// 	opacity: 1
-		// 	visibility: visible
+		// &:not(.section__active)
+		// 	display: none
+				
 	.content__side
 		display: flex
 		height: 100%
@@ -307,31 +346,27 @@ body
 			// left: 0
 			// top: 0
 			height: 100%
-			contain: paint
+			// contain: paint
 
 			// contain: paint
 			// backface-visibility: hidden
 			// transform: translateZ(-1px) scale(1.1)
 				// width: 83.2%
-
-		&:nth-child(2)
-			width: 40%
-			// flex-grow: 1
-			+rem(padding-top, 95px)
-			background-color: $white
-			margin-left: auto
-			
 	.content__side-name
 		padding-left: 12.3%
 		padding-right: 13%
-		padding-top: 16.9%
+		// padding-top: 10%
+		padding-bottom: 15%
 		display: flex
-		flex-direction: column
+		flex-flow: column nowrap
 		width: 100%
+		justify-content: space-around
 		+r(1500)
-			padding-top: 4%
-			padding-left: 10.3%
-			padding-right: 10%
+			// padding-top: 4%
+			padding-left: 12.3%
+			padding-right: 9%
+			.link-color span 
+				+rem(font-size,18px)
 	.side-upp__container
 		+rem(margin-bottom, 17px)
 		span
@@ -432,46 +467,14 @@ body
 							&>span 
 								color: rgba(255,255,255,.7)
 								transition-duration: .2s !important
-.reval-container
-	transform: translateY(-50px)
-	opacity: 0
-    transition: transform .5s, opacity .5s
-	.reval
-		overflow: hidden
-		display: block
-		.reval__span
-			transform: translateY(100%)
-			transition: transform 0.5s
-			display: block
-.section__active
-	.reval-container
-		transform: none
-		opacity: 1
-		.reval
-			.reval__span
-				transform: none
-			// $item: 4
-			// @for $i from 1 through $item
-			// 	&.order__#{$i}
-					.reval__span
-						transition: transform 0.5s
-			&.order__1
-				.reval__span
-					transition-delay: .5s
-			&.order__2
-				.reval__span
-					transition-delay: .65s
-			&.order__3
-				.reval__span
-					transition-delay: .75s
-			&.order__4
-				.reval__span
-					transition-delay: 0.95s
+
 .content__side
 	// .container-carousel
 	// 	width: 83.2%
 	// 	position: relative
 	// 	overflow: hidden
+	.swiper-wrapper
+		width: calc(100% + 1px)
 	.swiper-container
 		height: 100%
 		width: 83.2%
@@ -493,22 +496,15 @@ body
 		width: 100%
 		position: relative
 		display: block
-		
-		// &:hover
-		// 	img
-		// 		transform: scale(1.1)
-		// .image-inner
-		// 	position: absolute
-		// 	width: 100%
-		// 	height: 100%
-		// 	background-size: cover
+		pointer-events: all
+		overflow: hidden
 		img
 			width: 100%
 			height: 100%
 			object-fit: cover
 			contain: paint
-				// opacity: .8
-				// +tr(opacity .25s)
+			// opacity: .8
+			
 	[class^=swiper-button-]
 		position: absolute
 		right: 0
@@ -519,6 +515,7 @@ body
 		transition: opacity .25s
 		+vertical
 		+nosel
+		pointer-events: all
 		&.animating
 			pointer-events: none
 		.swiper-button_text
@@ -671,20 +668,13 @@ body
 			-moz-transform-style: preserve-3d;
 		.swiper-slide
 			img
+				transition: transform .1s .9s, opacity .25s
 				+tr(transform .1s .9s)
 				transform: scale(1.25)
-				// will-change: transform
 			&.swiper-slide-active,&.swiper-slide-duplicate-active
 				img
 					transform: none
-					+tr(transform 1s)
-		
-			// .image-inner
-			// 	transform: none
-				// transition-delay: .3s	
-		
-			// .image-inner
-			// 	transform: none !important
+					transition: transform 1s, opacity .25s
 .overlay
 	position: fixed
 	top: 0
@@ -706,6 +696,7 @@ body
 	z-index: 915
 	transition: transform .3s ease-in-out
 	transform: translate(100%, 0)
+	contain: paint
 	.menu-content
 		position: absolute
 		left: 9.5%

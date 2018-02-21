@@ -74,7 +74,7 @@ var BarbaWitget = {
       this.oldCont = $(this.oldContainer);
       
       let fullwidth = this.oldCont.data('namespace') === 'home' ? true : false;
-      let frame = this.oldCont.find('.wrapper-frame');
+      let frame = this.oldCont.parent().find('.wrapper-frame');
       let overlayOuter = this.oldCont.find('.overlay__color');
 
       let overlayW = overlayOuter.outerWidth();
@@ -90,7 +90,6 @@ var BarbaWitget = {
         this.delay = 0.3;
       }
       this.screenWidth = $(window).width();
-      
       window.DOM.tl
         .set(window.DOM.trnsContOUT, {
           width: overlayW,
@@ -120,7 +119,7 @@ var BarbaWitget = {
       var self = this;
       this.newCont = $(this.newContainer);
       let fullwidth = this.newCont.data('namespace') === 'home' ? true : false;
-      let frame = this.newCont.find('.wrapper-frame');
+      let frame = this.newCont.parent().find('.wrapper-frame');
       let overlayInner = this.newCont.find('.overlay__color');
       let overlayW =   overlayInner.innerWidth();
       let overlayColor = this.newCont.data('bgcolor');
@@ -169,11 +168,12 @@ var BarbaWitget = {
               autoAlpha: 1,
               clearProps: 'all',
               onComplete: () => {
-                !fullwidth ? window.DOM.showScrollSimple(): false;
+                window.DOM.showScrollSimple();
+                // !fullwidth ? window.DOM.showScrollSimple(): false;
                 TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
                 TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
-                window.DOM.tl.kill();
-                window.DOM.tlr.kill();
+                window.DOM.tl.clear();
+                window.DOM.tlr.clear();
                
                 // document.body.style.overflow = 'visible';
               }
@@ -189,10 +189,10 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    this.canv = document.getElementById('scene');
-    if(this.canv !== undefined && this.canv !== null) {
-      window.DOM.CanvRender();
-    }
+    // this.canv = document.getElementById('scene');
+    // if(this.canv !== undefined && this.canv !== null) {
+    //   window.DOM.CanvRender();
+    // }
     window.DOM.body.addClass('index-page');
   },
   onEnterCompleted: function() {
@@ -209,12 +209,13 @@ var IndexPage = Barba.BaseView.extend({
   },
   onLeave: function() {
     window.DOM.body.removeClass('index-page');
-    if(this.canv !== undefined && this.canv !== null) {
-      this.canv.flyAway = true;
-      setTimeout(() => {
-        this.canv.renderer.forceContextLoss();
-      }, 1000);
-    }
+    // if(this.canv !== undefined && this.canv !== null) {
+    //   this.canv.flyAway = true;
+    //   setTimeout(() => {
+    //     this.canv.renderer.forceContextLoss();
+    //   }, 1000);
+    // }
+
   },
   onLeaveComplete: function() {
     this.fullpage.removeEvents();

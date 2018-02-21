@@ -31,7 +31,7 @@ block content
 					.work-wrapper__container#full-page
 						section.screen.screen__category(data-bgcolor="#cdfc91" data-textcolor="#92bd5c" data-dark="true")
 							.content__side
-								canvas#scene
+								//- canvas#scene
 								.icon-scroll
 						section.screen.screen__category(data-dark="false")
 							.content__side
@@ -115,21 +115,22 @@ block content
 											<svg width="32" height="22.2" viewBox="0 0 32 22.2" xmlns="http://www.w3.org/2000/svg"><path stroke="null" fill-rule="evenodd" d="m32,11.14789c0,-0.267 -0.11,-0.522 -0.293,-0.714l-9.899,-9.999c-0.391,-0.395 -1.024,-0.394 -1.414,0c-0.391,0.394 -0.391,1.034 0,1.428l8.193,8.275l-27.587,0c-0.552,0 -1,0.452 -1,1.01s0.448,1.01 1,1.01l27.586,0l-8.192,8.275c-0.391,0.394 -0.39,1.034 0,1.428c0.391,0.394 1.024,0.394 1.414,0l9.899,-9.999c0.187,-0.189 0.29,-0.449 0.293,-0.714z" clip-rule="evenodd"/></svg>
 					.work-wrapper__sidecontainer#side-page
 						//page 1
-						.content__side.reval-container
-							.content__side-name
-								.side-upp__container.reval.order__1
-									span.reval__span Hello, we are Staylime
-								.side-name__container.reval.order__2
-									.container-title.reval__span Full Service Ecommerce Digital Agency
-								.side-body__container.reval.order__3
-									.reval__span
-										ul.category__list
-											- var sectionSite = [["portfolio.html", "Portfolio"], ["portfolio.html","Agency"], ["portfolio.html", "Industries"], ["contacts.html", "Contact us"], ["services.html","Services"]]
-											each sectionSiteItem in sectionSite
-												li.category__list-item
-													a(href=sectionSiteItem[0]).link-color
-														.hover-line
-														span #{sectionSiteItem[1]}
+						.content__side
+							.content__side-inner
+								.content__side-name
+									.side-upp__container.reval.order__1
+										span.reval__span Hello, we are Staylime
+									.side-name__container.reval.order__2
+										.container-title.reval__span Full Service Ecommerce Digital Agency
+									.side-body__container.reval.order__3
+										.reval__span
+											ul.category__list
+												- var sectionSite = [["portfolio.html", "Portfolio"], ["portfolio.html","Agency"], ["portfolio.html", "Industries"], ["contacts.html", "Contact us"], ["services.html","Services"]]
+												each sectionSiteItem in sectionSite
+													li.category__list-item
+														a(href=sectionSiteItem[0]).link-color
+															.hover-line
+															span #{sectionSiteItem[1]}
 							.content__side-news.reval.order__4
 								.news-body.reval__span
 									.news-app
@@ -138,148 +139,151 @@ block content
 										a(href="#") We’ve just lunched a website for a huge austrian telecom provider in belarus — Velcom data centre
 						//page 2
 						.content__side
-							.content__side-name.reval-container
-								.side-upp__container.reval.order__1
-									span.reval__span Magento Services
-								.side-name__container.reval.order__2
-									.container-title.reval__span A full spectrum of services for Magento
-								.side-body__container.reval.order__3
-									.reval__span
-										ul.category__list
-											- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
-											each sectionSiteItem in sectionSite
-												li.category__list-item
-													a(href="#").link-color
-														.hover-line
-														span #{sectionSiteItem}
-								.side-body__projects.reval.order__4
-									.name-projects_container.swiper-projects.reval__span
-										.slider-container
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href=tag[0])
-																		span #{tag[1]}
-													a(href="#").link-color 
-														span IT Integrator Atlant Consult IT Integrator Atlant Consult IT Integrator Atlant Consult
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href=tag[0])
-																		span #{tag[1]}
-													a(href="#").link-color 
-														span IT Integrator Solcata
+							.content__side-inner
+								.content__side-name.reval-container
+									.side-upp__container.reval.order__1
+										span.reval__span Magento Services
+									.side-name__container.reval.order__2
+										.container-title.reval__span A full spectrum of services for Magento
+									.side-body__container.reval.order__3
+										.reval__span
+											ul.category__list
+												- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
+												each sectionSiteItem in sectionSite
+													li.category__list-item
+														a(href="#").link-color
+															.hover-line
+															span #{sectionSiteItem}
+							.side-body__projects.reval.order__4
+								.name-projects_container.swiper-projects.reval__span
+									.slider-container
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href=tag[0])
+																	span #{tag[1]}
+												a(href="#").link-color 
+													span IT Integrator Atlant Consult IT Integrator Atlant Consult IT Integrator Atlant Consult
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = [['portfolio.html#website', 'Website'], ['portfolio.html#ecommerce',"E-commerce"]]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href=tag[0])
+																	span #{tag[1]}
+												a(href="#").link-color 
+													span IT Integrator Solcata
 						//page 3
 						.content__side
-							.content__side-name.reval-container
-								.side-upp__container.reval.order__1
-									span.reval__span Development Services
-								.side-name__container.reval.order__2
-									.container-title.reval__span A full spectrum of services for Development
-								.side-body__container.reval.order__3
-									.reval__span
-										ul.category__list
-											- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
-											each sectionSiteItem in sectionSite
-												li.category__list-item
-													a(href="#").link-color
-														.hover-line
-														span #{sectionSiteItem}
-								.side-body__projects.reval.order__4
-									.name-projects_container.swiper-projects.reval__span
-										.slider-container
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#").link-color 
-														span IT Integrator Solcata
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#").link-color 
-														span IT Integrator Solcata
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#")
-														span IT Integrator Solcata
+							.content__side-inner
+								.content__side-name.reval-container
+									.side-upp__container.reval.order__1
+										span.reval__span Development Services
+									.side-name__container.reval.order__2
+										.container-title.reval__span A full spectrum of services for Development
+									.side-body__container.reval.order__3
+										.reval__span
+											ul.category__list
+												- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
+												each sectionSiteItem in sectionSite
+													li.category__list-item
+														a(href="#").link-color
+															.hover-line
+															span #{sectionSiteItem}
+							.side-body__projects.reval.order__4
+								.name-projects_container.swiper-projects.reval__span
+									.slider-container
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#").link-color 
+													span IT Integrator Solcata
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#").link-color 
+													span IT Integrator Solcata
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#")
+													span IT Integrator Solcata
 						//page 4
 						.content__side
-							.content__side-name.reval-container
-								.side-upp__container.reval.order__1
-									span.reval__span Design Services
-								.side-name__container.reval.order__2
-									.container-title.reval__span A full spectrum of services for Design
-								.side-body__container.reval.order__3
-									.reval__span
-										ul.category__list
-											- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
-											each sectionSiteItem in sectionSite
-												li.category__list-item
-													a(href="#").link-color
-														.hover-line
-														span #{sectionSiteItem}
-								.side-body__projects.reval.order__4
-									.name-projects_container.swiper-projects.reval__span
-										.slider-container
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#").link-color 
-														span IT Integrator Solcata
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#").link-color 
-														span IT Integrator Solcata
-											.name-projects_item
-												.name-inner
-													.name-tags
-														- var tags = ["Magento", "Website", "E-commerce"]
-														ul
-															each tag in tags
-																li.tag-item
-																	a(href="#")
-																		span #{tag}
-													a(href="#").link-color 
-														span IT Integrator Solcata
+							.content__side-inner
+								.content__side-name.reval-container
+									.side-upp__container.reval.order__1
+										span.reval__span Design Services
+									.side-name__container.reval.order__2
+										.container-title.reval__span A full spectrum of services for Design
+									.side-body__container.reval.order__3
+										.reval__span
+											ul.category__list
+												- var sectionSite = ["Magento Migration", "Customization", "Megento Upgrade", "Services", "Magento Support"]
+												each sectionSiteItem in sectionSite
+													li.category__list-item
+														a(href="#").link-color
+															.hover-line
+															span #{sectionSiteItem}
+							.side-body__projects.reval.order__4
+								.name-projects_container.swiper-projects.reval__span
+									.slider-container
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#").link-color 
+													span IT Integrator Solcata
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#").link-color 
+													span IT Integrator Solcata
+										.name-projects_item
+											.name-inner
+												.name-tags
+													- var tags = ["Magento", "Website", "E-commerce"]
+													ul
+														each tag in tags
+															li.tag-item
+																a(href="#")
+																	span #{tag}
+												a(href="#").link-color 
+													span IT Integrator Solcata
 					include partials/_menu
 					//- include partials/_cross
