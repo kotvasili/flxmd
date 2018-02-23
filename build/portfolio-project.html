@@ -47,7 +47,7 @@
             <header class="header header-inner">
               <!--BEGIN header-->
               <!-- на главной заменить ссылку на див. и будет счастье-->
-              <a class="logo" href="page-test.html">
+              <a class="logo" href="page.html">
                 <i class="staylime">
                   <svg width="151.1" height="80" viewBox="0 0 151.1 80" xmlns="http://www.w3.org/2000/svg">
                     <g>
@@ -111,6 +111,14 @@
                     </section>
                     <section class="screen__content">
                       <div class="l">
+                        <div class="head__title">
+                          <div class="title-small">
+                            <span>What we offer</span>
+                          </div>
+                          <div class="title">
+                            <h1>Разработка на 1С-Битрикс</h1>
+                          </div>
+                        </div>
                         <div class="info__container l_p">
                           <div class="info__description">
                             <p>Liesegang & Partner is an IP and commercial-law boutique law firm mainly focussing on the various aspects of national and international trademark law, design law and company law. With a team of top-level professionals, many
@@ -397,7 +405,7 @@
                         <img src="img/recent-bg.jpg" alt="">
                       </div>
                       <div class="l">
-                        <div class="screen__section l_p">
+                        <div class="screen__section">
                           <div class="screen__section-head">
                             <h2 class="h2">Recent projects</h2>
                           </div>
@@ -425,7 +433,7 @@
                           </div>
                         </div>
                         <div class="grid__carousel recent-carousel">
-                          <div class="swiper-wrapper grid__container" id="grid__container"></div>
+                          <div class="swiper-wrapper grid__container" id="grid__container" data-resentUrl="../../json/recent.json"></div>
                         </div>
                       </div>
                     </section>
@@ -497,6 +505,33 @@
                                               <i></i>
                                             </div>
                                             <span>Mobbile app</span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form__field field__checkbox">
+                                    <div class="form__head">
+                                      <span>Budget</span>
+                                    </div>
+                                    <div class="form__content">
+                                      <div class="checkboxes">
+                                        <div class="checkbox__item checkbox__item-radio">
+                                          <input type="radio" id="bomj" checked name="inpe">
+                                          <label for="bomj">
+                                            <div class="check__custom">
+                                              <i></i>
+                                            </div>
+                                            <span>6000$</span>
+                                          </label>
+                                        </div>
+                                        <div class="checkbox__item checkbox__item-radio">
+                                          <input type="radio" id="normpacan" name="inpe">
+                                          <label for="normpacan">
+                                            <div class="check__custom">
+                                              <i></i>
+                                            </div>
+                                            <span>10000$-16000$</span>
                                           </label>
                                         </div>
                                       </div>
@@ -796,27 +831,39 @@
                       <div class="lang-container order_6">
                         <div class="lang">
                           <!--.active для текущего языка-->
-                          <a class="lang__item no-barba" href="#">
-                            <span>English</span>
+                          <a class="lang__item touch-down not-move no-barba" href="#">
+                            <div class="touch-down-elem">
+                              <span>English</span>
+                            </div>
                           </a>
-                          <a class="lang__item no-barba" href="#">
-                            <span>Русский</span>
+                          <a class="lang__item touch-down not-move no-barba" href="#">
+                            <div class="touch-down-elem">
+                              <span>Русский</span>
+                            </div>
                           </a>
                         </div>
                       </div>
                       <div class="social-container order_7">
                         <div class="social">
-                          <a class="social__item no-barba facebook" href="#" target="_blank">
-                            <span>facebook</span>
+                          <a class="social__item no-barba touch-down not-move facebook" href="#" target="_blank">
+                            <div class="touch-down-elem">
+                              <span>facebook</span>
+                            </div>
                           </a>
-                          <a class="social__item no-barba behance" href="#" target="_blank">
-                            <span>behance</span>
+                          <a class="social__item no-barba touch-down not-move behance" href="#" target="_blank">
+                            <div class="touch-down-elem">
+                              <span>behance</span>
+                            </div>
                           </a>
-                          <a class="social__item no-barba dribbble" href="#" target="_blank">
-                            <span>dribbble</span>
+                          <a class="social__item no-barba touch-down not-move dribbble" href="#" target="_blank">
+                            <div class="touch-down-elem">
+                              <span>dribbble</span>
+                            </div>
                           </a>
-                          <a class="social__item no-barba linkedin" href="#" target="_blank">
-                            <span>linkedin</span>
+                          <a class="social__item no-barba touch-down not-move linkedin" href="#" target="_blank">
+                            <div class="touch-down-elem">
+                              <span>linkedin</span>
+                            </div>
                           </a>
                         </div>
                       </div>

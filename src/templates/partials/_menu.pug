@@ -53,12 +53,14 @@ nav.menu
 						.lang
 							//.active для текущего языка
 							each lang in langs
-								a.lang__item(href="#" class="no-barba")
-									span #{lang}
+								a.lang__item.touch-down.not-move(href="#" class="no-barba")
+									.touch-down-elem
+										span #{lang}
 					.social-container.order_7
 						-var socials = ["facebook", "behance", "dribbble", "linkedin"]
 						.social
 							each social in socials
-								a.social__item.no-barba(href="#" class=social target="_blank")
-									span #{social}
+								a.social__item.no-barba.touch-down.not-move(href="#" class=social target="_blank")
+									.touch-down-elem
+										span #{social}
 						

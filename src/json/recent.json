@@ -67,6 +67,82 @@
 			"title": "Metall manufacturer",
 			"titlleList": "Metall manufacturer", 
 			"external": "#"
+		},
+		{
+			"id": 6,
+			"width": 50,
+			"image": "../img/projects/project_6.jpg",
+			"bgimage": "orange",
+			"breadcrumbs": [
+				{
+					"name": "Webservice",
+					"link": "#"
+				},
+				{
+					"name": "E-commerce",
+					"link": "#"
+				}
+			],
+			"title": "Metall manufacturer",
+			"titlleList": "Metall manufacturer", 
+			"external": "#"
+		},
+		{
+			"id": 6,
+			"width": 50,
+			"image": "../img/projects/project_6.jpg",
+			"bgimage": "red",
+			"breadcrumbs": [
+				{
+					"name": "Webservice",
+					"link": "#"
+				},
+				{
+					"name": "E-commerce",
+					"link": "#"
+				}
+			],
+			"title": "Metall manufacturer",
+			"titlleList": "Metall manufacturer", 
+			"external": "#"
+		},
+		{
+			"id": 6,
+			"width": 50,
+			"image": "../img/projects/project_6.jpg",
+			"bgimage": "gray",
+			"breadcrumbs": [
+				{
+					"name": "Webservice",
+					"link": "#"
+				},
+				{
+					"name": "E-commerce",
+					"link": "#"
+				}
+			],
+			"title": "Metall manufacturer",
+			"titlleList": "Metall manufacturer", 
+			"external": "#"
+		},
+		{
+			"id": 6,
+			"width": 50,
+			"image": "../img/projects/project_6.jpg",
+			"bgimage": "pink",
+			"breadcrumbs": [
+				{
+					"name": "Webservice",
+					"link": "#"
+				},
+				{
+					"name": "E-commerce",
+					"link": "#"
+				}
+			],
+			"title": "Metall manufacturer",
+			"titlleList": "Metall manufacturer", 
+			"external": "#"
 		}
 	]
 }

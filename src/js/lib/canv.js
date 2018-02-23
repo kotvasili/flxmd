@@ -301,7 +301,8 @@ export default window.DOM.CanvRender = () => {
   // stats.domElement.style.left = '0px';
   // stats.domElement.style.top = '0px';
   // document.body.appendChild( stats.domElement );
-  var width = canvas.offsetWidth - window.DOM.scrollWidth,
+  // var width = canvas.offsetWidth - window.DOM.scrollWidth,
+  var width = canvas.offsetWidth,
     height = canvas.offsetHeight;
 
   var renderer = new THREE.WebGLRenderer({
@@ -322,7 +323,7 @@ export default window.DOM.CanvRender = () => {
   canvas.flyAway = false;
 
   var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
-  camera.position.set(-110, cameraY, 70);
+  camera.position.set(-70, cameraY, 70);
 
   var light = new THREE.HemisphereLight(0xa8d96b, 'rgb(205, 252, 145)', 0.6);
   scene.add(light);
@@ -368,7 +369,7 @@ export default window.DOM.CanvRender = () => {
     // stats.update();
     if(canvas.flyAway) {
       cameraY ++;
-      camera.position.set(-120, cameraY, 90);
+      camera.position.set(-70, cameraY, 90);
     }
     if(!isPlay) { 
       updateVertices(a);

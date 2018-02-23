@@ -26,5 +26,6 @@ export default function colorize() {
   });
   
   document.body.style.setProperty('--color-link', colorText);
+  document.body.style.setProperty('--color-hoverlink', colorTitle);
   
 }

@@ -28,10 +28,11 @@ $.fn.hasAttr = function(name) {
 var BarbaWitget = {
   init: function() {
     var scope = this;
-    this.menu = new Menu();
-    this.menu.init();
+
     Barba.Pjax.start();
     Barba.Prefetch.init();
+    this.menu = new Menu();
+    this.menu.init();
     Colorize();
     window.DOM.tl = new TimelineMax();
     window.DOM.tlr = new TimelineMax();
@@ -74,7 +75,7 @@ var BarbaWitget = {
       this.oldCont = $(this.oldContainer);
       
       let fullwidth = this.oldCont.data('namespace') === 'home' ? true : false;
-      let frame = this.oldCont.parent().find('.wrapper-frame');
+      let frame = this.oldCont.find('.wrapper-frame');
       let overlayOuter = this.oldCont.find('.overlay__color');
 
       let overlayW = overlayOuter.outerWidth();
@@ -119,7 +120,7 @@ var BarbaWitget = {
       var self = this;
       this.newCont = $(this.newContainer);
       let fullwidth = this.newCont.data('namespace') === 'home' ? true : false;
-      let frame = this.newCont.parent().find('.wrapper-frame');
+      let frame = this.newCont.find('.wrapper-frame');
       let overlayInner = this.newCont.find('.overlay__color');
       let overlayW =   overlayInner.innerWidth();
       let overlayColor = this.newCont.data('bgcolor');
@@ -160,9 +161,9 @@ var BarbaWitget = {
         .set(this.newCont, {
           autoAlpha: 1,
           onComplete: () => {
-           
-            self.done();
             $(window).scrollTop(0,0);
+            self.done();
+            
             TweenMax.to(frame, 0.5, {
               y: 0,
               autoAlpha: 1,
@@ -189,37 +190,44 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    // this.canv = document.getElementById('scene');
-    // if(this.canv !== undefined && this.canv !== null) {
-    //   window.DOM.CanvRender();
-    // }
-    window.DOM.body.addClass('index-page');
+    
+    this.canv = document.getElementById('scene');
+    if(this.canv !== undefined && this.canv !== null) {
+      window.DOM.CanvRender();
+    }
+    
+   
   },
   onEnterCompleted: function() {
-    this.fullpage = new ScrollSlide('#work-wrapper'); 
+    window.DOM.body.addClass('index-page');
+    this.fullpage = new ScrollSlide('#work-wrapper');
+    // ; 
     
     
     // Colorize();
-    setTimeout(() => {
+    // setTimeout(() => {
      
-      this.fullpage.initSwiper(); 
-    },500);
+    //   this.fullpage.initSwiper(); 
+    // },500);
  
 
   },
   onLeave: function() {
+    
+    if(this.canv !== undefined && this.canv !== null) {
+      this.canv.flyAway = true;
+      setTimeout(() => {
+        this.canv.renderer.forceContextLoss();
+      }, 1000);
+    }
     window.DOM.body.removeClass('index-page');
-    // if(this.canv !== undefined && this.canv !== null) {
-    //   this.canv.flyAway = true;
-    //   setTimeout(() => {
-    //     this.canv.renderer.forceContextLoss();
-    //   }, 1000);
-    // }
-
-  },
-  onLeaveComplete: function() {
+    // alert(this.fullpage);
     this.fullpage.removeEvents();
     delete this.fullpage;
+  },
+  onLeaveComplete: () => {
+
+
   }
 });
 
@@ -242,7 +250,7 @@ var PortfolioPage = Barba.BaseView.extend({
     delete this.portfolio;
   },
   onLeaveComplete: function() {
-    console.log('PortfolioPage');
+    alert('PortfolioPage');
   }
 });
 
@@ -313,7 +321,7 @@ var ContactsPage = Barba.BaseView.extend({
     // delete this.menu;
   },
   onLeaveComplete: function() {
-
+    alert();
   }
 });
 

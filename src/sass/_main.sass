@@ -61,6 +61,10 @@ body
 		pointer-events: none
 	&.loading
 		overflow: hidden !important
+		.work-wrapper__overlay
+			transform: translateY(-40px)
+			opacity: 0
+			+tr(.3s.3s)
 	& *
 		+scrollbar
 			width: 4px
@@ -235,6 +239,7 @@ body
 .home-page
 	.wrapper-frame
 		height: 100vh
+		display: flex
 .index-page
 	.menu-trigger
 		margin-right: 4px
@@ -245,20 +250,22 @@ body
 	.loading &
 		background-color: transparent
 #scene
-	position: absolute
+	position: fixed
 	top: 0
 	left: 0
-	width: 100%;
+	width: 60vw;
 	height: 100%
 	pointer-events: none
 	opacity: 1
 	visibility: visible
-	transition: opacity .3s, visibility .3s
-	transition-delay: .85s
+	transition: opacity .8s, visibility .8s
+	transition-delay: .65s
+	will-change: opacity, visibility
 	&.hidden
 		opacity: 0
 		visibility: hidden
 		transition-delay: 0s
+		transition: opacity .35s, visibility .35s
 		
 .full-screen-container
 	display: flex
@@ -283,6 +290,7 @@ body
 			&-inner
 				display: flex	
 				align-items: center
+				width: 100%
 			&.section__active
 				z-index: 1
 				.reval
@@ -342,21 +350,12 @@ body
 			width: 60vw
 			flex-shrink: 0
 			justify-content: flex-end
-			// position: fixed
-			// left: 0
-			// top: 0
 			height: 100%
-			// contain: paint
-
-			// contain: paint
-			// backface-visibility: hidden
-			// transform: translateZ(-1px) scale(1.1)
-				// width: 83.2%
 	.content__side-name
 		padding-left: 12.3%
 		padding-right: 13%
 		// padding-top: 10%
-		padding-bottom: 15%
+		padding-bottom: 17%
 		display: flex
 		flex-flow: column nowrap
 		width: 100%
@@ -467,6 +466,11 @@ body
 							&>span 
 								color: rgba(255,255,255,.7)
 								transition-duration: .2s !important
+
+.screen__content
+	// +rem(max-width,1920px)
+	margin-left: auto
+	margin-right: auto
 
 .content__side
 	// .container-carousel
@@ -675,6 +679,10 @@ body
 				img
 					transform: none
 					transition: transform 1s, opacity .25s
+	&:not(.swiper-container-horizontal)
+		&~div 
+			display: none
+			
 .overlay
 	position: fixed
 	top: 0
@@ -1352,16 +1360,19 @@ body
 	// left: 16.1%
 	// right: 5%
 	z-index: 2
-	max-width: 270px
+	+rem(max-width, 270px)
 	.portfolio_project &
 		left: 19.5%
 	.breadcrumbs
-		+rem(margin, 0 0 15px 0px)
+		// +rem(margin, 0 0 15px 0px)
 		.breadcumbs__item
 			+rem(padding-right, 15px)
 			+rem(margin-right, 9px)
 			a 
 				color: #000
+				display: block
+				+rem(padding-bottom,15px)
+				+rem(padding-top,15px)
 				&>span,&>i 
 					display: inline-block
 					vertical-align: middle
@@ -1397,7 +1408,7 @@ body
 				// 	color: $white
 
 	.page__name
-
+		+rem(margin-right,-15px)
 		span
 			font-family: $CondMedium
 			+rem(font-size, 60px)
@@ -1442,7 +1453,7 @@ body
 				content: "";
 				position: absolute;
 				left: -28px;
-				top: 7px;
+				top: 4px;
 				width: 6px;
 				height: 6px;
 				background-color: $black;
@@ -1452,7 +1463,7 @@ body
 				transform: translateX(10px)
 			span
 				font-family: $Graphik
-				+rem(font-size, 20px)
+				+rem(font-size, 17px)
 				color: $black
 
 		&.is-active
@@ -1495,20 +1506,6 @@ body
 		justify-content: space-between
 		align-items: flex-start
 		+rem(margin-bottom, 40px)
-		.head__title
-			flex: 1
-			.title-small
-				span
-					font-family: $GraphikMedium
-					+rem(font-size, 20px)
-					letter-spacing: -.3px
-					color: $nameUpp
-
-			.title
-				h1
-					font-family: $GraphikSemiBold
-					+rem(font-size, 80px)
-					letter-spacing: -1.6px
 		.head__descr
 			max-width: 50%
 			+rem(margin-bottom, 19px)
@@ -1517,43 +1514,28 @@ body
 			.info__container
 				+rem(margin-bottom,30px)
 				+rem(padding-top,35px)
+.head__title
+	flex: 1
+	.title-small
+		+rem(margin-bottom,5px)
+		span
+			font-family: $GraphikMedium
+			+rem(font-size, 20px)
+			letter-spacing: -.3px
+			color: $nameUpp
+
+	.title
+		+rem(padding-right,15px)
+		h1
+			font-family: $GraphikSemiBold
+			+rem(font-size, 80px)
+			letter-spacing: -1.6px
+			line-height: 1;
 .grid__container
 	display: flex
 	flex-flow: row wrap
 	overflow: hidden
 	+nosel
-	&.all-50
-		.grid__item
-			&.w__100
-				width: 50%
-				.portfolio__item
-					&:after
-						padding-bottom: 100%
-				.portfolio__item-header
-					.h2
-						+rem(font-size, 28px)
-						+r(1366)
-							+rem(font-size, 22px)
-			img
-				object-fit: cover
-				width: 100%
-				height: 100%
-			video
-				min-height: 100%
-				// width: auto
-				object-fit: cover
-	&.all-100
-		.grid__item
-			&.w__50
-				width: 100%
-				.portfolio__item
-					&:after
-						padding-bottom: 50%
-				.portfolio__item-header
-					.h2
-						+rem(font-size, 40px)
-						+r(1366)
-							+rem(font-size, 34px)
 	.grid__item	
 		position: relative
 		overflow: hidden
@@ -1563,7 +1545,7 @@ body
 		.portfolio__item
 			img,video
 				opacity: 0
-				+tr(opacity .25s)
+				+tr(opacity .5s)
 		&.is-visible
 			img,video
 				opacity: 1
@@ -1573,17 +1555,7 @@ body
 
 			&:active 
 				transition-duration: .2s
-				transform: scale(.98) !important
-		// .portfolio__item-video,.portfolio__item-img
-		// 	// &~div
-		// 	// 	+tr(transform .1s)
-		// 	+tr(transform .1s)
-		// 	&:active 
-		// 		// &~div
-		// 		// 	transition-duration: .2s
-		// 		// 	transform: scale(.95) !important	
-		// 		transition-duration: .2s
-		// 		transform: scale(.95) !important		
+				transform: scale(.98) !important	
 		&.w__100
 			width: 100%
 			.portfolio__item
@@ -1606,11 +1578,6 @@ body
 						+rem(font-size, 22px)
 			& + .w__50
 				// transition-delay: 0.25s
-		&.transition
-			// &:not(:nth-child(-n+3))
-			// 	.portfolio__item
-			// 		opacity: 0
-			// 		transform: translateY(20%)
 		.portfolio__item-cover
 			display: flex
 			flex-direction: column
@@ -1642,6 +1609,7 @@ body
 			top: 0	
 			left: 0	
 			overflow: hidden
+			z-index: 0
 			img
 				display: block
 				width: 100%
@@ -1654,6 +1622,7 @@ body
 			width: 100%
 			height: 100%
 			overflow: hidden
+			z-index: 0
 			video
 				contain: paint;
 				min-width: 100%;
@@ -1668,6 +1637,7 @@ body
 			+rem(left, 39px)
 			+rem(right, 39px)
 			pointer-events: none
+			z-index: 1
 			a 
 				pointer-events: all
 			+r(1366)
@@ -1718,7 +1688,7 @@ body
 			bottom: 0
 			right: 0
 			overflow: hidden
-			
+			z-index: 1
 		.portfolio-item__link
 			display: block
 			+rem(padding, 20px)
@@ -1733,14 +1703,14 @@ body
 
 .promo
 	display: flex
-	+rem(height, 420px)
+	// +rem(height, 420px)
+	position: relative
+	padding-bottom: 28%
 	width: 100%
 	+rem(margin-bottom, $mb)
 	.promo__layout
 		background-color: #ccc
-		width: 100%
-		height: 100%
-		position: relative
+		+coverdiv
 		display: flex
 		.l
 			width: 100%
@@ -1754,20 +1724,25 @@ body
 			top: 0
 			right: 0
 			height: 100%
+			&.is-visible
+				img
+					opacity: 1
 			img
 				width: 100%
 				height: 100%
 				object-fit: cover
-		.promo__title
-			position: relative
-			z-index: 2
-			+rem(margin-bottom, 43px)
-			span 
-				font-family: $GraphikMedium
-				+rem(font-size, 80px)
-				color: $white
-				+rem(letter-spacing, -1.65px)
-				// letter-spacing: -1.65px
+				opacity: 0
+				+tr(opacity .3s)
+					
+.promo__title
+	position: relative
+	z-index: 2
+	+rem(margin-bottom, 43px)
+	span 
+		font-family: $GraphikSemiBold
+		+rem(font-size, 80px)
+		color: $black
+		+rem(letter-spacing, -1.65px)
 .screen__content, .resent__container
 	.l
 		+rem(padding, 0 $padding)
@@ -1783,6 +1758,13 @@ body
 		line-height: 1.8
 	.arrows
 		cursor: pointer
+	.head__title
+		+rem(margin-bottom,32px)
+		+rm(1500)
+			+rem(max-width,600px)
+	a.link-color
+		&:hover 
+			color: color(hoverlink) !important
 .info__container
 	display: flex
 	+rem(margin-bottom, $mb)
@@ -1898,11 +1880,16 @@ body
 		height: 100%
 		top: 0
 		z-index: 10
-		cursor: none
+		cursor: pointer
+
 	.swiper-button-prev
 		left: 0
+		// &:hover 
+			// cursor: url(../img/svg/icons-left.svg), auto
 	.swiper-button-next
 		right: 0
+		// &:hover 
+			// cursor: url(../img/svg/icons-right.svg), auto
 .screen__section
 	+rem(margin-bottom, $mb)
 	display: flex
@@ -2025,7 +2012,7 @@ hr
 		.picture__image
 			+rem(margin, 0 (-$padding))
 	.picture__title
-		font-family: $GraphikMedium
+		font-family: $GraphikSemiBold
 		+rem(font-size, 28px)
 		+rem(margin-bottom, 55px)
 	.picture__image
@@ -2033,6 +2020,9 @@ hr
 			max-width: 100%
 			box-shadow: 0 4px 16px rgba(0, 0, 0, .26)
 			+rem(margin-bottom, $padding / 2)
+			margin-left: auto
+			margin-right: auto
+				
 	.picture__caption
 		font-family: $Graphik
 		+rem(font-size, 17px)
@@ -2085,12 +2075,20 @@ hr
 					order: 1
 				.case__item-picture
 					order: 2
+		+r(1500)
+			.case__item-text
+				+rem(padding-right,0)
+			&.inversion
+				.case__item-text
+					+rem(padding-left,0)
+					+rem(padding-right,$padding)	
 		.case__item-text
 			max-width: 46.2%
 			flex: 0 0 46.2%
 			+rem(padding, 0 $padding)
 			+rem(margin-top, 33px)
 			+rem(padding-bottom, 48px)
+
 			.case__title 
 				+rem(margin-bottom, 25px)
 			+r(1179)
@@ -2108,12 +2106,12 @@ hr
 				flex: 0 0 100%
 			img
 				width: 100%
-				height: 100%
+				// height: 100%
 				max-width: 100%
-				object-fit: cover
-				position: absolute
-				+r(1179)
-					position: relative
+				// object-fit: cover
+				// position: absolute
+				// +r(1179)
+				// 	position: relative
 
 .about__container
 	+rem(padding-left, 160px)
@@ -2176,12 +2174,12 @@ hr
 				width: 50%
 				+rem(margin-bottom, 25px)
 			.rate__head
-				font-family: $Graphik
+				font-family: $GraphikMedium
 				+rem(font-size, 20px)
 				line-height: 1.8
 				color: $caption
 			.rate__counter
-				font-family: $Graphik
+				font-family: $GraphikMedium
 				+rem(font-size, 100px)
 				color: $black
 				letter-spacing: -1.9px
@@ -2195,6 +2193,8 @@ hr
 			order: 2
 			width: 46.2%
 			+rem(padding, 51px $padding 0)
+			+r(1500)
+				padding-right: 0
 			.text-head
 				+rem(margin-bottom, 25px)
 		.view__pages-scroller
@@ -2281,17 +2281,24 @@ hr
 			width: auto
 			flex-shrink: 0
 			opacity: 1
-			transform: none
-			transition-property: transform
-			&.transition
-				opacity: 1
-				transform: none
+			// transform: none
+			// transition-property: transform
+			// portfolio__item
+			// &.transition
+			// 	opacity: 1
+			// 	transform: none
 			.portfolio__item
 				&:after
 					+r(1179)
-						padding-bottom: 50%
+						padding-bottom: 52%
+				&-header
+					// backface-visibility: hidden
+					+gpu
+					// -webkit-backface-visibility: hidden
+					// -webkit-transform-style: preserve-3d
+					// -webkit-font-smoothing: subpixel-antialiased
 .section__request
-	background-color: #f6f6f6
+	// background-color: #f6f6f6
 	+rem(padding, 63px 0)
 	.screen__section
 		+rem(margin-bottom, 54px)
@@ -2299,7 +2306,7 @@ hr
 		max-width: 100%
 		flex: 0 0 100%
 		h2, .h2
-			font-family: $GraphikMedium
+			font-family: $GraphikSemiBold
 			+rem(font-size, 80px)
 			letter-spacing: -1.5px
 			margin-bottom: 20px
@@ -2308,7 +2315,7 @@ hr
 		flex: 0 0 100%
 		padding-top: 0
 		p 
-			font-family: $GraphikMedium
+			font-family: $GraphikSemiBold
 			+rem(font-size, 28px)
 			line-height: 1.2
 .form__request
@@ -2323,15 +2330,20 @@ hr
 		opacity: 0
 		visibility: hidden
 .form__container
-	+rm(1180)
-		+rem(padding-left, $padding * 3)
-		+rem(padding-right, $padding * 2)
-	+r(1179)
-		+rem(padding-left, $padding)
-		+rem(padding-right, $padding)
+	// +rm(1180)
+	// 	+rem(padding-left, $padding * 3)
+	// 	+rem(padding-right, $padding * 2)
+	// +r(1179)
+	// 	+rem(padding-left, $padding)
+	// 	+rem(padding-right, $padding)
+	// padding-left: 7%
+	+rem(max-width,971px)
+	margin-left: auto
+	margin-right: auto
+	+rem(padding-right,160px)
 	.form__field
 		display: flex
-		+rem(max-width,811px)
+		
 		&.field__short
 			.form__content
 				flex: 0 0 50%
@@ -2387,6 +2399,7 @@ hr
 				left: 0
 				opacity: 0
 				pointer-events: none
+
 				&:checked
 					& + label
 						&:before
@@ -2400,6 +2413,33 @@ hr
 									+rem(width, 23px)
 								// opacity: 1
 								// visibility: visible
+			&-radio
+				.check__custom
+					border-radius: 50% !important
+					font-size: 0
+					text-align: center
+
+					i 
+						+vertical 
+						&:after
+							border-radius: 50% !important
+							display: inline-block
+							vertical-align: middle
+							background: $black
+							width: .4375rem !important	
+							height: .4375rem !important	
+							transition: transform .3s ease-in-out !important	
+							position: static !important	
+			input
+				&:not(:checked)
+					&+label
+						.check__custom
+							i
+								&:after
+									transform: scale(0)	
+								
+
+
 			label
 				+rem(padding, 14px 15px)
 				background-color: $white
@@ -2448,9 +2488,11 @@ hr
 							+rem(width, 0)
 							+rem(height, 17.5px)
 							background-image: url("../img/svg/icon-check.svg")
+							+contain
 							+rem(background-size, 22px 17px)
 							background-position: bottom left
 							z-index: 5
+
 							// opacity: 0
 							// visibility: hidden
 							transition: width 0.1s 
@@ -2474,12 +2516,14 @@ hr
 			border: 1px solid #b1b1b1
 			font-family: $Graphik
 			+rem(font-size, 17px)
+			overflow: visible	
 			color: $black
-			+rem(padding, 0 17px)
+			+rem(padding, 5px 17px)
 			transition: border-color 0.3s, color 0.3s
 			&:focus
 				border-color: $black
 				color: $black
+
 	.textarea
 		position: relative
 		&:after
@@ -2499,6 +2543,7 @@ hr
 			+rem(padding, 17px)
 			+rem(height, 117px)
 			resize: none
+			color: $black
 			display: block
 			transition: border-color 0.3s, color 0.3s
 			&:focus
@@ -2787,7 +2832,7 @@ a.active
 	bottom: 0
 	right: 0
 	z-index: 50
-	height: calc(100% - 5rem)
+	// height: calc(100% - 5rem)
 	display: flex
 	transform: translateX(100%)
 	transition: transform 0.3s
@@ -2804,6 +2849,7 @@ a.active
 			align-items: flex-end
 			justify-content: center
 			+rem(padding-bottom, 60px)
+			+rem(padding-top, 60px)
 			span
 				transform: rotate(-90deg)
 				font-family: $CondMedium

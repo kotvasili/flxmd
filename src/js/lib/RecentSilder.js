@@ -6,10 +6,11 @@ import Swiper from 'swiper';
 
 export default class RecentSlider {
   constructor() {
-  	this.container = '#grid__container';
+  	this.container = $('#grid__container');
   	this.carouselContainer = '.recent-carousel';
   	this.slide = 'grid__item';
   	this.arrows = '.arrow__container';
+    this.link = this.container.data('resenturl');
   	// this.lazy = new LazyElement();    
     // this.cursor = new Cursor();
   	this.init();
@@ -22,7 +23,7 @@ export default class RecentSlider {
   }
 
   templateBuilder(slider) {
-    $(this.container).append(slider.map((template) => Template(template))).promise().done(() => {
+    this.container.append(slider.map((template) => Template(template))).promise().done(() => {
       window.DOM.LazyImage();
       this.sliderWork();
     });
@@ -67,7 +68,8 @@ export default class RecentSlider {
       $.ajax({
         'async': true,
         'global': false,
-        'url': '../../json/recent.json',
+        'url': this.link,
+        // 'url': '../../json/recent.json',
         'dataType': 'json',
         'success': function(json) {
           res(json.recent);

@@ -2,9 +2,7 @@ ProjectTitle: Staylime
 
 PageList:
 - file: page.html
-  ready: 85
-- file: page-test.html
-  ready: 85
+  ready: 90
 - file: portfolio.html
   ready: 95
 - file: portfolio-project.html

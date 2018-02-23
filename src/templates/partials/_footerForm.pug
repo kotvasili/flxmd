@@ -17,6 +17,24 @@ form(action="")
 							.check__custom
 								i
 							span #{checkbox.name}
+	.form__field.field__checkbox
+		.form__head
+			span Budget
+		.form__content
+			.checkboxes
+				- var checkboxes = [{"id":"bomj",'group':'inpe', "checked":true,"name":"6000$"},{"id":"normpacan",'group':'inpe', "checked":false,"name":"10000$-16000$"}]
+				each checkbox in checkboxes
+					.checkbox__item.checkbox__item-radio
+						input(
+						type="radio"
+						id=checkbox.id
+						checked=checkbox.checked
+						name=checkbox.group
+						)
+						label(for=checkbox.id)
+							.check__custom
+								i
+							span #{checkbox.name}
 	.form__field
 		.form__head
 			span Your name

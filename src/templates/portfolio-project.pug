@@ -45,11 +45,13 @@ block content
 											.l
 												.promo__image.load-parent
 													img.js-image(data-src="img/projects/project-1.jpg", alt="")
-												//- .promo__title
-												//- 	span Auto startup Dealer Hall
 									section.screen__content
 										.l
-											
+											.head__title
+												.title-small
+													span What we offer
+												.title
+													h1 Разработка на 1С-Битрикс
 											.info__container.l_p
 												.info__description
 													p Liesegang & Partner is an IP and commercial-law boutique law firm mainly focussing on the various aspects of national and international trademark law, design law and company law. With a team of top-level professionals, many of them being a&nbsp;“Fachanwalt für Gewerblichen Rechtsschutz” — German Certified IP Lawyer.
@@ -209,7 +211,7 @@ block content
 										.recent__bg
 											img(src="img/recent-bg.jpg", alt="")
 										.l
-											.screen__section.l_p
+											.screen__section
 												.screen__section-head
 													h2.h2 Recent projects
 												.resent__navigation
@@ -221,7 +223,7 @@ block content
 															i.icon
 																<svg width="15.6" height="26" viewBox="0 0 15.6 26" xmlns="http://www.w3.org/2000/svg"><g><polygon points="0,1.7 1.7,0.1 15.6,13.1 1.7,26.1 0,24.5 12.2,13.1"/></g></svg>
 											.grid__carousel.recent-carousel
-												.swiper-wrapper.grid__container#grid__container
+												.swiper-wrapper.grid__container#grid__container(data-resentUrl='../../json/recent.json')
 									section.section__request.request__fixed
 										.screen__content
 											.l

@@ -56,10 +56,13 @@ ScrollSlide.prototype = {
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
     this.setCurrentPage(this.options.currPage);
     this.setNavigationCurrItem(this.options.currPage);
+
     this.generateScrollBarPagination();
     this.setScrollBar(this.options.currPage);
+
     this.initEventHandler();
     this.scrollEvent();
+    this.initSwiper();
     this.twn = new TimelineMax();
 
   },
@@ -120,22 +123,22 @@ ScrollSlide.prototype = {
   },
   scrollEvent: function() {
     var self = this;
-    this.element.on('mousewheel DOMMouseScroll',(e) => {
+    this.element.on('mousewheel DOMMouseScroll wheel',(e) => {
       e.preventDefault();
     });
-    if(window.DOM.html.hasClass('firefox')) {
-      this.element[0].addEventListener('DOMMouseScroll',(e) => debounce(self.checkDirection(e)));
-    }else{
-      this.element[0].addEventListener('mousewheel',(e) => debounce(self.checkDirection(e)));
-    }
+    // if(window.DOM.html.hasClass('firefox')) {
+    //   this.element[0].addEventListener('wheel',(e) => debounce(self.checkDirection(e)));
+    // }else{
+    this.element[0].addEventListener('wheel',(e) => debounce(self.checkDirection(e)), window.DOM.passiveSupported ? { passive: true } : false);
+    // }
 
   },
   removeEvents: function() {
-    // this.twn.kill();
+    this.twn.kill();
     // this.slideTwn.kill();
     // this.element.off('DOMMouseScroll mousewheel').unbind();
-    alert();
-    console.log(this.swiperInstances);
+    // alert();
+    // console.log(this.swiperInstances);
     this.swiperInstances.filter(item => {
 
       item.destroy();
@@ -147,10 +150,12 @@ ScrollSlide.prototype = {
     if(this.body.hasClass('menu-open')) {
       return false;
     }
+    // alert();
     // console.log(2);
     if(!this.canScroll) {
-      var delta = -e.wheelDelta;
-      if(delta > 50 ) {
+      var delta = e.deltaY;
+      // console.log(e.deltaY);
+      if(delta > 0 ) {
         this.curr_slide = this.options.currPage;
         this.next_slide = this.curr_slide + 1;
 
@@ -161,7 +166,7 @@ ScrollSlide.prototype = {
         this.moveSection();
         return false;
 
-      } else if(delta < -50) {
+      } else if(delta < 0) {
         
         this.curr_slide = this.options.currPage;
         this.next_slide = this.curr_slide - 1;
@@ -220,20 +225,20 @@ ScrollSlide.prototype = {
     } else {
       this.element.add(this.logo).addClass('light');
     }
-    // if(this.scene !== null) {
-    //   if(nxtInd === 0) {
-    //     setTimeout(() => {
-    //       this.scene.ply();
-    //       requestAnimationFrame(this.scene.render);
-    //       this.scene.classList.remove('hidden'); 
-    //     },600);
-    //   }else{
-    //     this.scene.classList.add('hidden');
-    //     setTimeout(() => {
-    //       this.scene.stp();
-    //     },100);
-    //   }
-    // }
+    if(this.scene !== null) {
+      if(nxtInd === 0) {
+        setTimeout(() => {
+          this.scene.ply();
+          requestAnimationFrame(this.scene.render);
+          this.scene.classList.remove('hidden'); 
+        },1200);
+      }else{
+        this.scene.classList.add('hidden');
+        setTimeout(() => {
+          this.scene.stp();
+        },100);
+      }
+    }
     
     // curr.addClass('section__prev')
     if(nxtInd > crrInd) {
@@ -285,7 +290,7 @@ ScrollSlide.prototype = {
           // yPercent: 100,
           y: '+=100%',
           ease: Expo.easeInOut,
-          // force3D: true,
+          force3D: true,
           // rotation:0.001,
         })
         .fromTo(crrContent, 1.2,{
@@ -303,7 +308,7 @@ ScrollSlide.prototype = {
           // yPercent: 0,
           y: '+=100%',
           ease: Expo.easeInOut,
-          // force3D: true,
+          force3D: true,
           // rotation:0.001,
         }, '-=1.2')
         .fromTo(nxtContent, 1.2,{
