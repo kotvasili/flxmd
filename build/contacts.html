@@ -214,7 +214,7 @@
                                           </div>
                                         </div>
                                         <div class="form__container">
-                                          <form action="">
+                                          <form class="js-validate" action="">
                                             <input class="hidden" type="text">
                                             <div class="form__field field__checkbox">
                                               <div class="form__head">
@@ -303,7 +303,7 @@
                                               </div>
                                               <div class="form__content">
                                                 <div class="input">
-                                                  <input type="text" placeholder="Eugene Selenkov">
+                                                  <input type="text" placeholder="Eugene Selenkov" data-validation="length" data-validation-length="min1">
                                                 </div>
                                               </div>
                                             </div>
@@ -313,7 +313,7 @@
                                               </div>
                                               <div class="form__content">
                                                 <div class="input">
-                                                  <input type="text" placeholder="Tesla LLC">
+                                                  <input type="text" placeholder="Tesla LLC" data-validation="length" data-validation-length="min1">
                                                 </div>
                                               </div>
                                             </div>
@@ -323,7 +323,7 @@
                                               </div>
                                               <div class="form__content">
                                                 <div class="input">
-                                                  <input type="text" placeholder="es@tesla.com">
+                                                  <input type="text" placeholder="es@tesla.com" data-validation="email">
                                                 </div>
                                               </div>
                                             </div>
@@ -333,7 +333,7 @@
                                               </div>
                                               <div class="form__content">
                                                 <div class="input">
-                                                  <input type="text" placeholder="+375 29 6727447">
+                                                  <input type="text" placeholder="+375 29 6727447" data-validation="custom" data-validation-regexp="^[-0-9()+ ]+$" data-validation-error-msg="You have not given a correct phone number">
                                                 </div>
                                               </div>
                                             </div>

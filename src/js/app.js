@@ -16,6 +16,7 @@ import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
 // import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 import CanvRender from './lib/canv';
+import validateForms from './lib/jqValidator';
 // import dragscroll from 'dragscroll';
 // import WOW from '../../node_modules/wow.js/dist/wow.min.js';
 // import inView from 'in-view';
@@ -29,13 +30,14 @@ var BarbaWitget = {
   init: function() {
     var scope = this;
 
-    Barba.Pjax.start();
-    Barba.Prefetch.init();
+
     this.menu = new Menu();
     this.menu.init();
     Colorize();
     window.DOM.tl = new TimelineMax();
     window.DOM.tlr = new TimelineMax();
+    Barba.Pjax.start();
+    Barba.Prefetch.init();  
     Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
     Barba.Pjax.preventCheck = (evt, element) => {
       if ($(element).attr('href') && $(element).attr('href').indexOf('#') > -1)
@@ -43,10 +45,6 @@ var BarbaWitget = {
       else
         return Barba.Pjax.originalPreventCheck(evt, element);
     };
-    Barba.Pjax.getTransition = () => {
-      return scope.MovePage;
-    };
-    // var myEase:Function = CustomEase.create("SlowMo", [{s:0,cp:0.394,e:0.644},{s:0.644,cp:0.894,e:1}]);
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
       
     });
@@ -61,7 +59,11 @@ var BarbaWitget = {
       this.menu = new Menu();
       this.menu.init();
       scrollToEl();
-    });    
+      validateForms();
+    });  
+    Barba.Pjax.getTransition = () => {
+      return scope.MovePage;
+    }; 
   },
   MovePage: Barba.BaseTransition.extend({
     start: function() {
@@ -222,8 +224,11 @@ var IndexPage = Barba.BaseView.extend({
     }
     window.DOM.body.removeClass('index-page');
     // alert(this.fullpage);
-    this.fullpage.removeEvents();
-    delete this.fullpage;
+    setTimeout(() => {
+      this.fullpage.removeEvents();
+      delete this.fullpage; 
+    },1000);
+
   },
   onLeaveComplete: () => {
 
@@ -285,20 +290,19 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     // this.menu.destroy();
 
     delete this.portfolio;
+    this.carousel.destroy();
     delete this.carousel;
-    // delete this.menu;
+    this.resent.destroy();
     delete this.resent;
   },
-  onLeaveComplete: function() {
-
+  onLeaveComplete: () => {
+    alert();
   }
 });
 
 var ContactsPage = Barba.BaseView.extend({
   namespace: 'contacts',
   onEnter: function() {
-    // this.menu = new Menu();
-    // this.menu.init();
   },
   onEnterCompleted: function() {
     var scrollsMain = document.getElementById('scroll-container');
@@ -312,13 +316,9 @@ var ContactsPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
-    
     console.log('ContactsPage');
     this.portfolio.delete();
-    // this.menu.destroy();
-    
     delete this.portfolio;
-    // delete this.menu;
   },
   onLeaveComplete: function() {
     alert();
@@ -343,6 +343,7 @@ function initSite() {
   });
   
   new PageLoader();
+ 
   ContactsPage.init();
   PortfolioPage.init();
   IndexPage.init();
@@ -353,6 +354,7 @@ function initSite() {
 
 window.onload = () => {
   scrollToEl();
+  
 };
 if (!window.Promise) {
   window.Promise = Promise;
@@ -360,18 +362,19 @@ if (!window.Promise) {
 document.addEventListener('DOMContentLoaded', () => {
 
 });
-ready(() => {
-  window.scrollTo(0,0);
-  initSite();
-  window.DOM.LazyImage();
-  // ScrollAnim();
-});
+// ready(() => {
+window.scrollTo(0,0);
+initSite();
+window.DOM.LazyImage();
+validateForms();
+// ScrollAnim();
+// });
 
 // replacement for domcontentloaded event
-function ready(fn) {
-  if (document.readyState !== 'loading') {
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
+// function ready(fn) {
+//   if (document.readyState !== 'loading') {
+//     fn();
+//   } else {
+//     document.addEventListener('DOMContentLoaded', fn);
+//   }
+// }

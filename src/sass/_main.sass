@@ -237,6 +237,8 @@ body
 		position: fixed
 		mix-blend-mode: difference;
 .home-page
+	overflow: hidden
+	
 	.wrapper-frame
 		height: 100vh
 		display: flex
@@ -672,8 +674,8 @@ body
 			-moz-transform-style: preserve-3d;
 		.swiper-slide
 			img
-				transition: transform .1s .9s, opacity .25s
-				+tr(transform .1s .9s)
+				transition: transform 0s 1s, opacity .25s
+				// +tr(transform .15s .9s)
 				transform: scale(1.25)
 			&.swiper-slide-active,&.swiper-slide-duplicate-active
 				img
@@ -682,6 +684,8 @@ body
 	&:not(.swiper-container-horizontal)
 		&~div 
 			display: none
+		// .image-container
+		// 	transform: none !important
 			
 .overlay
 	position: fixed
@@ -2179,7 +2183,7 @@ hr
 				line-height: 1.8
 				color: $caption
 			.rate__counter
-				font-family: $GraphikMedium
+				font-family: $Graphik
 				+rem(font-size, 100px)
 				color: $black
 				letter-spacing: -1.9px
@@ -2278,7 +2282,8 @@ hr
 		height: 100%
 		overflow: hidden
 		.grid__item
-			width: auto
+			// width: auto
+			width: 50%
 			flex-shrink: 0
 			opacity: 1
 			// transform: none
@@ -2510,6 +2515,7 @@ hr
 			left: 0
 			right: 0
 			position: absolute
+			+tr(background-color .3s)
 		input
 			+rem(height, 51px)
 			width: 100%
@@ -2699,9 +2705,9 @@ hr
 
 	.screen__section
 		+rem(margin-bottom, 35px)
-	.form__container
-		+rm(1180)
-			+rem(padding-left, 160px)
+	// .form__container
+	// 	+rm(1180)
+	// 		+rem(padding-left, 160px)
 .container
 	overflow: hidden
 .load__presentation
@@ -2877,20 +2883,14 @@ a.active
 	#out
 		will-change: width
 
-
-
-@keyframes fadeInUp
-	0%
-		opacity: 0
-		transform: translate(0,150px)
-
-	100% 
-		opacity: 1
-		transform: none
-
-.fadeInUp
-    animation-name: fadeInUp
-// .wow
-// 	opacity: 0
-// 	&.animate
-// 		opacity: 1
+.help-block.form-error
+	color: red
+	+rem(margin-top,8px)
+	+rem(font-size,17px)
+.has-error
+	&:after
+		background-color: red !important
+	input, textarea
+		border-bottom-color: transparent !important
+		&:focus
+			border-bottom-color: transparent !important

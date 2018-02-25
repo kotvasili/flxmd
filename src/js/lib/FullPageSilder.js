@@ -396,9 +396,6 @@ ScrollSlide.prototype = {
                 // $project[defaultCurrIndex].classList.remove('hover'); 
               }
             });
-
-            
-
           },
           transitionStart: function() {
             if(screenParent.hasClass('section__active')) {
@@ -423,6 +420,13 @@ ScrollSlide.prototype = {
               $this.removeClass('animating');
             });
           }
+        },
+        beforeDestroy: function() {
+          // alert();
+          // let images = $this[0].querySelectorAll('.image-container');
+          // images.filter(item => {
+          //   item.removeAttribute('style');
+          // });
         },
 
       };

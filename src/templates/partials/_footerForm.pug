@@ -1,4 +1,4 @@
-form(action="")
+form(action="").js-validate
 	input(class="hidden" type="text")
 	.form__field.field__checkbox
 		.form__head
@@ -40,25 +40,34 @@ form(action="")
 			span Your name
 		.form__content
 			.input
-				input(type="text" placeholder="Eugene Selenkov")
+				input(type="text" 
+					placeholder="Eugene Selenkov"
+					data-validation="length",
+					data-validation-length='min1')
 	.form__field
 		.form__head
 			span Company
 		.form__content
 			.input
-				input(type="text" placeholder="Tesla LLC")
+				input(type="text" placeholder="Tesla LLC"
+					data-validation="length",
+					data-validation-length='min1')
 	.form__field.field__short
 		.form__head
 			span E-mail
 		.form__content
 			.input
-				input(type="text" placeholder="es@tesla.com")
+				input(type="text" placeholder="es@tesla.com"
+					data-validation="email")
 	.form__field.field__short
 		.form__head
 			span Phone number
 		.form__content
 			.input
-				input(type="text" placeholder="+375 29 6727447")
+				input(type="text" placeholder="+375 29 6727447"	
+				data-validation="custom",
+				data-validation-regexp="^[-0-9()+ ]+$",
+				data-validation-error-msg="You have not given a correct phone number")
 	.form__field.field__textarea
 		.form__head
 			span Comment

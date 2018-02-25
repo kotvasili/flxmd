@@ -5,14 +5,17 @@ import SwiperSettings from './SliderSettings';
 export default class Carousel {
   constructor() {
     this.slider = '.swiper-container';
+    this.instances= [];
   }
 
   init() {
     this.swiper = document.querySelectorAll(this.slider);
     this.carousel();
+    
   }
 
   carousel() {
+    const self = this;
     [].forEach.call(this.swiper, (item, index) => {
       item.classList.add('image-rotator_' + index);
       const $btnPrev = $(item).parent().find('.swiper-button-prev');
@@ -48,6 +51,14 @@ export default class Carousel {
       this.assign = Object.assign(this.carouselSetting, SwiperSettings);
 
       this.swiperCarousel = new Swiper('.image-rotator_' + index, this.assign);
+      
+      this.instances.push(this.swiperCarousel);
+      console.log(this.instances);
+    });
+  }
+  destroy() {
+    this.instances.filter(item => {
+      item.destroy();
     });
   }
 

@@ -28,7 +28,9 @@ export default class RecentSlider {
       this.sliderWork();
     });
   }
-
+  destroy() {
+    this.swiperCarousel.destroy();
+  }
   sliderWork() {
     var self = this;
   	this.btnNext = $(this.arrows).find('.arrow__right');
