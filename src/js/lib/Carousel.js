@@ -21,6 +21,7 @@ export default class Carousel {
       const $btnPrev = $(item).parent().find('.swiper-button-prev');
       const $btnNext = $(item).parent().find('.swiper-button-next');
       const $pagi = $(item).parent().find('.swiper-pagination');
+      const interleaveOffset = 0.8;
       this.carouselSetting = {
       	loop: false,
         navigation:{
@@ -37,7 +38,27 @@ export default class Carousel {
           }
         },
         on:{
-
+          progress: function() {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              const img = swiper.slides[i].querySelector('.image-container');
+              var slideProgress = swiper.slides[i].progress;
+              var innerOffset = swiper.width * interleaveOffset;
+              var innerTranslate = slideProgress * innerOffset;
+              TweenMax
+                .set(img,{
+                  x: innerTranslate,
+                });
+            }
+          },
+          setTransition: function(speed) {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = speed + 'ms';
+              swiper.slides[i].querySelector('.image-container').style.transition =
+                speed + 'ms';
+            }
+          },
           transitionStart: function() {
             item.classList.add('animating');
           },

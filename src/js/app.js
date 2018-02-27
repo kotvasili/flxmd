@@ -142,6 +142,13 @@ var BarbaWitget = {
         .set(overlayInner, {
           backgroundColor: 'none'
         })
+        .set(this.oldCont, {
+          // autoAlpha: 0,
+          display: 'none'
+        })
+        .set(this.newCont, {
+          autoAlpha: 1
+        })
         .to(window.DOM.trnsContOUT, 0.7, {
           // width: screenWidth - screenWidth / 100 * 10,
           scaleX: 0,
@@ -152,20 +159,11 @@ var BarbaWitget = {
           x: 0,
           ease: Circ.easeIn.Power2,
         }, '-=0.7')
-
-        .set(this.oldCont, {
-          autoAlpha: 0,
-          // display: 'none'
-        })
         .set(overlayInner, {
           backgroundColor: overlayColor,
-        })
-        .set(this.newCont, {
-          autoAlpha: 1,
           onComplete: () => {
             $(window).scrollTop(0,0);
             self.done();
-            
             TweenMax.to(frame, 0.5, {
               y: 0,
               autoAlpha: 1,
@@ -181,8 +179,6 @@ var BarbaWitget = {
                 // document.body.style.overflow = 'visible';
               }
             });
-
-            
           }
         });
     }
@@ -196,13 +192,16 @@ var IndexPage = Barba.BaseView.extend({
     this.canv = document.getElementById('scene');
     if(this.canv !== undefined && this.canv !== null) {
       window.DOM.CanvRender();
+      this.canv.classList.remove('hidden');
     }
     
    
   },
   onEnterCompleted: function() {
+
     window.DOM.body.addClass('index-page');
     this.fullpage = new ScrollSlide('#work-wrapper');
+    
     // ; 
     
     
@@ -286,14 +285,15 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
-    this.portfolio.delete();
-    // this.menu.destroy();
+    setTimeout(() => {
+      this.portfolio.delete();
+      delete this.portfolio;
+      this.carousel.destroy();
+      delete this.carousel;
+      this.resent.destroy();
+      delete this.resent;
+    },1000);
 
-    delete this.portfolio;
-    this.carousel.destroy();
-    delete this.carousel;
-    this.resent.destroy();
-    delete this.resent;
   },
   onLeaveComplete: () => {
     alert();

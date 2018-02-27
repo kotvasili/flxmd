@@ -54,6 +54,7 @@ ScrollSlide.prototype = {
     this.slidewrap = document.getElementById('side-page');
     this.sideElems = Array.from(this.slidewrap.querySelectorAll('.content__side'));
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
+    this.ScrollDown = document.querySelector('.icon-scroll');
     this.setCurrentPage(this.options.currPage);
     this.setNavigationCurrItem(this.options.currPage);
 
@@ -118,7 +119,23 @@ ScrollSlide.prototype = {
       self.setScrollBar(self.next_slide);
 
       event.preventDefault();
+    });
+    this.ScrollDown.addEventListener('click',(event) => {
+      if(self.canScroll) {
+        return false;
+      }
+      self.canScroll = true;
+      self.curr_slide = self.options.currPage;
+      self.next_slide = 1;
+      self._curr_slide = self.sections[self.curr_slide];
+      self._next_slide = self.sections[self.next_slide];
 
+      self.goToSlide(self._curr_slide, self._next_slide);
+
+      self.setNavigationCurrItem(self.next_slide);
+
+      self.options.currPage = self.next_slide;
+      self.setScrollBar(self.next_slide);
     });
   },
   scrollEvent: function() {
@@ -418,6 +435,8 @@ ScrollSlide.prototype = {
           transitionEnd: function(el) {
             requestAnimationFrame(() => {
               $this.removeClass('animating');
+
+              // .removeInlineCss('transition-duration');
             });
           }
         },

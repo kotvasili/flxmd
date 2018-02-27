@@ -193,7 +193,7 @@ export default window.DOM.LazyImage = () => {
       img.style.backgroundImage = 'url('+src+')';
 
     }else if(img.classList.contains('vid')) {
-
+      img.classList.add('vidloaded');
     }else{
       img.src = src;
 

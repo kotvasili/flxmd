@@ -4,6 +4,7 @@
 			"id": 1,
 			"width": 100,
 			"video": "../video/Love-Coding.mp4",
+			"videoimage": "../img/projects/project_4.jpg",
 			"bgimage": "#0e6bb6",
 			"breadcrumbs": [
 				{
@@ -269,6 +270,7 @@
 			"id": 16,
 			"width": 100,
 			"video": "../video/Love-Coding.mp4",
+			"videoimage": "../img/projects/project_4.jpg",
 			"bgimage": "#0e6bb6",
 			"breadcrumbs": [
 				{

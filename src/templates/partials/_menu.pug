@@ -19,7 +19,7 @@ nav.menu
 									.touch-down-elem
 										span #{link[0]}
 					.navigation-request.order_2
-						a(href="#" class="custom__btn")
+						a(href="contacts.html#order" class="custom__btn")
 							span Make an order
 			.menu-middle
 				.middle-container
@@ -49,13 +49,18 @@ nav.menu
 			.menu-lower
 				.lower-container
 					.lang-container.order_6
-						-var langs = ["English", "Русский"]
+						-var langs = [["English",'active'], ["Русский"]]
 						.lang
 							//.active для текущего языка
 							each lang in langs
-								a.lang__item.touch-down.not-move(href="#" class="no-barba")
-									.touch-down-elem
-										span #{lang}
+								if (lang[1])
+									a.lang__item.touch-down.not-move(href="#" class="no-barba").active
+										.touch-down-elem
+											span #{lang[0]}
+								else
+									a.lang__item.touch-down.not-move(href="#" class="no-barba")
+										.touch-down-elem
+											span #{lang[0]}
 					.social-container.order_7
 						-var socials = ["facebook", "behance", "dribbble", "linkedin"]
 						.social

@@ -71,12 +71,18 @@ block content
 											.project-carousel
 												.swiper-container
 													.swiper-wrapper
-														- var length = 5;
-														- for (var i = 0; i < length; i++)
-															.swiper-slide
-																.image-container
-																	.image-inner
-																		img(class="swiper-lazy" src="img/gallery/gallery-1.jpg", alt="project-1")
+														.swiper-slide
+															.image-container
+																.image-inner
+																	img(src="img/gallery/gallery-1.jpg", alt="project-1")
+														.swiper-slide
+															.image-container
+																.image-inner
+																	img(src="img/projects/project-1.jpg", alt="project-1")
+														.swiper-slide
+															.image-container
+																.image-inner
+																	img(src="img/projects/project-1.jpg", alt="project-1")
 													.swiper-pagination
 													.swiper-button-next.crsor-trgr(data-cursor-type="arrr")
 													.swiper-button-prev.crsor-trgr(data-cursor-type="arrl")
