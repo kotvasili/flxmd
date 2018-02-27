@@ -9,7 +9,7 @@ export default function scrollToEl() {
     window.scrollTo(0,0);
     setTimeout(() => {
       let destination = element.offset().top;
-      $('html:not(:animated),body:not(:animated)').animate({scrollTop: destination - 100}, 600);
+      $('html:not(:animated),body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination - 100}, 600);
     }, 400);
   }  
   $('.js-scroll-to').on('click', function(e) {
@@ -19,11 +19,11 @@ export default function scrollToEl() {
     var target = window.DOM.body.find('[data-id="' + elementClick + '"]');
     if( $(this).hasClass('to-top')) {
       destination = 0;
-      $('html:not(:animated), body:not(:animated)').animate({scrollTop: destination}, 600);
+      $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination}, 600);
     }
     if(target.length) {
       destination = $(target).offset().top,
-      $('html:not(:animated), body:not(:animated)').animate({scrollTop: destination - pad}, 600);
+      $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination - pad}, 600);
     }
 
   });

@@ -188,45 +188,36 @@ var BarbaWitget = {
 var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
-    
     this.canv = document.getElementById('scene');
     if(this.canv !== undefined && this.canv !== null) {
-      window.DOM.CanvRender();
-      this.canv.classList.remove('hidden');
+      setTimeout(() => {
+        window.DOM.CanvRender();
+        // this.canv.classList.remove('hidden');
+      },1000);
     }
-    
-   
   },
   onEnterCompleted: function() {
-
+    
+   
     window.DOM.body.addClass('index-page');
     this.fullpage = new ScrollSlide('#work-wrapper');
     
-    // ; 
-    
-    
-    // Colorize();
-    // setTimeout(() => {
-     
-    //   this.fullpage.initSwiper(); 
-    // },500);
- 
-
   },
   onLeave: function() {
     
     if(this.canv !== undefined && this.canv !== null) {
-      this.canv.flyAway = true;
+      // this.canv.flyAway = true;
       setTimeout(() => {
-        this.canv.renderer.forceContextLoss();
-      }, 1000);
+       
+      }, 1500);
     }
     window.DOM.body.removeClass('index-page');
     // alert(this.fullpage);
     setTimeout(() => {
+      this.canv.renderer.forceContextLoss();
       this.fullpage.removeEvents();
       delete this.fullpage; 
-    },1000);
+    },1500);
 
   },
   onLeaveComplete: () => {
@@ -292,7 +283,7 @@ var PortfolioInnerPage = Barba.BaseView.extend({
       delete this.carousel;
       this.resent.destroy();
       delete this.resent;
-    },1000);
+    },1500);
 
   },
   onLeaveComplete: () => {

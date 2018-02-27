@@ -45,10 +45,6 @@ ScrollSlide.prototype = {
     this.swiper = $(this.options.swiperContainer);
     this.menuPrimary = $(this.options.mainMenu);
     this.logo = $('.logo');
-    this.swiperInstances = [];
-    this.colorChange = null;
-    this.canScroll = false;
-    this.scrollController = null;
     this.body = window.DOM.body;
     this.scene = document.getElementById('scene');
     this.slidewrap = document.getElementById('side-page');
@@ -56,11 +52,13 @@ ScrollSlide.prototype = {
     this.bgTargets = $('.scrollbar__container').find('span').add($('.hover-line'));
     this.ScrollDown = document.querySelector('.icon-scroll');
     this.setCurrentPage(this.options.currPage);
+    this.swiperInstances = [];
+    this.colorChange = null;
+    this.canScroll = false;
+    this.scrollController = null;
     this.setNavigationCurrItem(this.options.currPage);
-
     this.generateScrollBarPagination();
     this.setScrollBar(this.options.currPage);
-
     this.initEventHandler();
     this.scrollEvent();
     this.initSwiper();
@@ -458,6 +456,7 @@ ScrollSlide.prototype = {
   },
 
   setCurrentPage: function(currPage) {
+    this.scene.classList.remove('hidden');
     if(currPage === null) {
       this.navItem.eq(0).addClass('nav__active');
       this.sections[0].classList.add('section__active');
@@ -467,8 +466,11 @@ ScrollSlide.prototype = {
       this.sections[currPage].classList.add('section__active');
       this.sideElems[currPage].classList.add('section__active');
     }
-    
-    this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
+
+    setTimeout(() => {
+      this.setColor(this.element.find('.section__active').data('bgcolor'), this.element.find('.section__active').data('textcolor'));
+    },800);
+   
   },
   setNavigationCurrItem: function(currItem) {
     this.navItem.eq(currItem).addClass('nav__active').siblings().removeClass('nav__active');

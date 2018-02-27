@@ -38,6 +38,7 @@ form(action="",data-id='order').js-validate
 	.form__field
 		.form__head
 			span Your name
+			
 		.form__content
 			.input
 				input(type="text" 
@@ -62,12 +63,13 @@ form(action="",data-id='order').js-validate
 	.form__field.field__short
 		.form__head
 			span Phone number
+			span.opt Optional
 		.form__content
 			.input
 				input(type="text" placeholder="+375 29 6727447"	
 				data-validation="custom",
 				data-validation-regexp="^[-0-9()+ ]+$",
-				data-validation-error-msg="You have not given a correct phone number")
+				data-validation-error-msg="You have not given a correct phone number",data-validation-optional='true')
 	.form__field.field__textarea
 		.form__head
 			span Comment
