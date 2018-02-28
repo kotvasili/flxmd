@@ -21,6 +21,7 @@ import validateForms from './lib/jqValidator';
 // import WOW from '../../node_modules/wow.js/dist/wow.min.js';
 // import inView from 'in-view';
 // import ScrollAnim from './lib/ScrollAnim';
+import touchDown from './lib/touchDown';
 
 $.fn.hasAttr = function(name) {
   return this.attr(name) !== undefined;
@@ -30,12 +31,16 @@ var BarbaWitget = {
   init: function() {
     var scope = this;
 
-
+    this.touchEls = Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)'));
+    this.touchEls.filter(item => {
+      new touchDown(item);
+    });
     this.menu = new Menu();
     this.menu.init();
     Colorize();
     window.DOM.tl = new TimelineMax();
     window.DOM.tlr = new TimelineMax();
+
     Barba.Pjax.start();
     Barba.Prefetch.init();  
     Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
@@ -46,7 +51,10 @@ var BarbaWitget = {
         return Barba.Pjax.originalPreventCheck(evt, element);
     };
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
-      
+      this.touchEls = Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)'));
+      this.touchEls.filter(item => {
+        new touchDown(item);
+      });
     });
     Barba.Dispatcher.on('transitionCompleted', (currentStatus, oldStatus, container) => {
       // window.DOM.cursor.defaultType();
@@ -61,6 +69,7 @@ var BarbaWitget = {
       scrollToEl();
       validateForms();
     });  
+
     Barba.Pjax.getTransition = () => {
       return scope.MovePage;
     }; 
@@ -112,6 +121,7 @@ var BarbaWitget = {
           width: parseInt(this.screenWidth),
           ease: Circ.easeIn.Power2,
           onComplete: () => {
+
             deferred.resolve();
           }
         });
@@ -173,8 +183,8 @@ var BarbaWitget = {
                 // !fullwidth ? window.DOM.showScrollSimple(): false;
                 TweenMax.set(window.DOM.trnsContOUT,{clearProps:'all'});
                 TweenMax.set(window.DOM.trnsContIN,{clearProps:'all'});
-                window.DOM.tl.clear();
-                window.DOM.tlr.clear();
+                window.DOM.tl.kill();
+                window.DOM.tlr.kill();
                
                 // document.body.style.overflow = 'visible';
               }
@@ -268,12 +278,6 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     this.carousel.init();
 
     this.resent = new RecentSlider();
-    // Colorize();
-    
-    // if (typeof dragscroll !== 'undefined') {
-    //   dragscroll.reset();  
-    // }
-    
   },
   onLeave: function() {
     setTimeout(() => {

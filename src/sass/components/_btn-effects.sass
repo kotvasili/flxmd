@@ -1,26 +1,26 @@
 .touch-down
 	&-elem
-		transition: transform .2s $btntr
-		position: relative
-		display: inline-block
+		// transition: transform .2s $btntr
+		// position: relative
+		// display: inline-block
 		
 	&:hover:not(.not-move)
 		.touch-down
 			&-elem
 				transform: translateX(10px)
 		&:active
-			.touch-down
-				&-elem
-					filter: blur(.0)
-					transition: transform .1s
-					transform: scale(.95) translateX(10px)
+			// .touch-down
+			// 	&-elem
+			// 		filter: blur(.0)
+			// 		transition: transform .1s
+			// 		transform: scale(.95) translateX(10px)
 	&.not-move
-		&:active
-			.touch-down
-				&-elem
-					filter: blur(.0)
-					transition: transform .1s
-					transform: scale(.95)
+		// &:active
+		// 	.touch-down
+		// 		&-elem
+		// 			filter: blur(.0)
+		// 			transition: transform .1s
+		// 			transform: scale(.95)
 .custom__btn
 	background-color: transparent
 	border-radius: 2px

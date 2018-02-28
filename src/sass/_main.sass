@@ -16,6 +16,7 @@ button
 		background-color: color(link)
 		color: white
 		opacity: 1
+
 html
 	width: 100%	
 	height: 100%
@@ -28,9 +29,12 @@ html
 	text-rendering: optimizeLegibility
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	box-shadow: none  !important
+	background-color: $white
+
 	// scroll-behavior: smooth;
-	&.safari
-		overflow: visible !important
+	// &.safari
+	// 	overflow: visible !important
 	+r(1366)
 		font-size: 14px
 	+r(1277)
@@ -44,6 +48,8 @@ body
 	height: 100%
 	font-family: $Graphik
 	-webkit-overflow-scrolling: touch
+	box-shadow: none  !important
+	background-color: $white
 	// scroll-behavior: smooth;
 	&>span 
 		display: none
@@ -102,6 +108,7 @@ body
 .root-wrapper
 	.safari &
 		height: 100%
+		box-shadow: none !important
 	width: 100%
 .header
 	position: fixed
@@ -112,6 +119,7 @@ body
     will-change: transform
 .scroll-content
 	height: 100%
+
 [data-scrollbar]
 	.scrollbar-track
 		background-color: transparent
@@ -360,6 +368,7 @@ body
 			flex-shrink: 0
 			justify-content: flex-end
 			height: 100%
+
 	.content__side-name
 		padding-left: 12.3%
 		padding-right: 13%
@@ -395,7 +404,8 @@ body
 		position: relative
 		padding-right: 10.5%
 		transform-origin: 0 100%
-
+.js-scroll-height
+	background-color: $white
 .work-wrapper__overlay
 	position: fixed
 	top: 0
@@ -638,6 +648,7 @@ body
 		-moz-transform-style: preserve-3d
 		pointer-events: all
 		cursor: pointer
+
 		&:after
 			content: ''
 			display: inline-block
@@ -1565,11 +1576,11 @@ body
 				opacity: 1
 			// transform: none
 		.portfolio__item	
-			+tr(transform .1s)
+			// +tr(transform .1s)
 
-			&:active 
-				transition-duration: .2s
-				transform: scale(.98) !important	
+			// &:active 
+			// 	transition-duration: .2s
+			// 	transform: scale(.98) !important	
 		&.w__100
 			width: 100%
 			.portfolio__item
