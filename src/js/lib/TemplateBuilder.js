@@ -11,6 +11,7 @@ import './domConf';
 import $ from 'jquery/dist/jquery';
 // import Cursor from './Cursor.js';
 import inView from 'in-view';
+import touchDown from './touchDown';
 
 const ITEMS_PER_ADD = 9;
 const HEIGHT_FOR_UPDATE = 600;
@@ -280,7 +281,9 @@ export default class TemplateBuilder {
     $(this.projectNamesSelector).append(templates.map(template => TemplateNames(template)));
   	colorize();
     window.DOM.LazyImage();
-   
+    Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)')).filter(item => {
+      new touchDown(item);
+    });
     this.listCounter++;
     
     // console.log(this.listCounter);

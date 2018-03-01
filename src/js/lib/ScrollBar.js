@@ -44,7 +44,7 @@ Scroller.prototype = {
 
     if(this.param._ajax) {
       let mainGridCont = document.querySelector('#grid__container');
-      const portfolio = await this.ajaxLoadPortfolio();
+      const portfolio = await this.ajaxLoadPortfolio(mainGridCont.dataset.url);
 
       this.templateBuilder = new TemplateBuilder(portfolio, '#grid__container', '#project__names');
       this.templateBuilder.init();
@@ -100,12 +100,12 @@ Scroller.prototype = {
       }
     };
   },
-  ajaxLoadPortfolio: function() {
+  ajaxLoadPortfolio: function(url) {
     return new Promise(res => {
       $.ajax({
         'async': true,
         'global': false,
-        'url': '../json/projects.json',
+        'url': url,
         'dataType': 'json',
         'success': function(json) {
           res(json.portfolio);

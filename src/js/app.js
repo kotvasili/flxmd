@@ -50,6 +50,12 @@ var BarbaWitget = {
       else
         return Barba.Pjax.originalPreventCheck(evt, element);
     };
+    Barba.Dispatcher.on('linkClicked', function(elem) {
+      let _t = $(elem);
+      if(_t.attr('href').indexOf('/bitrix/admin/') !== -1 || _t.hasClass('no-barba')) {
+        window.location.href = window.location.protocol + '//' + window.location.host+_t.attr('href');
+      }
+    });
     Barba.Dispatcher.on('newPageReady', (currentStatus, oldStatus, container) => {
       this.touchEls = Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)'));
       this.touchEls.filter(item => {

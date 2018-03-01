@@ -62,9 +62,9 @@ block content
 																- var sectionSite = [["portfolio.html", "Bitrix development"], ["portfolio.html","Bitrix e-commerce"], ["portfolio.html", "Magento development"]]
 																each sectionSiteItem in sectionSite
 																	li.category__list-item
-																		a(href=sectionSiteItem[0]).link-color
+																		a(href=sectionSiteItem[0]).link-color.touch-down
 																			.hover-line
-																			span #{sectionSiteItem[1]}
+																			span.touch-down-elem #{sectionSiteItem[1]}
 											.grid__item.w__100.load-parent(data-id='Design')
 												.service-block(style='background-color:#0e6bb6;')
 													.service-block-bg.js-image.bg(data-src='img/grafics/grafics-3.jpg')
@@ -79,9 +79,9 @@ block content
 																- var sectionSite = [["portfolio.html", "Bitrix development"], ["portfolio.html","Bitrix e-commerce"], ["portfolio.html", "Magento development"]]
 																each sectionSiteItem in sectionSite
 																	li.category__list-item
-																		a(href=sectionSiteItem[0] class='link-color')
+																		a(href=sectionSiteItem[0] class='link-color').touch-down
 																			.hover-line
-																			span #{sectionSiteItem[1]}
+																			span.touch-down-elem #{sectionSiteItem[1]}
 											.grid__item.w__100.load-parent(data-id='Marketing')
 												a(href="#").service-block(style='background-color: #26b889;')
 													.service-block-bg.js-image.bg(data-src='img/grafics/grafics-3.jpg')
@@ -95,5 +95,4 @@ block content
 
 											
 					include partials/_menu
-					include partials/_cross
 					

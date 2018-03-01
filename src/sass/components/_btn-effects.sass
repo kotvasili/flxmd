@@ -5,9 +5,9 @@
 		// display: inline-block
 		
 	&:hover:not(.not-move)
-		.touch-down
-			&-elem
-				transform: translateX(10px)
+		// .touch-down
+		// 	&-elem
+		// 		transform: translateX(10px)
 		&:active
 			// .touch-down
 			// 	&-elem
@@ -87,7 +87,7 @@
 				color: $black
 				display: inline-block
 				+rem(padding, 14px 0 22px 2px)
-				transition: color 0.2s, transform .2s cubic-bezier(.25,.1,.25,1)
+				transition: color 0.2s
 				position: relative
 				// transform-origin: left center
 			.hover-line
@@ -115,11 +115,11 @@
 			&:hover
 				span
 					color: inherit
-					transform: translateX(10px)
-				&:active
-					span
-						transition: transform .1s,color 0.2s
-						transform: scale(.92) translateX(10px)
+				// 	transform: translateX(10px)
+				// &:active
+				// 	span
+				// 		transition: transform .1s,color 0.2s
+				// 		transform: scale(.92) translateX(10px)
 				.hover-line
 					&::after
 						transform: scaleX(1)

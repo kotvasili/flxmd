@@ -7,8 +7,8 @@ const breadCrumbsTemplate = breadcrumbs => breadcrumbs.map(breadcrumb =>
     ;
 export const Template = (template) => {
   if(template.image) {
-    return `<div id=${template.id} class="grid__item w__${template.width} load-parent crsor-trgr" slip-mouse="${template.id}" data-cursor-type="plus">
-			<div class="portfolio__item" style='background-color: ${template.bgimage}'>
+    return `<div id=${template.id} class="grid__item w__${template.width} load-parent crsor-trgr" data-cursor-type="plus">
+			<div class="portfolio__item touch-down not-move" style='background-color: ${template.bgimage}'>
 				<a href="portfolio-project.html" class="portfolio__item-img">
 					<img class='js-image' data-src="${template.image}" >
 				</a>
@@ -31,10 +31,9 @@ export const Template = (template) => {
 		</div>`;
   }
   if(template.video) {
-    return `<div id=${template.id} class="grid__item w__${template.width} load-parent crsor-trgr" slip-mouse="${template.id}" data-cursor-type="plus">
-			<div class="portfolio__item" style="background-color: ${template.bgimage}">
+    return `<div id=${template.id} class="grid__item w__${template.width} load-parent crsor-trgr" data-cursor-type="plus">
+			<div class="portfolio__item touch-down not-move" style="background-color: ${template.bgimage}">
 				<a href="portfolio-project.html" class="portfolio__item-video">
-
 						<video class='js-image vid' loop="" muted="" preload="" autoplay="" class="video" data-src="${template.video}" type="video/mp4"></video>
 						<img class='js-image vidcover' data-src="${template.videoimage}" >
 				</a>

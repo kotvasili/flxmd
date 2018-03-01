@@ -139,12 +139,12 @@ body
 	+rem(top, 31px)
 	z-index: 15
 	color: $black
-	transition: color 1.25s, padding .1s
+	transition: color 1.25s
 	-moz-transform-style: preserve-3d
-	&:active 
-		padding-left: .15%
-		padding-right: .15%
-		transition: color 1.25s, padding .2s
+	// &:active 
+	// 	padding-left: .15%
+	// 	padding-right: .15%
+	// 	transition: color 1.25s, padding .2s
 	i
 		display: block
 		width: 100%
@@ -1443,6 +1443,8 @@ body
 		.portfolio_project &
 			span
 				color: $white
+.safari
+	background: 0 0 !important
 .breadcrumbs
 	ul
 		display: flex
@@ -2774,101 +2776,6 @@ hr
 			+rem(font-size, 20px)
 			letter-spacing: -.4px
 			color: $black
-
-// .cursor
-// 	position: fixed
-// 	top: -70px
-// 	left: -70px
-// 	width: 139px
-// 	height: 139px
-// 	z-index: 1600
-// 	pointer-events: none
-
-// .cursor__line
-//     position: absolute
-
-// .cursor__line,.cursor__line>div
-// 	transform-origin: 0 0
-// 	transition: transform .25s cubic-bezier(.19,1,.22,1)
-    
-// .cursor__line>div>div
-// 	width: 139px
-// 	height: 1px
-// 	background: #fff
-// 	transform-origin: 0 0
-// 	transition: transform .2s cubic-bezier(.19,1,.22,1),background-color .2s cubic-bezier(.19,1,.22,1)
-
-// .cursor .cursor__line > div > div
-// 	transform: scaleX(0)
-
-// .cursor .cursor__line--1 
-// 	transform: translate(70px,70px)
-
-// .cursor .cursor__line--2 
-// 	transform: translate(71px,70px)
-
-// .cursor .cursor__line--3
-// 	transform: translate(70px,70px)
-
-// .cursor .cursor__line--4 
-// 	transform: translate(70px,69px)
-
-// .cursor .cursor__line--1  >div 
-// 	transform: rotate(-90deg)
-
-// .cursor .cursor__line--2 > div
-// 	transform: rotate(90deg)
-
-// .cursor .cursor__line--3 > div 
-// 	transform: rotate(-180deg)
-
-// .cursor .cursor__line--4 > div
-// 	transform: rotate(0deg)
-
-// .cursor--plus .cursor__line > div > div 
-// 	transform: scaleX(.5)
-
-
-// .cursor--prev .cursor__line--1,.cursor--prev .cursor__line--2
-// 	transform: translateY(69px)
-
-// .cursor--prev .cursor__line > div > div
-// 	transform: scaleX(.5)
-
-// .cursor--prev .cursor__line--1 > div
-// 	transform: rotate(-45deg)
-
-// .cursor--prev .cursor__line--2 > div
-// 	transform: rotate(45deg)
-
-// .cursor--prev .cursor__line--3 > div
-// 	transform: rotate(-180deg)
-
-// .cursor--prev .cursor__line--4 > div
-// 	transform: rotate(0deg)
-
-// .cursor--next .cursor__line--1,.cursor--next .cursor__line--2
-// 	transform: translate(139px,70px)
-
-// .cursor--next .cursor__line > div > div
-// 	transform: scaleX(.5)
-
-// .cursor--next .cursor__line--1 > div
-// 	transform: rotate(-135deg)
-
-// .cursor--next .cursor__line--2 > div
-// 	transform: rotate(135deg)
-
-// .cursor--next .cursor__line--3 > div
-// 	transform: rotate(-180deg)
-
-// .cursor--next .cursor__line--4 > div
-// 	transform: rotate(0deg)
-
-
-
-
-
 .barba-container
 	&.hide
 		display: none
