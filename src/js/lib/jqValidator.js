@@ -7,6 +7,8 @@ export default function validateForms() {
   if (_form.length) {
     _form.each(function() {
       let FormThis = $(this);
+      let succesBlock = FormThis.parent().parent().parent().find('.form__request-back');
+      let frontBlock = FormThis.closest('.form__request-front');
       // var parent = Form_This.parent();
       $.validate({
         form: FormThis,
@@ -22,11 +24,20 @@ export default function validateForms() {
           return false; // prevent default behaviour
         },
         onValidate: () => {
-          // CheckForSelect(form_this);
+
         },
         onSuccess: () => {
-          // formResponse(form_this);
-          // resetForm(form_this);
+          let offs = frontBlock.offset().top;
+          let result = FormThis.serializeArray();
+          $.post(window.location, result,( data ) => {
+            if (data === 'Y') {
+              frontBlock.fadeOut(300,() => {
+                succesBlock.fadeIn(300);
+                $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: offs}, 300);
+              });
+              
+            }
+          });
           return false;
         },
       });

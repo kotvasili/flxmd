@@ -296,6 +296,7 @@ export default window.DOM.CanvRender = () => {
       v);
   };
   var canvas = document.querySelector('#scene');
+  var color = canvas.closest('.screen').dataset.bgcolor;
   // var stats = new Stats();
   // stats.domElement.style.position = 'absolute';
   // stats.domElement.style.left = '0px';
@@ -312,7 +313,7 @@ export default window.DOM.CanvRender = () => {
   // renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
   // renderer.setPixelRatio(1);
   renderer.setSize(width, height);
-  renderer.setClearColor('rgb(205, 252, 145)');
+  renderer.setClearColor(color);
 
   var scene = new THREE.Scene();
 
@@ -325,12 +326,12 @@ export default window.DOM.CanvRender = () => {
   var camera = new THREE.PerspectiveCamera(1000, width / height, 0.1, 10000);
   camera.position.set(-70, cameraY, 70);
 
-  var light = new THREE.HemisphereLight(0xa8d96b, 'rgb(205, 252, 145)', 0.6);
+  var light = new THREE.HemisphereLight(color, color, 0.6);
   scene.add(light);
 
-  var light = new THREE.DirectionalLight('rgb(205, 252, 145)', 0.3);
+  var light = new THREE.DirectionalLight(color, 0.5);
   light.position.set(200, 300, 400); 
-  scene.add(light);
+  // scene.add(light);
   var light2 = light.clone();
   light2.position.set(-300, 300, 500); 
   scene.add(light2);
@@ -341,7 +342,7 @@ export default window.DOM.CanvRender = () => {
     vector._o = vector.clone();  
   }
   var material = new THREE.MeshPhongMaterial({
-    emissive: 'rgb(205, 252, 145)', 
+    emissive: color, 
     emissiveIntensity: 0.3,
     shininess: 0
   });

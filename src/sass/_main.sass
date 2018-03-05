@@ -146,12 +146,16 @@ body
 	// 	padding-right: .15%
 	// 	transition: color 1.25s, padding .2s
 	i
-		display: block
-		width: 100%
+		// display: block
+		display: inline-block
+		&:not(.staylime)
+			margin-left: 8%
+		&.staylime
+			width: 100%
 		svg
 			width: 100%
 		// +rem(width, 52px)
-		transform-origin: left center
+		// transform-origin: left center
 		+rem(height, 80px)
 		path
 			fill: currentcolor
@@ -1929,12 +1933,18 @@ body
 		right: 0
 		// &:hover 
 			// cursor: url(../img/svg/icons-right.svg), auto
+.screen
+	&[data-dark="false"]
+		.icon-scroll
+			filter: invert(100%)
 .screen__section
 	+rem(margin-bottom, $mb)
 	display: flex
 	flex: 1 1 0px
 	min-width: 0
 	flex-flow: row wrap
+
+
 	.screen__section-head
 		max-width: 50%
 		flex: 0 0 50%
@@ -2217,11 +2227,16 @@ hr
 				+rem(font-size, 20px)
 				line-height: 1.8
 				color: $caption
+				+r(1500)
+					+rem(font-size, 17px)
 			.rate__counter
 				font-family: $Graphik
 				+rem(font-size, 100px)
 				color: $black
 				letter-spacing: -1.9px
+				+r(1500)
+					+rem(font-size, 85px)
+
 
 .view__pages
 	display: flex
@@ -2364,11 +2379,11 @@ hr
 		// opacity: 0
 		// visibility: hidden
 	.form__request-back
-		position: absolute
-		top: 0
-		left: 0
-		opacity: 0
-		visibility: hidden
+		// position: absolute
+		// top: 0
+		// left: 0
+		display: none
+		background-color: $white
 .form__container
 	// +rm(1180)
 	// 	+rem(padding-left, $padding * 3)

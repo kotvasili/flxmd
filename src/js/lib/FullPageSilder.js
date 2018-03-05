@@ -115,7 +115,6 @@ ScrollSlide.prototype = {
 
       self.options.currPage = self.next_slide;
       self.setScrollBar(self.next_slide);
-
       event.preventDefault();
     });
     this.ScrollDown.addEventListener('click',(event) => {
@@ -457,6 +456,11 @@ ScrollSlide.prototype = {
 
   setCurrentPage: function(currPage) {
     this.scene.classList.remove('hidden');
+    if (this.sections[currPage].dataset.dark === 'true') {
+      this.element.add(this.logo).removeClass('light');
+    } else {
+      this.element.add(this.logo).addClass('light');
+    }
     if(currPage === null) {
       this.navItem.eq(0).addClass('nav__active');
       this.sections[0].classList.add('section__active');
