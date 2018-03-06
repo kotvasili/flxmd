@@ -116,6 +116,8 @@ export default (env) => {
         minimize: true,
       }),
       // new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.ModuleConcatenationPlugin(),
+      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,

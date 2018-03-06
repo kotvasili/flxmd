@@ -7,8 +7,9 @@ export default function validateForms() {
   if (_form.length) {
     _form.each(function() {
       let FormThis = $(this);
+      let formHead = FormThis.parent().prev();
       let succesBlock = FormThis.parent().parent().parent().find('.form__request-back');
-      let frontBlock = FormThis.closest('.form__request-front');
+      let frontBlock = FormThis.parent();
       // var parent = Form_This.parent();
       $.validate({
         form: FormThis,
@@ -31,6 +32,7 @@ export default function validateForms() {
           let result = FormThis.serializeArray();
           $.post(window.location, result,( data ) => {
             if (data === 'Y') {
+              formHead.fadeOut(300);
               frontBlock.fadeOut(300,() => {
                 succesBlock.fadeIn(300);
                 $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: offs}, 300);

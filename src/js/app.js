@@ -1,4 +1,4 @@
-import $ from 'jquery/dist/jquery.min';
+import $ from 'jquery/dist/jquery';
 import Barba from 'barba.js/dist/barba.min';
 import PageLoader from './lib/SiteLoader';
 import ScrollSlide from './lib/FullPageSilder';
@@ -10,17 +10,11 @@ import Promise from './lib/Promise';
 import scrollToEl from './lib/scrollToEl';
 import RecentSlider from './lib/RecentSilder.js';
 import './lib/LazyImage';
-// import Crsor from './lib/Crsor.js';
 import browserDetection from 'browser-detection/src/browser-detection.js';
 import { TweenMax, TimelineMax ,Circ, Sine} from 'gsap';
-// import Cursor from './lib/Cursor.js';
 import './lib/domConf.js';
 import CanvRender from './lib/canv';
 import validateForms from './lib/jqValidator';
-// import dragscroll from 'dragscroll';
-// import WOW from '../../node_modules/wow.js/dist/wow.min.js';
-// import inView from 'in-view';
-// import ScrollAnim from './lib/ScrollAnim';
 import touchDown from './lib/touchDown';
 
 $.fn.hasAttr = function(name) {

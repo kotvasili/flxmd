@@ -9,6 +9,14 @@ gulp.task('critical', function(){ return gulp.src([config.dest.html + "/*.html"]
     base: config.dest.html,
     inline: true,
     minify: true,
+    ignore: ['@font-face', 'content', 'font-family', 'clearfix'],
+	ignoreOptions: {
+		matchSelectors: true,
+		matchTypes: true,
+		matchDeclarationProperties: false,
+		matchDeclarationValues: false,
+		matchMedia: false
+	},
     css: [config.dest.css + '/app.css'],
   }))
   .pipe(gulp.dest(config.dest.html +''))
