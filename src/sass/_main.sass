@@ -150,6 +150,7 @@ body
 		display: inline-block
 		&:not(.staylime)
 			margin-left: 8%
+			+rem(width, 42px)
 		&.staylime
 			width: 100%
 		svg
@@ -642,32 +643,31 @@ body
 		+rem(width, 24px)
 		+rem(height, 37px)
 		position: absolute
-		background-image: url(../img/icons/icon-mouse.png)
-		background-size: contain
-		background-repeat: no-repeat
-		background-position: 50%
-		+rem(bottom, 60px)
 		+rem(right, 80px)
+		bottom: 3.75rem;
 		animation: moveUp 1.8s ease-in-out infinite
 		-moz-transform-style: preserve-3d
 		pointer-events: all
 		cursor: pointer
-
+		color: $black
 		&:after
 			content: ''
-			display: inline-block
+			display: block
 			// +rem(bottom, 60px)
 			// +rem(right, 80px)
+			// bottom: 3.75rem;
 			// margin-left: 2px
 			// margin-top: 5px
+
 			+rem(margin-left,2px)
-			+rem(margin-top,5px)
-			position: absolute
+			+rem(margin-top,-30px)
+			// position: absolute
 			+rem(width, 20px)
 			+rem(height, 20px)
 			border-radius: 50%
+			opacity: .5
 			// border: 20px solid transparent
-			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0 0 0 currentcolor;
 			// opacity: 0
 			animation: pulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
 			will-change: box-shadow
@@ -806,6 +806,10 @@ body
 		position: relative
 		z-index: 1
 		padding-top: 14.5%
+		+rh(610)
+			padding-top: 10.5%
+		+rh(550)
+			padding-top: 5%
 		.menu-topper
 			display: flex
 			.topper-container
@@ -859,12 +863,12 @@ body
 							font-family: $GraphikMedium
 				.social-container
 					width: 61.5%
-					padding-left: 7.8%
+					padding-left: 6.3%
 					+rm(1366)
 						min-width: 604px
 					+r(1365)
 						width: 66.66%
-						padding-left: 5.8%
+						padding-left: 4.8%
 .social-container
 	.social
 		display: flex
@@ -1003,6 +1007,9 @@ body
 		&:hover
 			.category-head
 				a
+					&.active
+						span
+							color: var(--color-link) !important
 					span
 						color: $black
 					&:hover
@@ -1021,6 +1028,11 @@ body
 			font-size: 40px
 			letter-spacing: -.8px
 			line-height: 1.25
+			display: inline-block
+			&.active 
+				pointer-events: none
+				span
+					color: var(--color-link)
 			span
 				color: $nameUpp
 				transition: color 0.25s
@@ -1936,7 +1948,7 @@ body
 .screen
 	&[data-dark="false"]
 		.icon-scroll
-			filter: invert(100%)
+			color: $white
 .screen__section
 	+rem(margin-bottom, $mb)
 	display: flex
@@ -2384,6 +2396,8 @@ hr
 		// left: 0
 		display: none
 		background-color: $white
+		.screen__section-content
+			width: 100%
 .form__container
 	// +rm(1180)
 	// 	+rem(padding-left, $padding * 3)

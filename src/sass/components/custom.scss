@@ -1,0 +1,36 @@
+pre {
+	background-color: #f5f5f5;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	display: block;
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0 0 10px;
+	padding: 9.5px;
+	white-space: pre-wrap;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+code, pre {
+	border-radius: 3px;
+	color: #333;
+	font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+	font-size: 12px;
+	padding: 0 3px 2px;
+}
+
+.hidden_protection {
+	background: none repeat scroll 0 0 transparent !important;
+	border: 0 none !important;
+	box-shadow: none !important;
+	color: transparent !important;
+	position: absolute !important;
+	right: 0 !important;
+	top: 0 !important;
+}
+
+/*[id^="bx_incl_area"] {display:inline-block;}*/
+.bx-context-toolbar-empty-area {
+	min-width: 12px;
+}

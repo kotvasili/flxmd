@@ -80,10 +80,12 @@ export default class TemplateBuilder {
   		return;
   	}
     this.filtertext = window.location.hash.split('#')[1];
-    if(this.filtertext !== undefined) {
+    let actlink = $(this.filterLinks).filter(`[data-filter="${this.filtertext}"]`)[0];
+    console.log(actlink);
+    if(this.filtertext !== undefined && actlink !== undefined) {
       this.generateTamplates();
       if(this.filteredTemplate.length > 0) {
-        this.updateActiveFilter($(this.filterLinks).filter(`[data-filter="${this.filtertext}"]`)[0]);
+        this.updateActiveFilter(actlink);
       }
     }else{
       this.filteredTemplate = this.templates;
@@ -129,7 +131,8 @@ export default class TemplateBuilder {
     let self = this;
     //вынести дерьмо внутри в отдельный метод
     this.mainMenuItems.forEach(item => {
-      let filterType = item.textContent.toString().toLowerCase();
+      let filterType = $(item).attr('href').toString().toLowerCase();
+      filterType = filterType.substring(filterType.indexOf('#'),filterType.length);
       filterType = filterType.replace(/\s+/g, '').replace(/[^a-zA-Z - 0-9 ]+/g,'');
       item.addEventListener('click',(e) => {
         if (this.preventClick) return false;
@@ -163,10 +166,12 @@ export default class TemplateBuilder {
       });
     });
 
-    $(this.gridContainerSelector).on('click','.breadcumbs__item a',function() {
+    $(this.gridContainerSelector).on('click','.breadcumbs__item a',function(e) {
+      e.preventDefault();
       let _ = $(this);
       
-      let text = _.text().toString().toLowerCase();
+      let text = _.attr('href').toString().toLowerCase();
+      text = text.substring(text.indexOf('#'),text.length);
       text = text.replace(/\s+/g, '').replace(/[^a-zA-Z - 0-9 ]+/g,'');
 
       $(self.filterLinks).each(function() {
@@ -201,7 +206,8 @@ export default class TemplateBuilder {
     item.parentNode.classList.add('is-active');
     $(this.mainMenuItems).removeClass('marker').each(function() {
       let _ = $(this);
-      let text = _.text().toString().toLowerCase();
+      let text = _.attr('href').toString().toLowerCase();
+      text = text.substring(text.indexOf('#'),text.length);
       text = text.replace(/\s+/g, '').replace(/[^a-zA-Z - 0-9 ]+/g,'');
       if(text === self.filtertext) {
         _.addClass('marker');
@@ -210,7 +216,6 @@ export default class TemplateBuilder {
     if(item.classList.contains('catagory__link')) {
       this.filterLinks.forEach(elem => {
         let itemText = elem.dataset.filter;
-        console.log(itemText,self.filtertext);
         if(itemText === self.filtertext) {
           elem.parentNode.classList.add('is-active');
         }

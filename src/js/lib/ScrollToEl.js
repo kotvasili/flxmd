@@ -4,7 +4,6 @@ export default function scrollToEl() {
   const pad = 120;
   let destination;
   let scrollItem = window.location.hash.toString().replace('#','');
-  console.log(scrollItem);
   let element = $(`[data-id="${scrollItem}"]`);
   if(element.length) {
     window.scrollTo(0,0);
