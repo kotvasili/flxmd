@@ -28,7 +28,7 @@ export default (env) => {
       extensions: ['.js'],
       alias: {
         'swiper': 'swiper/dist/js/swiper.js',
-        'VanillaTilt': 'vanilla-tilt/dist/vanilla-tilt.babel.js',
+        // 'VanillaTilt': 'vanilla-tilt/dist/vanilla-tilt.babel.js',
     //     TweenLite: path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
     //     TweenMax: path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
     //     TimelineLite: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),

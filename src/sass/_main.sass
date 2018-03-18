@@ -2873,3 +2873,43 @@ a.active
 		border-bottom-color: transparent !important
 		&:focus
 			border-bottom-color: transparent !important
+.notfound
+	&-wrap 
+		min-height: 100vh
+		display: flex 
+		flex-flow: column nowrap
+		justify-content: center
+		align-items: center
+		text-align: center
+		
+	&-square
+
+		@supports(mix-blend-mode: lighten)
+			mix-blend-mode: lighten
+			width: 50%
+			height: 50%	
+			background-color: currentcolor
+			position: absolute
+			right: -0%
+			top: -0%
+		&.square2
+			top: auto 
+			right: auto
+			bottom: 0
+			left: 0
+			// height: 14vh
+	&-text 
+		font-family: $CondMedium
+		font-size: 25vw	
+		line-height: 1
+		position: relative
+		background-color: white
+		overflow: hidden
+		color: $text
+		+nosel
+		pointer-events: none
+	&-descr 
+		font-family: $GraphikMedium
+		color: $caption
+		+rem(font-size,20px)
+		+rem(margin-top,50px)	

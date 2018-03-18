@@ -11,3 +11,5 @@ PageList:
   ready: 80
 - file: services.html
   ready: 90
+- file: 404.html
+  ready: 90
