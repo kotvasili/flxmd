@@ -39,9 +39,9 @@ html
 		font-size: 14px
 	+r(1277)
 		font-size: 12px
-	+rm(1921)
+	+rm(2300)
 		font-size: 20px
-	+rm(2500)
+	+rm(2800)
 		font-size: 22px
 body
 	// overflow: hidden
@@ -116,7 +116,7 @@ body
 	width: 100%
 	top: 0
 	left: 0
-    will-change: transform
+	will-change: transform
 .scroll-content
 	height: 100%
 
@@ -180,7 +180,7 @@ body
 	align-items: center
 	justify-content: center
 	z-index: 5
-    -webkit-transform: translateZ(0);
+	-webkit-transform: translateZ(0);
 	@supports(mix-blend-mode: difference)
 		mix-blend-mode: difference
 	&:active
@@ -772,30 +772,41 @@ body
 		position: absolute
 		left: 0
 		top: 0
-		z-index: 0
+		z-index: -1
+		pointer-events: none
+		+r(1450)
+			left: -2%
+			right: -2% 
+			width: auto
+			padding-left: 5%
+		// +r(1450)
+			// margin-right: -10%
 		.menu-hover__item
 			display: flex
-			&:nth-child(1)
-				flex: 1
-			&:nth-child(2)
-				width: 32.5%
-				min-width: 302px
-				+r(1365)
-					width: 33.33%
-					min-width: auto
-			&:nth-child(3)
-				width: 29%
-				min-width: 302px
-				+r(1365)
-					width: 33.33%
-					min-width: auto
+			width: 33.33%
+
+			// 	margin-right: -5%
+			// &:nth-child(1)
+			// 	flex: 1
+			// &:nth-child(2)
+			// 	width: 32.5%
+			// 	min-width: 302px
+			// 	+r(1365)
+			// 		width: 33.33%
+			// 		min-width: auto
+			// &:nth-child(3)
+			// 	width: 29%
+			// 	min-width: 302px
+			// 	+r(1365)
+			// 		width: 33.33%
+			// 		min-width: auto
 			.cover__color
 				width: 100%
 				background-color: var(--color-menu)
 				transform: scaleX(0)
 				transform-origin: 0 0
 				transition: transform 0.25s
-				will-change: transform
+				// will-change: transform
 			&.is-hover
 				.cover__color
 					transform: scaleX(1)
@@ -822,18 +833,19 @@ body
 					flex: 1
 					padding-left: 80px
 					+nosel
-					// margin-top: 10px
-					+r(1365)
-						padding-left: 5.8%
-						width: 66.66%
+					width: 66.66%
+					+r(1150)
+						padding-left: 55px
 				.navigation-request
-					width: 29%
-					padding-left: 5.8%
-					+rm(1366)
-						min-width: 302px
-					+r(1365)
-						width: 33.33%
-						min-width: auto
+					width: 33.33%
+					padding-left: 80px
+					+r(1150)
+						padding-left: 55px
+					// +rm(1366)
+					// 	min-width: 302px
+					// +r(1365)
+					// 	width: 33.33%
+					// 	min-width: auto
 		.menu-lower
 			position: absolute
 			bottom: 57px
@@ -847,8 +859,8 @@ body
 				.lang-container
 					flex: 1
 					padding-left: 80px
-					+r(1365)
-						padding-left: 5.8% 
+					+r(1150)
+						padding-left: 55px
 					.lang
 						display: flex
 					.lang__item
@@ -862,14 +874,10 @@ body
 							pointer-events: none
 							font-family: $GraphikMedium
 				.social-container
-					width: 61.5%
-					padding-left: 6.3%
-					+rm(1366)
-						min-width: 604px
-					+r(1365)
-						width: 66.66%
-						padding-left: 4.8%
-.social-container
+					width: 66.66%
+					padding-left: 80px
+					+r(1150)
+						padding-left: 55px
 	.social
 		display: flex
 	.social__item
@@ -979,31 +987,39 @@ body
 	.navigation-category__item
 		display: flex
 		flex-direction: column
-		&:nth-child(1)
-			flex: 1
-			padding-left: 80px
-			padding-right: 5%
-			+r(1365)
-				padding-left: 5.8%
+		width: 33.33%
+		padding-left: 80px
+		padding-right: 5%
+		+r(1150)
+			padding-left: 55px
+			padding-right: 0
 		&:nth-child(2)
-			width: 32.5%
-			padding-left: 7.2%
-			padding-right: 5%
-			+rm(1366)
-				min-width: 302px
-			+r(1365)
-				width: 33.33%
-				min-width: auto
-				padding-left: 5.8%
-		&:nth-child(3)
-			width: 29%
-			padding-left: 5.8%
-			padding-right: 5%
-			+rm(1366)
-				min-width: 302px
-			+r(1365)
-				width: 33.33%
-				min-width: auto
+			padding-right: 0
+		// &:nth-child(1)
+		// 	flex: 1
+		// 	padding-left: 80px
+		// 	padding-right: 5%
+		// 	+r(1365)
+		// 		padding-left: 5.8%
+		// &:nth-child(2)
+		// 	width: 32.5%
+		// 	padding-left: 7.2%
+		// 	padding-right: 5%
+		// 	+rm(1366)
+		// 		min-width: 302px
+		// 	+r(1365)
+		// 		width: 33.33%
+		// 		min-width: auto
+		// 		padding-left: 5.8%
+		// &:nth-child(3)
+		// 	width: 29%
+		// 	padding-left: 5.8%
+		// 	padding-right: 5%
+		// 	+rm(1366)
+		// 		min-width: 302px
+		// 	+r(1365)
+		// 		width: 33.33%
+		// 		min-width: auto
 		&:hover
 			.category-head
 				a
@@ -1385,6 +1401,8 @@ body
 			float: right
 			+rem(padding-top, 125px);
 			min-height: 100%
+
+			
 			.portfolio_project &
 				width: calc(100% - 25rem)
 				padding-top: 0
@@ -1419,7 +1437,7 @@ body
 					vertical-align: middle
 					color: inherit
 				&>i 
-					+rem(padding-right,3px	)
+					+rem(padding-right,6px	)
 					transition: transform .25s, opacity .2s
 					opacity: 0
 					transform: translateX(10px)
@@ -2655,12 +2673,16 @@ hr
 				width: 100%
 				padding-left: 30rem
 				-webkit-overflow-scrolling: touch;
+				.portfolio__projects
+					position: relative
+					
 			&:first-child
 				position: absolute
 				z-index: 1
 				pointer-events: none
 				.page-title,.filter-container
 					pointer-events: all
+
 
 		
 .barba-container.contacts
@@ -2874,42 +2896,67 @@ a.active
 		&:focus
 			border-bottom-color: transparent !important
 .notfound
-	&-wrap 
-		min-height: 100vh
+	background-color: currentcolor
+	.frame__side:first-child
+		+rem(padding-bottom,70px)
+	.portfolio__overlay
+		width: 100%
+		background-color: currentcolor !important
+	&-container 
 		display: flex 
 		flex-flow: column nowrap
 		justify-content: center
-		align-items: center
-		text-align: center
-		
-	&-square
-
-		@supports(mix-blend-mode: lighten)
-			mix-blend-mode: lighten
-			width: 50%
-			height: 50%	
-			background-color: currentcolor
-			position: absolute
-			right: -0%
-			top: -0%
-		&.square2
-			top: auto 
-			right: auto
-			bottom: 0
-			left: 0
-			// height: 14vh
-	&-text 
+		+rem(max-width,400px)
+		align-items: flex-start
+		&.white 
+			&>p,.text,.notfound-title
+				color: $white
+		a 
+			display: inline-block
+			width: auto
+			
+			&:not(.logo)
+				margin-top: 30px
+	&-title 
+		font-size: 46px
 		font-family: $CondMedium
-		font-size: 25vw	
+		+rem(font-size, 48px)
+		text-transform: uppercase
 		line-height: 1
+		transition: color 1.25s
 		position: relative
-		background-color: white
-		overflow: hidden
-		color: $text
-		+nosel
 		pointer-events: none
-	&-descr 
-		font-family: $GraphikMedium
-		color: $caption
-		+rem(font-size,20px)
-		+rem(margin-top,50px)	
+		letter-spacing: 1px
+		font-weight: 400
+	p 
+		+rem(font-size, 16px)
+		opacity: .7
+		+rem(margin-top,10px)
+		&.primary 
+			line-height: 1.3
+			opacity: 1
+			+rem(font-size, 24px)
+			+rem(letter-spacing,-0.553846px)
+			+rem(margin-top,20px)
+
+.cap
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 1101
+	display: none
+	background-color: currentcolor
+	+r(992)
+		display: block
+	.frame__side
+		width: 100% !important
+		overflow: visible !important
++r(992)
+	body,html
+		min-width: 100% !important
+		overflow: hidden !important
+	.barba-container
+		display: none
+	

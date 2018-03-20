@@ -20,21 +20,11 @@ html
 				#out
 			#inner.page.page__in
 				#in
-		//- .crsor.cursor-default
-		//- 	.crsor-inner
-		//- 		.crsor-elem.cursor-default
-		//- 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52"><defs><circle id="b-dafault" cx="220" cy="29" r="23"/><filter id="a-dafault" width="121.7%" height="121.7%" x="-8.7%" y="-8.7%" filterUnits="objectBoundingBox"><feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1.5"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.197548687 0"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(-195 -4)"><use fill="#000" filter="url(#a-dafault)" xlink:href="#b-dafault"/><use fill="#FFF" xlink:href="#b-dafault"/></g></svg>
-		//- 		.crsor-elem.cursor-plus
-		//- 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52"><defs><path id="b-plus" d="M24 28h22v2H24v22h-2V30H0v-2h22V6h2v22z"/><filter id="a-plus" width="121.7%" height="121.7%" x="-8.7%" y="-8.7%" filterUnits="objectBoundingBox"><feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1.5"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.197548687 0"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(2 -4)"><use fill="#000" filter="url(#a-plus)" xlink:href="#b-plus"/><use fill="#FFF" xlink:href="#b-plus"/></g></svg>
-		//- 		.crsor-elem.cursor-arrl
-		//- 			.elems
-
-		//- 		.crsor-elem.cursor-arrr
-		//- 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="51" viewBox="0 0 30 51"><defs><path id="b-arr" d="M94.5147186 29.5021555l.0459416.0459415-23.1464466 23.1464466L70 51.2803301l21.8076118-21.8076119L70.7491072 8.41421356 72.1633207 7l22.4267767 22.4267767-.0753788.0753788z"/><filter id="a-arr" width="140.7%" height="121.9%" x="-16.3%" y="-8.8%" filterUnits="objectBoundingBox"><feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1.5"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.197548687 0"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(-68 -5)"><use fill="#000" filter="url(#a-arr)" xlink:href="#b-arr"/><use fill="#FFF" xlink:href="#b-arr"/></g></svg>
 		block content
 		//END out
 		.modals
 				include ../partials/_modals
+		include ../partials/_caps
 		//LOAD SCRIPTS
 		block scripts
 			script(type="text/javascript" src="js/app.js" async)

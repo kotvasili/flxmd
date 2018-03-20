@@ -264,7 +264,8 @@ ScrollSlide.prototype = {
         }, {
           y: '-=100%',
           ease: Expo.easeInOut,
-          rotation:0.001,
+          force3D: true,
+          // rotation:0.001,
         })
         .fromTo(crrContent, 1.2,{
           y: '0%'
@@ -277,6 +278,7 @@ ScrollSlide.prototype = {
         }, {
           y: '-=100%',
           ease: Expo.easeInOut,
+          force3D: true,
         }, '-=1.2')
         .fromTo(nxtContent, 1.2,{
           y: '-40%'

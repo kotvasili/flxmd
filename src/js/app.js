@@ -16,7 +16,7 @@ import './lib/domConf.js';
 import CanvRender from './lib/canv';
 import validateForms from './lib/jqValidator';
 import touchDown from './lib/touchDown';
-import MousemoveEl from './lib/Mousemove';
+// import MousemoveEl from './lib/Mousemove';
 
 $.fn.hasAttr = function(name) {
   return this.attr(name) !== undefined;
@@ -325,11 +325,11 @@ var Services = Barba.BaseView.extend({
   onEnter: function() {
   },
   onEnterCompleted: function() {
-    this.movedItems = new MousemoveEl('.js-mousemove');
+    // this.movedItems = new MousemoveEl('.js-mousemove');
   },
   onLeave: function() {
-    this.movedItems.destroy();
-    delete this.movedItems;
+    // this.movedItems.destroy();
+    // delete this.movedItems;
   },
   onLeaveComplete: function() {
   }

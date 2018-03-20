@@ -29,6 +29,18 @@
 	border: .5px solid $nameUpp
 	position: relative
 	+nosel
+	&.white
+		background-color: $white 
+		border-color: $white
+		text-align: center
+		color: $black
+		&:hover 
+			border-color: $white
+		span
+			+padlr(30px)
+			+rem(padding-top,15px)
+			+rem(padding-bottom,15px)
+		+rem(min-width,168px)
 	&:before
 		content: ''
 		display: inline-block

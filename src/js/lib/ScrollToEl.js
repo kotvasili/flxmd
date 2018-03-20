@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 export default function scrollToEl() {
-  const pad = 120;
+  const pad = 100;
   let destination;
   let scrollItem = window.location.hash.toString().replace('#','');
   let element = $(`[data-id="${scrollItem}"]`);
@@ -11,7 +11,7 @@ export default function scrollToEl() {
       let destination = element.offset().top;
       $('html:not(:animated),body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination - pad}, 600);
     }, 400);
-  }  
+  }
   $('.js-scroll-to').on('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -22,7 +22,8 @@ export default function scrollToEl() {
       $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination}, 600);
     }
     if(target.length) {
-      destination = $(target).offset().top,
+      destination = target.position().top,
+      console.log(destination);
       $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination - pad}, 600);
     }
 
