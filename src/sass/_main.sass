@@ -141,25 +141,49 @@ body
 	color: $black
 	transition: color 1.25s
 	-moz-transform-style: preserve-3d
+	white-space: nowrap
+	
 	// &:active 
 	// 	padding-left: .15%
 	// 	padding-right: .15%
 	// 	transition: color 1.25s, padding .2s
 	i
 		// display: block
+		+tr(transform .25s)
 		display: inline-block
 		&:not(.staylime)
 			margin-left: 8%
 			+rem(width, 42px)
+			+rem(height, 42px)
 		&.staylime
 			width: 100%
 		svg
 			width: 100%
+			display: inline-block
+			vertical-align: middle
+			
 		// +rem(width, 52px)
 		// transform-origin: left center
 		+rem(height, 80px)
 		path
 			fill: currentcolor
+	&-text 
+		font-style: normal
+		display: inline-block
+		vertical-align: middle
+		+rem(padding-left,10px)
+		transition: opacity .25s, transform .25s
+		opacity: 0
+		transform: translateX(-1.25rem)
+		padding-top: 1px
+	&:hover 
+		&:not(.staylime)
+			i 
+				transform: translateX(-0.25rem)	
+			.logo-text
+				transform: none 
+				opacity: 1
+		
 			
 	&.light
 		color: $white
@@ -180,7 +204,6 @@ body
 	align-items: center
 	justify-content: center
 	z-index: 5
-	-webkit-transform: translateZ(0);
 	@supports(mix-blend-mode: difference)
 		mix-blend-mode: difference
 	&:active
@@ -247,7 +270,7 @@ body
 				+rem(letter-spacing, 0.9px)
 				color: $black
 .header-inner
-	position: relative
+	// position: relative
 	.header-contacts
 		width: 45%
 	.logo
@@ -1443,7 +1466,7 @@ body
 					transform: translateX(10px)
 				&>span 
 					transition: transform .25s
-					transform: translateX(-15px)
+					transform: translateX(-18px)
 				&:hover
 					&>span,&>i 
 						transform: none 
@@ -1509,7 +1532,7 @@ body
 		a
 			position: relative
 			display: inline-block
-			
+			color: $black
 			&:before
 				content: "";
 				position: absolute;
@@ -1517,7 +1540,7 @@ body
 				top: 4px;
 				width: 6px;
 				height: 6px;
-				background-color: $black;
+				background-color: currentcolor;
 				transition: background-color .25s, opacity .25s, transform .25s ease-in-out
 				border-radius: 50%;
 				opacity: 0
@@ -2691,6 +2714,7 @@ hr
 			margin-bottom: 0
 	.container
 		+rem(padding-top, $padding + 40)
+
 .screen__section-intro
 	+rem(margin-bottom, $padding / 4)
 .screen__section-locations
@@ -2830,6 +2854,12 @@ hr
 .barba-container
 	&.hide
 		display: none
+	&.white-text
+		.logo
+			color: $white 
+		.frame__side:first-child
+			* 
+				color: $white !important
 a.active 
 	pointer-events: none
 
@@ -2932,9 +2962,11 @@ a.active
 		+rem(font-size, 16px)
 		opacity: .7
 		+rem(margin-top,10px)
+		font-family: $Graphik
 		&.primary 
 			line-height: 1.3
 			opacity: 1
+			font-family: $GraphikMedium
 			+rem(font-size, 24px)
 			+rem(letter-spacing,-0.553846px)
 			+rem(margin-top,20px)

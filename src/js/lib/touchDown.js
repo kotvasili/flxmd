@@ -44,7 +44,6 @@ export default class touchDown {
   handleMouseEnter() {
   	this.isHovered = true;
   	TweenMax.to(this.innerEl, 0.2, { x: 10 });
-  	console.log('MouseEnter');
   }
   handleMouseLeave(ev) {
   	if(ev.relatedTarget || ev.toElement) {

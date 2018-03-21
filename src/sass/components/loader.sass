@@ -8,17 +8,83 @@
 	display: flex
 	justify-content: center
 	align-items: center
-	.loader-line
-		position: absolute
-		height: 2px
-		width: 100%
-		.line
-			width: 100%
-			background-color: #fff
-			height: 2px
-			transform: scaleX(0)
-			transform-origin: 50%
+	contain: paint
 	.loader-logo
-		position: absolute
-		visibility: hidden
 		opacity: 0
+		position: relative
+		transform: scale(.7)
+		color: $white
+		&-icon
+			position: absolute
+			left: 50%
+			top: 0
+			+rem(width,42px)
+			+rem(height,42px)
+			transform: translateX(-1.3125rem)
+			z-index: 1
+			will-change: transform
+			svg
+				width: 100%
+				height: 100%
+		&-cont
+			+rem(padding-left,50px)
+			overflow: hidden
+			margin-top: 6px	
+			+rem(height,30px)
+			// position: relative
+			// &:after
+			// 	content: ''
+			// 	+coverdiv
+			// 	background: linear-gradient(to bottom, rgba(252, 52, 42,1) 0%,rgba(252, 52, 42,0) 20%,rgba(252, 52, 42,0) 85%,rgba(252, 52, 42,1) 100%);
+			&>div 
+				// +rem(height,30px)
+				// position: relative
+				// +rem(width,100px)
+				transform: translateY(0)
+				backface-visibility: hidden
+				font-size: 0
+			// .visible-1 
+			// 	.logo-text
+			// 		&:first-child 
+			// 			opacity: 1
+			// .visible-2
+			// 	.logo-text
+			// 		&:nth-child(2)
+			// 			opacity: 1
+			// .visible-3
+			// 	.logo-text
+			// 		&:nth-child(3)
+			// 			opacity: 1	
+			// .visible-4
+			// 	.logo-text
+			// 		&:nth-child(4)
+			// 			opacity: 1	
+			.logo-text
+				color: currentcolor
+				opacity: 1
+				transform: none
+				display: block
+				+rem(height,30px)
+				display: flex
+				flex-flow: column nowrap 
+				justify-content: center
+				will-change: transform
+				// +coverdiv
+				// opacity: 0
+				// transition: opacity .3s linear, transform .3s linear;
+				// transform: translateY(100%)
+				// opacity: 0
+				// &.is-active
+				// 	opacity: 1
+				// 	transform: none 
+				// 	&.is-up 
+				// 		&:not(:last-child)
+				// 			// transition-delay: .2s
+				// 			// transition-duration: 0.1s
+				// 			opacity: 0
+				// 			transform: translateY(-80%)
+				span 
+					// display: inline-block
+					// vertical-align: middle
+					font-size: 16px
+					

@@ -1,56 +1,126 @@
-import {TweenLite,TweenMax } from 'gsap';
+import {TweenMax} from 'gsap';
+import './domConf';
 
 export default class PageLoader {
   constructor() {
     this.loaderContainer = document.getElementById('page-loader');
     this.color = document.querySelector('.barba-container');
     this.frame = document.querySelector('.root-frame');
-    this.line = document.querySelector('.line');
-    this.logo = document.getElementById('svgo');
-    this.path = document.getElementById('path');
+    this.container = this.loaderContainer.querySelector('.loader-logo');
+    this.containerW = this.container.offsetWidth;
+    this.logo = this.container.querySelector('.loader-logo-icon');
+    this.text = this.container.querySelector('.loader-logo-cont');
+    this.textconts = Array.from(this.text.querySelectorAll('.logo-text'));
+    this.scrollcont = this.container.querySelector('.loader-logo-cont-inner');
+    this.height = this.text.querySelector('.logo-text').offsetHeight;
+
+    this.lengt = this.textconts.length;
+
     this.init();
+    TweenMax.lagSmoothing(1000, 16);
   }
 
   init() {
     this.setSettings();
-    this.lineAnimation();
+    
   }
 
   setSettings() {
-    TweenLite.to(this.loaderContainer, 0.3, {
+    TweenMax.to(this.loaderContainer, 0.1, {
       backgroundColor: this.color.getAttribute('data-loader')
     });
-
-    this.logo.style.visibility = 'visible';
-    document.body.style.overflow = 'hidden';
+    TweenMax.set(this.scrollcont, {
+      x: -20,
+      y: 0,
+      autoAlpha: 0,
+    });
+    window.DOM.body[0].style.overflow = 'hidden';
     
   }
-
-  logoAnimation() {
-    this.logo.drawsvg();
-  }
-
-  lineAnimation() {
-    TweenMax.to(this.frame , 1, {
-      delay: 0.5,
-      autoAlpha: 1
-    });
-    TweenMax.fromTo(this.line, 1, {
-      scaleX: 0
-    }, {
-      scaleX: 1,
-      onComplete: () => {
-        this.show();
+  startAnim() {
+    TweenMax.to(this.container,0.5,{
+      delay: 0.3,
+      autoAlpha: 1,
+      scale: 1,
+      ease: Power1.easeOut,
+      onComplete:() => {
+        this.lineAnimation();
       }
     });
   }
+  lineAnimation() {
+    TweenMax.to(this.logo , 0.5, {
+      x:  -this.containerW /2,
+    });
+
+    TweenMax.to(this.scrollcont , 0.5, {
+      x: 0,
+      y: 0,
+    });
+    TweenMax.to(this.scrollcont , 0.3, {
+      delay: 0.2,
+      autoAlpha: 1,
+      onComplete:() => {
+        TweenMax.to(this.scrollcont , 0.3, {
+          x: 0,
+          autoAlpha: 1,
+          ease: Power1.easeOut,
+          className:'visible-1',
+          lazy:true,
+          onComplete: () => {
+            TweenMax.to(this.scrollcont ,0.3, {
+              delay: 0.2,
+              y: -this.height ,
+              ease: Power1.easeOut,
+              className:'visible-2',
+              lazy:true,
+
+              onComplete: () => {
+                TweenMax.to(this.scrollcont ,0.3, {
+                  delay: 0.2,
+                  y: -(this.height *2), 
+                  className:'visible-3',
+                  ease: Power1.easeOut,
+                  lazy:true,
+                  onComplete: () => {
+                    TweenMax.to(this.scrollcont ,0.3, {
+                      delay: 0.2,
+                      y: -(this.height *3), 
+                      className:'visible-4',
+                      ease: Power1.easeOut,
+                      lazy:true,
+                      // force3D: true,
+                      onComplete: () => {
+                        // this.show();
+                      }
+                    }); 
+                  }
+                }); 
+              }
+            });  
+          }
+        });
+      }
+    });
+    TweenMax.to(this.frame , 0.3, {
+      delay: 0.5,
+      autoAlpha: 1,
+    });
+
+  }
 
   show() {
-    TweenMax.to(this.loaderContainer, 0.5, {
+    TweenMax.to(this.container , 0.3, {
       autoAlpha: 0,
-      display: 'none'
+      onComplete:() => {
+        window.DOM.body[0].style.overflow = 'visible';
+        TweenMax.to(this.loaderContainer, 0.5, {
+          autoAlpha: 0,
+          display: 'none',
+        });
+      }
     });
-    document.body.style.overflow = 'visible';
-    
+
+   
   }
 }

@@ -352,7 +352,7 @@ function initSite() {
     addClasses: true
   });
   
-  new PageLoader();
+  window.DOM.loader = new PageLoader();
  
   ContactsPage.init();
   PortfolioPage.init();
@@ -365,7 +365,10 @@ function initSite() {
 
 window.onload = () => {
   scrollToEl();
-  
+  // setTimeout(() => {
+  window.DOM.loader.startAnim();
+  // },1000);
+
 };
 if (!window.Promise) {
   window.Promise = Promise;
