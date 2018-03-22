@@ -29,8 +29,14 @@ export default class PageLoader {
     TweenMax.to(this.loaderContainer, 0.1, {
       backgroundColor: this.color.getAttribute('data-loader')
     });
+    TweenMax.set(this.logo, {
+      // left: '50%',
+      x: this.containerW /2- this.logo.offsetWidth /2, 
+      scale: 0.7,
+      autoAlpha: 0,
+    });
     TweenMax.set(this.scrollcont, {
-      x: -20,
+      x: - this.logo.offsetWidth,
       y: 0,
       autoAlpha: 0,
     });
@@ -38,34 +44,40 @@ export default class PageLoader {
     
   }
   startAnim() {
-    TweenMax.to(this.container,0.5,{
-      delay: 0.3,
+    TweenMax.to(this.logo,0.5,{
+      delay: 0.6,
       autoAlpha: 1,
       scale: 1,
       ease: Power1.easeOut,
+      clearProps: 'All',
       onComplete:() => {
-        this.lineAnimation();
+        TweenMax.set(this.logo,{clearProps: 'All'});
+        setTimeout(() => {
+          this.lineAnimation();
+        },100);
+       
       }
     });
   }
   lineAnimation() {
     TweenMax.to(this.logo , 0.5, {
-      x:  -this.containerW /2,
+      x: 0,
+      lazy:true,
     });
-
     TweenMax.to(this.scrollcont , 0.5, {
       x: 0,
       y: 0,
+      className:'visible-1',
     });
     TweenMax.to(this.scrollcont , 0.3, {
-      delay: 0.2,
+      delay: 0.15,
       autoAlpha: 1,
+      
       onComplete:() => {
         TweenMax.to(this.scrollcont , 0.3, {
           x: 0,
           autoAlpha: 1,
           ease: Power1.easeOut,
-          className:'visible-1',
           lazy:true,
           onComplete: () => {
             TweenMax.to(this.scrollcont ,0.3, {
@@ -74,7 +86,6 @@ export default class PageLoader {
               ease: Power1.easeOut,
               className:'visible-2',
               lazy:true,
-
               onComplete: () => {
                 TweenMax.to(this.scrollcont ,0.3, {
                   delay: 0.2,
@@ -91,7 +102,7 @@ export default class PageLoader {
                       lazy:true,
                       // force3D: true,
                       onComplete: () => {
-                        // this.show();
+                        this.show();
                       }
                     }); 
                   }
@@ -112,6 +123,8 @@ export default class PageLoader {
   show() {
     TweenMax.to(this.container , 0.3, {
       autoAlpha: 0,
+      scale: 0.7,
+      delay: 0.2,
       onComplete:() => {
         window.DOM.body[0].style.overflow = 'visible';
         TweenMax.to(this.loaderContainer, 0.5, {
