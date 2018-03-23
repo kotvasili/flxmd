@@ -13,7 +13,7 @@ export const Template = (template) => {
 					<img class='js-image' data-src="${template.image}" >
 				</a>
 				<div class="portfolio__item-header">
-					<div class="breadcrumbs">
+					<div class="breadcrumbs link-color">
 						<ul>
 							${breadCrumbsTemplate(template.breadcrumbs)}
 						</ul>
@@ -38,7 +38,7 @@ export const Template = (template) => {
 						<img class='js-image vidcover' data-src="${template.videoimage}" >
 				</a>
 				<div class="portfolio__item-header">
-					<div class="breadcrumbs">
+					<div class="breadcrumbs link-color">
 						<ul>
 							${breadCrumbsTemplate(template.breadcrumbs)}
 						</ul>

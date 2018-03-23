@@ -74,7 +74,6 @@ export default class Carousel {
       this.swiperCarousel = new Swiper('.image-rotator_' + index, this.assign);
       
       this.instances.push(this.swiperCarousel);
-      console.log(this.instances);
     });
   }
   destroy() {

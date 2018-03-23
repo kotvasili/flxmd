@@ -86,7 +86,7 @@ var BarbaWitget = {
       
       this.oldCont = $(this.oldContainer);
       let frame = this.oldCont.find('.wrapper-frame');
-      let overlayOuter = this.oldCont.find('.overlay__color');
+      let overlayOuter = this.oldCont.find('.overlay__color').eq(0);
 
       let overlayW = overlayOuter.outerWidth();
       window.DOM.hideScrollSimple();
@@ -131,11 +131,18 @@ var BarbaWitget = {
       var self = this;
       this.newCont = $(this.newContainer);
       let frame = this.newCont.find('.wrapper-frame');
-      let overlayInner = this.newCont.find('.overlay__color');
+      let overlayInner = this.newCont.find('.overlay__color').first();
       let overlayW =   overlayInner.innerWidth();
+      console.log(overlayW);
       let overlayColor = this.newCont.data('bgcolor');
       // let tlr = new TimelineMax();
-      
+      let home = this.newCont.data('namespace') === 'home' ? true : false;
+      if(home) {
+        this.newCont.find('.logo').addClass('light imp');
+        setTimeout(() => {
+          this.newCont.find('.logo').removeClass('imp');
+        },100);
+      }
       window.DOM.tlr
         .set(window.DOM.trnsContIN, {
           width: overlayW,
@@ -146,10 +153,11 @@ var BarbaWitget = {
         .set(frame, {
           y: 80,
           autoAlpha: 0,
+          force3D: true,
         })
-        .set(overlayInner, {
-          backgroundColor: 'none'
-        })
+        // .set(overlayInner, {
+        //   backgroundColor: 'none'
+        // })
         .set(this.oldCont, {
           // autoAlpha: 0,
           display: 'none'
@@ -167,7 +175,7 @@ var BarbaWitget = {
           x: 0,
           ease: Circ.easeIn.Power2,
         }, '-=0.7')
-        .set(overlayInner, {
+        .set(overlayInner,{
           backgroundColor: overlayColor,
           onComplete: () => {
             $(window).scrollTop(0,0);
@@ -197,23 +205,23 @@ var IndexPage = Barba.BaseView.extend({
   namespace: 'home',
   onEnter: function() {
     this.canv = document.getElementById('scene');
-    if(this.canv !== undefined && this.canv !== null) {
-      setTimeout(() => {
-        window.DOM.CanvRender();
-        // this.canv.classList.remove('hidden');
-      },1000);
-    }
+    $('#overlay').css('background-color',$('.barba-container').last().data('bgcolor'));
   },
   onEnterCompleted: function() {
-    
-   
+    if(this.canv !== undefined && this.canv !== null) {
+      // setTimeout(() => {
+      window.DOM.CanvRender();
+      this.canv.classList.remove('hidden');
+      // },1000);
+    }
     window.DOM.body.addClass('index-page');
     this.fullpage = new ScrollSlide('#work-wrapper');
-    
+
   },
   onLeave: function() {
     
     if(this.canv !== undefined && this.canv !== null) {
+      this.canv.classList.add('hidden');
       this.canv.renderer.forceContextLoss();
     }
     window.DOM.body.removeClass('index-page');
@@ -273,6 +281,9 @@ var PortfolioInnerPage = Barba.BaseView.extend({
     this.carousel.init();
 
     this.resent = new RecentSlider();
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    },350);
   },
   onLeave: function() {
     setTimeout(() => {
@@ -306,7 +317,6 @@ var ContactsPage = Barba.BaseView.extend({
     
   },
   onLeave: function() {
-    console.log('ContactsPage');
     this.portfolio.delete();
     delete this.portfolio;
   },
@@ -368,10 +378,10 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 document.addEventListener('DOMContentLoaded', () => {
-  
+  window.scrollTo(0,0);
 });
 // ready(() => {
-window.scrollTo(0,0);
+
 initSite();
 window.DOM.LazyImage();
 validateForms();

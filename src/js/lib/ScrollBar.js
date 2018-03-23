@@ -58,7 +58,10 @@ Scroller.prototype = {
 
 
     if(this.param.scrollText) {
-      this.calculateKoeff();
+      setTimeout(() => {
+        this.calculateKoeff();
+      },300);
+      
     }    
 
     if(this.param.tabs) {
@@ -126,7 +129,7 @@ Scroller.prototype = {
     var text = $(this.param.text).find('.frame__name');
 
     var position = ((this.textWidth - this.textParentWidth + this.offsetLeft) / this.pageHeight) * offsetTop;
-
+    
     $(text).css({'left': -position});
   },
 

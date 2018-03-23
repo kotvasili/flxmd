@@ -32,8 +32,9 @@
 			+rem(margin-left,50px)
 			overflow: hidden
 			// margin-top: 6px	
-			+rem(padding-top,20px)
-			+rem(height,50px)
+			+rem(padding-top,30px)
+			+rem(padding-bottom,30px)
+			+rem(height,90px)
 
 			// position: relative
 			// &:after
@@ -45,30 +46,28 @@
 				// position: relative
 				// +rem(width,100px)
 				transform: translateY(0)
-				
 				font-size: 0
 			.visible-1 
 				.logo-text
 					&:first-child 
 						opacity: 1
-						transition-duration: 0s
 			.visible-2
 				.logo-text
 					&:nth-child(2)
 						opacity: 1
-						transition-delay: .1s
+						transition-delay: .03s
 						transition-duration: .2s
 			.visible-3
 				.logo-text
 					&:nth-child(3)
 						opacity: 1	
-						transition-delay: .1s
+						transition-delay: .03s
 						transition-duration: .2s
 			.visible-4
 				.logo-text
 					&:nth-child(4)
 						opacity: 1	
-						transition-delay: .1s
+						transition-delay: .03s
 						transition-duration: .2s
 			.logo-text
 				color: currentcolor
@@ -82,7 +81,8 @@
 				will-change: transform
 				// +coverdiv
 				opacity: 0
-				transition: opacity .25s
+				transition: opacity .2s
+
 				// transform: translateY(100%)
 				// opacity: 0
 				// &.is-active
@@ -98,7 +98,7 @@
 					// display: inline-block
 					// vertical-align: middle
 					+rem(font-size,20px)
-					font-family: $GraphikMedium
-					margin-top: -20px
+					font-family: $GraphikMedium !important
+					// +rem(margin-top,-30px)
 					+rem(letter-spacing,-0.55px)
 					

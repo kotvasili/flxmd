@@ -39,6 +39,7 @@ export default class PageLoader {
       x: - this.logo.offsetWidth,
       y: 0,
       autoAlpha: 0,
+      className:'visible-1',
     });
     window.DOM.body[0].style.overflow = 'hidden';
     
@@ -62,15 +63,14 @@ export default class PageLoader {
   lineAnimation() {
     TweenMax.to(this.logo , 0.5, {
       x: 0,
-      lazy:true,
+      // lazy:true,
     });
     TweenMax.to(this.scrollcont , 0.5, {
       x: 0,
       y: 0,
-      className:'visible-1',
     });
     TweenMax.to(this.scrollcont , 0.3, {
-      delay: 0.15,
+      delay: 0.1,
       autoAlpha: 1,
       
       onComplete:() => {
@@ -78,28 +78,28 @@ export default class PageLoader {
           x: 0,
           autoAlpha: 1,
           ease: Power1.easeOut,
-          lazy:true,
+          // lazy:true,
           onComplete: () => {
             TweenMax.to(this.scrollcont ,0.3, {
               delay: 0.2,
               y: -this.height ,
               ease: Power1.easeOut,
               className:'visible-2',
-              lazy:true,
+              // lazy:true,
               onComplete: () => {
                 TweenMax.to(this.scrollcont ,0.3, {
                   delay: 0.2,
                   y: -(this.height *2), 
                   className:'visible-3',
                   ease: Power1.easeOut,
-                  lazy:true,
+                  // lazy:true,
                   onComplete: () => {
                     TweenMax.to(this.scrollcont ,0.3, {
                       delay: 0.2,
                       y: -(this.height *3), 
                       className:'visible-4',
                       ease: Power1.easeOut,
-                      lazy:true,
+                      // lazy:true,
                       // force3D: true,
                       onComplete: () => {
                         this.show();
