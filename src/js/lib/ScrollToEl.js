@@ -8,7 +8,12 @@ export default function scrollToEl() {
   if(element.length) {
     window.scrollTo(0,0);
     setTimeout(() => {
-      let destination = element.offset().top;
+      let destinationж;
+      if(scrollItem === 'order' && element.closest('.tab__container').length) {
+        destination = element.closest('.tab__container').offset().top + pad -20;
+      }else{
+        destination = element.offset().top;
+      }
       $('html:not(:animated),body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: destination - pad}, 600);
     }, 400);
   }

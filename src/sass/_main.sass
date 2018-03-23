@@ -943,11 +943,17 @@ body
 				&:after
 					background-color: #0057ff
 					transform: scaleX(1)
-		&.dribbble
+		&.dribbbleб,&.instagram
 			&:hover
 				color: #ea4c89
 				&:after
 					background-color: #ea4c89
+					transform: scaleX(1)
+		&.instagram
+			&:hover
+				color: #BE318E
+				&:after
+					background-color: #BE318E
 					transform: scaleX(1)
 		&.linkedin
 			&:hover
@@ -1532,7 +1538,7 @@ body
 					transform: translateX(0.625rem)
 				&>span 
 					transition: transform .25s
-					transform: translateX(-1.145rem)
+					transform: translateX(-0.975rem)
 				&:hover
 					opacity: 1
 					&>span,&>i 
@@ -1926,6 +1932,8 @@ body
 		font-family: $Graphik
 		+rem(font-size, 20px)
 		line-height: 1.8
+		&.bold 
+			font-family: $GraphikMedium 
 	.arrows
 		cursor: pointer
 	.head__title
@@ -2125,7 +2133,8 @@ hr
 	height: 1px
 	border: none
 	max-width: 100%
-	+rem(margin-left, $padding)
+	+rm(1501)
+		+rem(margin-left, $padding)
 .upper
 	font-family: $GraphikMedium
 	+rem(font-size, 20px)
@@ -2785,7 +2794,7 @@ hr
 
 
 		
-.barba-container.contacts
+.contacts
 	.screen__section-head
 		.upper
 			margin-bottom: 0
