@@ -2215,12 +2215,6 @@ hr
 		bottom: 3px
 		left: 0
 		width: 3px
-	.review__text
-		font-family: $GraphikMedium
-		+rem(font-size, 28px)
-		color: $black
-		line-height: 1.3
-		+rem(margin-bottom, 35px)
 	.review__author
 		.author__name
 			font-family: $GraphikMedium
@@ -2233,6 +2227,12 @@ hr
 			+rem(font-size, 17px)
 			letter-spacing: -.3px
 			color: $caption
+.review__text
+	font-family: $GraphikMedium
+	+rem(font-size, 28px)
+	color: $black
+	line-height: 1.3
+	+rem(margin-bottom, 35px)
 .case__container
 	display: flex
 	flex-direction: column
@@ -2346,6 +2346,8 @@ hr
 			+rem(margin-bottom, -25px)
 		.rate__item
 			width: 25%
+			display: flex 
+			flex-flow: column-reverse nowrap
 			+r(1179)
 				width: 50%
 				+rem(margin-bottom, 25px)
