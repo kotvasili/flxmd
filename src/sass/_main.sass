@@ -525,7 +525,11 @@ body
 .screen__content
 	margin-left: auto
 	margin-right: auto
-			
+	.container 
+		&>img 
+			max-width: 100% 
+			display: block
+			margin: 0 auto	
 .content__side
 	.swiper-wrapper
 		width: calc(100% + 1px)
@@ -943,7 +947,7 @@ body
 				&:after
 					background-color: #0057ff
 					transform: scaleX(1)
-		&.dribbbleб,&.instagram
+		&.dribbble
 			&:hover
 				color: #ea4c89
 				&:after
@@ -1010,6 +1014,12 @@ body
 			color: #0084bf
 			&:after
 				background-color: #0084bf
+				transform: scaleX(1)
+	&.instagram
+		&:hover
+			color: #BE318E
+			&:after
+				background-color: #BE318E
 				transform: scaleX(1)
 .order-container
 	$item: 10
@@ -1756,6 +1766,9 @@ body
 		.portfolio__item-video,.portfolio__item-img
 			&:hover 
 				& +.portfolio__item-header
+					.breadcrumbs
+						a span 
+							color: $projectBread
 					.h2
 						span
 							color: inherit
@@ -1943,6 +1956,7 @@ body
 	a.link-color
 		&:hover 
 			color: color(hoverlink) !important
+
 .info__container
 	display: flex
 	+rem(margin-bottom, $mb)
@@ -2153,7 +2167,7 @@ hr
 		+rem(padding, 0 $padding/2)
 		+rem(margin-bottom, $padding/2)
 	.work__service-image
-		+rem(height, 117px)
+		// +rem(height, 117px)
 		+rem(margin-bottom, $padding/4)
 		img
 			max-width: 100%
@@ -2341,11 +2355,14 @@ hr
 .ml_
 	+rem(margin-left, -$padding)
 .mr_
+	// +rm(1500)
 	+rem(margin-right, -$padding)
 .counter__rate
 	display: flex
 	flex: 1
 	width: 100%	
+	+r(1500)
+		+rem(margin-left,-5)
 	.counter__rate-container
 		display: flex
 		justify-content: space-between
@@ -2373,7 +2390,7 @@ hr
 				color: $black
 				letter-spacing: -1.9px
 				+r(1500)
-					+rem(font-size, 85px)
+					+rem(font-size, 80px)
 
 
 .view__pages

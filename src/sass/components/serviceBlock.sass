@@ -1,5 +1,9 @@
 .service-body
 	+rem(margin-bottom,49px)
+a.service-block 
+	&:hover 
+		.h2 
+			color: $flex
 .service-block
 	display: block
 	width: 100%
@@ -35,12 +39,19 @@
 	&-head
 		display: inline-block
 		vertical-align: top
-		width: 35%
+		width: 55%
 		padding-right: 25px
+
+		.h2
+			+tr(color .3s)
+			// +r(1550)
+			// 	+rem(font-size,30px)
+
 	&-content
 		display: inline-block
 		vertical-align: top
-		width: 65%
+		width: 45%
+		+rem(padding-top,5px)
 		.info__container 
 			margin-bottom: 45px
 			*
