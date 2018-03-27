@@ -149,26 +149,17 @@ ScrollSlide.prototype = {
   },
   removeEvents: function() {
     this.twn.kill();
-    // this.slideTwn.kill();
-    // this.element.off('DOMMouseScroll mousewheel').unbind();
-    // alert();
-    // console.log(this.swiperInstances);
     this.swiperInstances.filter(item => {
 
       item.destroy();
     });
   },
   checkDirection: function(e) {
-    // console.log(1);
-    // e.preventDefault();
     if(this.body.hasClass('menu-open')) {
       return false;
-    }
-    // alert();
-    // console.log(2);
+    };
     if(!this.canScroll) {
       var delta = e.deltaY;
-      // console.log(e.deltaY);
       if(delta > 0 ) {
         this.curr_slide = this.options.currPage;
         this.next_slide = this.curr_slide + 1;

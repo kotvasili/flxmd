@@ -29,6 +29,7 @@ export default class Carousel {
           prevEl: $btnPrev, 
           
         },
+        watchOverflow: true,
         pagination:{
           clickable: true,
           el: $pagi,
@@ -38,6 +39,11 @@ export default class Carousel {
           }
         },
         on:{
+          init: function() {
+            if(this.slides.length - this.loopedSlides *2 === 1) {
+              $(item).addClass('only-child');
+            }
+          },
           progress: function() {
             var swiper = this;
             for (var i = 0; i < swiper.slides.length; i++) {

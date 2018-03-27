@@ -5,6 +5,7 @@
 			"width": 100,
 			"video": "../video/Love-Coding.mp4",
 			"videoimage": "../img/projects/project_4.jpg",
+			"videocover": "../img/projects/project_3.jpg",
 			"bgimage": "#0e6bb6",
 			"breadcrumbs": [
 				{

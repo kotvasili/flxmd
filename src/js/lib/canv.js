@@ -263,10 +263,8 @@ export default window.DOM.CanvRender = () => {
   }
 
   var mouse = new THREE.Vector2(0.8, 0.5);
-  // console.log(document.getElementById('scene').length);
   requestAnimationFrame(canvas.render);
-  // canvas.addEventListener('mousemove', onMouseMove,window.DOM.passiveSupported ? { passive: true } : false);
-  // console.log
+
 
   var resizeTm;
   window.addEventListener('resize', function() {
@@ -276,11 +274,9 @@ export default window.DOM.CanvRender = () => {
 
   canvas.ply = () => {
     isPlay = false;
-    // console.log(isPlay);
   };
   canvas.stp = () => {
     isPlay = true;
-    // console.log(isPlay); 
   };
 
 };

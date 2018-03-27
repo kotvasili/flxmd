@@ -202,7 +202,7 @@ body
 .menu-trigger
 	position: fixed
 	// +rem(width, 65px)
-	width: 4%	
+	width: 4.3%	
 	+rem(height, 80px)
 	+rem(right, 0)
 	top: 0
@@ -212,6 +212,8 @@ body
 	align-items: center
 	justify-content: center
 	z-index: 5
+	.safari &
+		margin-right: 3px
 	@supports(mix-blend-mode: difference)
 		mix-blend-mode: difference
 	&:active
@@ -529,7 +531,8 @@ body
 		&>img 
 			max-width: 100% 
 			display: block
-			margin: 0 auto	
+			// margin: 0 auto
+			+rem(margin, 0 auto 100px)
 .content__side
 	.swiper-wrapper
 		width: calc(100% + 1px)
@@ -540,6 +543,8 @@ body
 		overflow: hidden
 		margin-left: auto
 		margin-right: 0
+		+ie11 
+			margin: 0 !important
 		// opacity: .8
 		// transition: opacity .3s
 		// &:hover
@@ -664,7 +669,7 @@ body
 					+rem(height, 6px)
 					background-color: #fa2c2c
 					border-radius: 100%
-				a 
+				a,p 
 					+rem(font-size, 17px)
 					color: $bottonSection
 					font-family: $GraphikMedium
@@ -1078,6 +1083,8 @@ body
 	display: flex
 	margin-top: 7%
 	+nosel
+	+r(1400)
+		margin-top: 5.5%
 	.navigation-category__item
 		display: flex
 		flex-direction: column
@@ -1219,7 +1226,7 @@ body
 						border-radius: 50%
 
 						+r(1366)
-							top: 6px
+							top: 14px
 							left: -20px
 				span 
 					
@@ -1310,6 +1317,9 @@ body
 		position: relative
 		width: 100%
 		height: 100%
+		+ie11 
+			position: static
+			
 		// +rem(min-height, 72px)
 	.name-projects_item
 		position: absolute
@@ -1321,6 +1331,9 @@ body
 		flex-direction: column
 		justify-content: flex-end
 		// margin-top: 5px	
+		// +ie11 
+		// 	bottom: auto
+		// 	top: 100%
 		&.current
 			// position: relative
 			z-index: 5
@@ -1475,12 +1488,19 @@ body
 	// overflow: auto
 	.frame__side
 		position: relative
+		&>.social 
+			padding: 0 5rem 5rem;
 		&:first-child
 			+rem(padding-top, 115px)
 			// +rem(padding-bottom, 140px)
 			display: flex 
 			flex-flow: column nowrap
 			justify-content: flex-end
+			+ie11 
+				justify-content: space-around
+				.page-title
+					margin-top: auto
+					
 			+rem(padding-bottom,42px)
 			+rem(width, 480px)
 			padding-left: 4.6%
@@ -1502,10 +1522,10 @@ body
 			width: calc(100% - 30rem)
 			padding-right: 4.5%
 			float: right
-			+rem(padding-top, 125px);
+			+rem(padding-top, 125px)
 			min-height: 100%
 
-			
+
 			.portfolio_project &
 				width: calc(100% - 25rem)
 				padding-top: 0
@@ -1542,13 +1562,21 @@ body
 					vertical-align: middle
 					color: inherit
 				&>i 
-					+rem(padding-right,6px)
+					+rem(padding-right,10px)
 					transition: transform .25s, opacity .2s
 					opacity: 0
 					transform: translateX(0.625rem)
+					+rem(height,15px)
+					// +rem(margin-bottom,1.5px)
+					// +rem(padding-top,3px)	
+					+rem(margin-bottom,2px)	
+					svg
+						height: 100%
 				&>span 
 					transition: transform .25s
-					transform: translateX(-0.975rem)
+					// transform: translateX(-1.4rem)
+					transform: translateX(-1.145rem)
+					// +rem(padding-right,19px)
 				&:hover
 					opacity: 1
 					&>span,&>i 
@@ -1605,6 +1633,8 @@ body
 	// display: inline-block
 	margin-top: auto
 	margin-bottom: auto
+	+ie11 
+		margin-bottom: 0
 		
 	+rh(768)
 		padding-top: 0%
@@ -1672,9 +1702,10 @@ body
 		display: flex
 		justify-content: space-between
 		align-items: flex-start
+		flex-flow: row nowrap
 		+rem(margin-bottom, 40px)
 		.head__descr
-			max-width: 50%
+			width: 50%
 			+rem(margin-bottom, 19px)
 			.info__description
 				padding-right: 0
@@ -1682,7 +1713,7 @@ body
 				+rem(margin-bottom,30px)
 				+rem(padding-top,35px)
 .head__title
-	flex: 1
+	// flex: 1
 	.title-small
 		+rem(margin-bottom,5px)
 		span
@@ -1808,7 +1839,17 @@ body
 			img 
 				+coverdiv
 				z-index: 1
-
+		.portfolio__item-videocover
+			position: absolute
+			width: 100%
+			height: 100%
+			overflow: hidden
+			z-index: 0
+			pointer-events: none
+			img 
+				width: 100%
+				height: 100%
+				object-fit: cover
 		.portfolio__item-header
 			position: absolute
 			+rem(top, 43px)
@@ -1964,6 +2005,7 @@ body
 		flex-direction: column
 	.info__description
 		flex: 1
+
 		+rm(1278)
 			padding-right: 12%
 		+r(1277)
@@ -2107,13 +2149,17 @@ body
 		max-width: 50%
 		flex: 0 0 50%
 		+rem(padding-top, 15px)
+		+rem(max-width,500px)
+		// +rem(margin-left,-40px)
 		+r(1277)
+			margin-left: 0
 			max-width: 100%
 			flex: 0 0 100%
 			padding-top: 0
 	.screen-section__text
 		max-width: 100%
-		flex: 0 0 100%
+		// flex: 0 0 100%
+		width: 100%
 	.screen__section-intro
 		max-width: 100%
 		flex: 0 0 100%
@@ -2160,17 +2206,27 @@ hr
 .work__service-list
 	display: flex
 	flex-flow: row wrap
-	flex: 1
+	flex-grow: 1
+	width: 100%
 	+rem(margin, 0 (-$padding / 2) $padding / 2 - 7)
+	+r(1500)
+		+rem(margin, 0 (-$padding) $padding / 2 - 7)
+		width: auto	
+	// +r(1277)
+	// 	+rem(margin, 0 (-$padding) $padding / 2 - 7)
+		
 	.work__service-item
 		width: 50%
 		+rem(padding, 0 $padding/2)
 		+rem(margin-bottom, $padding/2)
+		+r(1500)
+			+rem(padding, 0 $padding /2 0 0)
 	.work__service-image
 		// +rem(height, 117px)
 		+rem(margin-bottom, $padding/4)
+		+rem(max-width,420px)
 		img
-			max-width: 100%
+			+rem(max-width,392px)
 			max-height: 100%
 	.work__service-title
 		font-family: $GraphikMedium
@@ -2178,18 +2234,21 @@ hr
 		letter-spacing: -.4px
 		line-height: 1.45
 		+rem(margin-bottom, 5px)
+		+rem(max-width,420px)
 	.work__service-subtitle
 		font-family: $GraphikMedium
 		+rem(font-size, 17px)
 		color: $black
 		letter-spacing: -.4px
 		line-height: 1.8
+		+rem(max-width,420px)
 	.work__service-description
 		font-family: $Graphik
 		+rem(font-size, 17px)
 		color: $text
 		letter-spacing: -.4px
 		line-height: 1.8
+		+rem(max-width,420px)
 	.work__service-pdf
 		display: flex
 		+rem(padding-top, $padding / 4)
@@ -2256,6 +2315,9 @@ hr
 	color: $black
 	line-height: 1.3
 	+rem(margin-bottom, 35px)
+	+rem(max-width,900px)
+.screen__section-text
+	+rem(max-width,900px)
 .case__container
 	display: flex
 	flex-direction: column
@@ -2315,6 +2377,7 @@ hr
 .about__container
 	+rem(padding-left, 160px)
 	position: relative
+	+rem(max-width,900px)
 	&:after
 		content: ""
 		position: absolute
@@ -2361,8 +2424,11 @@ hr
 	display: flex
 	flex: 1
 	width: 100%	
+	+rem(max-width,1200px)
 	+r(1500)
 		+rem(margin-left,-5)
+	+r(1277)
+		margin-left: 0	
 	.counter__rate-container
 		display: flex
 		justify-content: space-between
@@ -2389,15 +2455,21 @@ hr
 				+rem(font-size, 100px)
 				color: $black
 				letter-spacing: -1.9px
-				+r(1500)
+				+r(1700)
 					+rem(font-size, 80px)
 
-
+.only-child
+	pointer-events: none 
+	.swiper-pagination
+		display: none
+		
 .view__pages
 	display: flex
 	flex-direction: column
+	width: 100%
 	.view__pages-contaner
 		display: flex
+		flex-flow: row wrap
 		.view__pages-text
 			order: 2
 			width: 46.2%
@@ -2524,12 +2596,14 @@ hr
 		max-width: 100%
 		flex: 0 0 100%
 		padding-top: 0
+		
 		p 
 			font-family: $GraphikSemiBold
 			+rem(font-size, 28px)
 			line-height: 1.2
 .form__request
 	position: relative
+	+nosel
 	.form__request-front
 		// opacity: 0
 		// visibility: hidden
@@ -2539,8 +2613,15 @@ hr
 		// left: 0
 		display: none
 		background-color: $white
+	.screen__section
+		flex-direction: column
 		.screen__section-content
 			width: 100%
+			margin-left: 0 !important
+			+rem(max-width,900px)
+			flex-grow: 1
+		.screen__section-head
+			+rem(max-width,900px)
 .form__container
 	// +rm(1180)
 	// 	+rem(padding-left, $padding * 3)
@@ -2572,6 +2653,7 @@ hr
 		.form__head
 			+rem(width, 160px)
 			+rem(padding-top,15px)
+			+rem(padding-right,10px)
 			span
 				font-family: $GraphikMedium
 				+rem(font-size, 17px)
@@ -2604,7 +2686,7 @@ hr
 			position: relative
 			margin-left: -1px
 			margin-top: -1px
-
+			+nosel
 			&:last-child
 				label
 					&:after

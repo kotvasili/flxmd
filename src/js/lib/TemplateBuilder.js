@@ -81,7 +81,6 @@ export default class TemplateBuilder {
   	}
     this.filtertext = window.location.hash.split('#')[1];
     let actlink = $(this.filterLinks).filter(`[data-filter="${this.filtertext}"]`)[0];
-    console.log(actlink);
     if(this.filtertext !== undefined && actlink !== undefined) {
       this.generateTamplates();
       if(this.filteredTemplate.length > 0) {
@@ -104,7 +103,7 @@ export default class TemplateBuilder {
     items.forEach(item => {
       let cur = item.breadcrumbs;
       cur.forEach(elem => {
-        let name = elem.name.replace(/\s+/g, '').replace(/[^a-zA-Z - 0-9 ]+/g,'');
+        let name = elem.link.replace(/\s+/g, '').replace(/[^a-zA-Z - 0-9 ]+/g,'');
         if(name.toLowerCase() === filterType) {
           result.push(item);
         }
