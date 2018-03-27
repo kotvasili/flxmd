@@ -202,7 +202,9 @@ body
 .menu-trigger
 	position: fixed
 	// +rem(width, 65px)
-	width: 4.3%	
+	width: 4.8rem
+	+rm(1680)
+		width: 4.3%	
 	+rem(height, 80px)
 	+rem(right, 0)
 	top: 0
@@ -1729,6 +1731,8 @@ body
 			+rem(font-size, 80px)
 			letter-spacing: -1.6px
 			line-height: 1;
+			+r(1500)
+				+rem(font-size, 60px)
 .grid__container
 	display: flex
 	flex-flow: row wrap
@@ -1976,6 +1980,8 @@ body
 .screen__content, .resent__container
 	.l
 		+rem(padding, 0 $padding)
+		+rm(1680)
+			padding-right: 5.5% !important
 	.l_p
 		+rem(padding-left, $padding)
 		+r(1500)
@@ -2422,7 +2428,6 @@ hr
 	+rem(margin-right, -$padding)
 .counter__rate
 	display: flex
-	flex: 1
 	width: 100%	
 	+rem(max-width,1200px)
 	+r(1500)

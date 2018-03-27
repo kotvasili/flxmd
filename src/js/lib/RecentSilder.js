@@ -25,7 +25,10 @@ export default class RecentSlider {
   templateBuilder(slider) {
     this.container.append(slider.map((template) => Template(template))).promise().done(() => {
       window.DOM.LazyImage();
-      this.sliderWork();
+      setTimeout(() => {
+        this.sliderWork();
+      },100);
+      
     });
   }
   destroy() {
