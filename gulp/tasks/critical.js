@@ -8,6 +8,7 @@ gulp.task('critical', function(){ return gulp.src([config.dest.html + "/*.html"]
   .pipe(critical({
     base: config.dest.html,
     inline: true,
+    width: 3000,
     minify: true,
     ignore: ['@font-face', 'content', 'font-family', 'clearfix'],
 	ignoreOptions: {
@@ -15,7 +16,7 @@ gulp.task('critical', function(){ return gulp.src([config.dest.html + "/*.html"]
 		matchTypes: true,
 		matchDeclarationProperties: false,
 		matchDeclarationValues: false,
-		matchMedia: false
+		matchMedia: true
 	},
     css: [config.dest.css + '/app.css'],
   }))
