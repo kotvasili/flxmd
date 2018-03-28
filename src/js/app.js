@@ -499,7 +499,7 @@ function initSite() {
     addClasses: true
   });
   
-  window.DOM.loader = new PageLoader();
+ 
  
   ContactsPage.init();
   PortfolioPage.init();
@@ -522,6 +522,7 @@ if (!window.Promise) {
 }
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0,0);
+  window.DOM.loader = new PageLoader();
 });
 // ready(() => {
 
