@@ -2,7 +2,7 @@ import { Template } from './Template.js';
 import { TemplateNames } from './TemplateNames.js';
 import colorize from './Colorize.js';
 // import LazyElement from './LazyImage.js';
-import SlipMouse from './SlipMouse.js';
+// import SlipMouse from './SlipMouse.js';
 import { TweenMax } from 'gsap';
 import './LazyImage';
 // import tiltCards from './tilt.js';
@@ -26,8 +26,8 @@ export default class TemplateBuilder {
     this.filterLinks = document.querySelectorAll('.filter-item a');
     // this.lazy = new LazyElement();
     this.mainMenuItems = document.querySelectorAll('.navigation-category__item.order_3 a');
-    this.slip = new SlipMouse();
-    this.filteredTemplate =[];
+    // this.slip = new SlipMouse();
+    this.filteredTemplate = this.templates;
     this.preventClick = false;
     inView.offset({
       top: 10,
@@ -87,7 +87,8 @@ export default class TemplateBuilder {
         this.updateActiveFilter(actlink);
       }
     }else{
-      this.filteredTemplate = this.templates;
+      this.generateTamplates();
+      // this.filteredTemplate = this.templates;
     }
     const templates = this.filteredTemplate.slice().splice(0, ITEMS_PER_ADD);
   	this.updateHTMLWithTemplates(templates);
@@ -138,12 +139,13 @@ export default class TemplateBuilder {
         this.preventClick = true;
         this.listCounter= 1;
         this.filtertext = filterType;
-        $(this.gridContainerSelector).trigger('prevpos_update');
+        
         this.filterTemplate(item);
         window.DOM.body.removeClass('menu-open');
         window.location.hash = filterType;
         e.preventDefault();
         e.stopPropagation();
+        $(this.gridContainerSelector).trigger('prevpos_update');
         // alert();
       });
     });
@@ -156,11 +158,12 @@ export default class TemplateBuilder {
         this.preventClick = true;
         this.listCounter= 1;
         this.filtertext = filterType;
-        $(this.gridContainerSelector).trigger('prevpos_update');
+        
         this.filterTemplate(item);
         window.location.hash = filterType;
         e.preventDefault();
         e.stopPropagation();
+        $(this.gridContainerSelector).trigger('prevpos_update');
         // alert();
       });
     });
@@ -185,18 +188,26 @@ export default class TemplateBuilder {
   filterTemplate(item) {
 
     if(item.parentNode.classList.contains('is-active')) return false;
+
     this.updateActiveFilter(item);
-    this.generateTamplates();
-    this.appendNewItems();;
+    this.generateTamplates().then(() => {
+      this.appendNewItems();
+    });
+    
     
   }
   generateTamplates() {
-    if(this.filtertext === 'all') {
-      this.filteredTemplate = this.templates;
-    }else{
-      this.filteredTemplate = this.isType(this.templates, this.filtertext);
-      this.filteredTemplate = this.sortTemplate(this.filteredTemplate);
-    }
+    return new Promise(res => {
+      if(this.filtertext === 'all' || this.filtertext === '' || this.filtertext === undefined ) {
+        this.filteredTemplate = this.templates;
+      }else{
+        this.filteredTemplate = this.isType(this.templates, this.filtertext);
+        this.filteredTemplate = this.sortTemplate(this.filteredTemplate);
+      }
+      res();
+    });
+
+   
     // alert(this.filteredTemplate.length);
   }
   updateActiveFilter(item) {
@@ -232,6 +243,7 @@ export default class TemplateBuilder {
     }else{
       crollwindow = window.DOM.body;
     }
+
     // crollwindow[0].scrollIntoView({block: 'start', behavior: 'smooth'});
     crollwindow.animate({scrollTop: 0},scroll > 40 ? 350: 100,() => {
       TweenMax.to(this.gridContainerSelector,0.6,{
@@ -239,11 +251,10 @@ export default class TemplateBuilder {
         autoAlpha: 0,
         force3D: true,
         onComplete:() => {
-
           // $(this.gridContainerSelector).addClass('all-100');
           $(this.gridContainerSelector).empty();
           this.updateTemplates();
-          this.preventClick = false;
+          
           TweenMax.set(this.gridContainerSelector,{
             y: 0
           });
@@ -252,7 +263,7 @@ export default class TemplateBuilder {
             autoAlpha: 1,
             clearProps: 'All',
             onComplete:() => {
-
+              this.preventClick = false;
             }
           });
         }
@@ -268,32 +279,35 @@ export default class TemplateBuilder {
     }
   }
   updateTemplates() {
-    
+   
   	const prevLastItemPosition = (this.listCounter - 1) * ITEMS_PER_ADD;
+
   	const templates = this.filteredTemplate.slice().splice(prevLastItemPosition, ITEMS_PER_ADD);
-  	this.updateHTMLWithTemplates(templates);
+    
+    this.updateHTMLWithTemplates(templates);
+  	
   }
 
   updateHTMLWithTemplates(templates) {
-
-  	$(this.gridContainerSelector).append(templates.map(template => Template(template))).promise().done(() => {
+    // console.log(templates);
+    setTimeout(() => {
+      $(this.gridContainerSelector).append(templates.map(template => Template(template))).promise().done(() => {
       
       // this.slip.init();
-      this.containerHeight = this.wHeight();
-      // this.lazy.init();
-    });
-    $(this.projectNamesSelector).append(templates.map(template => TemplateNames(template)));
-  	colorize();
-    window.DOM.LazyImage();
-    Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)')).filter(item => {
-      new touchDown(item);
-    });
+        this.containerHeight = this.wHeight();
+        colorize();
+        window.DOM.LazyImage();
+        Array.from(document.querySelectorAll('.touch-down:not(.touch-handled)')).filter(item => {
+          new touchDown(item);
+        });
+       
+      }); 
+     
+    },0);
+    console.log(this.listCounter);
     this.listCounter++;
-    
-    // console.log(this.listCounter);
-    // if(this.isInit) {
-    //   this.cursor.init();
-    // }
-        
+    // $(this.projectNamesSelector).append(templates.map(template => TemplateNames(template)));
+
+
   }
 }

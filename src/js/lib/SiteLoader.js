@@ -13,7 +13,6 @@ export default class PageLoader {
     this.textconts = Array.from(this.text.querySelectorAll('.logo-text'));
     this.scrollcont = this.container.querySelector('.loader-logo-cont-inner');
     this.height = this.text.querySelector('.logo-text').offsetHeight;
-    console.log(this.height);
     this.lengt = this.textconts.length;
 
     this.init();

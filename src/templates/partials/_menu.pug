@@ -19,7 +19,7 @@ nav.menu
 									.touch-down-elem
 										span #{link[0]}
 					.navigation-request.order_2
-						a(href="contacts.html#order" class="custom__btn").touch-down.not-move
+						a(href="#" class="custom__btn",data-href='order').touch-down.not-move.js-scroll-to
 							span Make an order
 			.menu-middle
 				.middle-container
@@ -43,7 +43,7 @@ nav.menu
 													a(href=item[0] class="catagory__link touch-down "+item[2]+"")
 														.touch-down-elem
 															span #{item[1]}
-						+category(3, 1, ['portfolio.html', 'Portfolio'], ['portfolio.html#website', 'Website', 'marker'], [ 'portfolio.html#ecommerce', 'E-commerce'], ['portfolio.html#graphicdesign', 'Graphic design'], ['portfolio.html#branding', 'Branding'], ['portfolio.html#print', 'Print'], ['portfolio.html#mobile', 'Mobile'])
+						+category(3, 1, ['portfolio.html', 'Portfolio'], ['portfolio.html#website', 'Имиджевые сайты'], [ 'portfolio.html#ecommerce', 'Интернет-магазины'], ['portfolio.html#webservice', 'Веб-сервисы'])
 						+category(4, 2, ['industries.html', 'Industries'], ['#', 'Retail & Wholesale', 'marker'], [ '#', 'Finance'], ['#', 'Healthcare'], ['#', 'Media & Entertainment'], ['#', 'Telecommunications'], ['#', 'Education'])
 						+category(5, 3, ['services.html', 'Services'], ['magento.html', 'Magento',], ['services.html#Development', 'Development'], [ 'services.html#Design', 'Design'])
 			.menu-lower

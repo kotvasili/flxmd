@@ -1,1173 +1,363 @@
 {
-	"portfolio": [
-		{
-			"id": 1,
-			"width": 100,
-			"video": "../video/Love-Coding.mp4",
-			"videoimage": "../img/projects/project_4.jpg",
-			"videocover": "../img/projects/project_3.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 2,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 3,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 4,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 5,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 6,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 7,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 8,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 9,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 10,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 11,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 12,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 13,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 14,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 15,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 16,
-			"width": 100,
-			"video": "../video/Love-Coding.mp4",
-			"videoimage": "../img/projects/project_4.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 17,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 18,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 19,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 20,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 21,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 22,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 23,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 24,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 25,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 26,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 27,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 28,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 29,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 30,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 31,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 32,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 33,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 34,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 35,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 36,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 37,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 38,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 39,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 40,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 41,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 42,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 43,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 44,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 45,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 46,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Mobile",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 47,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 48,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Print",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 49,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Branding",
-					"link": "#"
-				},
-				{
-					"name": "Print",
-					"link": "#"
-				},
-				{
-					"name": "Mobile",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 50,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 5,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 52,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 53,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 54,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Mobile",
-					"link": "#"
-				},
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 55,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Graphic design",
-					"link": "#"
-				},
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 56,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Graphic design",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 57,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Graphic design",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 58,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Graphic design",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 59,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "Branding",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 60,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Webservice",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		},
-		{
-			"id": 61,
-			"width": 100,
-			"image": "../img/projects/project_1.jpg",
-			"bgimage": "#0e6bb6",
-			"breadcrumbs": [
-				{
-					"name": "Magento",
-					"link": "#"
-				},
-				{
-					"name": "Website",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "IT Integrator Atlant Consult",
-			"titlleList": "Atlant Consult", 
-			"external": "#"
-		},
-		{
-			"id": 62,
-			"width": 50,
-			"image": "../img/projects/project_2.jpg",
-			"bgimage": "#2056ca",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "IT Startup DWkit",
-			"titlleList": "DWkit", 
-			"external": "#"
-		},
-		{
-			"id": 63,
-			"width": 50,
-			"image": "../img/projects/project_3.jpg",
-			"bgimage": "#000000",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Architect bureau 3316",
-			"titlleList": "3316", 
-			"external": "#"
-		},
-		{
-			"id": 64,
-			"width": 100,
-			"image": "../img/projects/project_4.jpg",
-			"bgimage": "#2a2a32",
-			"breadcrumbs": [
-				{
-					"name": "Website",
-					"link": "#"
-				}
-			],
-			"title": "Spain tile showroom",
-			"titlleList": "showroom", 
-			"external": "#"
-		},
-		{
-			"id": 65,
-			"width": 50,
-			"image": "../img/projects/project_5.jpg",
-			"bgimage": "#2d2d2d",
-			"breadcrumbs": [
-				{
-					"name": "Branding",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Healthy food by subscription",
-			"titlleList": "Healthy food", 
-			"external": "#"
-		},
-		{
-			"id": 66,
-			"width": 50,
-			"image": "../img/projects/project_6.jpg",
-			"bgimage": "#0432da",
-			"breadcrumbs": [
-				{
-					"name": "Branding",
-					"link": "#"
-				},
-				{
-					"name": "E-commerce",
-					"link": "#"
-				}
-			],
-			"title": "Metall manufacturer",
-			"titlleList": "Metall manufacturer", 
-			"external": "#"
-		}
-	]
+  "portfolio": [
+    {
+      "id": "164",
+      "width": "50",
+      "bgimage": "#24292d",
+      "title": "\u0421\u0435\u0440\u0432\u0438\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438 \u0437\u0434\u043e\u0440\u043e\u0432\u043e\u0433\u043e \u043f\u0438\u0442\u0430\u043d\u0438\u044f Eat Bit",
+      "external": "http://eat-bit.ru/",
+      "internal": "http://eat-bit.ru/",
+      "image": "/upload/iblock/e7e/eat.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0412\u0435\u0431-\u0441\u0435\u0440\u0432\u0438\u0441",
+          "link": "webservice"
+        }
+      ]
+    },
+    {
+      "id": "183",
+      "width": "50",
+      "bgimage": " #9fafbc",
+      "title": "\u041f\u0435\u0440\u0432\u044b\u0439 \u043e\u043f\u0435\u0440\u0430\u0442\u043e\u0440 \u0434\u0435\u043b\u043e\u0432\u043e\u0439 \u0430\u0432\u0438\u0430\u0446\u0438\u0438 BySky",
+      "external": "http://bysky.by/",
+      "internal": "http://bysky.by/",
+      "image": "/upload/iblock/5ee/bysky.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "184",
+      "width": "50",
+      "bgimage": "#b60000",
+      "title": "\u041f\u0435\u0442\u0440\u0443\u0445\u0430 \u2014 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043c\u044f\u0441\u0430 No.1 \u0432 \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u0438",
+      "external": "https://petruha.by/",
+      "internal": "https://petruha.by/",
+      "image": "/upload/iblock/c58/petruha.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "182",
+      "width": "50",
+      "bgimage": "#50b31e",
+      "title": "\u0413\u0440\u0443\u043f\u043f\u0430 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0439 \u0421\u0435\u0440\u0432\u043e\u043b\u044e\u043a\u0441",
+      "external": "https://servolux.by/",
+      "internal": "https://servolux.by/",
+      "videocover": "/upload/iblock/397/serv.png",
+      "video": "/upload/iblock/eb1/main-screen-video.mp4",
+      "videoimage": "/upload/iblock/f2d/\u041a\u0438\u043d\u043e-\u0438-\u0422\u0412-2018-03-26-15.28.png",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "168",
+      "width": "50",
+      "bgimage": "#f0f7ce",
+      "title": "\u041f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043c\u0435\u0431\u0435\u043b\u0438\u00a0Mo\u0451bel",
+      "external": "http://moebel.global/",
+      "internal": "http://moebel.global/",
+      "image": "/upload/iblock/da2/moebel.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "167",
+      "width": "50",
+      "bgimage": "#000000",
+      "title": "\u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u043d\u043e\u0435 \u0431\u044e\u0440\u043e 3316",
+      "external": "http://3316.by/",
+      "internal": "http://3316.by/",
+      "image": "/upload/iblock/134/3316.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "163",
+      "width": "50",
+      "bgimage": "#2055c9",
+      "title": "\u0421\u0442\u0430\u0440\u0442\u0430\u043f DWkit",
+      "external": "https://dwkit.com/",
+      "internal": "https://dwkit.com/",
+      "image": "/upload/iblock/92a/dwkit.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "169",
+      "width": "50",
+      "bgimage": "#ac252b",
+      "title": "Himbalt",
+      "external": "http://himbalt.com/",
+      "internal": "http://himbalt.com/",
+      "image": "/upload/iblock/b8a/him.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "166",
+      "width": "50",
+      "bgimage": "#6c0000",
+      "title": "\u041c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u044b\u0439 \u0441\u044b\u0440\u044c\u0435\u0432\u043e\u0439 \u0431\u0440\u043e\u043a\u0435\u0440 Solcata",
+      "external": "http://solcata.com/",
+      "internal": "http://solcata.com/",
+      "image": "/upload/iblock/c3d/solcata.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "170",
+      "width": "50",
+      "bgimage": "#0b9a42",
+      "title": "\u041a\u0440\u0443\u043f\u043d\u0435\u0439\u0448\u0438\u0439 \u043f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a \u043a\u0440\u0435\u043f\u0435\u0436\u0430 EKT",
+      "external": "https://ekt.by/",
+      "internal": "https://ekt.by/",
+      "image": "/upload/iblock/4df/ekt.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        },
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "173",
+      "width": "50",
+      "bgimage": "#0050a1",
+      "title": "\u0420\u0438\u0442\u0435\u0439\u043b\u0435\u0440 \u0430\u0432\u0442\u043e\u0437\u0430\u043f\u0447\u0430\u0441\u0442\u0435\u0439 \u041a\u042d\u041c\u041f",
+      "external": "http://www.kemp1.ru/",
+      "internal": "http://www.kemp1.ru/",
+      "image": "/upload/iblock/a7f/kemp.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0412\u0435\u0431-\u0441\u0435\u0440\u0432\u0438\u0441",
+          "link": "webservice"
+        },
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "179",
+      "width": "50",
+      "bgimage": "#ffcc1b",
+      "title": "\u041c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u0430\u044f \u0448\u043a\u043e\u043b\u0430 \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u0433\u043e International House",
+      "external": "https://www.ih.by/",
+      "internal": "https://www.ih.by/",
+      "image": "/upload/iblock/ca7/ih.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "162",
+      "width": "50",
+      "bgimage": "#333333",
+      "title": "FSN Gallery",
+      "external": "https://fsn.by/",
+      "internal": "https://fsn.by/",
+      "image": "/upload/iblock/338/fsn.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0435 \u0441\u0430\u0439\u0442\u044b",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "177",
+      "width": "50",
+      "bgimage": "#a9ceeb",
+      "title": "\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u043a\u0430\u043d\u0446\u0435\u043b\u044f\u0440\u0441\u043a\u0438\u0445 \u0442\u043e\u0432\u0430\u0440\u043e\u0432 Darvish",
+      "external": "https://www.darvish.by/",
+      "internal": "https://www.darvish.by/",
+      "image": "/upload/iblock/23d/darvish.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "175",
+      "width": "50",
+      "bgimage": "#173059",
+      "title": "Edinburgh Language Academy",
+      "external": "http://elacademy.co.uk/",
+      "internal": "http://elacademy.co.uk/",
+      "image": "/upload/iblock/aef/ela.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        },
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "174",
+      "width": "50",
+      "bgimage": "#a8dc7a",
+      "title": "\u0418\u043c\u0431\u0438\u0440\u043d\u044b\u0435 \u043d\u0430\u043f\u0438\u0442\u043a\u0438 Gold\u00a0Kili",
+      "external": "http://kilix.info/",
+      "internal": "http://kilix.info/",
+      "image": "/upload/iblock/7bd/kili.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "171",
+      "width": "50",
+      "bgimage": "#a22c38",
+      "title": "\u041a\u043e\u0436\u0433\u0430\u043b\u0430\u043d\u0442\u0435\u0440\u0435\u044f Mattioli\u00a0Bags",
+      "external": "http://mattioli-bags.com/",
+      "internal": "http://mattioli-bags.com/",
+      "image": "/upload/iblock/b38/mattioli.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "165",
+      "width": "50",
+      "bgimage": "#0b1fe2",
+      "title": "\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u043c\u0435\u0442\u0430\u043b\u043b\u043e\u0438\u0437\u0434\u0435\u043b\u0438\u0439 \u0410\u0440\u0441\u0435\u043d\u0430\u043b\u00a0\u041c\u0435\u0442\u0430\u043b\u043b",
+      "external": "https://arsenalmetall.by/",
+      "internal": "https://arsenalmetall.by/",
+      "image": "/upload/iblock/360/ars.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "181",
+      "width": "50",
+      "bgimage": "#0061ba",
+      "title": "IT-\u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0442\u043e\u0440 \u0410\u0442\u043b\u0430\u043d\u0442\u00a0\u041a\u043e\u043d\u0441\u0430\u043b\u0442",
+      "external": "http://atlantconsult.com/",
+      "internal": "http://atlantconsult.com/",
+      "image": "/upload/iblock/4f9/atlant.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "180",
+      "width": "50",
+      "bgimage": "#aeb2be",
+      "title": "\u0410\u0432\u0442\u043e\u0448\u043a\u043e\u043b\u0430 \u0410\u043b\u0433\u043e\u0440\u0438\u0442\u043c \u0414\u041e\u0421\u0410\u0410\u0424 \u0420\u043e\u0441\u0441\u0438\u0438",
+      "external": "http://umc-algoritm.ru/",
+      "internal": "http://umc-algoritm.ru/",
+      "image": "/upload/iblock/5be/algoritm.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "172",
+      "width": "50",
+      "bgimage": "#212530",
+      "title": "\u041e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u043b\u044f \u0441\u0438\u043d\u0442\u0435\u0437\u0430 Millab\u00a0Synthesis",
+      "external": "http://www.millab-synthesis.ru/",
+      "internal": "http://www.millab-synthesis.ru/",
+      "image": "/upload/iblock/1a8/millab.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    },
+    {
+      "id": "176",
+      "width": "50",
+      "bgimage": "#e83c3c",
+      "title": "\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0441\u0442\u0438\u043b\u044c\u043d\u043e\u0439 \u043c\u0435\u0431\u0435\u043b\u0438 Trespace",
+      "external": "https://trespace.ru/",
+      "internal": "https://trespace.ru/",
+      "image": "/upload/iblock/283/trespace.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d",
+          "link": "ecommerce"
+        }
+      ]
+    },
+    {
+      "id": "178",
+      "width": "50",
+      "bgimage": "#012d78",
+      "title": "\u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a \u043f\u043b\u0430\u0441\u0442\u0438\u043a\u0430 \u041c\u0430\u0441\u0441\u0442\u0430\u0440",
+      "external": "https://www.masstar.ru/",
+      "internal": "https://www.masstar.ru/",
+      "image": "/upload/iblock/eba/masstar.jpg",
+      "breadcrumbs": [
+        {
+          "name": "\u0418\u043c\u0438\u0434\u0436\u0435\u0432\u044b\u0439 \u0441\u0430\u0439\u0442",
+          "link": "website"
+        }
+      ]
+    }
+  ]
 }

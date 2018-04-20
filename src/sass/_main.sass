@@ -1345,12 +1345,13 @@ body
 				opacity: 1
 				visibility: visible
 		&.hover 
-			a 
+			a,span
 				span 
 					color: inherit
 		.name-inner
-			transition: transform 1.25s, opacity 1.25s,visibility 1.25s
-			transform: translate(0, 100%)
+			// transition: transform 1.25s, opacity 1.25s,visibility 1.25s
+			transition: transform 1s cubic-bezier(.62,.02,.34,1),opacity 1s,visibility 1s
+			transform: translate(0, 150%)
 			opacity: 0
 			visibility: hidden
 		.name-tags
@@ -1377,12 +1378,12 @@ body
 						&:hover
 							span
 								color: $bottonSection
-		a
+		a,.name-inner>span
 			font-family: $GraphikMedium
 			+rem(font-size, 17px)
 			+rem(letter-spacing, -.3px)
 			color: $nameUpp
-			
+			cursor: pointer
 			&.link-color
 				line-height: 1.76
 				display: block
@@ -1850,6 +1851,7 @@ body
 			overflow: hidden
 			z-index: 0
 			pointer-events: none
+			+gpu
 			img 
 				width: 100%
 				height: 100%
@@ -1997,12 +1999,14 @@ body
 	.arrows
 		cursor: pointer
 	.head__title
-		+rem(margin-bottom,32px)
 		+rm(1500)
 			+rem(max-width,600px)
 	a.link-color
 		&:hover 
 			color: color(hoverlink) !important
+.screen__content
+	.head__title
+		+rem(margin-bottom,42px)
 
 .info__container
 	display: flex
@@ -2069,6 +2073,8 @@ body
 	+rem(margin-bottom, $mb - 16)
 	overflow: hidden
 	font-size: 0	
+	&+.screen__section.l_p
+		+rem(margin-bottom,30px)
 	.swiper-container
 		.swiper-pagination
 			bottom: 14px
@@ -2140,7 +2146,8 @@ body
 	flex: 1 1 0px
 	min-width: 0
 	flex-flow: row wrap
-
+	&.no-margin
+		margin-bottom: 0
 
 	.screen__section-head
 		max-width: 50%
@@ -2154,8 +2161,11 @@ body
 	.screen__section-content
 		max-width: 50%
 		flex: 0 0 50%
-		+rem(padding-top, 15px)
+		+rem(padding-top, 16px)
 		+rem(max-width,500px)
+		p 
+			&:not(:last-child)
+				+rem(padding-bottom,10px)
 		// +rem(margin-left,-40px)
 		+r(1277)
 			margin-left: 0
@@ -2195,7 +2205,8 @@ h3, .h3
 	line-height: 1.3
 hr 
 	background-color: $hr
-	+rem(margin-bottom, $mb)
+	+rem(margin-bottom, $mb +3px)
+	// +rem(margin-top, $mb +30px)
 	height: 1px
 	border: none
 	max-width: 100%
@@ -2214,9 +2225,9 @@ hr
 	flex-flow: row wrap
 	flex-grow: 1
 	width: 100%
-	+rem(margin, 0 (-$padding / 2) $padding / 2 - 7)
+	+rem(margin, 0 (-$padding / 2))
 	+r(1500)
-		+rem(margin, 0 (-$padding) $padding / 2 - 7)
+		+rem(margin, 0 (-$padding))
 		width: auto	
 	// +r(1277)
 	// 	+rem(margin, 0 (-$padding) $padding / 2 - 7)
@@ -2224,7 +2235,7 @@ hr
 	.work__service-item
 		width: 50%
 		+rem(padding, 0 $padding/2)
-		+rem(margin-bottom, $padding/2)
+		// +rem(margin-bottom, $padding/2)
 		+r(1500)
 			+rem(padding, 0 $padding /2 0 0)
 	.work__service-image
@@ -2239,7 +2250,7 @@ hr
 		+rem(font-size, 20px)
 		letter-spacing: -.4px
 		line-height: 1.45
-		+rem(margin-bottom, 5px)
+		// +rem(margin-bottom, 5px)
 		+rem(max-width,420px)
 	.work__service-subtitle
 		font-family: $GraphikMedium
@@ -2255,6 +2266,7 @@ hr
 		letter-spacing: -.4px
 		line-height: 1.8
 		+rem(max-width,420px)
+		+rem(margin-top,10px)
 	.work__service-pdf
 		display: flex
 		+rem(padding-top, $padding / 4)
@@ -2297,6 +2309,7 @@ hr
 .review__container
 	+rem(padding, 0 $padding/4 0 $padding)
 	position: relative
+	+rem(margin-top,-20px)
 	.review__line
 		position: absolute
 		top: 6px
@@ -2319,9 +2332,13 @@ hr
 	font-family: $GraphikMedium
 	+rem(font-size, 28px)
 	color: $black
-	line-height: 1.3
+	line-height: 1.5
 	+rem(margin-bottom, 35px)
 	+rem(max-width,900px)
+	&:only-child 
+		+rem(padding-top,15px)
+		margin-bottom: 0
+
 .screen__section-text
 	+rem(max-width,900px)
 .case__container
@@ -2453,6 +2470,7 @@ hr
 				+rem(font-size, 20px)
 				line-height: 1.8
 				color: $caption
+				+rem(margin-right,-20px)
 				+r(1500)
 					+rem(font-size, 17px)
 			.rate__counter
@@ -2508,6 +2526,8 @@ hr
 .resent__container
 	position: relative
 	+rem(padding-top, 121px)
+	.head__title
+		+rem(margin-bottom,32px)
 	.recent__bg
 		position: absolute
 		top: 0
@@ -2607,7 +2627,6 @@ hr
 			+rem(font-size, 28px)
 			line-height: 1.2
 .form__request
-	position: relative
 	+nosel
 	.form__request-front
 		// opacity: 0
@@ -2896,14 +2915,38 @@ hr
 					.page-title,.filter-container
 						pointer-events: all
 
+	.contacts
+		.container
+			padding-top: 0 !important
+			padding-right: 0 !important
+			padding-left: 0 !important
 
-		
+[data-namespace="portfolio"]
+	
+	+r(1600)
+		+rem(margin-left,-15px)
+		.frame__side:last-child
+			padding-right: 4rem
+		.safari &
+			margin-left: 0
+			.portfolio__projects
+				+rem(padding-right,15px)
+			// padding-right: 5rem
+
 .contacts
 	.screen__section-head
 		.upper
 			margin-bottom: 0
 	.container
 		+rem(padding-top, $padding + 40)
+		&>.head__title:first-child
+			+rem(margin-top,35px)
+			&+.info__container 
+				.review__text
+					+rem(margin-bottom,30px)
+.container 
+	position: relative
+	
 
 .screen__section-intro
 	+rem(margin-bottom, $padding / 4)

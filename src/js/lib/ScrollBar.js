@@ -49,33 +49,38 @@ Scroller.prototype = {
       this.templateBuilder = new TemplateBuilder(portfolio, '#grid__container', '#project__names');
       this.templateBuilder.init();
       $(mainGridCont).on('prevpos_update',() => {
+        console.log(this.prevScrolltop);
         setTimeout(() => {
           this.prevScrolltop = 0;
-        },600);
+        },1000);
         
       });
     }
 
 
     if(this.param.scrollText) {
+      this.scrolledText = $(this.param.text).find('.frame__name');
       setTimeout(() => {
         this.calculateKoeff();
       },300);
-      
+      // 
     }    
 
     if(this.param.tabs) {
       new Tabs();
     }
-    
-    this._onScroll = this.scrollEvent.bind(this);
-    this.scrollContainer = $('.frame__side:last-child')[0].offsetHeight <= $(window).height() && window.DOM.html.hasClass('safari')? $('.frame__side:last-child')[0]: document;
-    this.scrollContainer.addEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
-    // console.log(this.scrollContainer);
+    setTimeout(() => {
+      this._onScroll = this.scrollEvent.bind(this);
+      this.scrollContainer = $('.frame__side:last-child')[0].offsetHeight <= $(window).height() && window.DOM.html.hasClass('safari')? $('.frame__side:last-child')[0]: document;
+      this.scrollContainer.addEventListener('scroll', this._onScroll, window.DOM.passiveSupported ? { passive: true } : false);
+    },1000);
+
   },
 
   scrollEvent: function() {
-    let scrolltop = $(window).scrollTop() || this.scrollContainer.scrollTop;
+    let scrolltop = $(this.scrollContainer).scrollTop();
+    
+    // if(scrolltop)this.scrollContainer.scrollTop;
     if(this.param._ajax) {
       if(scrolltop > this.prevScrolltop) {
         this.templateBuilder.updateTemplatesIfNeed(scrolltop);
@@ -86,6 +91,7 @@ Scroller.prototype = {
       this.setPositionText(scrolltop);
       this.fixedPositionSidebar(scrolltop);
     }
+
   },
 
   windowValue: function() {
@@ -118,19 +124,17 @@ Scroller.prototype = {
   },
 
   calculateKoeff: function() {
+
     this.textParentWidth = $(this.fixedElement).innerWidth();
-    this.textWidth = $(this.param.text).find('.frame__name').width();
-    this.offsetLeft = $(this.param.text).find('.frame__name').offset().left;
-    this.pageHeight = $(this.param.scrollHeight).height();
+    this.textWidth = this.scrolledText.outerWidth();
+    this.offsetLeft = this.scrolledText.offset().left;
+    this.pageHeight = $(this.param.scrollHeight)[0].scrollHeight - $(window).height();
   },
 
   setPositionText: function(state) {
     var offsetTop = state;
-    var text = $(this.param.text).find('.frame__name');
-
     var position = ((this.textWidth - this.textParentWidth + this.offsetLeft) / this.pageHeight) * offsetTop;
-    
-    $(text).css({'left': -position});
+    this.scrolledText.css({'left': -position});
   },
 
   delete: function() {

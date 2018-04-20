@@ -1,5 +1,8 @@
 .service-body
 	+rem(margin-bottom,49px)
+	.grid__item
+		&:not(:last-child)
+			+rem(margin-bottom,40px)
 a.service-block 
 	&:hover 
 		.h2 
@@ -58,7 +61,7 @@ a.service-block
 				color: $white
 			.info__description
 				padding-right: 0
-		.category__list .category__list-item a
+		.category__list .category__list-item > *
 			span
 				color: $white
 			.hover-line

@@ -211,8 +211,11 @@ var BarbaWitget = {
       delete this.menu;
       this.menu = new Menu();
       this.menu.init();
-      scrollToEl();
+      
       validateForms();
+      setTimeout(() => {
+        scrollToEl();
+      },300);
     });  
 
     Barba.Pjax.getTransition = () => {
@@ -419,9 +422,11 @@ var PortfolioInnerPage = Barba.BaseView.extend({
       scrollText: true,
       grabScroll: true
     }, true);
+    setTimeout(() => {
+      this.carousel = new Carousel();
+      this.carousel.init();
+    },500);
 
-    this.carousel = new Carousel();
-    this.carousel.init();
 
     this.resent = new RecentSlider();
     setTimeout(() => {
@@ -509,9 +514,12 @@ function initSite() {
   BarbaWitget.init();
 
 }
-
+window.DOM.loader = new PageLoader();
 window.onload = () => {
-  scrollToEl();
+  setTimeout(() => {
+    scrollToEl();
+  },500);
+  
   // setTimeout(() => {
   window.DOM.loader.startAnim();
   // },300);
@@ -522,7 +530,7 @@ if (!window.Promise) {
 }
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0,0);
-  window.DOM.loader = new PageLoader();
+ 
 });
 // ready(() => {
 
