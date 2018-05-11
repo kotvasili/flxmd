@@ -37,7 +37,12 @@ export default function validateForms() {
                 succesBlock.fadeIn(300);
                 $('html:not(:animated), body:not(:animated),.frame__side:last-child:not(:animated)').animate({scrollTop: offs}, 300);
               });
-              
+              if(gtag !== 'undefined') {
+                gtag('event', 'zapros', {'event_category' : 'zapros', 'event_action': 'otpravit'});
+              }
+              if(typeof yaCounter25794059 !== undefined) {
+                yaCounter25794059.reachGoal('otpravit_zapros');
+              }
             }
           });
           return false;
